@@ -1,4 +1,4 @@
-package phase1;
+package phase1.src;
 
 public class ATM {
     private String date = "00:00:0000"; // mm:dd::yyyy

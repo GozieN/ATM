@@ -1,4 +1,4 @@
-package phase1;
+package phase1.src;
 
 public class User extends Operator {
     private String username;

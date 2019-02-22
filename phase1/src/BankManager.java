@@ -1,4 +1,4 @@
-package phase1;
+package phase1.src;
 
 public class BankManager extends Operator {
     private String username;
