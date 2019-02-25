@@ -1,4 +1,4 @@
-package phase1.src;
+package phase1;
 
 public class User extends Operator {
     private String username;
@@ -14,7 +14,7 @@ public class User extends Operator {
         this.password = password;
     }
 
-    // requestaccountcreation method
+    // requestaccountcreation method - must interact with bankManager to do this
 
 
 }

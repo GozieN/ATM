@@ -1,4 +1,4 @@
-package phase1.src;
+package phase1;
 
 public abstract class Operator {
     private String username;
