@@ -24,6 +24,7 @@ public class ATM {
     // setnumbills method (BM)
 
     // addbills method (BM)
+    //Consider observer pattern in order to update other files/classes
 
 
 }
