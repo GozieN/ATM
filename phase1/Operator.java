@@ -1,27 +1,31 @@
 package phase1;
+
 import java.util.*;
 
 public abstract class Operator {
-    private ArrayList<BankManager> bankmanagerdatabase = new ArrayList<BankManager>();
-    private ArrayList<User> userdatabase = new ArrayList<User>();
-    private String username;
-    private String password;
+    String username;
+    String password;
 
+    // operator constructor
     public Operator(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+    // changepassword method
+    public abstract String changepassword(String currentpassword, String newpassword);
+        // BM and User will each override this method
+
     // viewinfo method
+    public abstract String viewinfo();
+        // BM and User will each override this method
+            // BM will need to input user instance in the method parameter
+            // but user will not have to input any parameters (direct call)
         // returns (for print)::
             // a summary of all of their account balances
             // the most recent transaction on any account
             // the date of creation of one of their accounts
             // their net total
-    public abstract String viewinfo();
-        // BM and User will each override this method
-            // BM will need to input user instance in the method parameter
-            // but user will not have to input any parameters (direct call)
 
     // viewbalance method
     public abstract String viewbalance();
@@ -49,6 +53,4 @@ public abstract class Operator {
         // BM input parameters: user instance, amount, account num/type
         // user input parameters: amount, account num/type
     // returns a string to ensure completion of deposit
-
-
 }

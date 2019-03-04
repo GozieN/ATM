@@ -1,104 +1,111 @@
 package phase1;
 
+import java.util.*;
+
 public class ATM {
-    private String date = "00:00:0000"; // mm:dd::yyyy
-    private String time = "00:00:00"; // hh:mm:ss
     private int num5bills = 0;
     private int num10bills = 0;
     private int num20bills = 0;
     private int num50bills = 0;
+    private Calendar cal = new GregorianCalendar();
 
-    public ATM(String date, String time, int num5bills, int num10bills, int num20bills, int num50bills) {
-         this.date = date;
-         this.time = time;
+    // ATM constructor
+    public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
          this.num5bills = num5bills;
          this.num10bills = num10bills;
          this.num20bills = num20bills;
          this.num50bills = num50bills;
+         this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
     }
 
-    // getdate method
+    // setdate method (BM use ONLY in console)
+    public void setdate(int day, int month, int year) { // format dd:mm:yyyy
+        this.cal.set(Calendar.DATE, day);
+        this.cal.set(Calendar.MONTH, month);
+        this.cal.set(Calendar.YEAR, year);
+    }
+
+    // getdate method (universal use in console)
     public String getdate() {
-        return this.date;
+        return "the date is " + this.cal.getTime().toString().substring(4, 10) + ',' +
+                cal.getTime().toString().substring(24, 28);
     }
 
-    // gettime method
+    // settime method (BM use ONLY in console)
+    public void settime(int hour, int minute, int second) { // format hh:mm:ss
+        this.cal.set(Calendar.HOUR, hour);
+        this.cal.set(Calendar.MINUTE, minute);
+        this.cal.set(Calendar.SECOND, second);
+        this.cal.set(Calendar.MILLISECOND, 00);
+    }
+
+    // gettime method (universal use in console)
     public String gettime() {
-        return this.time;
+        return "the 24h-time is " + this.cal.getTime().toString().substring(11, 19);
     }
 
-    // getnum5bills method
-    public int getnum5bills() {
-        return this.num5bills;
-    }
-
-    // getnum10bills method
-    public int getnum10bills() {
-        return this.num10bills;
-    }
-
-    // getnum20bills method
-    public int getnum20bills() {
-        return this.num20bills;
-    }
-
-    // getnum50bills method
-    public int getnum50bills() {
-        return this.num50bills;
-    }
-
-    // setdate method (BM)
-    public void setdate(String date) {
-        this.date = date;
-    }
-
-    // settime method (BM)
-    public void settime(String time) {
-        this.time = time;
-    }
-
-    // setnum5bills method (BM)
+    // setnum5bills method (BM use ONLY in console)
     public void setnum5bills(int num5bills) {
         this.num5bills = num5bills;
     }
 
-    // setnum10bills method (BM)
-    public void setnum10bills(int num10bills) {
-        this.num10bills = num10bills;
+    // getnum5bills method (BM use ONLY in console)
+    public int getnum5bills() {
+        return this.num5bills;
     }
 
-    // setnum20bills method (BM)
-    public void setnum20bills(int num20bills) {
-        this.num20bills = num20bills;
-    }
-
-    // setnum50bills method (BM)
-    public void setnum50bills(int num50bills) {
-        this.num50bills = num50bills;
-    }
-
-    // addbills methods (BM)::
-    // consider observer pattern in order to update other files/classes
-
-    // addnum5bills method (BM)
+    // addnum5bills method (BM use ONLY in console)
     public void addnum5bills(int num5bills) {
         this.num5bills += num5bills;
     }
 
-    // addnum10bills method (BM)
+    // setnum10bills method (BM use ONLY in console)
+    public void setnum10bills(int num10bills) {
+        this.num10bills = num10bills;
+    }
+
+    // getnum10bills method (BM use ONLY in console)
+    public int getnum10bills() {
+        return this.num10bills;
+    }
+
+    // addnum10bills method (BM use ONLY in console)
     public void addnum10bills(int num10bills) {
         this.num10bills += num10bills;
     }
 
-    // addnum20bills method (BM)
+    // setnum20bills method (BM use ONLY in console)
+    public void setnum20bills(int num20bills) {
+        this.num20bills = num20bills;
+    }
+
+    // getnum20bills method (BM use ONLY in console)
+    public int getnum20bills() {
+        return this.num20bills;
+    }
+
+    // addnum20bills method (BM use ONLY in console)
     public void addnum20bills(int num20bills) {
         this.num20bills += num20bills;
     }
 
-    // addnum50bills method (BM)
+    // setnum50bills method (BM use ONLY in console)
+    public void setnum50bills(int num50bills) {
+        this.num50bills = num50bills;
+    }
+
+    // getnum50bills method (BM use ONLY in console)
+    public int getnum50bills() {
+        return this.num50bills;
+    }
+
+    // addnum50bills method (BM use ONLY in console)
     public void addnum50bills(int num50bills) {
         this.num50bills += num50bills;
     }
 
+    // minus bills method(s ?) for notifier: -> output.txt low amount of bills for BM to restock
+        // each and any other method in package that takes out bills needs to add this method in body
 
+    // consider observer pattern in order to update other files/classes
 }

@@ -3,17 +3,11 @@ Roles:
 Txt files (deposits, outgoing, alerts, README) - Angela 
 -	Implement read lines + outputs (alerts.txt + outgoing.txt)
 -	Testing files
-- time of ATM ?
+- saving and re-initializing the time of ATM once it has been set the first time by BM
 
 Jackson (will do around half) + 2 more people
 - ATM class
-    - time (instant variable)::
-        - https://dzone.com/articles/getting-current-date-time-in-java
-            - ctrl f: CurrentTimeDateCalendar
-                - import java dateformat, simpledateformat, calendar, date
-        - using instant? : https://docs.oracle.com/javase/9/docs/api/java/time/Instant.html
-            - instant now() method
-        - time in the main method ?
+    - time
 - operator parent class
 - bankmanager subclass
 - user subclass
