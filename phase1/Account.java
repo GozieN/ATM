@@ -1,7 +1,7 @@
 package phase1;
 
 public abstract class Account {
-    //user can have multiple accounts
+    // user can have multiple accounts
     private int accountNum;
     private String holderName;
     private double balance;
@@ -16,7 +16,7 @@ public abstract class Account {
     public abstract void withdraw(double amount);
 
     public double getBalance(){
-        return balance;
+        return this.balance;
     }
 
     public void setBalance(double balance){
