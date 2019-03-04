@@ -113,6 +113,8 @@ public class ATM {
 
     // consider observer pattern in order to update other files/classes
 
+
+    // [Angela]
     public void main (String[] args) {
 
         try{
