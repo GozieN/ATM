@@ -1,6 +1,9 @@
 package phase1;
 
 import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
 
 public class User extends Operator {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
@@ -60,6 +63,15 @@ public class User extends Operator {
     @Override
     public String transfer() {
 
+        //[Angela]
+        try {
+            PrintStream originalOut = System.out;
+            PrintStream fileOut = new PrintStream("/.Outgoing.txt");
+            System.setOut(fileOut);
+            originalOut.println("[Amount] transferred to [Receiver Account]");
+            System.setOut(originalOut);
+        } catch (FileNotFoundException ex) {ex.printStackTrace();}
+
     }
     // user input parameters: amount, (from) account num/type, (to) account num/type
 
@@ -80,4 +92,5 @@ public class User extends Operator {
 
     // paybill method
         // input parameters: amount, (to) ?
+
 }
