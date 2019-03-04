@@ -1,6 +1,10 @@
 package phase1;
 
 import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 
 public class ATM {
     private int num5bills = 0;
@@ -108,4 +112,27 @@ public class ATM {
         // each and any other method in package that takes out bills needs to add this method in body
 
     // consider observer pattern in order to update other files/classes
+
+    public void main (String[] args) {
+
+        try{
+            PrintStream originalOut = System.out;
+
+            PrintStream fileOut = new PrintStream("/.alerts.txt");
+
+            System.setOut(fileOut);
+
+            if (num5bills < 4){originalOut.println("Five dollar bills low in stock!");}
+            else if (num10bills < 2) {originalOut.println("Ten dollar bills low in stock!");}
+            else if (num20bills < 1) {originalOut.println("Twenty dollar bills low in stock!");}
+            else if (num50bills < 1) {originalOut.println ("Fifty dollar bills low in stock!");}
+
+            System.setOut(originalOut);
+
+            }catch (FileNotFoundException ex)
+            { ex.printStackTrace();}
+
+
+        }
+    }
 }
