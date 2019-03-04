@@ -99,4 +99,6 @@ public class ATM {
     public void addnum50bills(int num50bills) {
         this.num50bills += num50bills;
     }
+
+
 }

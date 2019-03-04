@@ -7,6 +7,13 @@ Txt files (deposits, outgoing, alerts, README) - Angela
 
 Jackson (will do around half) + 2 more people
 - ATM class
+    - time (instant variable)::
+        - https://dzone.com/articles/getting-current-date-time-in-java
+            - ctrl f: CurrentTimeDateCalendar
+                - import java dateformat, simpledateformat, calendar, date
+        - using instant? : https://docs.oracle.com/javase/9/docs/api/java/time/Instant.html
+            - instant now() method
+        - time in the main method ?
 - operator parent class
 - bankmanager subclass
 - user subclass
