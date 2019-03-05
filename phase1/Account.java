@@ -15,6 +15,10 @@ public abstract class Account {
     public abstract void deposit(double amount);
     public abstract void withdraw(double amount);
 
+    public int getAccountNum() {
+        return accountNum;
+    }
+
     public double getBalance(){
         return this.balance;
     }
