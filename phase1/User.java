@@ -39,29 +39,37 @@ public class User extends Operator {
         }
     }
 
+    //[Angela]
+    //GOZIE - OBSERVER PATTERN
     // requestaccountcreation method
-        // must interact with bankmanager to do this
-        // how to implement this? maybe::
-            // requestnotifier setter method in BM class, user method calls it
-            // user method passes username information and account type being requested to BM setter ?
-            // this information would go in output.txt and the accounts
-            // would be created the next time the program is launched (the next time input.txt is read)
-                // requires information going from output.txt to input.txt
+    // must interact with bankmanager to do this
+    // how to implement this? maybe::
+    // requestnotifier setter method in BM class, user method calls it
+    // user method passes username information and account type being requested to BM setter ?
+    // this information would go in output.txt and the accounts
+    // would be created the next time the program is launched (the next time input.txt is read)
+    // requires information going from output.txt to input.txt
 
     @Override
-    public String viewinfo() {
+    public void viewInfo() {
+        System.out.println("Account holder: " + this.username + " "
+                + "DATE AND TIME " +
+                "" + "Account summary:" + "Account number: " + "REFER TO ACCOUNT NUM" + " contains: (double of amount)");
 
+//TOODO - dependency INJECTION
     }
     // user will not have to input any parameters (direct call)
 
     @Override
-    public String viewbalance() {
-
+    public void viewBalance(Account account) {
+        System.out.println("Account: " + account.getAccountNum() + " now has a balance of: " + account.getBalance());
     }
     // user input parameters: account num/type
 
     @Override
-    public String transfer() {
+    public void transfer(int amount, Account from, Account to) {
+        from.setBalance(from.getBalance() - amount);
+        to.setBalance(to.getBalance() + amount);
 
         //[Angela]
         try {
@@ -73,24 +81,29 @@ public class User extends Operator {
         } catch (FileNotFoundException ex) {ex.printStackTrace();}
 
     }
-    // user input parameters: amount, (from) account num/type, (to) account num/type
 
     @Override
-    public String withdraw() {
-
+    public void withdraw(int amount, Account account) {
+        account.setBalance(account.getBalance() - amount);
+        System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
+                " now has a decreased balance of: " + account.getBalance() + "currency");
     }
-    // user input parameters: amount, account num/type
 
     @Override
-    public String deposit() {
-
+    public void deposit(int amount, Account account) {
+        account.setBalance( account.getBalance() + amount);
+        System.out.println("Deposit successful, Account: " + account.getAccountNum() +
+                " now has an increased balance of: " + account.getBalance() + "currency");
     }
-    // user input parameters: amount, account num/type
 
-    // etransfer method
-        // input parameters: amount, (to) user, (to) account num/type
+    public void eTransfer(int amount, Account from, Account to) {
+        from.setBalance(from.getBalance() - amount);
+        to.setBalance(to.getBalance() + amount);}
 
-    // paybill method
-        // input parameters: amount, (to) ?
+    public void payBill(int amount, Account from, Account to) {
+        from.setBalance(from.getBalance() - amount);
+        to.setBalance(to.getBalance() + amount);
+        //dCHECK
 
-}
+    }}
+
