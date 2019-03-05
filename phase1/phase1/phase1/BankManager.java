@@ -3,7 +3,7 @@ package phase1;
 import java.util.*;
 
 
-public class BankManager extends phase1.Operator {
+public class BankManager extends Operator implements Observer{
     private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<BankManager>();
     private static int numbankmanagers = 0;
     private String username;
@@ -17,6 +17,11 @@ public class BankManager extends phase1.Operator {
         numbankmanagers += 1;
         bankmanagerdatabase.add(this);
     }
+
+    public void update(User, ){
+
+    }
+
 
     // createuser method
     public String createuser(String username, String password) {

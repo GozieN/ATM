@@ -1,11 +1,13 @@
 package phase1;
 
+import javafx.beans.Observable;
+
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 
-public class User extends Operator {
+public class User extends Operator implements Observable{
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numusers = 0;
     private String username;
