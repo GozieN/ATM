@@ -6,52 +6,59 @@ import Accounts.Account;
 import java.util.*;
 
 
-public class BankManager implements Operator, Observer{
+public class BankManager implements Observer{
     private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<BankManager>();
     private static int numbankmanagers = 0;
     private String username;
     private String password;
 
     // bankmanager constructor
-    public BankManager(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public BankManager() {
+//        this.username = username;
+//        this.password = password;
         numbankmanagers += 1;
         bankmanagerdatabase.add(this);
     }
 
-    public void update(User, ){
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (arg instanceof Account){
+             System.out.println(((User) o).getUsername() +
+                     ", the following account:" +
+                     ((Account) arg).getAccountType((Account) arg) + "with account Number: "
+                     + ((Account) arg).getAccountNum() +  "was created upon your request");
+            }
+        else if(arg instanceof )
+
 
     }
-    public void singleAccountSummary(User user, Account account){
-        user.singleAccountSummary(account);
-    }
 
-    // createuser method
-    public String createuser(String username, String password) {
+    // createUser method
+    public String createUser(String username, String password) {
         if ( (username.substring(0, 4)).equals("USER") ) {
             new User(username, password);
-            return "the user " + username + " has been created";
+            return "The User " + username + " has been created";
         } else {
-            return "invalid username for a user";
+            return "Invalid username for a user";
         }
     }
     // creates new user instance in userdatabase arraylist in user class
 
-    // changepassword method
-    public String changePassword(String currentpassword, String newpassword) {
-        if (currentpassword.equals(this.password)) {
-            this.password = newpassword;
-            return "your password has been changed";
-        } else {
-            return "wrong current password. password unchanged";
-        }
-    }
+//    // changePassword method
+//    public String changePassword(String currentpassword, String newpassword) {
+//        if (currentpassword.equals(this.password)) {
+//            this.password = newpassword;
+//            return "your password has been changed";
+//        } else {
+//            return "wrong current password. password unchanged";
+//        }
+//    }
 
     // setuserpassword method
     public String setUserPassword(User user, String newpassword) {
-        user.setpassword(newpassword);
-        return "user " + user + "'s password has been changed";
+        user.setInitialPassword(newpassword);
+        return "User " + user.getUsername() + "'s password has been changed";
     }
 
     // ATMsetdate method
@@ -149,41 +156,43 @@ public class BankManager implements Operator, Observer{
         return "number of $50 bills added to the ATM: " + num50bills + "\n" +
                 "the number of $50 bills in the ATM is now : " + atm.getnum50bills();
     }
-
-    @Override
-    public String viewInfo(User user) {
-        return user.viewInfo();
-    }
-    // BM will need to input user instance in the method parameter
-
-    @Override
-    public void viewBalance(User user) {
-        user.viewBalance();
-
-    }
-    // BM will need to input parameters: user instance, account num/type
-
-    @Override
-    public void transfer(User user, int amount, Account from, Account to) {
-        user.transfer(amount, from, to);
-    }
-    // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
-
-    @Override
-    public void withdraw(User user, int amount, Account from, Account to) {
-        user.withdraw();
-    }
-    // BM input parameters: user instance, amount, account num/type
-
-    @Override
-    public void deposit(User user, int amount, Account from, Account to) {
-        user.deposit();
-    }
-    // BM input parameters: user instance, amount, account num/type
-
-    public void undoMostRecentTransaction(User user, Account account) {
-    //ArrayList of transactions remove most recent addition;
-        //if bill - do not!
-    }
-    // input parameters: user instance, account num/type
+//    public void singleAccountSummary(User user, Account account){
+//        user.singleAccountSummary(account);
+//    }
+//    @Override
+//    public String viewInfo(User user) {
+//        return user.viewInfo();
+//    }
+//    // BM will need to input user instance in the method parameter
+//
+//    @Override
+//    public void viewBalance(User user) {
+//        user.viewBalance();
+//
+//    }
+//    // BM will need to input parameters: user instance, account num/type
+//
+//    @Override
+//    public void transfer(User user, int amount, Account from, Account to) {
+//        user.transfer(amount, from, to);
+//    }
+//    // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
+//
+//    @Override
+//    public void withdraw(User user, int amount, Account from, Account to) {
+//        user.withdraw();
+//    }
+//    // BM input parameters: user instance, amount, account num/type
+//
+//    @Override
+//    public void deposit(User user, int amount, Account from, Account to) {
+//        user.deposit();
+//    }
+//    // BM input parameters: user instance, amount, account num/type
+//
+//    public void undoMostRecentTransaction(User user, Account account) {
+//    //ArrayList of transactions remove most recent addition;
+//        //if bill - do not!
+//    }
+//    // input parameters: user instance, account num/type
 }

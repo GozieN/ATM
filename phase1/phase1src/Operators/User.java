@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 
-public class User extends Observable implements Operator{
+public class User extends Observable implements UserOperator{
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numusers = 0;
     private String username;
@@ -17,6 +17,8 @@ public class User extends Observable implements Operator{
     private ChequingAccount ca = null;
     private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
+    private BankManager bmObserver = new BankManager();
+
 
     // user constructor (BM use ONLY in console)
     public User(String username, String password) {
@@ -27,14 +29,14 @@ public class User extends Observable implements Operator{
     }
 
     // setpassword method (BM use ONLY in console)
-    public void setpassword(String newpassword) {
-        this.password = newpassword;
+    public void setInitialPassword(String newPassword) {
+        this.password = newPassword;
     }
 
     // changepassword method
-    public String changePassword(String currentpassword, String newpassword) {
-        if (currentpassword.equals(this.password)) {
-            this.password = newpassword;
+    public String changePassword(String currentPassword, String newPassword) {
+        if (currentPassword.equals(this.password)) {
+            this.password = newPassword;
             return "your password has successfully been changed";
         } else {
             return "you have entered the wrong current password. unable to change password";
@@ -42,9 +44,29 @@ public class User extends Observable implements Operator{
     }
     //[Angela]
     //GOZIE - OBSERVER PATTERN
-     public void requestAccountCreation(Account account){
-        this.AccountsCreated.add(account);
+     public void requestUserAccountCreation(Account account) {
+         this.AccountsCreated.add(account);
+         setChanged();
+         notifyObservers(account);
+         clearChanged();
      }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setObserver(BankManager observer) {
+        this.bmObserver = observer;
+    }
+
+    public ArrayList<Account> getAccountsCreated() {
+        return AccountsCreated;
+    }
+
     // must interact with bankmanager to do this
     // how to implement this? maybe::
     // requestnotifier setter method in BM class, user method calls it
@@ -56,17 +78,19 @@ public class User extends Observable implements Operator{
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
                 + "DATE AND TIME " +
-                "" + "Account summary:" + "Account number: " + account.getAccountNum() + " contains: " + account.getBalance());
-    }
-    // user will not have to input any parameters (direct call)
+                "" + "Account summary:" + account.getAccountType(account) +"Account Number: "
+                + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 
-    public String viewInfo() {
+    // user will not have to input any parameters (direct call)
+    //CONSIDER OPTION OF THIS VIEW
+
+    public String viewInfo(){
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
 
         String s = "Account holder: " + this.username + " Report of Accounts:";
         for(int i = 0; i < AccountsCreated.size(); i++){
-            s += "PRINTACCOUNTTYPE Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
+            s += AccountsCreated.get(i).getAccountType(AccountsCreated.get(i)) + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){
@@ -77,6 +101,7 @@ public class User extends Observable implements Operator{
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
         return s;
     }
+
     // user will not have to input any parameters (direct call)
 
     public void viewBalance(Account account) {

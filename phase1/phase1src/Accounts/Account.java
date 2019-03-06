@@ -16,6 +16,20 @@ public abstract class Account {
     public abstract void deposit(double amount);
     public abstract void withdraw(double amount);
 
+    public String getAccountType(Account account){
+        String s = "";
+        if (account instanceof ChequingAccount){
+            s += "ChequingAccount";}
+        else if (account instanceof SavingsAccount){
+            s += "SavingsAccount";}
+        else if (account instanceof Credit){
+            if (((Credit) account).isLOC)
+                s += "LineOfCreditAccount";}
+             else{
+                 s += "CreditCardsAccount"; }
+
+        return s;}
+
     public int getAccountNum() {
         return accountNum;
     }
@@ -26,5 +40,5 @@ public abstract class Account {
 
     public void setBalance(double balance){
         this.balance = balance;
-    }
-}
+    }}
+

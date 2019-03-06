@@ -2,7 +2,7 @@ package Operators;
 
 import Accounts.Account;
 
-public interface Operator {
+public interface UserOperator {
 
     // changepassword method
 
