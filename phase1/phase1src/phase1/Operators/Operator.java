@@ -1,4 +1,6 @@
-package phase1;
+package phase1.Operators;
+
+import phase1.Accounts.Account;
 
 public interface Operator {
 

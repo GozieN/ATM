@@ -1,4 +1,4 @@
-package phase1;
+package phase1.Accounts;
 
 public class Credit extends Account {
     boolean isLOC;

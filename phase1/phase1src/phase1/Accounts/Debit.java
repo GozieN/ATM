@@ -1,4 +1,4 @@
-package phase1;
+package phase1.Accounts;
 
 public abstract class Debit extends Account {
 

@@ -1,4 +1,7 @@
-package phase1;
+package phase1.Operators;
+
+import phase1.ATM;
+import phase1.Accounts.Account;
 
 import java.util.*;
 
@@ -18,7 +21,7 @@ public class BankManager extends Operator implements Observer{
         bankmanagerdatabase.add(this);
     }
 
-    public void update(User, ){
+    public void update(User,){
 
     }
 
@@ -26,7 +29,7 @@ public class BankManager extends Operator implements Observer{
     // createuser method
     public String createuser(String username, String password) {
         if ( (username.substring(0, 4)).equals("USER") ) {
-            new phase1.User(username, password);
+            new User(username, password);
             return "the user " + username + " has been created";
         } else {
             return "invalid username for a user";

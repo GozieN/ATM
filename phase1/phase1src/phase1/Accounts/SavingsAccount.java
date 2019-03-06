@@ -1,5 +1,7 @@
-package phase1;
+package phase1.Accounts;
 
+
+import phase1.Accounts.Debit;
 
 public class SavingsAccount extends Debit {
 

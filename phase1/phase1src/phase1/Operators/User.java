@@ -1,6 +1,7 @@
-package phase1;
+package phase1.Operators;
 
 import javafx.beans.Observable;
+import phase1.Accounts.*;
 
 import java.util.*;
 import java.io.FileNotFoundException;
