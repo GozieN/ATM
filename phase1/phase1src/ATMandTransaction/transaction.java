@@ -1,4 +1,4 @@
-package phase1;
+package ATMandTransaction;
 
 public class transaction {
     private int senderAccount;

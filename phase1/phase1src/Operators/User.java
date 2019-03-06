@@ -1,14 +1,13 @@
-package phase1.Operators;
+package Operators;
 
-import javafx.beans.Observable;
-import phase1.Accounts.*;
+import Accounts.*;
 
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 
-public class User extends Operator implements Observable{
+public class User extends Observable implements Operator{
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numusers = 0;
     private String username;
@@ -21,7 +20,6 @@ public class User extends Operator implements Observable{
 
     // user constructor (BM use ONLY in console)
     public User(String username, String password) {
-        super(username, password);
         this.username = username;
         this.password = password;
         numusers++;
@@ -34,7 +32,7 @@ public class User extends Operator implements Observable{
     }
 
     // changepassword method
-    public String changepassword(String currentpassword, String newpassword) {
+    public String changePassword(String currentpassword, String newpassword) {
         if (currentpassword.equals(this.password)) {
             this.password = newpassword;
             return "your password has successfully been changed";
@@ -55,7 +53,6 @@ public class User extends Operator implements Observable{
     // would be created the next time the program is launched (the next time input.txt is read)
     // requires information going from output.txt to input.txt
 
-    @Override
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
                 + "DATE AND TIME " +
@@ -63,7 +60,6 @@ public class User extends Operator implements Observable{
     }
     // user will not have to input any parameters (direct call)
 
-    @Override
     public String viewInfo() {
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
@@ -83,13 +79,11 @@ public class User extends Operator implements Observable{
     }
     // user will not have to input any parameters (direct call)
 
-    @Override
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
     }
     // user input parameters: account num/type
 
-    @Override
     public void transfer(int amount, Account from, Account to) {
         from.setBalance(from.getBalance() - amount);
         to.setBalance(to.getBalance() + amount);
@@ -105,14 +99,12 @@ public class User extends Operator implements Observable{
 
     }
 
-    @Override
     public void withdraw(int amount, Account account) {
         account.setBalance(account.getBalance() - amount);
         System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
                 " now has a decreased balance of: " + account.getBalance() + "currency");
     }
 
-    @Override
     public void deposit(int amount, Account account) {
         account.setBalance( account.getBalance() + amount);
         System.out.println("Deposit successful, Account: " + account.getAccountNum() +

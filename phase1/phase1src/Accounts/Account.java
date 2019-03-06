@@ -1,4 +1,4 @@
-package phase1.Accounts;
+package Accounts;
 
 
 public abstract class Account {

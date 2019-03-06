@@ -1,12 +1,12 @@
-package phase1.Operators;
+package Operators;
 
-import phase1.ATM;
-import phase1.Accounts.Account;
+import ATMandTransaction.ATM;
+import Accounts.Account;
 
 import java.util.*;
 
 
-public class BankManager extends Operator implements Observer{
+public class BankManager implements Operator, Observer{
     private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<BankManager>();
     private static int numbankmanagers = 0;
     private String username;
@@ -14,17 +14,18 @@ public class BankManager extends Operator implements Observer{
 
     // bankmanager constructor
     public BankManager(String username, String password) {
-        super(username, password);
         this.username = username;
         this.password = password;
         numbankmanagers += 1;
         bankmanagerdatabase.add(this);
     }
 
-    public void update(User,){
+    public void update(User, ){
 
     }
-
+    public void singleAccountSummary(User user, Account account){
+        user.singleAccountSummary(account);
+    }
 
     // createuser method
     public String createuser(String username, String password) {
@@ -38,7 +39,7 @@ public class BankManager extends Operator implements Observer{
     // creates new user instance in userdatabase arraylist in user class
 
     // changepassword method
-    public String changepassword(String currentpassword, String newpassword) {
+    public String changePassword(String currentpassword, String newpassword) {
         if (currentpassword.equals(this.password)) {
             this.password = newpassword;
             return "your password has been changed";
@@ -48,7 +49,7 @@ public class BankManager extends Operator implements Observer{
     }
 
     // setuserpassword method
-    public String setuserpassword(User user, String newpassword) {
+    public String setUserPassword(User user, String newpassword) {
         user.setpassword(newpassword);
         return "user " + user + "'s password has been changed";
     }

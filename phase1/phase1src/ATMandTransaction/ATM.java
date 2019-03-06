@@ -1,4 +1,4 @@
-package phase1;
+package ATMandTransaction;
 
 import java.util.*;
 import java.io.FileNotFoundException;

@@ -1,18 +1,18 @@
-package phase1.Operators;
+package Operators;
 
-import phase1.Accounts.Account;
+import Accounts.Account;
 
 public interface Operator {
 
     // changepassword method
 
-    String changePassword();
+    public String changePassword(String currentpassword, String newpassword);
         // BM and User will each implement their own versions of this method
 
     void singleAccountSummary(Account account);
 
     // viewinfo method
-    String viewInfo();
+    public String viewInfo();
         // BM and User will each implement their own versions of this method
             // BM will need to input user instance in the method parameter
             // but user will override and not have to input any parameters (direct call)
@@ -23,27 +23,27 @@ public interface Operator {
             // their net total
 
     // viewBalance method
-    public String viewBalance();
+    public void viewBalance(Account account);
         // BM and User will each implement their own versions of this method
             // BM will need to input parameters: user instance, account num/type
             // user input parameters: account num/type
 
     // transfer method
-    public String transfer();
+    public void transfer(int amount, Account from, Account to);
         // BM and User will each implement their own versions of this method
             // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
             // user input parameters: amount, (from) account num/type, (to) account num/type
         // returns a string to ensure completion of transfer
 
     // withdraw method
-    public String withdraw();
+    public void withdraw(int amount, Account from);
         // BM and User will each implement their own versions of this method
             // BM input parameters: user instance, amount, account num/type
             // user input parameters: amount, account num/type
         // returns a string to ensure completion of withdrawal
 
     // deposit method
-    public String deposit();
+    public void deposit(int amount, Account to);
         // BM and User will each implement their own versions of this method
             // BM input parameters: user instance, amount, account num/type
             // user input parameters: amount, account num/type
