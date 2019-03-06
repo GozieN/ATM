@@ -21,27 +21,28 @@ public class BankManager implements Observer{
         bankmanagerdatabase.add(this);
     }
 
-
+//GOZIE -IMPLEMENT OBSERVER PATTERM FOR BM AND ATM!
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Account){
+            ((User) o).addToAccountsCreated((Account) arg);
              System.out.println(((User) o).getUsername() +
                      ", the following account:" +
                      ((Account) arg).getAccountType((Account) arg) + "with account Number: "
                      + ((Account) arg).getAccountNum() +  "was created upon your request");
             }
-        else if(arg instanceof )
-
-
+        else if(arg instanceof String){
+            System.out.println("Your initial password has been set. You are able to change it later.");
+        }
     }
 
     // createUser method
-    public String createUser(String username, String password) {
+    public void createUser(String username, String password) {
         if ( (username.substring(0, 4)).equals("USER") ) {
             new User(username, password);
-            return "The User " + username + " has been created";
+            System.out.println("The User with name: " + username + " has been created");
         } else {
-            return "Invalid username for a user";
+            System.out.println("Invalid username for a user");
         }
     }
     // creates new user instance in userdatabase arraylist in user class
@@ -189,16 +190,17 @@ public class BankManager implements Observer{
 //    }
 //    // BM input parameters: user instance, amount, account num/type
 
-    public void undoMostRecentTransaction(User user, Account account) {
-    String msg=transactions[-1]; // Gain access to last element (popping)
-    if (transactions.size()>0){
-        transactions.remove(transactions.size()-1);
-    }
-    if (){ // "deposit 20" then if deposit in msg you go here, consider ALL cases that involve gaining money
-
-    }else if(){ // "withdraw 20" then if withdraw go here, consider ALL cases that involve losing money
-
-    }
-    }
-    // input parameters: user instance, account num/type
+    //ANGEL
+//    public void undoMostRecentTransaction(User user, Account account) {
+//    String msg=transactions.get(-1); // Gain access to last element (popping)
+//    if (transactions.size()>0){
+//        transactions.remove(transactions.size()-1);
+//    }
+//    if (){ // "deposit 20" then if deposit in msg you go here, consider ALL cases that involve gaining money
+//
+//    }else if(){ // "withdraw 20" then if withdraw go here, consider ALL cases that involve losing money
+//
+//    }
+//    }
+//    // input parameters: user instance, account num/type
 }

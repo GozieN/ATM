@@ -26,7 +26,7 @@ public abstract class Account {
             if (((Credit) account).isLOC)
                 s += "LineOfCreditAccount";}
              else{
-                 s += "CreditCardsAccount"; }
+                 s += "CreditCardccount"; }
 
         return s;}
 

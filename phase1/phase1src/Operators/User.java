@@ -31,6 +31,9 @@ public class User extends Observable implements UserOperator{
     // setpassword method (BM use ONLY in console)
     public void setInitialPassword(String newPassword) {
         this.password = newPassword;
+        setChanged();
+        notifyObservers(newPassword);
+        clearChanged();
     }
 
     // changepassword method
@@ -44,12 +47,18 @@ public class User extends Observable implements UserOperator{
     }
     //[Angela]
     //GOZIE - OBSERVER PATTERN
-     public void requestUserAccountCreation(Account account) {
-         this.AccountsCreated.add(account);
+     public void requestAccountCreation(Account account) {
          setChanged();
          notifyObservers(account);
          clearChanged();
      }
+     // must interact with bankmanager to do this
+    // how to implement this? maybe::
+    // requestnotifier setter method in BM class, user method calls it
+    // user method passes username information and account type being requested to BM setter ?
+    // this information would go in output.txt and the accounts
+    // would be created the next time the program is launched (the next time input.txt is read)
+    // requires information going from output.txt to input.txt
 
     public String getUsername() {
         return username;
@@ -67,13 +76,12 @@ public class User extends Observable implements UserOperator{
         return AccountsCreated;
     }
 
-    // must interact with bankmanager to do this
-    // how to implement this? maybe::
-    // requestnotifier setter method in BM class, user method calls it
-    // user method passes username information and account type being requested to BM setter ?
-    // this information would go in output.txt and the accounts
-    // would be created the next time the program is launched (the next time input.txt is read)
-    // requires information going from output.txt to input.txt
+    public void setAccountsCreated(ArrayList<Account> accountsCreated) {
+        AccountsCreated = accountsCreated;
+    }
+    public void addToAccountsCreated(Account account) {
+        AccountsCreated.add(account);
+    }
 
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
@@ -85,6 +93,7 @@ public class User extends Observable implements UserOperator{
     //CONSIDER OPTION OF THIS VIEW
 
     public String viewInfo(){
+
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
 
@@ -125,17 +134,18 @@ public class User extends Observable implements UserOperator{
     }
 
     public void withdraw(int amount, Account account) {
-        account.setBalance(account.getBalance() - amount);
+
+        account.withdraw(amount);
         System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
                 " now has a decreased balance of: " + account.getBalance() + "currency");
     }
 
     public void deposit(int amount, Account account) {
-        account.setBalance( account.getBalance() + amount);
+        account.deposit(amount);
         System.out.println("Deposit successful, Account: " + account.getAccountNum() +
                 " now has an increased balance of: " + account.getBalance() + "currency");
     }
-
+//CONSIDER DATA CLUMPING CODE SMELL - AVOID
     public void eTransfer(int amount, Account from, Account to) {
         from.setBalance(from.getBalance() - amount);
         to.setBalance(to.getBalance() + amount);}
