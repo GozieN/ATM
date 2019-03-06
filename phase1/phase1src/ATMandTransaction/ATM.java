@@ -123,7 +123,7 @@ public class ATM {
 
             System.setOut(fileOut);
 
-            if (this.num50bills < 4){originalOut.println("Five dollar bills low in stock!");}
+            if (this.num5bills < 4){originalOut.println("Five dollar bills low in stock!");}
             else if (this.num10bills < 2) {originalOut.println("Ten dollar bills low in stock!");}
             else if (this.num20bills < 1) {originalOut.println("Twenty dollar bills low in stock!");}
             else if (this.num50bills < 1) {originalOut.println ("Fifty dollar bills low in stock!");}

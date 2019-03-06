@@ -11,6 +11,7 @@ public class BankManager implements Observer{
     private static int numbankmanagers = 0;
     private String username;
     private String password;
+    public ArrayList<String> transactions = new ArrayList<String>();
 
     // bankmanager constructor
     public BankManager() {
@@ -156,6 +157,7 @@ public class BankManager implements Observer{
         return "number of $50 bills added to the ATM: " + num50bills + "\n" +
                 "the number of $50 bills in the ATM is now : " + atm.getnum50bills();
     }
+<<<<<<< HEAD
 //    public void singleAccountSummary(User user, Account account){
 //        user.singleAccountSummary(account);
 //    }
@@ -195,4 +197,50 @@ public class BankManager implements Observer{
 //        //if bill - do not!
 //    }
 //    // input parameters: user instance, account num/type
+=======
+
+    @Override
+    public String viewInfo(User user) {
+        return user.viewInfo();
+    }
+    // BM will need to input user instance in the method parameter
+
+    @Override
+    public void viewBalance(User user) {
+        user.viewBalance();
+
+    }
+    // BM will need to input parameters: user instance, account num/type
+
+    @Override
+    public void transfer(User user, int amount, Account from, Account to) {
+        user.transfer(amount, from, to);
+    }
+    // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
+
+    @Override
+    public void withdraw(User user, int amount, Account from, Account to) {
+        user.withdraw();
+    }
+    // BM input parameters: user instance, amount, account num/type
+
+    @Override
+    public void deposit(User user, int amount, Account from, Account to) {
+        user.deposit();
+    }
+    // BM input parameters: user instance, amount, account num/type
+
+    public void undoMostRecentTransaction(User user, Account account) {
+    String msg=transactions[-1]; // Gain access to last element (popping)
+    if (transactions.size()>0){
+        transactions.remove(transactions.size()-1);
+    }
+    if (){ // "deposit 20" then if deposit in msg you go here, consider ALL cases that involve gaining money
+
+    }else if(){ // "withdraw 20" then if withdraw go here, consider ALL cases that involve losing money
+
+    }
+    }
+    // input parameters: user instance, account num/type
+>>>>>>> origin/master
 }
