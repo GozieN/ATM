@@ -11,6 +11,7 @@ public class BankManager implements Operator, Observer{
     private static int numbankmanagers = 0;
     private String username;
     private String password;
+    public ArrayList<String> transactions = new ArrayList<String>();
 
     // bankmanager constructor
     public BankManager(String username, String password) {
@@ -182,8 +183,15 @@ public class BankManager implements Operator, Observer{
     // BM input parameters: user instance, amount, account num/type
 
     public void undoMostRecentTransaction(User user, Account account) {
-    //ArrayList of transactions remove most recent addition;
-        //if bill - do not!
+    String msg=transactions[-1]; // Gain access to last element (popping)
+    if (transactions.size()>0){
+        transactions.remove(transactions.size()-1);
+    }
+    if (){ // "deposit 20" then if deposit in msg you go here, consider ALL cases that involve gaining money
+
+    }else if(){ // "withdraw 20" then if withdraw go here, consider ALL cases that involve losing money
+
+    }
     }
     // input parameters: user instance, account num/type
 }
