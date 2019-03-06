@@ -13,5 +13,6 @@ public class ChequingAccount extends Debit {
         if ((getBalance() - amount) >= -100)
             setBalance(getBalance() - amount);
     }
+
 }
 

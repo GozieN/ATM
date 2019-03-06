@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 public class User extends Observable implements UserOperator{
     private static ArrayList<User> userdatabase = new ArrayList<User>();
-    private static int numusers = 0;
+    private static int numUsers = 0;
     private String username;
     private String password;
     private Credit cca = null;
@@ -24,7 +24,7 @@ public class User extends Observable implements UserOperator{
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        numusers++;
+        numUsers++;
         userdatabase.add(this);
     }
 
