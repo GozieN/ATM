@@ -1,9 +1,9 @@
-package FundHolderAndFundTransfers;
+package FundTransfers;
 
-import Accounts.Account;
-import Accounts.ChequingAccount;
-import Accounts.Debit;
-import Accounts.Credit;
+import FundHolders.Account;
+import FundHolders.ChequingAccount;
+import FundHolders.Debit;
+import FundHolders.Credit;
 
 
 public class TransferOfFunds {

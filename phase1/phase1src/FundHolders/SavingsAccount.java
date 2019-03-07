@@ -1,4 +1,4 @@
-package Accounts;
+package FundHolders;
 
 
 public class SavingsAccount extends Debit {

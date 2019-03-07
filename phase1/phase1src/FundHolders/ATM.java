@@ -1,4 +1,4 @@
-package FundHolderAndFundTransfers;
+package FundHolders;
 
 import java.util.*;
 import java.io.FileNotFoundException;

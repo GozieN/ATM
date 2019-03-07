@@ -1,4 +1,4 @@
-package Accounts;
+package FundHolders;
 
 public class ChequingAccount extends Debit {
     private boolean isPrimary;

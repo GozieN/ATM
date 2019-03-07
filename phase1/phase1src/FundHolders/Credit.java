@@ -1,4 +1,4 @@
-package Accounts;
+package FundHolders;
 
 public class Credit extends Account {
     boolean isLOC;

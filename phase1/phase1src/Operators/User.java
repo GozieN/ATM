@@ -1,10 +1,8 @@
 package Operators;
 
-import Accounts.*;
+import FundHolders.*;
 
 import java.util.*;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 
 
 public class User extends Observable implements UserOperator{
@@ -97,7 +95,7 @@ public class User extends Observable implements UserOperator{
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
 
-        String s = "Account holder: " + this.username + " Report of Accounts:";
+        String s = "Account holder: " + this.username + " Report of FundHolders:";
         for(int i = 0; i < AccountsCreated.size(); i++){
             s += AccountsCreated.get(i).getAccountType(AccountsCreated.get(i)) + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +

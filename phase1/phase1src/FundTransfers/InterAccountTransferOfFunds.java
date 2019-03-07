@@ -1,6 +1,6 @@
-package FundHolderAndFundTransfers;
+package FundTransfers;
 
-import Accounts.Account;
+import FundHolders.Account;
 
 public class InterAccountTransferOfFunds extends TransferOfFunds {
     protected Account senderAccount;

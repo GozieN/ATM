@@ -1,4 +1,4 @@
-package FundHolderAndFundTransfers;
+package FundTransfers;
 //TO DELETE
 public class transaction {
     private int senderAccount;

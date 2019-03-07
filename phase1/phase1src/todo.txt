@@ -3,10 +3,10 @@ Roles:
 Txt files (deposits, outgoing, alerts, README) - Angela 
 -	Implement read lines + outputs (alerts.txt + outgoing.txt)
 -	Testing files
-- saving and re-initializing the time of FundHolderAndFundTransfers.ATM once it has been set the first time by BM
+- saving and re-initializing the time of FundHolders.ATM once it has been set the first time by BM
 
 Jackson (will do around half) + 2 more people
-- FundHolderAndFundTransfers.ATM class
+- FundHolders.ATM class
     - time
 - operator parent class
 - bankmanager subclass

@@ -1,7 +1,7 @@
-package Accounts;
+package FundHolders;
 
 
-import FundHolderAndFundTransfers.InterAccountTransferOfFunds;
+import FundTransfers.InterAccountTransferOfFunds;
 
 import java.util.ArrayList;
 

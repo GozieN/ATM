@@ -1,6 +1,6 @@
-package FundHolderAndFundTransfers;
+package FundTransfers;
 
-import Accounts.Account;
+import FundHolders.Account;
 
 public class NonUserAccountInterAccountTransferOfFunds extends InterAccountTransferOfFunds {
 

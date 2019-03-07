@@ -1,4 +1,4 @@
-package Accounts;
+package FundHolders;
 
 public abstract class Debit extends Account {
 

@@ -1,7 +1,7 @@
 package Operators;
 
-import FundHolderAndFundTransfers.ATM;
-import Accounts.Account;
+import FundHolders.ATM;
+import FundHolders.Account;
 
 import java.util.*;
 

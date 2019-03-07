@@ -1,6 +1,6 @@
 package Operators;
 
-import Accounts.Account;
+import FundHolders.Account;
 
 public interface UserOperator {
 
