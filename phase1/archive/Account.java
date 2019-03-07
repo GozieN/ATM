@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 public abstract class Account {
     // user can have multiple accounts

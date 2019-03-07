@@ -1,4 +1,4 @@
-package FundHolders;
+package phase1.archive;
 
 public class ChequingAccount extends Debit {
     private boolean isPrimary;
@@ -9,10 +9,9 @@ public class ChequingAccount extends Debit {
         this.isPrimary = isPrimary;
     }
 
-//    public void withdraw(double amount){
-//        if ((getBalance() - amount) >= -100)
-//            setBalance(getBalance() - amount);
-//    }
-
+    public void withdraw(double amount){
+        if ((getBalance() - amount) >= -100)
+            setBalance(getBalance() - amount);
+    }
 }
 

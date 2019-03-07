@@ -1,11 +1,11 @@
-package Operators;
+package phase1.Operators;
 
 import FundHolders.*;
 
 import java.util.*;
 
 
-public class User extends Observable implements UserOperator{
+public class User extends Observable implements UserOperator, Operator{
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -101,9 +101,9 @@ public class User extends Observable implements UserOperator{
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){
-                 totalDebitAmount += AccountsCreated.get(i).getBalance();
+                totalDebitAmount += AccountsCreated.get(i).getBalance();
             }else{
-            totalCreditAmount += AccountsCreated.get(i).getBalance();}
+                totalCreditAmount += AccountsCreated.get(i).getBalance();}
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
         return s;
@@ -114,6 +114,7 @@ public class User extends Observable implements UserOperator{
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
     }}
+
     // user input parameters: account num/type
 
 //    public void transfer(int amount, Account from, Account to) {

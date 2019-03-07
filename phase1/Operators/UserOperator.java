@@ -1,6 +1,6 @@
-package Operators;
+package phase1.Operators;
 
-import FundHolders.Account;
+import phase1.FundHolders.Account;
 
 public interface UserOperator {
 

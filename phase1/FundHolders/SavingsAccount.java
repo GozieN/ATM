@@ -1,4 +1,5 @@
-package phase1;
+package phase1.FundHolders;
+
 
 public class SavingsAccount extends Debit {
 
@@ -6,9 +7,8 @@ public class SavingsAccount extends Debit {
         super(accountNum, holderName, balance);
     }
 
-    public void withdraw(double amount){
-        if ((getBalance() - amount) >= 0)
-            setBalance(getBalance() - amount);
-    }
-
+//    public void withdraw(double amount){
+//        if ((getBalance() - amount) >= 0)
+//            setBalance(getBalance() - amount);
+//    }
 }

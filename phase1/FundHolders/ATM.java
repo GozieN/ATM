@@ -1,4 +1,4 @@
-package FundHolders;
+package phase1.FundHolders;
 
 import java.util.*;
 import java.io.FileNotFoundException;
