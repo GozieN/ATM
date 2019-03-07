@@ -11,4 +11,11 @@ public class SavingsAccount extends Debit {
             setBalance(getBalance() - amount);
     }
 
+//    use getdate method for interests
+//    store string of month and check if string is same as month in getdate method, if changed then increase interest
+
+    public void monthly_interest(double interest){
+        double increaseby = interest * getBalance();
+        setBalance(getBalance() - increaseby);
+    }
 }
