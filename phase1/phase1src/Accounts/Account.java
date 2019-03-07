@@ -1,11 +1,17 @@
 package Accounts;
 
 
+import FundHolderAndFundTransfers.InterAccountTransferOfFunds;
+
+import java.util.ArrayList;
+
 public abstract class Account {
     // user can have multiple accounts
     private int accountNum;
     private String holderName;
     private double balance;
+    private static ArrayList<InterAccountTransferOfFunds> interAccountTransferOfFundsRecord = new ArrayList<>();
+
 
     public Account(int accountNum, String holderName, double balance){
         this.accountNum = accountNum;
@@ -13,8 +19,8 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public abstract void deposit(double amount);
-    public abstract void withdraw(double amount);
+//    public abstract void deposit(double amount);
+//    public abstract void withdraw(double amount);
 
     public String getAccountType(Account account){
         String s = "";

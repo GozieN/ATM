@@ -9,10 +9,10 @@ public class ChequingAccount extends Debit {
         this.isPrimary = isPrimary;
     }
 
-    public void withdraw(double amount){
-        if ((getBalance() - amount) >= -100)
-            setBalance(getBalance() - amount);
-    }
+//    public void withdraw(double amount){
+//        if ((getBalance() - amount) >= -100)
+//            setBalance(getBalance() - amount);
+//    }
 
 }
 

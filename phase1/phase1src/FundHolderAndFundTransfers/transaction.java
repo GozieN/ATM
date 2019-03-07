@@ -1,5 +1,5 @@
-package ATMandTransaction;
-
+package FundHolderAndFundTransfers;
+//TO DELETE
 public class transaction {
     private int senderAccount;
     private int receiverAcocount;

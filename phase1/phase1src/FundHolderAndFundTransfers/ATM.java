@@ -1,4 +1,4 @@
-package ATMandTransaction;
+package FundHolderAndFundTransfers;
 
 import java.util.*;
 import java.io.FileNotFoundException;

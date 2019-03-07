@@ -115,45 +115,49 @@ public class User extends Observable implements UserOperator{
 
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
-    }
+    }}
     // user input parameters: account num/type
 
-    public void transfer(int amount, Account from, Account to) {
-        from.setBalance(from.getBalance() - amount);
-        to.setBalance(to.getBalance() + amount);
-
-        //[Angela]
-        try {
-            PrintStream originalOut = System.out;
-            PrintStream fileOut = new PrintStream("/.Outgoing.txt");
-            System.setOut(fileOut);
-            originalOut.println("[Amount] transferred to [Receiver Account]");
-            System.setOut(originalOut);
-        } catch (FileNotFoundException ex) {ex.printStackTrace();}
-
-    }
-
-    public void withdraw(int amount, Account account) {
-
-        account.withdraw(amount);
-        System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
-                " now has a decreased balance of: " + account.getBalance() + "currency");
-    }
-
-    public void deposit(int amount, Account account) {
-        account.deposit(amount);
-        System.out.println("Deposit successful, Account: " + account.getAccountNum() +
-                " now has an increased balance of: " + account.getBalance() + "currency");
-    }
-//CONSIDER DATA CLUMPING CODE SMELL - AVOID
-    public void eTransfer(int amount, Account from, Account to) {
-        from.setBalance(from.getBalance() - amount);
-        to.setBalance(to.getBalance() + amount);}
-
-    public void payBill(int amount, Account from, Account to) {
-        from.setBalance(from.getBalance() - amount);
-        to.setBalance(to.getBalance() + amount);
-        //CHECK specs
-
-    }}
+//    public void transfer(int amount, Account from, Account to) {
+//        from.setBalance(from.getBalance() - amount);
+//        to.setBalance(to.getBalance() + amount);
+//
+//        //[Angela]
+//        try {
+//            PrintStream originalOut = System.out;
+//            PrintStream fileOut = new PrintStream("/.Outgoing.txt");
+//            System.setOut(fileOut);
+//            originalOut.println("[Amount] transferred to [Receiver Account]");
+//            System.setOut(originalOut);
+//        } catch (FileNotFoundException ex) {ex.printStackTrace();}
+//
+//    }
+//
+//    public void withdraw(int amount, Account account) {
+//
+//        account.withdraw(amount);
+//        System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
+//                " now has a decreased balance of: " + account.getBalance() + "currency");
+//    }
+//
+//    public void deposit(int amount, Account account) {
+////deposit money into their account by entering a cheque
+//// or cash into the machine (This will be simulated by individual lines
+//// in an input file called deposits.txt. You can decide the format of the file.
+//// This will increase their balance.)
+//        account.deposit(amount);
+//        System.out.println("Deposit successful, Account: " + account.getAccountNum() +
+//                " now has an increased balance of: " + account.getBalance() + "currency");
+//    }
+////CONSIDER DATA CLUMPING CODE SMELL - AVOID
+//    public void eTransfer(int amount, Account from, Account to) {
+//        from.setBalance(from.getBalance() - amount);
+//        to.setBalance(to.getBalance() + amount);}
+//
+//    public void payBill(int amount, Account from, Account to) {
+//        from.setBalance(from.getBalance() - amount);
+//        to.setBalance(to.getBalance() + amount);
+//        //CHECK specs
+//
+//    }}
 

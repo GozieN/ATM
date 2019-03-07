@@ -8,13 +8,17 @@ public class Credit extends Account {
         this.isLOC = isLOC;
     }
 
-    public void withdraw(double amount){
-        if(isLOC) {
-            setBalance(getBalance() + amount);
-        }
+    public boolean isLineOfCreditAccount(){
+        return this.isLOC;
     }
 
-    public void deposit(double amount){
-        setBalance(getBalance() - amount);
-    }
+//    public void withdraw(double amount){
+//        if(isLOC) {
+//            setBalance(getBalance() + amount);
+//        }
+//    }
+//
+//    public void deposit(double amount){
+//        setBalance(getBalance() - amount);
+//    }
 }

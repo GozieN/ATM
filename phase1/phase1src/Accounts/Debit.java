@@ -6,8 +6,8 @@ public abstract class Debit extends Account {
         super(accountNum, holderName, balance);
     }
 
-    public void deposit(double amount){
-        setBalance(getBalance() + amount);
-    }
+//    public void deposit(double amount){
+//        setBalance(getBalance() + amount);
+//    }
 }
 

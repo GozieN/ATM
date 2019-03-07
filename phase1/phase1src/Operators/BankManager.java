@@ -1,17 +1,17 @@
 package Operators;
 
-import ATMandTransaction.ATM;
+import FundHolderAndFundTransfers.ATM;
 import Accounts.Account;
 
 import java.util.*;
 
 
 public class BankManager implements Observer{
-    private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<BankManager>();
+    private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<>();
     private static int numbankmanagers = 0;
-    private String username;
-    private String password;
-    public ArrayList<String> transactions = new ArrayList<String>();
+//    private String username;
+//    private String password;
+    public ArrayList<User> users = new ArrayList<>();
 
     // bankmanager constructor
     public BankManager() {
@@ -21,7 +21,7 @@ public class BankManager implements Observer{
         bankmanagerdatabase.add(this);
     }
 
-//GOZIE -IMPLEMENT OBSERVER PATTERM FOR BM AND ATM!
+//GOZIE -IMPLEMENT OBSERVER PATTERN FOR BM AND ATM!
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Account){
@@ -34,6 +34,10 @@ public class BankManager implements Observer{
         else if(arg instanceof String){
             System.out.println("Your initial password has been set. You are able to change it later.");
         }
+        else if(arg instanceof User){
+            users.add((User) arg);
+            createUser(((User) arg).getUsername(), ((User) arg).getPassword());
+        }
     }
 
     // createUser method
@@ -45,6 +49,7 @@ public class BankManager implements Observer{
             System.out.println("Invalid username for a user");
         }
     }
+
     // creates new user instance in userdatabase arraylist in user class
 
 //    // changePassword method
@@ -95,7 +100,7 @@ public class BankManager implements Observer{
     // ATMaddnum5bills method
     public String ATMaddnum5bills(ATM atm, int num5bills) {
         atm.addnum5bills(num5bills);
-        return "number of $5 bills added to the ATM: " + num5bills + "\n" +
+        return "number odcxzf $5 bills added to the ATM: " + num5bills + "\n" +
                 "the number of $5 bills in the ATM is now : " + atm.getnum5bills();
     }
 
