@@ -171,7 +171,7 @@ public class ATM {
             }
         }
     }
-    // minus bills method(s ?) for notifier: -> output.txt low amount of bills for BM to restock
+    //for notifier: -> output.txt low amount of bills for BM to restock
         // each and any other method in package that takes out bills needs to add this method in body
 
 
