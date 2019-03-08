@@ -92,7 +92,7 @@ public class User extends Observable implements OperatorUser {
     // user will not have to input any parameters (direct call)
     //CONSIDER OPTION OF THIS VIEW
 
-    public String viewInfo(){
+    public void viewInfo(){
 
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
@@ -108,7 +108,7 @@ public class User extends Observable implements OperatorUser {
                 totalCreditAmount += AccountsCreated.get(i).getBalance();}
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
-        return s;
+        System.out.println(s);
     }
 
     // user will not have to input any parameters (direct call)

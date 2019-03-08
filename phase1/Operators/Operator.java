@@ -5,7 +5,7 @@ public interface Operator {
 
     public void singleAccountSummary(Account account);
 
-    public String viewInfo();
+    public void viewInfo();
 
     public void viewBalance(Account account);
-    }
+}

@@ -12,7 +12,7 @@ public interface OperatorUser extends phase1.Operators.Operator {
     void singleAccountSummary(Account account);
 
     // viewinfo method
-    public String viewInfo();
+    public void viewInfo();
         // BM and User will each implement their own versions of this method
             // BM will need to input user instance in the method parameter
             // but user will override and not have to input any parameters (direct call)
