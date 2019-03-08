@@ -1,50 +1,40 @@
 package phase1.FundHolders;
 
-
-import phase1.FundTransfers.InterAccountTransferOfFunds;
-
-import java.util.ArrayList;
-
 public abstract class Account {
     // user can have multiple accounts
     private int accountNum;
     private String holderName;
     private double balance;
-    private static ArrayList<InterAccountTransferOfFunds> interAccountTransferOfFundsRecord = new ArrayList<>();
+    public String accountType;
+    private Arraylist<transaction> history;
 
-
-    public Account(int accountNum, String holderName, double balance){
+    public Account(int accountNum, String holderName, double balance, String accountType){
+        history = new Arraylsit<transaction>();
+        this.accountType = accountType;
         this.accountNum = accountNum;
         this.holderName = holderName;
         this.balance = balance;
     }
 
-//    public abstract void deposit(double amount);
-//    public abstract void withdraw(double amount);
-
-    public String getAccountType(Account account){
-        String s = "";
-        if (account instanceof ChequingAccount){
-            s += "ChequingAccount";}
-        else if (account instanceof SavingsAccount){
-            s += "SavingsAccount";}
-        else if (account instanceof Credit){
-            if (((Credit) account).isLOC)
-                s += "LineOfCreditAccount";}
-             else{
-                 s += "CreditCardccount"; }
-
-        return s;}
-
-    public int getAccountNum() {
-        return accountNum;
+    public void updatehistory(transactioninfo transactioninfo){
+        history.add(transactioninfo);
     }
 
-    public double getBalance(){
-        return this.balance;
-    }
+    public abstract void deposit(double amount);
+    public abstract void withdraw(double amount);
+
+    public int getAccountNum() { return accountNum; }
+
+    public double getBalance() { return this.balance; }
 
     public void setBalance(double balance){
         this.balance = balance;
-    }}
+    }
 
+    public static class transaction {
+        private int senderAccount;
+        private int receiverAcocount;
+        private double amount;
+
+    }
+}
