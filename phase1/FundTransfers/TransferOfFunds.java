@@ -1,9 +1,9 @@
-package FundTransfers;
+package phase1.FundTransfers;
 
-import FundHolders.Account;
-import FundHolders.ChequingAccount;
-import FundHolders.Debit;
-import FundHolders.Credit;
+import phase1.FundHolders.Account;
+import phase1.FundHolders.ChequingAccount;
+import phase1.FundHolders.Debit;
+import phase1.FundHolders.Credit;
 
 
 public class TransferOfFunds {

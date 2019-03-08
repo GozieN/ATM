@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 import java.util.*;
 import java.io.FileNotFoundException;

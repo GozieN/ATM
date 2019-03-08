@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 import java.util.*;
 
@@ -153,9 +153,9 @@ public class BankManager extends Operator {
     // BM will need to input parameters: user instance, account num/type
 
     @Override
-    public String transfer() {
-
+    public String transfer(){
     }
+
     // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
 
     @Override

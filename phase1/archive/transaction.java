@@ -1,5 +1,5 @@
-package FundTransfers;
-//TO DELETE
+package phase1.archive;
+
 public class transaction {
     private int senderAccount;
     private int receiverAcocount;

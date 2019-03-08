@@ -1,6 +1,6 @@
-package FundTransfers;
+package phase1.FundTransfers;
 
-import FundHolders.Account;
+import phase1.FundHolders.Account;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

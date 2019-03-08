@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 import java.util.*;
 import java.io.FileNotFoundException;
@@ -39,7 +39,6 @@ public class User extends Operator {
         }
     }
 
-    //[Angela]
     //GOZIE - OBSERVER PATTERN
     // requestaccountcreation method
     // must interact with bankmanager to do this
@@ -76,7 +75,7 @@ public class User extends Operator {
             PrintStream originalOut = System.out;
             PrintStream fileOut = new PrintStream("/.Outgoing.txt");
             System.setOut(fileOut);
-            originalOut.println("[Amount] transferred to [Receiver Account]");
+            originalOut.println(from + " transferred " + Integer.toString(amount) + "to " + to);
             System.setOut(originalOut);
         } catch (FileNotFoundException ex) {ex.printStackTrace();}
 

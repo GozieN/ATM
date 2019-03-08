@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 public class ChequingAccount extends Debit {
     private boolean isPrimary;

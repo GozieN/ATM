@@ -1,4 +1,4 @@
-package phase1;
+package phase1.archive;
 
 public class SavingsAccount extends Debit {
 

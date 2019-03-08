@@ -1,11 +1,13 @@
-package Operators;
+package phase1;
 
 import FundHolders.*;
+import phase1.Operators.Operator;
+import phase1.Operators.Workers.Manager;
 
 import java.util.*;
 
 
-public class User extends Observable implements UserOperator{
+public class User extends Observable implements OperatorUser {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -15,7 +17,8 @@ public class User extends Observable implements UserOperator{
     private ChequingAccount ca = null;
     private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private BankManager bmObserver = new BankManager();
+    private Manager bmObserver = new Manager();
+    private double cash;
 
 
     // user constructor (BM use ONLY in console)
@@ -24,6 +27,7 @@ public class User extends Observable implements UserOperator{
         this.password = password;
         numUsers++;
         userdatabase.add(this);
+        this.cash = 0;
     }
 
     // setpassword method (BM use ONLY in console)
@@ -35,12 +39,13 @@ public class User extends Observable implements UserOperator{
     }
 
     // changepassword method
-    public String changePassword(String currentPassword, String newPassword) {
+    public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
-            return "your password has successfully been changed";
+            System.out.println("your password has successfully been changed");
         } else {
-            return "you have entered the wrong current password. unable to change password";
+            System.out.println("you have entered the wrong current password. " +
+                    "unable to change password");
         }
     }
     //[Angela]
@@ -66,7 +71,7 @@ public class User extends Observable implements UserOperator{
         return password;
     }
 
-    public void setObserver(BankManager observer) {
+    public void setObserver(Manager observer) {
         this.bmObserver = observer;
     }
 
@@ -90,7 +95,22 @@ public class User extends Observable implements UserOperator{
     // user will not have to input any parameters (direct call)
     //CONSIDER OPTION OF THIS VIEW
 
-    public String viewInfo(){
+    public void withdraw(double amt, Account acc, ATM atm){
+        atm.calculateDenoms(amt);
+        this.cash+=amt;
+        acc.setBalance(acc.getBalance() - amt);
+    }
+
+    public void deposit(double amt, Account acc, ATM atm){
+        acc.setBalance(acc.getBalance() + amt);
+    }
+
+    public void transfer(double amt, Account sender, Account receiver, ATM atm){
+        sender.setBalance(sender.getBalance()-amt);
+        receiver.setBalance(receiever.getBalance()+amt);
+    }
+
+    public void viewInfo(){
 
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
@@ -101,19 +121,21 @@ public class User extends Observable implements UserOperator{
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){
-                 totalDebitAmount += AccountsCreated.get(i).getBalance();
+                totalDebitAmount += AccountsCreated.get(i).getBalance();
             }else{
-            totalCreditAmount += AccountsCreated.get(i).getBalance();}
+                totalCreditAmount += AccountsCreated.get(i).getBalance();}
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
-        return s;
+        System.out.println(s);
     }
 
     // user will not have to input any parameters (direct call)
 
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
-    }}
+    }
+}
+
     // user input parameters: account num/type
 
 //    public void transfer(int amount, Account from, Account to) {
@@ -158,4 +180,3 @@ public class User extends Observable implements UserOperator{
 //        //CHECK specs
 //
 //    }}
-
