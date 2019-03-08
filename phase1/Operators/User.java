@@ -102,11 +102,12 @@ public class User extends Observable implements OperatorUser {
     }
 
     public void deposit(double amt, Account acc, ATM atm){
-
+        acc.setBalance(acc.getBalance() + amt);
     }
 
     public void transfer(double amt, Account sender, Account receiver, ATM atm){
-
+        sender.setBalance(sender.getBalance()-amt);
+        receiver.setBalance(receiever.getBalance()+amt);
     }
 
     public void viewInfo(){

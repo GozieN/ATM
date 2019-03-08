@@ -6,10 +6,10 @@ import java.io.PrintStream;
 
 
 public class ATM {
-    private int num5bills = 0;
-    private int num10bills = 0;
-    private int num20bills = 0;
-    private int num50bills = 0;
+    private int num5bills = 100;
+    private int num10bills = 100;
+    private int num20bills = 100;
+    private int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
     private Manager BM;
 
@@ -110,7 +110,24 @@ public class ATM {
     }
 
     public void calculateDenoms(double amt){
-        return;
+        while (amt => 5) {
+            if (amt => 50){
+                amt=amt-50;
+                this.setNum50Bills(num50bills--);
+            }
+            else if (amt => 20){
+                amt=amt-20;
+                this.setNum20Bills(num20bills--);
+            }
+            else if (amt => 10){
+                amt=amt-10;
+                this.setNum10bills(num10bills--);
+            }
+            else if (amt => 5){
+                amt=amt-5;
+                this.setNum5Bills(num5bills--);
+            }
+        }
     }
 
     // add bills method (deposit numbills to ATM)
