@@ -1,5 +1,7 @@
 package phase1.FundHolders;
 
+import phase1.BankManager;
+
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -11,7 +13,7 @@ public class ATM {
     private int num20bills = 100;
     private int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
-    private Manager BM;
+    private BankManager BM;
 
     // ATM constructor
     public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
@@ -20,7 +22,7 @@ public class ATM {
          this.num20bills = num20bills;
          this.num50bills = num50bills;
          this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
-         this.BM = new Manager();
+         this.BM = new BankManager();
     }
 
     // setdate method (BM use ONLY in console)
@@ -130,10 +132,48 @@ public class ATM {
         }
     }
 
-    // add bills method (deposit numbills to ATM)
+    // plus bills into ATM method (from deposit methods)
+    public void plus(int dollaramount) {
+        ArrayList<Integer> numberstore = new ArrayList<Integer>();
+        while (dollaramount > 0) {
+            numberstore.add(dollaramount % 10);
+            dollaramount = dollaramount / 10;
+        }
+        for (int number : numberstore) {
+            if (number % 50 == 0) {
+                this.num50bills += number / 50;
+            } else if (number % 20 == 0) {
+                this.num20bills += number / 20;
+            } else if (number % 10 == 0) {
+                this.num10bills += number / 10;
+            } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
+                this.num5bills += number /5;
+            }
+        }
+    }
 
+    // minus bills into ATM method (from withdraw methods)
+    public void minus(int dollaramount) {
+        ArrayList<Integer> numberstore = new ArrayList<Integer>();
+        while (dollaramount > 0) {
+            numberstore.add(dollaramount % 10);
+            dollaramount = dollaramount / 10;
+        }
+        for (int number : numberstore) {
+            if (number % 50 == 0) {
+                this.num50bills -= number / 50;
+            } else if (number % 20 == 0) {
+                this.num20bills -= number / 20;
+            } else if (number % 10 == 0) {
+                this.num10bills -= number / 10;
+            } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
+                this.num5bills -= number /5;
+            }
+        }
+    }
     // minus bills method(s ?) for notifier: -> output.txt low amount of bills for BM to restock
         // each and any other method in package that takes out bills needs to add this method in body
+
 
     // consider observer pattern in order to update other files/classes
 

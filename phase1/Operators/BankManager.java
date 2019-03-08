@@ -8,15 +8,15 @@ import phase1.Operators.Users.User;
 import java.util.*;
 
 
-public class Manager implements Observer, OperatorWorker {
-    private static ArrayList<Manager> bankmanagerdatabase = new ArrayList<>();
+public class BankManager implements Observer, OperatorWorker {
+    private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<>();
     private static int numbankmanagers = 0;
 //    private String username;
 //    private String password;
     public ArrayList<User> users = new ArrayList<>();
 
     // bankmanager constructor
-    public Manager() {
+    public BankManager() {
 //        this.username = username;
 //        this.password = password;
         numbankmanagers += 1;
@@ -71,84 +71,84 @@ public class Manager implements Observer, OperatorWorker {
     }
 
     // ATMsetdate method
-    public void ATMsetdate(ATM atm, int day, int month, int year) { // format dd:mm:yy
+    public void ATMsetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
        atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
 
     // ATMsettime method
-    public void ATMsettime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
+    public void ATMsetTime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
         atm.setTime(hour, minute, second);
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
 
     // ATMsetnum5bills method
-    public void ATMsetnum5bills(ATM atm, int num5bills) {
+    public void ATMsetNum5Bills(ATM atm, int num5bills) {
         atm.setNum5Bills(num5bills);
         System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
     }
 
     // ATMgetnum5bills method
-    public void ATMgetnum5bills(ATM atm) {
+    public void ATMgetNum5Bills(ATM atm) {
         System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
     }
 
     // ATMaddnum5bills method
-    public void ATMaddnum5bills(ATM atm, int num5bills) {
+    public void ATMaddNum5Bills(ATM atm, int num5bills) {
         atm.addNum5Bills(num5bills);
         System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
                 "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
     }
 
     // ATMsetnum10bills method
-    public void ATMsetnum10bills(ATM atm, int num10bills) {
+    public void ATMsetNum10Bills(ATM atm, int num10bills) {
         atm.setNum10Bills(num10bills);
         System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
     }
 
     // ATMgetnum10bills method
-    public void ATMgetnum10bills(ATM atm) {
+    public void ATMgetNum10Bills(ATM atm) {
         System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
     }
 
     // ATMaddnum10bills method
-    public void ATMaddnum10bills(ATM atm, int num10bills) {
+    public void ATMaddNum10Bills(ATM atm, int num10bills) {
         atm.addNum10Bills(num10bills);
         System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
                 "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
     }
 
     // ATMsetnum20bills method
-    public void ATMsetnum20bills(ATM atm, int num20bills) {
+    public void ATMsetNum20Bills(ATM atm, int num20bills) {
         atm.setNum20Bills(num20bills);
         System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
     }
 
     // ATMgetnum20bills method
-    public void ATMgetnum20bills(ATM atm) {
+    public void ATMgetNum20Bills(ATM atm) {
         System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());
     }
 
     // ATMaddnum20bills method
-    public void ATMaddnum20bills(ATM atm, int num20bills) {
+    public void ATMaddNum20Bills(ATM atm, int num20bills) {
         atm.addNum20Bills(num20bills);
         System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
                 "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
     }
 
     // ATMsetnum50bills method
-    public void ATMsetnum50bills(ATM atm, int num50bills) {
+    public void ATMsetNum50Bills(ATM atm, int num50bills) {
         atm.setNum5Bills(num50bills);
         System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
     }
 
     // ATMgetnum50bills method
-    public void ATMgetnum50bills(ATM atm) {
+    public void ATMgetNum50Bills(ATM atm) {
         System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
     }
 
     // ATMaddnum50bills method
-    public void ATMaddnum50bills(ATM atm, int num50bills) {
+    public void ATMaddNum50Bills(ATM atm, int num50bills) {
         atm.addNum50Bills(num50bills);
         System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
                 "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
