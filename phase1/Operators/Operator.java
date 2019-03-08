@@ -1,4 +1,4 @@
-package phase1.Operators;
+package phase1;
 
 import phase1.FundHolders.Account;
 
