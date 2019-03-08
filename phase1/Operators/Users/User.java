@@ -37,12 +37,13 @@ public class User extends Observable implements OperatorUser {
     }
 
     // changepassword method
-    public String changePassword(String currentPassword, String newPassword) {
+    public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
-            return "your password has successfully been changed";
+            System.out.println("your password has successfully been changed");
         } else {
-            return "you have entered the wrong current password. unable to change password";
+            System.out.println("you have entered the wrong current password. " +
+                    "unable to change password");
         }
     }
     //[Angela]

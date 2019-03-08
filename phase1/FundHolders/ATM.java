@@ -107,10 +107,10 @@ public class ATM {
         this.num50bills += num50bills;
     }
 
+    // add bills method (deposit numbills to ATM)
+
     // minus bills method(s ?) for notifier: -> output.txt low amount of bills for BM to restock
         // each and any other method in package that takes out bills needs to add this method in body
-
-    // add bills method (deposit numbills to ATM)
 
     // consider observer pattern in order to update other files/classes
 

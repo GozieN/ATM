@@ -154,6 +154,18 @@ public class Manager implements Observer, OperatorWorker {
                 "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
     }
 
+    public void singleAccountSummary(Account account) {
+
+    }
+
+    public void viewInfo() {
+
+    }
+
+    public void viewBalance(Account account) {
+
+    }
+
     //to implement the operator class within the same parameters as the signature, input account. loop over list of users,
     //within each user loop over account and check for a matching instance using equal methods.
 
