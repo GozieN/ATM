@@ -5,14 +5,14 @@ public class ChequingAccount extends Debit {
 
 
     public ChequingAccount(int accountNum, String holderName, double balance, boolean isPrimary){
-        super(accountNum, holderName, balance);
+        super(accountNum, holderName, balance, "ChequingAccount");
         this.isPrimary = isPrimary;
     }
 
-//    public void withdraw(double amount){
-//        if ((getBalance() - amount) >= -100)
-//            setBalance(getBalance() - amount);
-//    }
+    public void withdraw(double amount){
+        if ((getBalance() - amount) >= -100)
+            setBalance(getBalance() - amount);
+    }
 
 }
 
