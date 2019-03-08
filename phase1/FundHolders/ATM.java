@@ -11,6 +11,7 @@ public class ATM {
     private int num20bills = 0;
     private int num50bills = 0;
     private Calendar cal = new GregorianCalendar();
+    private Manager BM;
 
     // ATM constructor
     public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
@@ -19,6 +20,7 @@ public class ATM {
          this.num20bills = num20bills;
          this.num50bills = num50bills;
          this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
+         this.BM = new Manager();
     }
 
     // setdate method (BM use ONLY in console)
@@ -107,6 +109,10 @@ public class ATM {
         this.num50bills += num50bills;
     }
 
+    public void calculateDenoms(double amt){
+        return;
+    }
+
     // add bills method (deposit numbills to ATM)
 
     // minus bills method(s ?) for notifier: -> output.txt low amount of bills for BM to restock
@@ -125,10 +131,10 @@ public class ATM {
 
             System.setOut(fileOut);
 
-            if (this.num5bills < 4){originalOut.println("Five dollar bills low in stock!");}
-            else if (this.num10bills < 2) {originalOut.println("Ten dollar bills low in stock!");}
-            else if (this.num20bills < 1) {originalOut.println("Twenty dollar bills low in stock!");}
-            else if (this.num50bills < 1) {originalOut.println ("Fifty dollar bills low in stock!");}
+            if (this.num5bills < 4){originalOut.println("Five dollar bills low in stock!"); BM.addnum5bills(100);}
+            else if (this.num10bills < 2) {originalOut.println("Ten dollar bills low in stock!"); BM.addnum10bills(100);}
+            else if (this.num20bills < 1) {originalOut.println("Twenty dollar bills low in stock!"); BM.addnum20bills(100);}
+            else if (this.num50bills < 1) {originalOut.println ("Fifty dollar bills low in stock!"); BM.addnum50bills(100);}
 
             System.setOut(originalOut);
 

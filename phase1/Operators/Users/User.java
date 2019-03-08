@@ -18,6 +18,7 @@ public class User extends Observable implements OperatorUser {
     private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private Manager bmObserver = new Manager();
+    private double cash;
 
 
     // user constructor (BM use ONLY in console)
@@ -26,6 +27,7 @@ public class User extends Observable implements OperatorUser {
         this.password = password;
         numUsers++;
         userdatabase.add(this);
+        this.cash = 0;
     }
 
     // setpassword method (BM use ONLY in console)
@@ -92,6 +94,20 @@ public class User extends Observable implements OperatorUser {
 
     // user will not have to input any parameters (direct call)
     //CONSIDER OPTION OF THIS VIEW
+
+    public void withdraw(double amt, Account acc, ATM atm){
+        atm.calculateDenoms(amt);
+        this.cash+=amt;
+        acc.setBalance(acc.getBalance() - amt);
+    }
+
+    public void deposit(double amt, Account acc, ATM atm){
+
+    }
+
+    public void transfer(double amt, Account sender, Account receiver, ATM atm){
+
+    }
 
     public void viewInfo(){
 
