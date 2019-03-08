@@ -1,13 +1,13 @@
 package phase1.Operators.Users;
 
 import FundHolders.*;
-import phase1.Operators.Workers.Manager;
 import phase1.Operators.Operator;
+import phase1.Operators.Workers.Manager;
 
 import java.util.*;
 
 
-public class User extends Observable implements UserOperator, Operator {
+public class User extends Observable implements OperatorUser {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -115,7 +115,8 @@ public class User extends Observable implements UserOperator, Operator {
 
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
-    }}
+    }
+}
 
     // user input parameters: account num/type
 
@@ -161,4 +162,3 @@ public class User extends Observable implements UserOperator, Operator {
 //        //CHECK specs
 //
 //    }}
-

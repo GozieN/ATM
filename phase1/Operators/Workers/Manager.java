@@ -8,7 +8,7 @@ import phase1.Operators.Users.User;
 import java.util.*;
 
 
-public class Manager implements Observer, Operator {
+public class Manager implements Observer, OperatorWorker {
     private static ArrayList<Manager> bankmanagerdatabase = new ArrayList<>();
     private static int numbankmanagers = 0;
 //    private String username;
@@ -65,105 +65,93 @@ public class Manager implements Observer, Operator {
 //    }
 
     // setuserpassword method
-    public String setUserPassword(User user, String newpassword) {
+    public void setUserPassword(User user, String newpassword) {
         user.setInitialPassword(newpassword);
-        return "User " + user.getUsername() + "'s password has been changed";
+        System.out.println("User " + user.getUsername() + "'s password has been changed");
     }
 
     // ATMsetdate method
-    public String ATMsetdate(ATM atm, int day, int month, int year) { // format dd:mm:yy
-       atm.setdate(day, month, year);
-       return "the date has been set to " + day + ':' + month + ':' + year;
+    public void ATMsetdate(ATM atm, int day, int month, int year) { // format dd:mm:yy
+       atm.setDate(day, month, year);
+        System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMsettime method
-    public String ATMsettime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
-        atm.settime(hour, minute, second);
-        return "the time has been set to " + hour + ':' + minute + ':' + second;
+    public void ATMsettime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
+        atm.setTime(hour, minute, second);
+        System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMsetnum5bills method
-    public String ATMsetnum5bills(ATM atm, int num5bills) {
-        atm.setnum5bills(num5bills);
-        return "the number of $5 bills in the ATM is now: " + num5bills;
+    public void ATMsetnum5bills(ATM atm, int num5bills) {
+        atm.setNum5Bills(num5bills);
+        System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMgetnum5bills method
-    public String ATMgetnum5bills(ATM atm) {
-        return "the number of $5 bills in the ATM is: " + atm.getnum5bills();
+    public void ATMgetnum5bills(ATM atm) {
+        System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
     }
 
     // ATMaddnum5bills method
-    public String ATMaddnum5bills(ATM atm, int num5bills) {
-        atm.addnum5bills(num5bills);
-        return "number odcxzf $5 bills added to the ATM: " + num5bills + "\n" +
-                "the number of $5 bills in the ATM is now : " + atm.getnum5bills();
+    public void ATMaddnum5bills(ATM atm, int num5bills) {
+        atm.addNum5Bills(num5bills);
+        System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
+                "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
     }
 
     // ATMsetnum10bills method
-    public String ATMsetnum10bills(ATM atm, int num10bills) {
-        atm.setnum10bills(num10bills);
-        return "the number of $10 bills in the ATM is now: " + num10bills;
+    public void ATMsetnum10bills(ATM atm, int num10bills) {
+        atm.setNum10Bills(num10bills);
+        System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMgetnum10bills method
-    public String ATMgetnum10bills(ATM atm) {
-        return "the number of $10 bills in the ATM is: " + atm.getnum10bills();
+    public void ATMgetnum10bills(ATM atm) {
+        System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
     }
 
     // ATMaddnum10bills method
-    public String ATMaddnum10bills(ATM atm, int num10bills) {
-        atm.addnum10bills(num10bills);
-        return "number of $10 bills added to the ATM: " + num10bills + "\n" +
-                "the number of $10 bills in the ATM is now : " + atm.getnum10bills();
+    public void ATMaddnum10bills(ATM atm, int num10bills) {
+        atm.addNum10Bills(num10bills);
+        System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
+                "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
     }
 
     // ATMsetnum20bills method
-    public String ATMsetnum20bills(ATM atm, int num20bills) {
-        atm.setnum20bills(num20bills);
-        return "the number of $20 bills in the ATM is now: " + num20bills;
+    public void ATMsetnum20bills(ATM atm, int num20bills) {
+        atm.setNum20Bills(num20bills);
+        System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMgetnum20bills method
-    public String ATMgetnum20bills(ATM atm) {
-        return "the number of $20 bills in the ATM is: " + atm.getnum20bills();
+    public void ATMgetnum20bills(ATM atm) {
+        System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());
     }
 
     // ATMaddnum20bills method
-    public String ATMaddnum20bills(ATM atm, int num20bills) {
-        atm.addnum20bills(num20bills);
-        return "number of $20 bills added to the ATM: " + num20bills + "\n" +
-                "the number of $20 bills in the ATM is now : " + atm.getnum20bills();
+    public void ATMaddnum20bills(ATM atm, int num20bills) {
+        atm.addNum20Bills(num20bills);
+        System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
+                "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
     }
 
     // ATMsetnum50bills method
-    public String ATMsetnum50bills(ATM atm, int num50bills) {
-        atm.setnum5bills(num50bills);
-        return "the number of $50 bills in the ATM is now: " + num50bills;
+    public void ATMsetnum50bills(ATM atm, int num50bills) {
+        atm.setNum5Bills(num50bills);
+        System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
     }
-    // setter has string return type to act like a real ATM
-    // and provide confirmation to the BM in the console
 
     // ATMgetnum50bills method
-    public String ATMgetnum50bills(ATM atm) {
-        return "the number of $50 bills in the ATM is: " + atm.getnum50bills();
+    public void ATMgetnum50bills(ATM atm) {
+        System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
     }
 
     // ATMaddnum50bills method
-    public String ATMaddnum50bills(ATM atm, int num50bills) {
-        atm.addnum50bills(num50bills);
-        return "number of $50 bills added to the ATM: " + num50bills + "\n" +
-                "the number of $50 bills in the ATM is now : " + atm.getnum50bills();
+    public void ATMaddnum50bills(ATM atm, int num50bills) {
+        atm.addNum50Bills(num50bills);
+        System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
+                "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
     }
 
     //to implement the operator class within the same parameters as the signature, input account. loop over list of users,

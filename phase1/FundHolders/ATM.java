@@ -22,20 +22,20 @@ public class ATM {
     }
 
     // setdate method (BM use ONLY in console)
-    public void setdate(int day, int month, int year) { // format dd:mm:yyyy
+    public void setDate(int day, int month, int year) { // format dd:mm:yyyy
         this.cal.set(Calendar.DATE, day);
         this.cal.set(Calendar.MONTH, month);
         this.cal.set(Calendar.YEAR, year);
     }
 
     // getdate method (universal use in console)
-    public String getdate() {
+    public String getDate() {
         return "the date is " + this.cal.getTime().toString().substring(4, 10) + ',' +
                 cal.getTime().toString().substring(24, 28);
     }
 
     // settime method (BM use ONLY in console)
-    public void settime(int hour, int minute, int second) { // format hh:mm:ss
+    public void setTime(int hour, int minute, int second) { // format hh:mm:ss
         this.cal.set(Calendar.HOUR, hour);
         this.cal.set(Calendar.MINUTE, minute);
         this.cal.set(Calendar.SECOND, second);
@@ -43,67 +43,67 @@ public class ATM {
     }
 
     // gettime method (universal use in console)
-    public String gettime() {
+    public String getTime() {
         return "the 24h-time is " + this.cal.getTime().toString().substring(11, 19);
     }
 
     // setnum5bills method (BM use ONLY in console)
-    public void setnum5bills(int num5bills) {
+    public void setNum5Bills(int num5bills) {
         this.num5bills = num5bills;
     }
 
     // getnum5bills method (BM use ONLY in console)
-    public int getnum5bills() {
+    public int getNum5Bills() {
         return this.num5bills;
     }
 
     // addnum5bills method (BM use ONLY in console)
-    public void addnum5bills(int num5bills) {
+    public void addNum5Bills(int num5bills) {
         this.num5bills += num5bills;
     }
 
     // setnum10bills method (BM use ONLY in console)
-    public void setnum10bills(int num10bills) {
+    public void setNum10Bills(int num10bills) {
         this.num10bills = num10bills;
     }
 
     // getnum10bills method (BM use ONLY in console)
-    public int getnum10bills() {
+    public int getNum10Bills() {
         return this.num10bills;
     }
 
     // addnum10bills method (BM use ONLY in console)
-    public void addnum10bills(int num10bills) {
+    public void addNum10Bills(int num10bills) {
         this.num10bills += num10bills;
     }
 
     // setnum20bills method (BM use ONLY in console)
-    public void setnum20bills(int num20bills) {
+    public void setNum20Bills(int num20bills) {
         this.num20bills = num20bills;
     }
 
     // getnum20bills method (BM use ONLY in console)
-    public int getnum20bills() {
+    public int getNum20Bills() {
         return this.num20bills;
     }
 
     // addnum20bills method (BM use ONLY in console)
-    public void addnum20bills(int num20bills) {
+    public void addNum20Bills(int num20bills) {
         this.num20bills += num20bills;
     }
 
     // setnum50bills method (BM use ONLY in console)
-    public void setnum50bills(int num50bills) {
+    public void setNum50Bills(int num50bills) {
         this.num50bills = num50bills;
     }
 
     // getnum50bills method (BM use ONLY in console)
-    public int getnum50bills() {
+    public int getNum50Bills() {
         return this.num50bills;
     }
 
     // addnum50bills method (BM use ONLY in console)
-    public void addnum50bills(int num50bills) {
+    public void addNum50Bills(int num50bills) {
         this.num50bills += num50bills;
     }
 

@@ -2,7 +2,7 @@ package phase1.Operators.Users;
 
 import phase1.FundHolders.Account;
 
-public interface UserOperator {
+public interface OperatorUser extends phase1.Operators.Operator {
 
     // changepassword method
 

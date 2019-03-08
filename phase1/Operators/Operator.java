@@ -1,8 +1,7 @@
 package phase1.Operators;
 
+// highest level Operators interface - everything in this package implements this
 public interface Operator {
-
-    // highest level interface everything in this package implements this.
 
     public void singleAccountSummary(Account account);
 
@@ -10,4 +9,3 @@ public interface Operator {
 
     public void viewBalance(Account account);
     }
-
