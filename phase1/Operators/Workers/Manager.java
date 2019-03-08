@@ -1,20 +1,22 @@
-package phase1.Operators;
+package phase1.Operators.Workers;
 
 import phase1.FundHolders.ATM;
 import phase1.FundHolders.Account;
+import phase1.Operators.Operator;
+import phase1.Operators.Users.User;
 
 import java.util.*;
 
 
-public class BankManager implements Observer, Operator{
-    private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<>();
+public class Manager implements Observer, Operator {
+    private static ArrayList<Manager> bankmanagerdatabase = new ArrayList<>();
     private static int numbankmanagers = 0;
 //    private String username;
 //    private String password;
     public ArrayList<User> users = new ArrayList<>();
 
     // bankmanager constructor
-    public BankManager() {
+    public Manager() {
 //        this.username = username;
 //        this.password = password;
         numbankmanagers += 1;

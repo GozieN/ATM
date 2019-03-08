@@ -1,11 +1,13 @@
-package phase1.Operators;
+package phase1.Operators.Users;
 
 import FundHolders.*;
+import phase1.Operators.Workers.Manager;
+import phase1.Operators.Operator;
 
 import java.util.*;
 
 
-public class User extends Observable implements UserOperator, Operator{
+public class User extends Observable implements UserOperator, Operator {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -15,7 +17,7 @@ public class User extends Observable implements UserOperator, Operator{
     private ChequingAccount ca = null;
     private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private BankManager bmObserver = new BankManager();
+    private Manager bmObserver = new Manager();
 
 
     // user constructor (BM use ONLY in console)
@@ -66,7 +68,7 @@ public class User extends Observable implements UserOperator, Operator{
         return password;
     }
 
-    public void setObserver(BankManager observer) {
+    public void setObserver(Manager observer) {
         this.bmObserver = observer;
     }
 
