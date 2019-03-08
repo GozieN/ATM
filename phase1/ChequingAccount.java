@@ -14,4 +14,3 @@ public class ChequingAccount extends Debit {
             setBalance(getBalance() - amount);
     }
 }
-
