@@ -17,7 +17,7 @@ public class TransferOfFunds {
     }
 
     /**
-     *
+     *Withdraw amount from account
      * @param amount
      * @param account
      */
@@ -41,7 +41,11 @@ public class TransferOfFunds {
 //                " now has a decreased balance of: " + account.getBalance() + "CAD");
         }
 
-
+    /**
+     * Deposit amount into account
+     * @param amount
+     * @param account
+     */
     public void depositToAccount(double amount, Account account) {
         //calls on amount withdraw method
             account.deposit(amount);

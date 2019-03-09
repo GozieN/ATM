@@ -49,9 +49,9 @@ Gozie
 -Revisit operator package
 -UML
 -Readme
-
+-javadoc, typos
 
 Left Todo:
 - unit testing
-- javadoc
+-
 -

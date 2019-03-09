@@ -1,8 +1,18 @@
 package phase1.FundHolders;
 
+/**
+ *
+ */
 public class Credit extends Account {
     boolean isLOC;
 
+    /**
+     * Credit class constructor
+     * @param accountNum
+     * @param holderName
+     * @param balance
+     * @param isLOC
+     */
     public Credit(int accountNum, String holderName, double balance, boolean isLOC){
         super(accountNum, holderName, balance, "CreditCardAccount");
         this.isLOC = isLOC;
@@ -11,7 +21,10 @@ public class Credit extends Account {
         }
     }
 
-    //this is assumed to be a cash. The transfer function serves the function online transfers etc.
+    /**
+     * withdraw amount from account
+     * @param amount
+     */
     public void withdraw(double amount){
         if(isLOC) {
             setBalance(getBalance() + amount);
@@ -20,6 +33,10 @@ public class Credit extends Account {
         }
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void deposit(double amount){
         setBalance(getBalance() - amount);
     }

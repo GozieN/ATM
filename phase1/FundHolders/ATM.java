@@ -9,7 +9,6 @@ import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-
 public class ATM {
     private int num5bills = 100;
     private int num10bills = 100;
@@ -18,7 +17,13 @@ public class ATM {
     private Calendar cal = new GregorianCalendar();
     private BankManager BM;
 
-    // ATM constructor
+    /**
+     * ATM class constructor
+     * @param num5bills
+     * @param num10bills
+     * @param num20bills
+     * @param num50bills
+     */
     public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
          this.num5bills = num5bills;
          this.num10bills = num10bills;
@@ -28,20 +33,33 @@ public class ATM {
          this.BM = new BankManager();
     }
 
-    // setdate method (BM use ONLY in console)
-    public void setDate(int day, int month, int year) { // format dd:mm:yyyy
+    /**
+     * Set the date. Format dd:mm:yyyy
+     * @param day
+     * @param month
+     * @param year
+     */
+    public void setDate(int day, int month, int year) {
         this.cal.set(Calendar.DATE, day);
         this.cal.set(Calendar.MONTH, month);
         this.cal.set(Calendar.YEAR, year);
     }
 
-    // getdate method (universal use in console)
+    /**
+     * Get the date
+     * @return
+     */
     public String getDate() {
         return "the date is " + this.cal.getTime().toString().substring(4, 10) + ',' +
                 cal.getTime().toString().substring(24, 28);
     }
 
-    // settime method (BM use ONLY in console)
+    /**
+     * Set the time
+     * @param hour
+     * @param minute
+     * @param second
+     */
     public void setTime(int hour, int minute, int second) { // format hh:mm:ss
         this.cal.set(Calendar.HOUR, hour);
         this.cal.set(Calendar.MINUTE, minute);
@@ -49,101 +67,123 @@ public class ATM {
         this.cal.set(Calendar.MILLISECOND, 00);
     }
 
-    // gettime method (universal use in console)
+    /**
+     * Get the time
+     * @return
+     */
     public String getTime() {
         return "the 24h-time is " + this.cal.getTime().toString().substring(11, 19);
     }
 
-    // setnum5bills method (BM use ONLY in console)
+    /**
+     * Set the number of 5$ bills
+     * @param num5bills
+     */
     public void setNum5Bills(int num5bills) {
         this.num5bills = num5bills;
     }
 
-    // getnum5bills method (BM use ONLY in console)
+    /**
+     * Get the number of 5$ bills
+     * @return
+     */
     public int getNum5Bills() {
         return this.num5bills;
     }
 
-    // addnum5bills method (BM use ONLY in console)
+    /**
+     * Add number of 5$ bills
+     * @param num5bills
+     */
+
     public void addNum5Bills(int num5bills) {
         this.num5bills += num5bills;
     }
 
-    // setnum10bills method (BM use ONLY in console)
+    /**
+     * Set the number of 10$ bills
+     * @param num10bills
+     */
     public void setNum10Bills(int num10bills) {
         this.num10bills = num10bills;
     }
 
-    // getnum10bills method (BM use ONLY in console)
+    /**
+     * Get the number of 5$ bills
+     * @return
+     */
     public int getNum10Bills() {
         return this.num10bills;
     }
 
-    // addnum10bills method (BM use ONLY in console)
+    /**
+     * Add number of 10$ bills
+     * @param num10bills
+     */
     public void addNum10Bills(int num10bills) {
         this.num10bills += num10bills;
     }
 
-    // setnum20bills method (BM use ONLY in console)
+    /**
+     * Set the number of 20$ bills
+     * @param num20bills
+     */
     public void setNum20Bills(int num20bills) {
         this.num20bills = num20bills;
     }
 
-    // getnum20bills method (BM use ONLY in console)
+    /**
+     * Get the number of 20$ bills
+     * @return
+     */
     public int getNum20Bills() {
         return this.num20bills;
     }
 
-    // addnum20bills method (BM use ONLY in console)
+    /**
+     *     Add number of 20$ bills
+     * @param num20bills
+     */
     public void addNum20Bills(int num20bills) {
         this.num20bills += num20bills;
     }
 
-    // setnum50bills method (BM use ONLY in console)
+    /**
+     * Set the number of 50$ bills
+     * @param num50bills
+     */
     public void setNum50Bills(int num50bills) {
         this.num50bills = num50bills;
     }
 
-    // getnum50bills method (BM use ONLY in console)
+    /**
+     * Get the number of 50$ bills
+     * @return
+     */
     public int getNum50Bills() {
         return this.num50bills;
     }
 
-    // addnum50bills method (BM use ONLY in console)
+    /**
+     *     Add number of 50$ bills
+     * @param num50bills
+     */
     public void addNum50Bills(int num50bills) {
         this.num50bills += num50bills;
     }
 
-//    public void calculateDenoms(double amt){
-//        while (amt >= 5) {
-//            if (amt >= 50){
-//                amt=amt-50;
-//                this.setNum50Bills(num50bills--);
-//            }
-//            else if (amt >= 20){
-//                amt=amt-20;
-//                this.setNum20Bills(num20bills--);
-//            }
-//            else if (amt >= 10){
-//                amt=amt-10;
-//                this.setNum10bills(num10bills--);
-//            }
-//            else if (amt >= 5){
-//                amt=amt-5;
-//                this.setNum5Bills(num5bills--);
-//            }
-//        }
-//    }
-//USE PLUS MINUS TO ADD AND REMOVE TO ATM MACHINE
-
+     /* *
+     * Increase the number of bills in the ATM
+     * @param dollarAmount
+     */
     // plus bills into ATM method (from deposit methods)
-    public void plus(int dollaramount) {
-        ArrayList<Integer> numberstore = new ArrayList<Integer>();
-        while (dollaramount > 0) {
-            numberstore.add(dollaramount % 10); // for fives
-            dollaramount = dollaramount / 10;
+    public void plus(int dollarAmount) {
+        ArrayList<Integer> numberStore = new ArrayList<Integer>();
+        while (dollarAmount > 0) {
+            numberStore.add(dollarAmount % 10); // for fives
+            dollarAmount = dollarAmount / 10;
         }
-        for (int number : numberstore) {
+        for (int number : numberStore) {
             if (number % 50 == 0) {
                 this.num50bills += number / 50;
             } else if (number % 20 == 0) {
@@ -157,14 +197,18 @@ public class ATM {
         restock();
     }
 
+    /**
+     * Decrease the number of bills in the ATM
+     * @param dollarAmount
+     */
     // minus bills into ATM method (from withdraw methods)
-    public void minus(int dollaramount) {
-        ArrayList<Integer> numberstore = new ArrayList<Integer>();
-        while (dollaramount > 0) {
-            numberstore.add(dollaramount % 10); // for fives
-            dollaramount = dollaramount / 10;
+    public void minus(int dollarAmount) {
+        ArrayList<Integer> numberStore = new ArrayList<Integer>();
+        while (dollarAmount > 0) {
+            numberStore.add(dollarAmount % 10); // for fives
+            dollarAmount = dollarAmount / 10;
         }
-        for (int number : numberstore) {
+        for (int number : numberStore) {
             if (number % 50 == 0) {
                 this.num50bills -= number / 50;
             } else if (number % 20 == 0) {
@@ -179,8 +223,7 @@ public class ATM {
     }
 
     public void restock() {
-//        /REMOVAL OF E.G.BM.addnum50bills(100);
-//        BECAUSE BM REAds all the files for restocking
+//        /REMOVAL OF E.G.BM.addnum50bills(100); BECAUSE BM REAds all the files for restocking (BY SPECS)
 
         try {
             PrintStream originalOut = System.out;

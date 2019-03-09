@@ -4,9 +4,11 @@ import phase1.FundHolders.*;
 import phase1.FundTransfers.*;
 import java.util.*;
 
-
+/**
+ *
+ */
 public class User extends Observable implements Operator {
-    private static ArrayList<User> userdatabase = new ArrayList<User>();
+    private static ArrayList<User> userDatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
     private String password;
@@ -18,15 +20,24 @@ public class User extends Observable implements Operator {
     private double cash;
 
 
-    // user constructor (BM use ONLY in console)
+    /**
+     * User constructor
+     * @param username
+     * @param password
+     */
+// user constructor (BM use ONLY in console)
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         numUsers++;
-        userdatabase.add(this);
+        userDatabase.add(this);
         this.cash = 0;
     }
 
+    /**
+     * Set the user's initial password
+     * @param newPassword
+     */
     public void setInitialPassword(String newPassword) {
         this.password = newPassword;
         setChanged();
@@ -34,6 +45,11 @@ public class User extends Observable implements Operator {
         clearChanged();
     }
 
+    /**
+     * Change the user's password
+     * @param currentPassword
+     * @param newPassword
+     */
     public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
@@ -44,31 +60,52 @@ public class User extends Observable implements Operator {
         }
     }
 
+    /**
+     * Request an account to be created
+     * @param account
+     */
      public void requestAccountCreation(Account account) {
          setChanged();
          notifyObservers(account);
          clearChanged();
      }
 
+    /**
+     * Return the user's username
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
+    /**
+     * Return a list of the accounts of the users
+     * @return ArrayList
+     */
     public ArrayList<Account> getAccountsCreated() {
         return AccountsCreated;
     }
 
+    /**
+     * Set
+     * @param accountsCreated
+     */
     public void setAccountsCreated(ArrayList<Account> accountsCreated) {
         AccountsCreated = accountsCreated;
     }
+
+    /**
+     *Add to the accounts created
+     * @param account
+     */
     public void addToAccountsCreated(Account account) {
         AccountsCreated.add(account);
     }
 
+    /**
+     * Return a summary of the accounts
+     * @param account
+     */
     @Override
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
@@ -76,14 +113,19 @@ public class User extends Observable implements Operator {
                 "" + "Account summary:" + account.getAccountType() +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 
+    /**
+     * Vie the balance related to the account
+     * @param account
+     */
     @Override
     public void viewBalance(Account account) {
         System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
     }
 
-    // user will not have to input any parameters (direct call)
-    //CONSIDER OPTION OF THIS VIEW
 
+    /**
+     * Get a summary of the user's accounts
+     */
     public void viewInfo(){
 
         int totalDebitAmount = 0;
@@ -108,7 +150,9 @@ public class User extends Observable implements Operator {
     // user will not have to input any parameters (direct call)
 
     // user input parameters: account num/type
-
+/**
+ *
+ */
 //    public void transfer(int amount, Account from, Account to) {
 //        from.setBalance(from.getBalance() - amount);
 //        to.setBalance(to.getBalance() + amount);
@@ -124,30 +168,3 @@ public class User extends Observable implements Operator {
 //
 //    }
 //
-//    public void withdraw(int amount, Account account) {
-//
-//        account.withdraw(amount);
-//        System.out.println("Withdrawal successful, Account: " + account.getAccountNum() +
-//                " now has a decreased balance of: " + account.getBalance() + "currency");
-//    }
-//
-//    public void deposit(int amount, Account account) {
-////deposit money into their account by entering a cheque
-//// or cash into the machine (This will be simulated by individual lines
-//// in an input file called deposits.txt. You can decide the format of the file.
-//// This will increase their balance.)
-//        account.deposit(amount);
-//        System.out.println("Deposit successful, Account: " + account.getAccountNum() +
-//                " now has an increased balance of: " + account.getBalance() + "currency");
-//    }
-////CONSIDER DATA CLUMPING CODE SMELL - AVOID
-//    public void eTransfer(int amount, Account from, Account to) {
-//        from.setBalance(from.getBalance() - amount);
-//        to.setBalance(to.getBalance() + amount);}
-//
-//    public void payBill(int amount, Account from, Account to) {
-//        from.setBalance(from.getBalance() - amount);
-//        to.setBalance(to.getBalance() + amount);
-//        //CHECK specs
-//
-//    }}

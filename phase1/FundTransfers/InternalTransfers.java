@@ -7,11 +7,19 @@ import phase1.Operators.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
+/**
+ * Transfer funds from sender to revciever
+ */
 public class InternalTransfers extends TransferOfFunds {
     private Account receiverAccount;
     private Account senderAccount;
 
-
+    /**
+     * InternalTransfers class constructor
+     * @param amount
+     * @param senderAccount
+     * @param receiverAccount
+     */
     public InternalTransfers(double amount, Account senderAccount, Account receiverAccount){
         super(amount, senderAccount);
         this.receiverAccount = receiverAccount;
@@ -19,6 +27,9 @@ public class InternalTransfers extends TransferOfFunds {
 
     }
 
+    /**
+     * Transfer funds from sender to receiver
+     */
     public void transfer() {
         senderAccount.withdraw(amount);
         receiverAccount.deposit(amount);
@@ -32,6 +43,9 @@ public class InternalTransfers extends TransferOfFunds {
             System.setOut(originalOut);
         } catch (FileNotFoundException ex) {ex.printStackTrace();}
 
+        /**
+         * Transfer funds from sender to receiver
+         */
     }
     public void eTransfer(int amount, Account from, Account to) {
         senderAccount.withdraw(amount);

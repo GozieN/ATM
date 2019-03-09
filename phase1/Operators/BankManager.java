@@ -2,28 +2,28 @@ package phase1.Operators;
 
 import phase1.FundHolders.ATM;
 import phase1.FundHolders.Account;
-import phase1.Operators.Operator;
-import phase1.Operators.*;
 
 import java.util.*;
 
-
 public class BankManager extends BankWorker implements Observer {
-    private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<>();
-    private static int numbankmanagers = 0;
+    private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
+    private static int numBankManagers = 0;
 //    private String username;
-//    private String password;
+//  private String password;
     public ArrayList<User> users = new ArrayList<>();
 
-    // bankmanager constructor
     public BankManager() {
 //        this.username = username;
 //        this.password = password;
-        numbankmanagers += 1;
-        bankmanagerdatabase.add(this);
+        numBankManagers += 1;
+        bankManagerDatabase.add(this);
     }
 
-//GOZIE -IMPLEMENT OBSERVER PATTERN FOR BM AND ATM!
+    /**
+     * Update the list of accounts that a user has
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         if (arg instanceof Account){
@@ -42,7 +42,11 @@ public class BankManager extends BankWorker implements Observer {
         }
     }
 
-    // createUser method
+    /**
+     * Create a user
+     * @param username
+     * @param password
+     */
     public void createUser(String username, String password) {
         if ( (username.substring(0, 4)).equals("USER") ) {
             new User(username, password);
@@ -53,147 +57,193 @@ public class BankManager extends BankWorker implements Observer {
     }
 
 
-    // setuserpassword method
+    /**
+     * Set the user's password
+     * @param user
+     * @param newpassword
+     */
     public void setUserPassword(User user, String newpassword) {
         user.setInitialPassword(newpassword);
         System.out.println("User " + user.getUsername() + "'s password has been changed");
     }
 
-    // ATMsetdate method
+    /**
+     * Set the date to be displayed on the ATM
+     * @param atm
+     * @param day
+     * @param month
+     * @param year
+     */
     public void ATMsetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
        atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
 
-    // ATMsettime method
+    /**
+     * Set the time displayed on the ATM
+     * @param atm
+     * @param hour
+     * @param minute
+     * @param second
+     */
     public void ATMsetTime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
         atm.setTime(hour, minute, second);
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
 
-    // ATMsetnum5bills method
-    public void ATMsetNum5Bills(ATM atm, int num5bills) {
+    /**
+     * Set the number of 5$ bills
+     * @param atm
+     * @param num5bills
+     */
+    public void ATMSetNum5Bills(ATM atm, int num5bills) {
         atm.setNum5Bills(num5bills);
         System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
     }
 
-    // ATMgetnum5bills method
-    public void ATMgetNum5Bills(ATM atm) {
+    /**
+     * Get the number of 5$ bills
+     * @param atm
+     */
+    public void ATMGetNum5Bills(ATM atm) {
         System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
     }
 
-    // ATMaddnum5bills method
-    public void ATMaddNum5Bills(ATM atm, int num5bills) {
+    /**
+     * Add the number of 5$ bills
+     * @param atm
+     * @param num5bills
+     */
+    public void ATMAddNum5Bills(ATM atm, int num5bills) {
         atm.addNum5Bills(num5bills);
         System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
                 "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
     }
 
-    // ATMsetnum10bills method
-    public void ATMsetNum10Bills(ATM atm, int num10bills) {
+    /**
+     *Set the number of 10$ bills
+     * @param atm
+     * @param num10bills
+     */
+    public void ATMSetNum10Bills(ATM atm, int num10bills) {
         atm.setNum10Bills(num10bills);
         System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
     }
 
-    // ATMgetnum10bills method
-    public void ATMgetNum10Bills(ATM atm) {
+    /**
+     * Set the number of 10$ bills
+     * @param atm
+     */
+    public void ATMGetNum10Bills(ATM atm) {
         System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
     }
 
-    // ATMaddnum10bills method
-    public void ATMaddNum10Bills(ATM atm, int num10bills) {
+    /**
+     * Add the number of 5$ bills
+     * @param atm
+     * @param num10bills
+     */
+    public void ATMAddNum10Bills(ATM atm, int num10bills) {
         atm.addNum10Bills(num10bills);
         System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
                 "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
     }
 
-    // ATMsetnum20bills method
+    /**
+     * Set the number of 20$ bills
+     * @param atm
+     * @param num20bills
+     */
     public void ATMsetNum20Bills(ATM atm, int num20bills) {
         atm.setNum20Bills(num20bills);
         System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
     }
 
-    // ATMgetnum20bills method
-    public void ATMgetNum20Bills(ATM atm) {
+    /**
+     * Get the number of 20$ bills
+     * @param atm
+     */
+    public void ATMGetNum20Bills(ATM atm) {
         System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());
     }
 
-    // ATMaddnum20bills method
-    public void ATMaddNum20Bills(ATM atm, int num20bills) {
+    /**
+     * Add the number of 20$ bills
+     * @param atm
+     * @param num20bills
+     */
+    public void ATMAddNum20Bills(ATM atm, int num20bills) {
         atm.addNum20Bills(num20bills);
         System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
                 "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
     }
 
-    // ATMsetnum50bills method
-    public void ATMsetNum50Bills(ATM atm, int num50bills) {
+    /**
+     * Set the number of 50$ bills
+     * @param atm
+     * @param num50bills
+     */
+    public void ATMSetNum50Bills(ATM atm, int num50bills) {
         atm.setNum5Bills(num50bills);
         System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
     }
 
-    // ATMgetnum50bills method
+    /**
+     * Get the number of 5$ bills
+     * @param atm
+     */
+// ATMGetNum50bills method
     public void ATMgetNum50Bills(ATM atm) {
         System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
     }
 
-    // ATMaddnum50bills method
-    public void ATMaddNum50Bills(ATM atm, int num50bills) {
+    /**
+     * Add the number of 50$ bills
+     * @param atm
+     * @param num50bills
+     */
+    public void ATMAddNum50Bills(ATM atm, int num50bills) {
         atm.addNum50Bills(num50bills);
         System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
                 "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
     }
 
+    /**
+     * Print a summary of the account to the screen
+     * @param account
+     */
     @Override
     public void singleAccountSummary(Account account) {
 
     }
 
+    /**
+     * Print to the  the balance of the account
+     * @param account
+     */
     @Override
     public void viewBalance(Account account) {
 
     }
 
-    public void viewInfo() {
-
-
+    /**
+     * Print a summary of the user's accounts
+     * @param user
+     */
+    public void viewInfo(User user) {
+        user.viewInfo();
     }
 
-    //to implement the operator class within the same parameters as the signature, input account. loop over list of users,
-    //within each user loop over account and check for a matching instance using equal methods.
+    /**
+     * Undo the most recent transaction in the account
+     * @param account
+     */
+    public void undoMostRecentTransaction(Account account) {
+        //NEED AN UNDO ACTION METHOD INSIDE THE ACCOUNT CLASS that deals with the  ARRayYLIST OF TRANSACTIONS
+        //REAL LIFE USER NEEDS AN UNDO METHOD
+    }
 
-//    @Override
-//    public String viewInfo(User user) {
-//        return user.viewInfo();
-//    }
-//    // BM will need to input user instance in the method parameter
-//
-//    @Override
-//    public void viewBalance(User user) {
-//        user.viewBalance();
-//
-//    }
-//    // BM will need to input parameters: user instance, account num/type
-//
-//    @Override
-//    public void transfer(User user, int amount, Account from, Account to) {
-//        user.transfer(amount, from, to);
-//    }
-//    // BM input parameters: user instance, amount, (from) account num/type, (to) account num/type
-//
-//    @Override
-//    public void withdraw(User user, int amount, Account from, Account to) {
-//        user.withdraw();
-//    }
-//    // BM input parameters: user instance, amount, account num/type
-//
-//    @Override
-//    public void deposit(User user, int amount, Account from, Account to) {
-//        user.deposit();
-//    }
-//    // BM input parameters: user instance, amount, account num/type
-
-    //ANGEL
-//    public void undoMostRecentTransaction(User user, Account account) {
+    //    public void undoMostRecentTransaction(User user, Account account) {
 //    String msg=transactions.get(-1); // Gain access to last element (popping)
 //    if (transactions.size()>0){
 //        transactions.remove(transactions.size()-1);

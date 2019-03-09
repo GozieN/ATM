@@ -10,5 +10,4 @@ public interface Operator {
     public void viewBalance(Account account);
 
     //person observable
-
 }

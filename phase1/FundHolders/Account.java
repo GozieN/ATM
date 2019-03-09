@@ -4,14 +4,22 @@ import phase1.FundTransfers.*;
 import phase1.Operators.*;
 import java.util.*;
 
+
 public abstract class Account {
-    // user can have multiple accounts
     private int accountNum;
     private String holderName;
+
     private double balance;
     public String accountType;
     private ArrayList<TransferOfFunds> history;
 
+    /**
+     * Account class constructor
+     * @param accountNum
+     * @param holderName
+     * @param balance
+     * @param accountType
+     */
     public Account(int accountNum, String holderName, double balance, String accountType){
         history = new ArrayList<TransferOfFunds>();
         this.accountType = accountType;
@@ -20,30 +28,45 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public void updatehistory(TransferOfFunds transactionInfo){
+    /**
+     * Add a transaction to the list of fund transfers
+     * @param transactionInfo
+     */
+    public void updateHistory(TransferOfFunds transactionInfo){
         history.add(transactionInfo);
     }
 
+    /**
+     *
+     * @param amount
+     */
     public abstract void deposit(double amount);
+
+    /**
+     *
+     * @param amount
+     */
     public abstract void withdraw(double amount);
 
-    public int getAccountNum() { return accountNum; }
-
-    public String getHolderName() {
-        return holderName;
-    }
-
-    public String getAccountType() { return accountType; }
-
-    public double getBalance() { return this.balance; }
-
+    /**
+     * Set the balance of the account
+     * @param balance
+     */
     public void setBalance(double balance){
         this.balance = balance;
     }
 
+    /**
+     * Set the balance of the account
+     * @return double
+     */
+    public double getBalance(){
+        return this.balance;
+    }
+
     public static class transaction {
         private int senderAccount;
-        private int receiverAcocount;
+        private int receiverAccount;
         private double amount;
 
     }
