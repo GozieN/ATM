@@ -74,11 +74,22 @@ public class Model {
                         }
                     } else if (numberIn2.equals("2")) {
                         System.out.println("enter a new username");
+                        Scanner newUsernameScan = new Scanner(System.in);
+                        String newUsernameIn = newUsernameScan.next();
+                        if (!(this.userUsernames.contains(newUsernameIn))) {
+                            this.userUsernames.add(newUsernameIn);
+                            System.out.println("enter a new password");
+                            Scanner newPasswordScan = new Scanner(System.in);
+                            String newPasswordIn = newPasswordScan.next();
+                            this.userPasswords.add(newPasswordIn);
+                            // TODO: [angela] - add user instance to file
+                            System.out.println("your user creation has been requested");
+                        }
                     }
                 }
             } else if (numberIn.equals("3")) {
                 // returns to previous screen
-                    // deeper menus should "log off" and return to first menu (menuoperatorselect)
+                // deeper menus should "log off" and return to first menu (menuoperatorselect)
                 menuOperatorSelect();
             }
         }
@@ -95,7 +106,6 @@ public class Model {
         FileWriter fw = new FileWriter(f);
         fw.write(date);
         fw.close();
-
     }
 
     public static void main(String[] args)  {
@@ -114,8 +124,6 @@ public class Model {
             updateDate("01012019", f);
 
         } catch(IOException e){}
-
-
 
         Model model = new Model();
         model.menuOperatorSelect();
