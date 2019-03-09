@@ -36,11 +36,11 @@ public class BankManager extends BankWorker implements Observer {
     public void update(Observable o, Object arg) {
         if (arg instanceof Account){
             ((User) o).addToAccountsCreated((Account) arg);
-             System.out.println(((User) o).getUsername() +
-                     ", the following account:" +
-                     ((Account) arg).accountType + "with account Number: "
-                     + ((Account) arg).getAccountNum() +  "was created upon your request");
-            }
+            System.out.println(((User) o).getUsername() +
+                    ", the following account:" +
+                    ((Account) arg).accountType + "with account Number: "
+                    + ((Account) arg).getAccountNum() +  "was created upon your request");
+        }
         else if(arg instanceof String){
             System.out.println("Your initial password has been set. You are able to change it later.");
         }
@@ -83,7 +83,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
-       atm.setDate(day, month, year);
+        atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
 
@@ -105,27 +105,23 @@ public class BankManager extends BankWorker implements Observer {
      * @param num5bills
      */
     public void ATMSetNum5Bills(ATM atm, int num5bills) {
-        atm.setNum5Bills(num5bills);
-        System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
+        atm.setNum5Bills(atm.getNum5Bills() + num5bills);
+        if (num5bills >= 0) {
+            System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
+                    "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
+        }
+        else {
+            System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
+        }
     }
 
     /**
      * Get the number of 5$ bills
      * @param atm
      */
-    public void ATMGetNum5Bills(ATM atm) {
+    public int ATMGetNum5Bills(ATM atm) {
         System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
-    }
-
-    /**
-     * Add the number of 5$ bills
-     * @param atm
-     * @param num5bills
-     */
-    public void ATMAddNum5Bills(ATM atm, int num5bills) {
-        atm.addNum5Bills(num5bills);
-        System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
-                "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
+        return atm.getNum5Bills();
     }
 
     /**
@@ -134,16 +130,23 @@ public class BankManager extends BankWorker implements Observer {
      * @param num10bills
      */
     public void ATMSetNum10Bills(ATM atm, int num10bills) {
-        atm.setNum10Bills(num10bills);
-        System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
+        atm.setNum10Bills(atm.getNum10Bills() + num10bills);
+        if (num10bills >= 0) {
+            System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
+                    "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
+        }
+        else {
+            System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
+        }
     }
 
     /**
      * Set the number of 10$ bills
      * @param atm
      */
-    public void ATMGetNum10Bills(ATM atm) {
+    public int ATMGetNum10Bills(ATM atm) {
         System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
+        return atm.getNum10Bills();
     }
 
     /**
@@ -151,11 +154,6 @@ public class BankManager extends BankWorker implements Observer {
      * @param atm
      * @param num10bills
      */
-    public void ATMAddNum10Bills(ATM atm, int num10bills) {
-        atm.addNum10Bills(num10bills);
-        System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
-                "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
-    }
 
     /**
      * Set the number of 20$ bills
@@ -163,16 +161,23 @@ public class BankManager extends BankWorker implements Observer {
      * @param num20bills
      */
     public void ATMSetNum20Bills(ATM atm, int num20bills) {
-        atm.setNum20Bills(num20bills);
-        System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
+        atm.setNum20Bills(atm.getNum20Bills() + num20bills);
+        if (num20bills >= 0) {
+            System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
+                    "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
+        }
+        else {
+            System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
+        }
     }
 
     /**
      * Get the number of 20$ bills
      * @param atm
      */
-    public void ATMGetNum20Bills(ATM atm) {
+    public int ATMGetNum20Bills(ATM atm) {
         System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());
+        return atm.getNum20Bills();
     }
 
     /**
@@ -180,11 +185,6 @@ public class BankManager extends BankWorker implements Observer {
      * @param atm
      * @param num20bills
      */
-    public void ATMAddNum20Bills(ATM atm, int num20bills) {
-        atm.addNum20Bills(num20bills);
-        System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
-                "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
-    }
 
     /**
      * Set the number of 50$ bills
@@ -193,16 +193,23 @@ public class BankManager extends BankWorker implements Observer {
      */
     public void ATMSetNum50Bills(ATM atm, int num50bills) {
         atm.setNum5Bills(num50bills);
-        System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
+        if (num50bills >= 0) {
+            System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
+                    "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
+        }
+        else {
+            System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
+        }
     }
 
     /**
      * Get the number of 5$ bills
      * @param atm
      */
-// ATMGetNum50bills method
-    public void ATMGetNum50Bills(ATM atm) {
+
+    public int ATMGetNum50Bills(ATM atm) {
         System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
+        return atm.getNum50Bills();
     }
 
     /**
@@ -210,11 +217,6 @@ public class BankManager extends BankWorker implements Observer {
      * @param atm
      * @param num50bills
      */
-    public void ATMAddNum50Bills(ATM atm, int num50bills) {
-        atm.addNum50Bills(num50bills);
-        System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
-                "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
-    }
 
 
     /**

@@ -82,7 +82,7 @@ public class Model {
                             Scanner newPasswordScan = new Scanner(System.in);
                             String newPasswordIn = newPasswordScan.next();
                             this.userPasswords.add(newPasswordIn);
-                            // TODO: [angela] - add user instance to file
+                            BM.createUser(newUsernameIn, newPasswordIn);
                             System.out.println("your user creation has been requested");
                         }
                     }
