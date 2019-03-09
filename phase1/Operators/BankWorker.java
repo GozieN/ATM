@@ -10,7 +10,7 @@ public class BankWorker implements Operator{
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + account.getHolderName() + " "
                 + "DATE AND TIME " +
-                "" + "Account summary:" + account.getAccountType() +"Account Number: "
+                "" + "Account summary:" + account.accountType +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 
     /**

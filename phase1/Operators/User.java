@@ -110,7 +110,7 @@ public class User extends Observable implements Operator {
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
                 + "DATE AND TIME " +
-                "" + "Account summary:" + account.getAccountType() +"Account Number: "
+                "" + "Account summary:" + account.accountType +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 
     /**
@@ -133,7 +133,7 @@ public class User extends Observable implements Operator {
 
         String s = "Account holder: " + this.username + " Report of FundHolders:";
         for(int i = 0; i < AccountsCreated.size(); i++){
-            s += AccountsCreated.get(i).getAccountType() + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
+            s += AccountsCreated.get(i).accountType + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){

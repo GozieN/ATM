@@ -38,7 +38,7 @@ public class BankManager extends BankWorker implements Observer {
             ((User) o).addToAccountsCreated((Account) arg);
              System.out.println(((User) o).getUsername() +
                      ", the following account:" +
-                     ((Account) arg).getAccountType() + "with account Number: "
+                     ((Account) arg).accountType + "with account Number: "
                      + ((Account) arg).getAccountNum() +  "was created upon your request");
             }
         else if(arg instanceof String){
