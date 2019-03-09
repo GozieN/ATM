@@ -15,7 +15,7 @@ public class ATM {
     private int num20bills = 100;
     private int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
-    private BankManager BM;
+    //private BankManager BM;
 
     /**
      * ATM class constructor
@@ -30,7 +30,15 @@ public class ATM {
          this.num20bills = num20bills;
          this.num50bills = num50bills;
          this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
-         this.BM = new BankManager();
+         //this.BM = new BankManager();
+    }
+
+    /**
+     * ATM class constructor (empty parameters)
+     */
+    public ATM() {
+        this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
+        //this.BM = new BankManager();
     }
 
     /**
@@ -95,7 +103,6 @@ public class ATM {
      * Add number of 5$ bills
      * @param num5bills
      */
-
     public void addNum5Bills(int num5bills) {
         this.num5bills += num5bills;
     }

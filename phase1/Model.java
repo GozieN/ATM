@@ -1,25 +1,57 @@
 package phase1;
+
+import java.util.Scanner;
 import phase1.FundHolders.*;
 import phase1.Operators.*;
 import phase1.FundTransfers.*;
-import phase1.FundTransfers.*;
 
 public class Model {
-    //reads user inputs and translates it into method calls
-    //See PCRS scanner
-    //methods would deal with what is called
+    private BankManager bm = new BankManager("BM12345", "BMpassword");
+    private ATM atm = new ATM();
+
+    // model constructor
+    public Model() {}
+
+    // method menuoperatorselect
+    public void menuOperatorSelect() {
+        System.out.println("enter 1 for bankmanager and 2 for normal user. enter 3 to exit");
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String s = scanner.next();
+            if (s.equals("1")) {
+                // BM username, password check
+                    // -> calls next menu method
+                // return to previous screen option
+            } else if (s.equals("2")) {
+                // user username, password check
+                    // -> calls next menu method
+                // return to previous screen option
+            } else if (s.equals("exit")) {
+                // returns to previous screen
+                    // deeper menus should "log off" and return to first menu (menuoperatorselect)
+            }
+        }
+    }
+
+    // method menuuserexistingnew
+
+    // method ___
+
+    // scanner: reads user inputs and translates it into method calls
+    // methods would deal with what is called
+
     public static void main(String[] args) {
 
-        //Upon starting the program, read a file which contains the only instance of Bank Manager. (Everything can be
-        //accessed from here
+        // Upon starting the program, read a file which contains the only instance of Bank Manager. (Everything can be
+        // accessed from here
         // try
-        //catch
+        // catch
         // BankManger BM = the one read from the file
 
-        //Menu options
-        //
+        // menus
+        // menu options
 
-
+        Model model = new Model();
+        model.menuOperatorSelect();
     }
 }
-

@@ -12,10 +12,10 @@ public class User extends Observable implements Operator {
     private static int numUsers = 0;
     private String username;
     private String password;
-    private Credit cca = null;
-    private Credit loca = null;
-    private ChequingAccount ca = null;
-    private SavingsAccount sa = null;
+    //private Credit cca = null;
+    //private Credit loca = null;
+    //private ChequingAccount ca = null;
+    //private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private double cash;
 

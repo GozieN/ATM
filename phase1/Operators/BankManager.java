@@ -8,13 +8,13 @@ import java.util.*;
 public class BankManager extends BankWorker implements Observer {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
-//    private String username;
-//  private String password;
+    private String username;
+    private String password;
     public ArrayList<User> users = new ArrayList<>();
 
-    public BankManager() {
-//        this.username = username;
-//        this.password = password;
+    public BankManager(String username, String password) {
+        this.username = username;
+        this.password = password;
         numBankManagers += 1;
         bankManagerDatabase.add(this);
     }
