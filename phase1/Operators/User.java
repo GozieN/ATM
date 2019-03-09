@@ -167,4 +167,3 @@ public class User extends Observable implements Operator {
 //        } catch (FileNotFoundException ex) {ex.printStackTrace();}
 //
 //    }
-//

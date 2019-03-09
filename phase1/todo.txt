@@ -29,6 +29,7 @@ See serializable; model
 -Initiation of the day upon program restart
 -Alerts.txt (file reading ect)
 - main method txt files
+- request alerts file ??
 
 Jack:
 - start on Model class (,main method)

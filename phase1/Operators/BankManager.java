@@ -19,6 +19,14 @@ public class BankManager extends BankWorker implements Observer {
         bankManagerDatabase.add(this);
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
     /**
      * Update the list of accounts that a user has
      * @param o
@@ -74,7 +82,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param month
      * @param year
      */
-    public void ATMsetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
+    public void ATMSetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
        atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
@@ -86,7 +94,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param minute
      * @param second
      */
-    public void ATMsetTime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
+    public void ATMSetTime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
         atm.setTime(hour, minute, second);
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
@@ -154,7 +162,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param atm
      * @param num20bills
      */
-    public void ATMsetNum20Bills(ATM atm, int num20bills) {
+    public void ATMSetNum20Bills(ATM atm, int num20bills) {
         atm.setNum20Bills(num20bills);
         System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
     }
@@ -193,7 +201,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param atm
      */
 // ATMGetNum50bills method
-    public void ATMgetNum50Bills(ATM atm) {
+    public void ATMGetNum50Bills(ATM atm) {
         System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
     }
 
