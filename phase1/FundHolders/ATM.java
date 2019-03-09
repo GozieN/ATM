@@ -135,11 +135,12 @@ public class ATM {
 //        }
 //    }
 //USE PLUS MINUS TO ADD AND REMOVE TO ATM MACHINE
+
     // plus bills into ATM method (from deposit methods)
     public void plus(int dollaramount) {
         ArrayList<Integer> numberstore = new ArrayList<Integer>();
         while (dollaramount > 0) {
-            numberstore.add(dollaramount % 10);
+            numberstore.add(dollaramount % 10); // for fives
             dollaramount = dollaramount / 10;
         }
         for (int number : numberstore) {
@@ -150,7 +151,7 @@ public class ATM {
             } else if (number % 10 == 0) {
                 this.num10bills += number / 10;
             } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                this.num5bills += number /5;
+                this.num5bills += number / 5;
             }
         }
         restock();
@@ -160,7 +161,7 @@ public class ATM {
     public void minus(int dollaramount) {
         ArrayList<Integer> numberstore = new ArrayList<Integer>();
         while (dollaramount > 0) {
-            numberstore.add(dollaramount % 10);
+            numberstore.add(dollaramount % 10); // for fives
             dollaramount = dollaramount / 10;
         }
         for (int number : numberstore) {
@@ -171,7 +172,7 @@ public class ATM {
             } else if (number % 10 == 0) {
                 this.num10bills -= number / 10;
             } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                this.num5bills -= number /5;
+                this.num5bills -= number / 5;
             }
         }
         restock();
@@ -205,4 +206,4 @@ public class ATM {
         }
 
     }
-    }
+}

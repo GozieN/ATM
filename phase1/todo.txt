@@ -28,9 +28,12 @@ Angela:
 See serializable; model
 -Initiation of the day upon program restart
 -Alerts.txt (file reading ect)
+- main method txt files
 
 Jack:
-- Start on Main method in model
+- start on Model class (,main method)
+    - PCRS: scanner, user re-input (try again)
+    - menus, menu options?
 
 Arjun:
 -Accounts, see the TransferOfFunds comment at the top of the file
