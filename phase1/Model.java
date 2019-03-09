@@ -5,8 +5,9 @@ import phase1.Operators.*;
 import phase1.FundTransfers.*;
 
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Model {
@@ -72,12 +73,23 @@ public class Model {
                             System.out.println("wrong username. enter your username");
                         }
                     } else if (numberIn2.equals("2")) {
-                        System.out.println("enter a new username")
+                        System.out.println("enter a new username");
+                        Scanner newUsernameScan = new Scanner(System.in);
+                        String newUsernameIn = newUsernameScan.next();
+                        if (!(this.userUsernames.contains(newUsernameIn))) {
+                            this.userUsernames.add(newUsernameIn);
+                            System.out.println("enter a new password");
+                            Scanner newPasswordScan = new Scanner(System.in);
+                            String newPasswordIn = newPasswordScan.next();
+                            this.userPasswords.add(newPasswordIn);
+                            // TODO: [angela] - add user instance to file
+                            System.out.println("your user creation has been requested");
+                        }
                     }
                 }
             } else if (numberIn.equals("3")) {
                 // returns to previous screen
-                    // deeper menus should "log off" and return to first menu (menuoperatorselect)
+                // deeper menus should "log off" and return to first menu (menuoperatorselect)
                 menuOperatorSelect();
             }
         }
@@ -90,7 +102,13 @@ public class Model {
     // scanner: reads user inputs and translates it into method calls
     // methods would deal with what is called
 
-    public static void main(String[] args) throws IOException {
+    public static void updateDate(String date, File f) throws IOException{
+        FileWriter fw = new FileWriter(f);
+        fw.write(date);
+        fw.close();
+    }
+
+    public static void main(String[] args)  {
 
         // Upon starting the program, read a file which contains the only instance of Bank Manager. (Everything can be
         // accessed from here
@@ -101,14 +119,11 @@ public class Model {
         // menus
         // menu options
 
-        File file = new File("date.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-            PrintWriter pw = new PrintWriter(file);
-            pw.println("01012019");
-        } else {
+        try{
+            File f = new File("./src/date.txt");
+            updateDate("01012019", f);
 
-        }
+        } catch(IOException e){}
 
         Model model = new Model();
         model.menuOperatorSelect();

@@ -28,38 +28,30 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    /**
-     * Add a transaction to the list of fund transfers
-     * @param transactionInfo
-     */
+    public String getHolderName(){
+        return holderName;
+    }
+
+    public int getAccountNum(){
+        return accountNum;
+    }
+
     public void updateHistory(TransferOfFunds transactionInfo){
         history.add(transactionInfo);
     }
 
-    /**
-     *
-     * @param amount
-     */
+
     public abstract void deposit(double amount);
 
-    /**
-     *
-     * @param amount
-     */
+
     public abstract void withdraw(double amount);
 
-    /**
-     * Set the balance of the account
-     * @param balance
-     */
+
     public void setBalance(double balance){
         this.balance = balance;
     }
 
-    /**
-     * Set the balance of the account
-     * @return double
-     */
+
     public double getBalance(){
         return this.balance;
     }
