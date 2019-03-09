@@ -10,6 +10,7 @@ public class Credit extends Account {
             accountType = "LineOfCredit";
         }
     }
+
     //this is assumed to be a cash. The transfer function serves the function online transfers etc.
     public void withdraw(double amount){
         if(isLOC) {

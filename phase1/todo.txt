@@ -21,3 +21,34 @@ accounts class -Maple + 1 more person
 
 digital version of UML diagrams ?
 
+
+
+Friday March 7th
+Angela:
+See serializable; model
+-Initiation of the day upon program restart
+-Alerts.txt (file reading ect)
+
+Jack:
+- Start on Main method in model
+
+Arjun:
+-Accounts, see the TransferOfFunds comment at the top of the file
+- See how to call methods below from user input into the ATM
+    -Withdraw
+    -Deposit
+
+To Update
+(Angel
+Maple)
+
+Gozie
+-Revisit operator package
+-UML
+-Readme
+
+
+Left Todo:
+- unit testing
+- javadoc
+-

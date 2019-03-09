@@ -1,7 +1,10 @@
 package phase1.FundHolders;
 
-import phase1.BankManager;
+import phase1.FundHolders.*;
+import phase1.FundTransfers.*;
+import phase1.Operators.*;
 
+import java.util.*;
 import java.util.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -111,27 +114,27 @@ public class ATM {
         this.num50bills += num50bills;
     }
 
-    public void calculateDenoms(double amt){
-        while (amt => 5) {
-            if (amt => 50){
-                amt=amt-50;
-                this.setNum50Bills(num50bills--);
-            }
-            else if (amt => 20){
-                amt=amt-20;
-                this.setNum20Bills(num20bills--);
-            }
-            else if (amt => 10){
-                amt=amt-10;
-                this.setNum10bills(num10bills--);
-            }
-            else if (amt => 5){
-                amt=amt-5;
-                this.setNum5Bills(num5bills--);
-            }
-        }
-    }
-
+//    public void calculateDenoms(double amt){
+//        while (amt >= 5) {
+//            if (amt >= 50){
+//                amt=amt-50;
+//                this.setNum50Bills(num50bills--);
+//            }
+//            else if (amt >= 20){
+//                amt=amt-20;
+//                this.setNum20Bills(num20bills--);
+//            }
+//            else if (amt >= 10){
+//                amt=amt-10;
+//                this.setNum10bills(num10bills--);
+//            }
+//            else if (amt >= 5){
+//                amt=amt-5;
+//                this.setNum5Bills(num5bills--);
+//            }
+//        }
+//    }
+//USE PLUS MINUS TO ADD AND REMOVE TO ATM MACHINE
     // plus bills into ATM method (from deposit methods)
     public void plus(int dollaramount) {
         ArrayList<Integer> numberstore = new ArrayList<Integer>();
@@ -150,6 +153,7 @@ public class ATM {
                 this.num5bills += number /5;
             }
         }
+        restock();
     }
 
     // minus bills into ATM method (from withdraw methods)
@@ -170,34 +174,35 @@ public class ATM {
                 this.num5bills -= number /5;
             }
         }
+        restock();
     }
-    //for notifier: -> output.txt low amount of bills for BM to restock
-        // each and any other method in package that takes out bills needs to add this method in body
 
+    public void restock() {
+//        /REMOVAL OF E.G.BM.addnum50bills(100);
+//        BECAUSE BM REAds all the files for restocking
 
-    // consider observer pattern in order to update other files/classes
-
-
-    // [Angela]
-    public void main (String[] args) {
-
-        try{
+        try {
             PrintStream originalOut = System.out;
 
             PrintStream fileOut = new PrintStream("/.alerts.txt");
 
             System.setOut(fileOut);
 
-            if (this.num5bills < 4){originalOut.println("Five dollar bills low in stock!"); BM.addnum5bills(100);}
-            else if (this.num10bills < 2) {originalOut.println("Ten dollar bills low in stock!"); BM.addnum10bills(100);}
-            else if (this.num20bills < 1) {originalOut.println("Twenty dollar bills low in stock!"); BM.addnum20bills(100);}
-            else if (this.num50bills < 1) {originalOut.println ("Fifty dollar bills low in stock!"); BM.addnum50bills(100);}
+            if (this.num5bills < 20) {
+                originalOut.println("Five dollar bills low in stock!");
+            } else if (this.num10bills < 20) {
+                originalOut.println("Ten dollar bills low in stock!");
+            } else if (this.num20bills < 20) {
+                originalOut.println("Twenty dollar bills low in stock!");
+            } else if (this.num50bills < 20) {
+                originalOut.println("Fifty dollar bills low in stock!");
+            }
 
             System.setOut(originalOut);
 
-            }catch (FileNotFoundException ex)
-            { ex.printStackTrace();}
-
-
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
         }
+
+    }
     }

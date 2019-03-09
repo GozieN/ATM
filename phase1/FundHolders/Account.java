@@ -1,15 +1,19 @@
 package phase1.FundHolders;
 
+import phase1.FundTransfers.*;
+import phase1.Operators.*;
+import java.util.*;
+
 public abstract class Account {
     // user can have multiple accounts
     private int accountNum;
     private String holderName;
     private double balance;
     public String accountType;
-    private Arraylist<transaction> history;
+    private ArrayList<TransferOfFunds> history;
 
     public Account(int accountNum, String holderName, double balance, String accountType){
-        history = new Arraylsit<transaction>();
+        history = new ArrayList<transaction>();
         this.accountType = accountType;
         this.accountNum = accountNum;
         this.holderName = holderName;
@@ -24,6 +28,12 @@ public abstract class Account {
     public abstract void withdraw(double amount);
 
     public int getAccountNum() { return accountNum; }
+
+    public String getHolderName() {
+        return holderName;
+    }
+
+    public String getAccountType() { return accountType; }
 
     public double getBalance() { return this.balance; }
 

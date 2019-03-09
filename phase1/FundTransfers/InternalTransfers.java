@@ -1,14 +1,22 @@
 package phase1.FundTransfers;
 
-import phase1.FundHolders.Account;
+import phase1.FundHolders.*;
+import phase1.FundTransfers.*;
+import phase1.Operators.*;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-public class UserAccountInterAccountTransferOfFunds extends InterAccountTransferOfFunds {
+public class InternalTransfers extends TransferOfFunds {
+    private Account receiverAccount;
+    private Account senderAccount;
 
-    public UserAccountInterAccountTransferOfFunds(double amount, Account senderAccount, Account receiverAccount){
-        super(amount, senderAccount, receiverAccount);
+
+    public InternalTransfers(double amount, Account senderAccount, Account receiverAccount){
+        super(amount, senderAccount);
+        this.receiverAccount = receiverAccount;
+        this.senderAccount = senderAccount;
+
     }
 
     public void transfer() {
@@ -25,8 +33,6 @@ public class UserAccountInterAccountTransferOfFunds extends InterAccountTransfer
         } catch (FileNotFoundException ex) {ex.printStackTrace();}
 
     }
-
-    //CONSIDER DATA CLUMPING CODE SMELL - AVOID
     public void eTransfer(int amount, Account from, Account to) {
         senderAccount.withdraw(amount);
         receiverAccount.deposit(amount);}

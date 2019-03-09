@@ -1,13 +1,11 @@
-package phase1;
+package phase1.Operators;
 
-import FundHolders.*;
-import phase1.Operators.Operator;
-import phase1.Operators.Workers.Manager;
-
+import phase1.FundHolders.*;
+import phase1.FundTransfers.*;
 import java.util.*;
 
 
-public class User extends Observable implements OperatorUser {
+public class User extends Observable {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -17,7 +15,6 @@ public class User extends Observable implements OperatorUser {
     private ChequingAccount ca = null;
     private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private Manager bmObserver = new Manager();
     private double cash;
 
 
@@ -30,7 +27,6 @@ public class User extends Observable implements OperatorUser {
         this.cash = 0;
     }
 
-    // setpassword method (BM use ONLY in console)
     public void setInitialPassword(String newPassword) {
         this.password = newPassword;
         setChanged();
@@ -38,7 +34,6 @@ public class User extends Observable implements OperatorUser {
         clearChanged();
     }
 
-    // changepassword method
     public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
@@ -48,20 +43,12 @@ public class User extends Observable implements OperatorUser {
                     "unable to change password");
         }
     }
-    //[Angela]
-    //GOZIE - OBSERVER PATTERN
+
      public void requestAccountCreation(Account account) {
          setChanged();
          notifyObservers(account);
          clearChanged();
      }
-     // must interact with bankmanager to do this
-    // how to implement this? maybe::
-    // requestnotifier setter method in BM class, user method calls it
-    // user method passes username information and account type being requested to BM setter ?
-    // this information would go in output.txt and the accounts
-    // would be created the next time the program is launched (the next time input.txt is read)
-    // requires information going from output.txt to input.txt
 
     public String getUsername() {
         return username;
@@ -69,10 +56,6 @@ public class User extends Observable implements OperatorUser {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setObserver(Manager observer) {
-        this.bmObserver = observer;
     }
 
     public ArrayList<Account> getAccountsCreated() {
@@ -89,26 +72,11 @@ public class User extends Observable implements OperatorUser {
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
                 + "DATE AND TIME " +
-                "" + "Account summary:" + account.getAccountType(account) +"Account Number: "
+                "" + "Account summary:" + account.getAccountType() +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 
     // user will not have to input any parameters (direct call)
     //CONSIDER OPTION OF THIS VIEW
-
-    public void withdraw(double amt, Account acc, ATM atm){
-        atm.calculateDenoms(amt);
-        this.cash+=amt;
-        acc.setBalance(acc.getBalance() - amt);
-    }
-
-    public void deposit(double amt, Account acc, ATM atm){
-        acc.setBalance(acc.getBalance() + amt);
-    }
-
-    public void transfer(double amt, Account sender, Account receiver, ATM atm){
-        sender.setBalance(sender.getBalance()-amt);
-        receiver.setBalance(receiever.getBalance()+amt);
-    }
 
     public void viewInfo(){
 
@@ -117,7 +85,7 @@ public class User extends Observable implements OperatorUser {
 
         String s = "Account holder: " + this.username + " Report of FundHolders:";
         for(int i = 0; i < AccountsCreated.size(); i++){
-            s += AccountsCreated.get(i).getAccountType(AccountsCreated.get(i)) + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
+            s += AccountsCreated.get(i).getAccountType() + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){

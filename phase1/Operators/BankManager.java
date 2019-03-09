@@ -1,14 +1,14 @@
-package phase1;
+package phase1.Operators;
 
 import phase1.FundHolders.ATM;
 import phase1.FundHolders.Account;
 import phase1.Operators.Operator;
-import phase1.Operators.Users.User;
+import phase1.Operators.*;
 
 import java.util.*;
 
 
-public class BankManager implements Observer, OperatorWorker {
+public class BankManager extends BankWorker implements Observer {
     private static ArrayList<BankManager> bankmanagerdatabase = new ArrayList<>();
     private static int numbankmanagers = 0;
 //    private String username;
@@ -30,7 +30,7 @@ public class BankManager implements Observer, OperatorWorker {
             ((User) o).addToAccountsCreated((Account) arg);
              System.out.println(((User) o).getUsername() +
                      ", the following account:" +
-                     ((Account) arg).getAccountType((Account) arg) + "with account Number: "
+                     ((Account) arg).getAccountType() + "with account Number: "
                      + ((Account) arg).getAccountNum() +  "was created upon your request");
             }
         else if(arg instanceof String){
@@ -52,17 +52,6 @@ public class BankManager implements Observer, OperatorWorker {
         }
     }
 
-    // creates new user instance in userdatabase arraylist in user class
-
-//    // changePassword method
-//    public String changePassword(String currentpassword, String newpassword) {
-//        if (currentpassword.equals(this.password)) {
-//            this.password = newpassword;
-//            return "your password has been changed";
-//        } else {
-//            return "wrong current password. password unchanged";
-//        }
-//    }
 
     // setuserpassword method
     public void setUserPassword(User user, String newpassword) {
@@ -159,6 +148,7 @@ public class BankManager implements Observer, OperatorWorker {
     }
 
     public void viewInfo() {
+
 
     }
 
