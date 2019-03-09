@@ -102,9 +102,6 @@ public class ATM {
      * Add number of 5$ bills
      * @param num5bills
      */
-    public void addNum5Bills(int num5bills) {
-        this.num5bills += num5bills;
-    }
 
     /**
      * Set the number of 10$ bills
@@ -126,9 +123,6 @@ public class ATM {
      * Add number of 10$ bills
      * @param num10bills
      */
-    public void addNum10Bills(int num10bills) {
-        this.num10bills += num10bills;
-    }
 
     /**
      * Set the number of 20$ bills
@@ -150,9 +144,6 @@ public class ATM {
      *     Add number of 20$ bills
      * @param num20bills
      */
-    public void addNum20Bills(int num20bills) {
-        this.num20bills += num20bills;
-    }
 
     /**
      * Set the number of 50$ bills
@@ -172,11 +163,7 @@ public class ATM {
 
     /**
      *     Add number of 50$ bills
-     * @param num50bills
-     */
-    public void addNum50Bills(int num50bills) {
-        this.num50bills += num50bills;
-    }
+
 
      /* *
      * Increase the number of bills in the ATM
