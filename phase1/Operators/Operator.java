@@ -1,10 +1,6 @@
 package phase1.Operators;
 
 import phase1.FundHolders.Account;
-
-import java.util.Observable;
-
-import phase1.FundHolders.Account;
 import phase1.FundHolders.Debit;
 
 import java.util.Observable;

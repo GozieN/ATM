@@ -4,10 +4,7 @@ import phase1.FundHolders.*;
 import phase1.Operators.*;
 import phase1.FundTransfers.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class Model {
