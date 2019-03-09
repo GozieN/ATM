@@ -216,23 +216,6 @@ public class BankManager extends BankWorker implements Observer {
                 "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
     }
 
-    /**
-     * Print a summary of the account to the screen
-     * @param account
-     */
-    @Override
-    public void singleAccountSummary(Account account) {
-
-    }
-
-    /**
-     * Print to the  the balance of the account
-     * @param account
-     */
-    @Override
-    public void viewBalance(Account account) {
-
-    }
 
     /**
      * Print a summary of the user's accounts

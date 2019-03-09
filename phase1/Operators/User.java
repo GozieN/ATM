@@ -1,13 +1,13 @@
 package phase1.Operators;
 
 import phase1.FundHolders.*;
-import phase1.FundTransfers.*;
+
 import java.util.*;
 
 /**
  *
  */
-public class User extends Observable implements Operator {
+public class User extends Operator {
     private static ArrayList<User> userDatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -43,6 +43,14 @@ public class User extends Observable implements Operator {
         setChanged();
         notifyObservers(newPassword);
         clearChanged();
+    }
+
+    /**
+     * Return the user's password
+     * @return String - the user's password
+     */
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -102,26 +110,6 @@ public class User extends Observable implements Operator {
         AccountsCreated.add(account);
     }
 
-    /**
-     * Return a summary of the accounts
-     * @param account
-     */
-    @Override
-    public void singleAccountSummary(Account account) {
-        System.out.println("Account holder: " + this.username + " "
-                + "DATE AND TIME " +
-                "" + "Account summary:" + account.getAccountType() +"Account Number: "
-                + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
-
-    /**
-     * Vie the balance related to the account
-     * @param account
-     */
-    @Override
-    public void viewBalance(Account account) {
-        System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
-    }
-
 
     /**
      * Get a summary of the user's accounts
@@ -135,7 +123,7 @@ public class User extends Observable implements Operator {
         for(int i = 0; i < AccountsCreated.size(); i++){
             s += AccountsCreated.get(i).getAccountType() + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
                     " created on: GETDATEOFCREATION" + "\n Current Balance:" +
-                    AccountsCreated.get(i).getBalance() + " Most Recent Transaction: " + "BM GET MOSTRECENTTRANSACTION";
+                    AccountsCreated.get(i).getBalance() + " Most Recent Transactions: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){
                 totalDebitAmount += AccountsCreated.get(i).getBalance();
             }else{
