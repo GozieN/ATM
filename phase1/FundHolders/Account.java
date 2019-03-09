@@ -28,9 +28,14 @@ public abstract class Account {
         this.balance = balance;
     }
 
+    public String getHolderName(){
+        return holderName;
+    }
+
     public int getAccountNum(){
         return accountNum;
     }
+
     public void updateHistory(TransferOfFunds transactionInfo){
         history.add(transactionInfo);
     }
