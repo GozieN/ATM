@@ -34,16 +34,6 @@ public class User extends Operator {
         this.cash = 0;
     }
 
-    /**
-     * Set the user's initial password
-     * @param newPassword
-     */
-    public void setInitialPassword(String newPassword) {
-        this.password = newPassword;
-        setChanged();
-        notifyObservers(newPassword);
-        clearChanged();
-    }
 
     /**
      * Return the user's password
