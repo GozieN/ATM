@@ -73,7 +73,7 @@ public class Model {
                             System.out.println("wrong username. enter your username");
                         }
                     } else if (numberIn2.equals("2")) {
-                        System.out.println("enter a new username")
+                        System.out.println("enter a new username");
                     }
                 }
             } else if (numberIn.equals("3")) {
