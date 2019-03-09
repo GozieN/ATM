@@ -13,15 +13,15 @@ public abstract class Account {
     private ArrayList<TransferOfFunds> history;
 
     public Account(int accountNum, String holderName, double balance, String accountType){
-        history = new ArrayList<transaction>();
+        history = new ArrayList<TransferOfFunds>();
         this.accountType = accountType;
         this.accountNum = accountNum;
         this.holderName = holderName;
         this.balance = balance;
     }
 
-    public void updatehistory(transactioninfo transactioninfo){
-        history.add(transactioninfo);
+    public void updatehistory(TransferOfFunds transactionInfo){
+        history.add(transactionInfo);
     }
 
     public abstract void deposit(double amount);
