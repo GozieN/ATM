@@ -9,12 +9,13 @@ public class Model {
     private BankManager BM = new BankManager("BM12345", "BMpassword");
     private ATM atm = new ATM();
     private ArrayList<String> userUsernames = new ArrayList<>();
+    private ArrayList<String> userPasswords = new ArrayList<>();
 
     // model constructor
     public Model() {}
 
     // method menuoperatorselect
-    public static void menuOperatorSelect() {
+    public void menuOperatorSelect() {
         System.out.println("enter 1 for bankmanager and 2 for normal user. enter 3 to exit");
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
@@ -23,12 +24,12 @@ public class Model {
                 // BM username, password check
                 System.out.println("enter your username");
                 Scanner usernameScan = new Scanner(System.in);
-                String username = usernameScan.next();
-                if (username.equals(this.BM.getUsername())) {
+                String usernameIn = usernameScan.next();
+                if (usernameIn.equals(this.BM.getUsername())) {
                     System.out.println("enter your password");
                     Scanner passwordScan = new Scanner(System.in);
-                    String password = passwordScan.next();
-                    if (password.equals(this.BM.getPassword())) {
+                    String passwordIn = passwordScan.next();
+                    if (passwordIn.equals(this.BM.getPassword())) {
                         // TODO: send to next BM menu
                     } else {
                         System.out.println("wrong password. enter your password");
@@ -39,18 +40,20 @@ public class Model {
             } else if (s.equals("2")) {
                 // user username, password check
                 Scanner usernameScan = new Scanner(System.in);
-                String username = usernameScan.next();
-                if (this.userUsernames.contains(username)) {
-                    System.out.println("enter your password");
-                    Scanner passwordScan = new Scanner(System.in);
-                    String password = passwordScan.next();
-                    if (password.equals() {
-                        // TODO: send to next user menu
-                    } else {
-                        System.out.println("wrong password. enter your password");
+                String usernameIn = usernameScan.next();
+                int index = -1;
+                for (String username : this.userUsernames) {
+                    index += 1;
+                    if (username.equals(usernameIn)) {
+                        System.out.println("enter your password");
+                        Scanner passwordScan = new Scanner(System.in);
+                        String passwordIn = passwordScan.next();
+                        if (passwordIn.equals(this.userPasswords.get(index))) {
+                            // TODO: send to next user menu
+                        } else {
+                            System.out.println("wrong password. enter your password");
+                        }
                     }
-                } else {
-                    System.out.println("wrong username. enter your username");
                 }
             } else if (s.equals("exit")) {
                 // returns to previous screen
