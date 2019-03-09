@@ -11,7 +11,7 @@ public abstract class Account {
 
     private double balance;
     public String accountType;
-    private ArrayList<TransferOfFunds> history;
+    private ArrayList<Transactions> history;
 
     /**
      * Account class constructor
@@ -21,7 +21,7 @@ public abstract class Account {
      * @param accountType
      */
     public Account(int accountNum, String holderName, double balance, String accountType){
-        history = new ArrayList<TransferOfFunds>();
+        history = new ArrayList<Transactions>();
         this.accountType = accountType;
         this.accountNum = accountNum;
         this.holderName = holderName;
@@ -35,8 +35,9 @@ public abstract class Account {
     public int getAccountNum(){
         return accountNum;
     }
+    public String getAccountType() { return accountType; }
 
-    public void updateHistory(TransferOfFunds transactionInfo){
+    public void updateHistory(Transactions transactionInfo){
         history.add(transactionInfo);
     }
 

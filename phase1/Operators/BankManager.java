@@ -56,24 +56,12 @@ public class BankManager extends BankWorker implements Observer {
      * @param password
      */
     public void createUser(String username, String password) {
-        if ( (username.substring(0, 4)).equals("USER") ) {
-            new User(username, password);
-            System.out.println("The User with name: " + username + " has been created");
-        } else {
-            System.out.println("Invalid username for a user");
-        }
+        User newUser = new User(username, password);
+        System.out.println("Your account has been created! Your username is: " + newUser.getUsername() + " and" +
+                "your initial password is: " + newUser.getPassword());
+
     }
 
-
-    /**
-     * Set the user's password
-     * @param user
-     * @param newpassword
-     */
-    public void setUserPassword(User user, String newpassword) {
-        user.setInitialPassword(newpassword);
-        System.out.println("User " + user.getUsername() + "'s password has been changed");
-    }
 
     /**
      * Set the date to be displayed on the ATM
