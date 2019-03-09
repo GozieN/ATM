@@ -143,16 +143,18 @@ public class BankManager extends BankWorker implements Observer {
                 "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
     }
 
+    @Override
     public void singleAccountSummary(Account account) {
+
+    }
+
+    @Override
+    public void viewBalance(Account account) {
 
     }
 
     public void viewInfo() {
 
-
-    }
-
-    public void viewBalance(Account account) {
 
     }
 

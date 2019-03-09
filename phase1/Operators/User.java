@@ -5,7 +5,7 @@ import phase1.FundTransfers.*;
 import java.util.*;
 
 
-public class User extends Observable {
+public class User extends Observable implements Operator {
     private static ArrayList<User> userdatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
@@ -69,11 +69,17 @@ public class User extends Observable {
         AccountsCreated.add(account);
     }
 
+    @Override
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + this.username + " "
                 + "DATE AND TIME " +
                 "" + "Account summary:" + account.getAccountType() +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
+
+    @Override
+    public void viewBalance(Account account) {
+        System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
+    }
 
     // user will not have to input any parameters (direct call)
     //CONSIDER OPTION OF THIS VIEW
@@ -91,18 +97,15 @@ public class User extends Observable {
             if (AccountsCreated.get(i) instanceof Debit){
                 totalDebitAmount += AccountsCreated.get(i).getBalance();
             }else{
-                totalCreditAmount += AccountsCreated.get(i).getBalance();}
+                totalCreditAmount += AccountsCreated.get(i).getBalance();
+            }
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
         System.out.println(s);
     }
+}
 
     // user will not have to input any parameters (direct call)
-
-    public void viewBalance(Account account) {
-        System.out.println("Account: " + account.getAccountNum() + " has a balance of: " + account.getBalance());
-    }
-}
 
     // user input parameters: account num/type
 
