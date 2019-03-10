@@ -27,7 +27,7 @@ public class Transactions {
 
     /**
      * Deposit amount into account
-     * @param amount
+     * @param amount Amount of money to deposit
      */
     public void depositIntoATM(ATM atm, int amount) {
         atm.plus(amount);
@@ -35,7 +35,7 @@ public class Transactions {
 
     /**
      *
-     * @return String a sting of the last action
+     * @return A string of the user's last action
      */
     public String getLastAction(){
         return lastAction;
@@ -43,15 +43,15 @@ public class Transactions {
 
     /**
      * Set the atm
-     * @param atm
+     * @param atm Instance of ATM machine
      */
     public void setAtm(ATM atm) {
         this.atm = atm;
     }
 
     /**
-     *Withdraw amount from account
-     * @param amount
+     *Withdraw amount from account using ATM
+     * @param amount Amount of money to withdraw
      */
     public void withdrawFromATM(ATM atm, int amount) {
         atm.minus(amount);
@@ -59,7 +59,7 @@ public class Transactions {
 
     /**
      *Withdraw amount from account
-     * @param amount
+     * @param amount Amount of money to withdraw
      */
     public void withdrawFromAccount(double amount) {
 
@@ -86,7 +86,7 @@ public class Transactions {
 
     /**
      * Deposit amount into account
-     * @param amount
+     * @param amount Amount of money to deposit
      */
     public void depositToAccount(double amount) {
 
@@ -97,8 +97,8 @@ public class Transactions {
     }
 
     /**
-     * Deposit amount into account
-     * @param amount
+     * Deposit amount into account from cheque
+     * @param amount Amount of money to deposit
      */
     public void depositChequeToAccount(double amount) {
         lastAction = "deposit";
@@ -150,7 +150,7 @@ public class Transactions {
 
     /**
      * Pay the bill
-     * @param amount
+     * @param amount Amount of money to withdraw from account to pay bill
 
      */
      public void payBill(double amount) {

@@ -18,8 +18,8 @@ public class User extends Operator {
 
     /**
      * User constructor
-     * @param username
-     * @param password
+     * @param username Username used to login to account
+     * @param password Password used to login to account
      */
     public User(String username, String password) {
         super(username, password);
@@ -30,8 +30,8 @@ public class User extends Operator {
 
     /**
      * Change the user's password
-     * @param currentPassword
-     * @param newPassword
+     * @param currentPassword The current password used to login to account
+     * @param newPassword Create new password for login to account
      */
     public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
@@ -45,7 +45,7 @@ public class User extends Operator {
 
     /**
      * Set the bank manager
-     * @param BM
+     * @param BM Instance of Bank Manager
      */
     public void setBM(BankManager BM) {
         this.BM = BM;
@@ -62,7 +62,7 @@ public class User extends Operator {
 
     /**
      * Set
-     * @param accountsCreated
+     * @param accountsCreated A list of bank accounts created
      */
     public void setAccountsCreated(ArrayList<Account> accountsCreated) {
         AccountsCreated = accountsCreated;
@@ -70,7 +70,7 @@ public class User extends Operator {
 
     /**
      *Add to the accounts created
-     * @param account
+     * @param account Instance of account
      */
     public void addToAccountsCreated(Account account) {
         AccountsCreated.add(account);

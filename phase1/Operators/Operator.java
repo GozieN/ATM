@@ -9,8 +9,8 @@ public class Operator {
 
     /**
      * User constructor
-     * @param username
-     * @param password
+     * @param username Username used to login to account
+     * @param password Password used to login to account
      */
     public Operator(String username, String password) {
         this.username = username;
@@ -19,7 +19,7 @@ public class Operator {
 
     /**
      * Return the user's username
-     * @return
+     * @return A string of user's username
      */
     public String getUsername() {
         return username;
@@ -27,7 +27,7 @@ public class Operator {
 
     /**
      * Set the password
-     * @param password
+     * @param password Password used to login to account
      */
     public void setPassword(String password) {
         this.password = password;
@@ -35,7 +35,7 @@ public class Operator {
 
     /**
      * Return the user's password
-     * @return String - the user's password
+     * @return A string of user's password
      */
     public String getPassword() {
         return password;
@@ -43,7 +43,7 @@ public class Operator {
 
     /**
      * Set the username
-     * @param username
+     * @param username Username used to login to account
      */
     public void setUsername(String username) {
         this.username = username;
@@ -51,7 +51,7 @@ public class Operator {
 
     /**
      * Return a summary of the accounts
-     * @param account
+     * @param account Instance of account
      */
     public void singleAccountSummary(Account account) {
         System.out.println("Account holder: " + account.getHolderName() +

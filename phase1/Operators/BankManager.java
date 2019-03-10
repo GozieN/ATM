@@ -23,8 +23,9 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Create and update the list of accounts that a user has
-     * @param user
-     * @param
+     * @param user Array list of user accounts
+     * @param startingAmount Amount of money the account will start off with
+     * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
     public void createNewAccount(double startingAmount, String accountType, User user){
         Account newAccount = null;
@@ -65,8 +66,8 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Create a user
-     * @param username
-     * @param password
+     * @param username Username used for login into accounts
+     * @param password Password used for login into accounts
      */
     public void createUser(String username, String password) {
         User newUser = new User(username, password);
@@ -94,7 +95,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Set the date to be displayed on the ATM
-     * @param atm
+     * @param atm Instance of ATM machine
      * @param day
      * @param month
      * @param year
@@ -106,7 +107,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Set the time displayed on the ATM
-     * @param atm
+     * @param atm Instance of ATM machine
      * @param hour
      * @param minute
      * @param second
@@ -118,8 +119,8 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Set the number of 5$ bills
-     * @param atm
-     * @param num5bills
+     * @param atm Instance of ATM machine
+     * @param num5bills Number of $5 bills in ATM
      */
     public void ATMSetNum5Bills(ATM atm, int num5bills) {
         atm.setNum5Bills(atm.getNum5Bills() + num5bills);
@@ -142,7 +143,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Get the number of 5$ bills
-     * @param atm
+     * @param atm Instance of ATM machine
      */
     public int ATMGetNum5Bills(ATM atm) {
         System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
@@ -151,8 +152,8 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      *Set the number of 10$ bills
-     * @param atm
-     * @param num10bills
+     * @param atm Instance of ATM machine
+     * @param num10bills Number of $10 bills in ATM
      */
     public void ATMSetNum10Bills(ATM atm, int num10bills) {
         atm.setNum10Bills(atm.getNum10Bills() + num10bills);
@@ -167,7 +168,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Set the number of 10$ bills
-     * @param atm
+     * @param atm Instance of ATM machine
      */
     public int ATMGetNum10Bills(ATM atm) {
         System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
@@ -176,14 +177,14 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Add the number of 5$ bills
-     * @param atm
-     * @param num10bills
+     * @param atm Instance of ATM machine
+     * @param num10bills Number of $10 bills in ATM
      */
 
     /**
      * Set the number of 20$ bills
-     * @param atm
-     * @param num20bills
+     * @param atm Instance of ATM machine
+     * @param num20bills Number of $20 bills in ATM
      */
     public void ATMSetNum20Bills(ATM atm, int num20bills) {
         atm.setNum20Bills(atm.getNum20Bills() + num20bills);
@@ -198,7 +199,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Get the number of 20$ bills
-     * @param atm
+     * @param atm Instance of ATM machine
      */
     public int ATMGetNum20Bills(ATM atm) {
         System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());
@@ -207,14 +208,14 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Add the number of 20$ bills
-     * @param atm
-     * @param num20bills
+     * @param atm Instance of ATM machine
+     * @param num20bills Number of $20 bills in ATM
      */
 
     /**
      * Set the number of 50$ bills
-     * @param atm
-     * @param num50bills
+     * @param atm Instance of ATM machine
+     * @param num50bills Number of $50 bills in ATM
      */
     public void ATMSetNum50Bills(ATM atm, int num50bills) {
         atm.setNum5Bills(num50bills);
@@ -229,7 +230,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Get the number of 5$ bills
-     * @param atm
+     * @param atm Instance of ATM machine
      */
 
     public int ATMGetNum50Bills(ATM atm) {
@@ -239,7 +240,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Read the file to restock the ATM
-     * @param atm
+     * @param atm Instance of ATM machine
      */
     public void restockFromFile(ATM atm) throws FileNotFoundException {
 
@@ -284,13 +285,13 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Print a summary of the user's accounts
-     * @param user
+     * @param user Instance of user
      */
     public void viewInfo(User user){user.viewInfo();}
 
     /**
      * Undo the most recent transaction in the account
-     * @param account
+     * @param account Instance of the account
      */
     public void undoMostRecentTransaction(Account account) {
         account.alterHistory();
