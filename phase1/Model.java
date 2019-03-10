@@ -278,26 +278,26 @@ public class Model {
         }
     }
 
+//    public void backBM(int i, User user){
+//        if (i==3){
+//            menuBM2();
+//        }
+//        else if (i==2){
+//            menuBM1();
+//        }
+//        else if (i==1){
+//            menuOperatorSelect();
+//        }
+//    }
+//
+//    public void exit(){
+//        menuOperatorSelect();
+//    }
+
     public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
         fw.write(date);
         fw.close();
-    }
-
-    public void backBM(int i, User user){
-        if (i==3){
-            menuBM2(user);
-        }
-        else if (i==2){
-            menuBM1();
-        }
-        else if (i==1){
-            menuOperatorSelect();
-        }
-    }
-
-    public void exit(){
-        menuOperatorSelect();
     }
 
     public static void main(String[] args) {
