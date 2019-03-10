@@ -20,16 +20,4 @@ public class Credit extends Account {
             accountType = "LineOfCredit";
         }
     }
-
-//    /**
-//     * withdraw amount from account
-//     * @param amount
-//     */
-//    public void withdraw(double amount){
-//        if(isLOC) {
-//            setBalance(getBalance() + amount);
-//            transaction abc = new transaction(amount, "withdrawn");
-//            updateHistory(abc);//updates the transaction history of the account
-//        }
-//    }
 }

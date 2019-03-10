@@ -6,9 +6,8 @@ import java.util.*;
 
 
 public abstract class Account {
-    private int accountNum;
+    private int accountNum = 0;
     private String holderName;
-
 
     private double balance;
     public String accountType;
@@ -24,10 +23,9 @@ public abstract class Account {
     public Account(int accountNum, String holderName, double balance, String accountType){
         history = new ArrayList<Transactions>();
         this.accountType = accountType;
-        this.accountNum = accountNum;
+        this.accountNum++;
         this.holderName = holderName;
         this.balance = balance;
-
     }
 
     public String getHolderName(){
