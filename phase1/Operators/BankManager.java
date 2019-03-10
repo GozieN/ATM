@@ -15,7 +15,6 @@ public class BankManager extends BankWorker implements Serializable{
     private String password;
     private int numExistingAccounts;
     private ArrayList<User> users = new ArrayList<>();
-
     public BankManager(String username, String password) {
         super(username, password);
         numBankManagers += 1;
@@ -294,8 +293,9 @@ public class BankManager extends BankWorker implements Serializable{
      * @param account
      */
     public void undoMostRecentTransaction(Account account) {
-        //NEED AN UNDO ACTION METHOD INSIDE THE ACCOUNT CLASS that deals with the  ARRayYLIST OF TRANSACTIONS
-        //REAL LIFE USER NEEDS AN UNDO METHOD
+        account.alterHistory();
+        }
+
     }
 
     //    public void undoMostRecentTransaction(User user, Account account) {
@@ -310,4 +310,3 @@ public class BankManager extends BankWorker implements Serializable{
 //    }
 //    }
 //    // input parameters: user instance, account num/type
-}
