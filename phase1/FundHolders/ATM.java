@@ -99,11 +99,6 @@ public class ATM {
     }
 
     /**
-     * Add number of 5$ bills
-     * @param num5bills
-     */
-
-    /**
      * Set the number of 10$ bills
      * @param num10bills
      */
@@ -118,11 +113,6 @@ public class ATM {
     public int getNum10Bills() {
         return this.num10bills;
     }
-
-    /**
-     * Add number of 10$ bills
-     * @param num10bills
-     */
 
     /**
      * Set the number of 20$ bills
@@ -141,11 +131,6 @@ public class ATM {
     }
 
     /**
-     *     Add number of 20$ bills
-     * @param num20bills
-     */
-
-    /**
      * Set the number of 50$ bills
      * @param num50bills
      */
@@ -161,10 +146,6 @@ public class ATM {
         return this.num50bills;
     }
 
-    /**
-     *     Add number of 50$ bills
-
-
      /* *
      * Increase the number of bills in the ATM
      * @param dollarAmount
@@ -172,8 +153,10 @@ public class ATM {
     // plus bills into ATM method (from deposit methods)
     public void plus(int dollarAmount) {
         ArrayList<Integer> numberStore = new ArrayList<Integer>();
+        numberStore.add(dollarAmount % 10); // for fives
+        dollarAmount -= dollarAmount % 10;
         while (dollarAmount > 0) {
-            numberStore.add(dollarAmount % 10); // for fives
+            numberStore.add(dollarAmount);
             dollarAmount = dollarAmount / 10;
         }
         for (int number : numberStore) {
@@ -197,8 +180,10 @@ public class ATM {
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
         ArrayList<Integer> numberStore = new ArrayList<Integer>();
+        numberStore.add(dollarAmount % 10); // for fives
+        dollarAmount -= dollarAmount % 10;
         while (dollarAmount > 0) {
-            numberStore.add(dollarAmount % 10); // for fives
+            numberStore.add(dollarAmount);
             dollarAmount = dollarAmount / 10;
         }
         for (int number : numberStore) {
@@ -243,6 +228,4 @@ public class ATM {
             ex.printStackTrace();
         }
     }
-
-
 }
