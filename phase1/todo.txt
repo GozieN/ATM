@@ -27,25 +27,29 @@ Jack:
 
 
 Arjun:
-- unit testing
+- unit testing (with Maple)
+- Account interest (talk to Maple about it)
 
 Angela:
-outputs ect.
+-outputs ect.
+-user file
+
 
 Angel:
 - Work on the model
--Date out and re-initialization
-- Account interest
+-Date out and re-initialization upon program restart
 
 Maple:
-- Undo transactions
 -javadoc redo - what the parameters represent
-- unused import statements
+- remove unused import statements
+- unit testing (with Arjun)
+- Account interest (talk to Arjun about it)
 
 Gozie
 - Readme
 - UML
+- Undo transactions
 
 
 Left Todo:
-- Check specs and project
+- Check specs against project

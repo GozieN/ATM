@@ -3,11 +3,13 @@ package phase1;
 import phase1.FundHolders.*;
 import phase1.Operators.*;
 import phase1.FundTransfers.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 import java.io.*;
 import java.util.*;
 
- public final class Model {
+ public class Model {
     private BankManager BM = new BankManager("BM12345", "BMpassword");
     private ATM atm = new ATM();
     private ArrayList<String> userUsernames = new ArrayList<>();
@@ -29,6 +31,7 @@ import java.util.*;
       */
     public void menuOperatorSelect() {
         // options: 1. bankmanager, 2. normal user
+        ATM atm = new ATM();
         System.out.println("enter 1 for bankmanager \n" +
                 "enter 2 for normal user");
         Scanner numberScan = new Scanner(System.in);
@@ -64,7 +67,7 @@ import java.util.*;
                         System.out.println("enter your username");
                         Scanner usernameScan = new Scanner(System.in);
                         String usernameIn = usernameScan.next();
-                        int index = -1;
+                        int index = 0;
                         for (String username : this.userUsernames) {
                             index += 1;
                             if (username.equals(usernameIn)) {
@@ -72,7 +75,53 @@ import java.util.*;
                                 Scanner passwordScan = new Scanner(System.in);
                                 String passwordIn = passwordScan.next();
                                 if (passwordIn.equals(this.userPasswords.get(index))) {
-                                    // TODO: send to next user menu
+                                    User user = new User(usernameIn, passwordIn);
+                                    System.out.println("Enter 'I' to View Info, Enter 'T' to Perform a Transaction, or Enter 'A' to Request a New Account");
+                                    Scanner menuOption = new Scanner(System.in);
+                                    String optionIn = menuOption.next();
+                                    ArrayList<Account> accounts = user.getAccountsCreated(); // NEED TO FIGURE OUT HOW TO STORE THE ACCOUNTS FROM BEFORE!!!!
+                                    if (optionIn == "I") {
+                                        user.viewInfo();
+                                    }
+                                    else if (optionIn == "T") {
+                                        System.out.println("Enter 'WA' to Withdraw from Account, Enter 'WM' to Withdraw from ATM, Enter 'DA' to Deposit into Account, Enter 'DM' to Deposit into ATM, Enter 'CA' to Deposit Cheque into ATM, Enter 'TA' to Transfer from Account to Account, Enter 'PB' to Pay Bill, A to create new Account: ");
+                                        Scanner transOption = new Scanner(System.in);
+                                        String transIn = transOption.next();
+                                        System.out.println("Enter the amount: \n");
+                                        Scanner amtOption = new Scanner(System.in);
+                                        double amt = Double.parseDouble(amtOption.next());
+                                        Transactions transactions = new Transactions(new ChequingAccount(100, "me", 1000, true )); // FIX THIS!!! JUST TESTING
+                                        if (transIn == "WA") {
+                                            transactions.withdrawFromAccount(amt);
+                                        } else if (transIn == "WM") {
+                                            transactions.withdrawFromATM(atm, (int) amt);
+                                        } else if (transIn == "DA") {
+                                            transactions.depositToAccount(amt);
+                                        } else if (transIn == "DM") {
+                                            transactions.depositIntoATM(atm, (int) amt);
+                                        } else if (transIn == "CA") {
+                                            transactions.depositChequeToAccount(amt);
+                                        } else if (transIn == "TA") { // SENDING TO AN ACC NEEDS TO BE ALTERED, TOO MUCH INFO NEEDED
+                                            System.out.println("Enter the Account Number of the Receiving Account: ");
+                                            Scanner accN = new Scanner(System.in);
+                                            int accNum = Integer.parseInt(accN.next());
+                                            System.out.println("Enter the Holder Name of the Receiving Account: ");
+                                            Scanner holderN = new Scanner(System.in);
+                                            String holder = holderN.next();
+                                            System.out.println("Enter the Balance of the Receiving Account: ");
+                                            Scanner balanceN = new Scanner(System.in);
+                                            double balance = Double.parseDouble(balanceN.next());
+                                            System.out.println("Enter the Type of the Receiving Account: ");
+                                            Scanner typeS = new Scanner(System.in);
+                                            String type = typeS.next();
+                                            Account receiverAccount=new SavingsAccount(accNum, holder, balance); // NEED TO CHANGE HOW TO CHANGE TRANSACTIONS
+                                            transactions.transfer((int) amt, receiverAccount);
+                                        } else if (transIn == "PB") {
+                                            transactions.payBill(amt);
+                                        } else if (optionIn == "A") {
+                                            user.addToAccountsCreated(new ChequingAccount(101, "me", 1000, true)); // NEED TO CHANGE AFTER TESTING
+                                        }
+                                    }
                                 } else {
                                     System.out.println("wrong password. enter your password");
                                 }
@@ -90,7 +139,7 @@ import java.util.*;
                             String newPasswordIn = newPasswordScan.next();
                             this.userPasswords.add(newPasswordIn);
                             BM.createUser(newUsernameIn, newPasswordIn);
-                            System.out.println("your user creation has been requested");
+                            BM.getUsers().get(BM.getUsers().size()).setBM(BM);
                         }
                     } else if (numberIn2.equals("exit")) {
                         // returns to previous screen
@@ -100,7 +149,7 @@ import java.util.*;
                 }
             }
         }
-
+    }
     // method ___
 
     // scanner: reads user inputs and translates it into method calls
@@ -125,7 +174,9 @@ import java.util.*;
 
         try{
             File f = new File("./src/date.txt");
-            updateDate("01012019", f);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            updateDate(dtf.format(now), f);
 
         } catch(IOException e){}
 

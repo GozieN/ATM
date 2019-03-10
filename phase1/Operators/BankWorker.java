@@ -3,6 +3,13 @@ package phase1.Operators;
 import phase1.FundHolders.Account;
 
 public class BankWorker extends Operator {
+
+    private String username;
+    private String password;
+
+    public BankWorker(String username, String password){
+        super(username, password);
+    }
     /**
      * Print a summary of a single account.
      * @param account
@@ -11,7 +18,7 @@ public class BankWorker extends Operator {
         System.out.println("Account holder: " + account.getHolderName() + " "
                 + "DATE AND TIME " +
                 "" + "Account summary:" + account.accountType +"Account Number: "
-                + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
+                + account.getAccountNum() + " contains: " + account.getBalance() + "CAD$");}
 
     /**
      * Print the balance of the account.

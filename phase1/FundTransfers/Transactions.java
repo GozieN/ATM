@@ -10,8 +10,14 @@ import java.io.PrintStream;
 
 public class Transactions {
     protected Account senderAccount;
-    private  String cheque;
     private ATM atm;
+    private String lastAction;
+    private int lastAmount;
+    private Account lastreciever;
+    private Transactions accountReceiver;
+
+
+
 
 
     public Transactions(Account senderAccount){
@@ -25,6 +31,14 @@ public class Transactions {
      */
     public void depositIntoATM(ATM atm, int amount) {
         atm.plus(amount);
+    }
+
+    /**
+     *
+     * @return String a sting of the last action
+     */
+    public String getLastAction(){
+        return lastAction;
     }
 
     /**
@@ -64,7 +78,8 @@ public class Transactions {
                 senderAccount.setBalance(senderAccount.getBalance() + amount);
             }
         }
-//
+        lastAction = "withdraw";
+
         System.out.println("Withdrawal successful, Account: " + senderAccount.getAccountNum() +
                 " now has a decreased balance of: " + senderAccount.getBalance() + "$CAD");
     }
@@ -76,9 +91,9 @@ public class Transactions {
     public void depositToAccount(double amount) {
 
         senderAccount.setBalance(senderAccount.getBalance() + amount);
-        //UPDATE ATM
+        lastAction = "deposit";
         System.out.println("Deposit successful, Account: " + senderAccount.getAccountNum() +
-                " now has an increased balance of: " + senderAccount.getBalance() + "CAD");
+                " now has an increased balance of: " + senderAccount.getBalance() + "CAD$");
     }
 
     /**
@@ -86,7 +101,32 @@ public class Transactions {
      * @param amount
      */
     public void depositChequeToAccount(double amount) {
+        lastAction = "deposit";
         depositToAccount(amount);
+    }
+
+    /**
+     * Set the previous transaction
+     * @param lastAction the previous transaction performed
+     */
+    public void setLastAction(String lastAction) {
+        this.lastAction = lastAction;
+    }
+
+    /**
+     * Set the previous transaction
+     * @param lastAmount previous transaction performed
+     */
+    public void setLastAmount(int lastAmount) {
+        this.lastAmount = lastAmount;
+    }
+
+    /**
+     * Get the last amount in the previous transaction
+     * @return lastAmount from the previous transaction performed
+     */
+    public int getLastAmount() {
+        return lastAmount;
     }
 
     /**
@@ -94,14 +134,18 @@ public class Transactions {
      */
     public void transfer(int amount, Account receiverAccount) {
         withdrawFromAccount(amount);
-        Transactions accountReceiver = new Transactions(receiverAccount);
+        accountReceiver = new Transactions(receiverAccount);
         accountReceiver.depositToAccount(amount);
-
+        lastAction = "transfer";
+        lastreciever = receiverAccount;
     }
 
-    public void createCheque(String recipient, double amount){
-
-
+    /**
+     *
+     * @return Alter the balance of the account of the last receiver
+     */
+    public void receiverBalanceAlterIncrease(double amount) {
+        accountReceiver.withdrawFromAccount(amount);
     }
 
     /**
@@ -111,6 +155,7 @@ public class Transactions {
      */
      public void payBill(double amount) {
          withdrawFromAccount(amount);
+         lastAction = "bill";
          try {
              PrintStream originalOut = System.out;
              PrintStream fileOut = new PrintStream("/.outgoing.txt");
