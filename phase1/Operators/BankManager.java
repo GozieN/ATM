@@ -99,7 +99,7 @@ public class BankManager extends BankWorker implements Serializable{
      * @param month
      * @param year
      */
-    public void ATMSetDate(ATM atm, int day, int month, int year) { // format dd:mm:yy
+    public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
         atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
@@ -111,7 +111,7 @@ public class BankManager extends BankWorker implements Serializable{
      * @param minute
      * @param second
      */
-    public void ATMSetTime(ATM atm, int hour, int minute, int second) { // format hh:mm:ss
+    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         atm.setTime(hour, minute, second);
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
