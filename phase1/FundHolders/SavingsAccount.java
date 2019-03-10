@@ -3,13 +3,9 @@ package phase1.FundHolders;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Calendar;
+
 
 public class SavingsAccount extends Debit {
     /**
@@ -28,7 +24,7 @@ public class SavingsAccount extends Debit {
      */
     public String getLastLine() {
         String currLine;
-        String lastLine;
+        String lastLine = "";
 
         try {
             BufferedReader br = new BufferedReader("./src/date.txt");

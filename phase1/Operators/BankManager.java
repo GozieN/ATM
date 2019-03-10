@@ -140,7 +140,7 @@ public class BankManager extends BankWorker implements Serializable{
 
     /**
      * Get the list of User
-     * @return
+     * @return List of users from bank
      */
     public ArrayList<User> getUsers() {
         return users;
@@ -149,6 +149,7 @@ public class BankManager extends BankWorker implements Serializable{
     /**
      * Get the number of 5$ bills
      * @param atm Instance of ATM machine
+     * @return Int of the number of $5 bills in ATM machine
      */
     public int ATMGetNum5Bills(ATM atm) {
         System.out.println("the number of $5 bills in the ATM is: " + atm.getNum5Bills());
@@ -174,6 +175,7 @@ public class BankManager extends BankWorker implements Serializable{
     /**
      * Set the number of 10$ bills
      * @param atm Instance of ATM machine
+     * @return Int of number of $10 bills in ATM machine
      */
     public int ATMGetNum10Bills(ATM atm) {
         System.out.println("the number of $10 bills in the ATM is: " + atm.getNum10Bills());
@@ -205,6 +207,7 @@ public class BankManager extends BankWorker implements Serializable{
     /**
      * Get the number of 20$ bills
      * @param atm Instance of ATM machine
+     * @return Int of number of $20 bills in ATM machine
      */
     public int ATMGetNum20Bills(ATM atm) {
         System.out.println("the number of $20 bills in the ATM is: " + atm.getNum20Bills());

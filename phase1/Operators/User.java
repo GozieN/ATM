@@ -54,14 +54,14 @@ public class User extends Operator implements java.io.Serializable{
 
     /**
      * Return a list of the accounts of the users
-     * @return ArrayList
+     * @return ArrayList of user accounts created
      */
     public ArrayList<Account> getAccountsCreated() {
         return AccountsCreated;
     }
 
     /**
-     * Set
+     * Set a list of bank accounts created
      * @param accountsCreated A list of bank accounts created
      */
     public void setAccountsCreated(ArrayList<Account> accountsCreated) {
