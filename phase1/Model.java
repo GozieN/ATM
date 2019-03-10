@@ -36,10 +36,8 @@ public class Model {
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
-                // send to menuBM1
                 menuBM1();
             } else if (optionIn.equals("2")) {
-                // send to menuU1
                 menuU1();
             } else {
                 System.out.println("that is not an option \n" +
@@ -67,7 +65,6 @@ public class Model {
                         while (passwordScan.hasNext()) {
                             String passwordIn = passwordScan.next();
                             if (passwordIn.equals(this.BM.getPassword())) {
-                                // send to menuBM2
                                 menuBM2();
                             } else {
                                 System.out.println("wrong password. enter your password");
@@ -110,7 +107,6 @@ public class Model {
                             while (passwordScan.hasNext()) {
                                 String passwordIn = passwordScan.next();
                                 if (passwordIn.equals(this.userPasswords.get(index))) {
-                                    // send to menuU2
                                     menuU2();
                                 } else {
                                     System.out.println("wrong password. enter your password");
@@ -161,7 +157,42 @@ public class Model {
                 "enter 3 to request creation of new account \n" +
                 "enter e to exit");
         Scanner optionScan = new Scanner(System.in);
-        while ()
+        while (optionScan.hasNext()) {
+            String optionIn = optionScan.next();
+            if (optionIn.equals("1")) {
+                BM.getUsers().get(BM.getNumUsers()).viewInfo();
+                // options: b. back, e. exit
+                System.out.println("enter b to go back \n" +
+                        "enter e to exit");
+                Scanner optionScan2 = new Scanner(System.in);
+                while (optionScan2.hasNext()) {
+                    String optionIn2 = optionScan2.next();
+                    if (optionIn2.equals("b")) {
+                        menuU2();
+                    } else if (optionIn2.equals("e")) {
+                        System.out.println("returning to main menu");
+                        menuOperatorSelect();
+                    } else {
+                        System.out.println("that is not an option \n" +
+                                "enter b to go back \n" +
+                                "enter e to exit");
+                    }
+                }
+            } else if (optionIn.equals("2")) {
+                menuU3();
+            } else if (optionIn.equals("3")) {
+                // request creation of new account
+            } else if (optionIn.equals("e")) {
+                System.out.println("returning to main menu");
+                menuOperatorSelect();
+            } else {
+                System.out.println("that is not an option \n" +
+                        "enter 1 to view your accounts summary \n" +
+                        "enter 2 to perform a transaction \n" +
+                        "enter 3 to request creation of new account \n" +
+                        "enter e to exit");
+            }
+        }
     }
 
     public static void updateDate(String date, File f) throws IOException {
