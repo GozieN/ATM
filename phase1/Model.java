@@ -45,6 +45,7 @@ public class Model {
        while (numberScan.hasNext()) {
            String numberIn = numberScan.next();
            if (numberIn.equals("1")) {
+               // options: 1. login, e. exit
                System.out.println("enter your username");
                Scanner usernameScan = new Scanner(System.in);
                while (usernameScan.hasNext()) {
@@ -65,7 +66,7 @@ public class Model {
                    }
                }
            } else if (numberIn.equals("2")) {
-               // options: 1. login to existing user, 2. request creation of new user, "exit". exit
+               // options: 1. login to existing user, 2. request creation of new user, e. exit
                System.out.println("enter 1 to login to existing user \n" +
                        "enter 2 to request creation of new user \n" +
                        "enter 'exit' to exit");
@@ -73,11 +74,10 @@ public class Model {
                while (numberScan2.hasNext()) {
                    String numberIn2 = numberScan2.next();
                    if (numberIn2.equals("1")) {
-                       // user username, password check
                        System.out.println("enter your username");
                        Scanner usernameScan = new Scanner(System.in);
                        String usernameIn = usernameScan.next();
-                       int index = 0;
+                       int index = -1;
                        for (String username : this.userUsernames) {
                            index += 1;
                            if (username.equals(usernameIn)) {
