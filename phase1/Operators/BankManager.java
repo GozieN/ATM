@@ -73,7 +73,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User(username, password);
 
         try {
-            String filename = "Users.txt";
+            String filename = "./src/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
