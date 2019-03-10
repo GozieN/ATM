@@ -14,11 +14,16 @@ public class BankManager extends BankWorker implements Serializable{
     private String password;
     private int numExistingAccounts;
     private ArrayList<User> users = new ArrayList<>();
+    private String accesskey = "900";
 
     public BankManager(String username, String password) {
         super(username, password);
         numBankManagers += 1;
         bankManagerDatabase.add(this);
+    }
+
+    public String getMasterAccessKey() {
+        return this.accesskey;
     }
 
     /**

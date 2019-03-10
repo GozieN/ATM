@@ -89,7 +89,50 @@ public class Model {
     }
 
     public void menuBM2() {
+        // options: 1. user account access
+        Scanner optionScan = new Scanner(System.in);
+        System.out.println("enter 1 to input a user account\n" +
+                "enter e to logoff and exit");
+        String option  = optionScan.nextLine();
+        if (option.equals("1")) {
+            if (BM.getUsers() == null){
+                System.out.println("There are no users of the bank");
+            }else {
+                Scanner optionScan2 = new Scanner(System.in);
+                System.out.println("enter an existing username input a user's username from the following:");
+                for (String username : this.userUsernames) {
+                    System.out.println(username);
+                }
+                String option2 = optionScan2.nextLine();
+                for (int i = 0; i < BM.getUsers().size(); i++) {
+                    if (option2.equals(BM.getUsers().get(i).getUsername())) {
+                        User inputUser = BM.getUsers().get(i);
+                        Scanner optionScan3 = new Scanner(System.in);
+                        System.out.println("enter in the master access key");
+                        String option3 = optionScan3.nextLine();
+                        if (option3 == BM.getMasterAccessKey()) {
 
+                            this.menuBM3(inputUser);
+                        } else {
+                            System.out.println("Sorry, that key is incorrect!");
+                        }
+                    }
+                }
+                Scanner optionScan4 = new Scanner(System.in);
+                System.out.println("It looks like that user does not exist, press b to go back!");
+                String option4 = optionScan4.nextLine();
+                if (option4.equals("b")) {
+                    this.menuBM2();
+                }
+            }
+            //menuBM3();
+        } else if (option.equals("e")) {
+            mainMenu();
+        } else {
+            System.out.println("that is not an option \n" +
+                    "enter 1 to select a user account \n" +
+                    "enter e to logoff and exit");
+        }
     }
 
     public void menuBM3(User user){
