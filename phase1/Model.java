@@ -2,6 +2,7 @@ package phase1;
 
 import phase1.FundHolders.ATM;
 import phase1.Operators.BankManager;
+import phase1.Operators.User;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -106,8 +107,14 @@ public class Model {
                             Scanner passwordScan = new Scanner(System.in);
                             while (passwordScan.hasNext()) {
                                 String passwordIn = passwordScan.next();
+                                User user = null;
                                 if (passwordIn.equals(this.userPasswords.get(index))) {
-                                    menuU2();
+                                    for (User u : BM.getUsers()) {
+                                        if (user.getUsername().equals(usernameIn)) {
+                                            user = u;
+                                        }
+                                    }
+                                    menuU2(user);
                                 } else {
                                     System.out.println("wrong password. enter your password");
                                 }
@@ -150,7 +157,7 @@ public class Model {
         }
     }
 
-    public void menuU2() {
+    public void menuU2(User user) {
         // options: 1. view accounts summary, 2. perform transaction, 3. request creation of new account, e. exit
         System.out.println("enter 1 to view your accounts summary \n" +
                 "enter 2 to perform a transaction \n" +
@@ -160,7 +167,7 @@ public class Model {
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
-                BM.getUsers().get(BM.getNumUsers()).viewInfo();
+                user.viewInfo();
                 // options: b. back, e. exit
                 System.out.println("enter b to go back \n" +
                         "enter e to exit");
@@ -168,7 +175,7 @@ public class Model {
                 while (optionScan2.hasNext()) {
                     String optionIn2 = optionScan2.next();
                     if (optionIn2.equals("b")) {
-                        menuU2();
+                        menuU2(user);
                     } else if (optionIn2.equals("e")) {
                         System.out.println("returning to main menu");
                         menuOperatorSelect();
@@ -179,9 +186,13 @@ public class Model {
                     }
                 }
             } else if (optionIn.equals("2")) {
-                menuU3();
+                menuU3(user);
             } else if (optionIn.equals("3")) {
                 // request creation of new account
+                System.out.println("enter the account type that you want to create");
+                Scanner newAccountTypeScan = new Scanner(System.in);
+                String newAccountTypeIn = newAccountTypeScan.next();
+                BM.createNewAccount(0, newAccountTypeIn, user);
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
                 menuOperatorSelect();

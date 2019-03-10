@@ -14,16 +14,11 @@ public class BankManager extends BankWorker implements Serializable{
     private String password;
     private int numExistingAccounts;
     private ArrayList<User> users = new ArrayList<>();
-    private int numUsers = 0;
 
     public BankManager(String username, String password) {
         super(username, password);
         numBankManagers += 1;
         bankManagerDatabase.add(this);
-    }
-
-    public int getNumUsers() {
-        return this.numUsers;
     }
 
     /**
@@ -76,7 +71,6 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void createUser(String username, String password) {
         User newUser = new User(username, password);
-        this.numUsers += 1;
 
         try {
             String filename = "Users.txt";
