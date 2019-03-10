@@ -53,9 +53,9 @@ public class Model {
     }
 
     public void menuBM1() {
-        // options: 1. login, e. logoff and exit
+        // options: 1. login, e. exit
         System.out.println("enter 1 to login \n" +
-                "enter e to logoff and exit");
+                "enter e to exit");
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
@@ -85,16 +85,20 @@ public class Model {
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login \n" +
-                        "enter e to logoff and exit");
+                        "enter e to exit");
             }
         }
     }
 
+    public void menuBM2() {
+
+    }
+
     public void menuBM3(User user){
-        // options: 1. view user accounts summary, 2. perform transaction on user, e. exit
+        // options: 1. view user accounts summary, 2. perform transaction on user, e. logoff and exit
         System.out.println("enter 1 to view this user's accounts summary \n" +
                 "enter 2 to perform a transaction on this user \n" +
-                "enter e to exit");
+                "enter e to logoff and exit");
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
@@ -126,9 +130,13 @@ public class Model {
                 System.out.println("that is not an option \n" +
                         "enter 1 to view this user's accounts summary \n" +
                         "enter 2 to perform a transaction on this user \n" +
-                        "enter e to exit");
+                        "enter e to logoff and exit");
             }
         }
+    }
+
+    public void menuBM4(User user) {
+
     }
 
     public void menuU1() {
@@ -203,19 +211,19 @@ public class Model {
     }
 
     public void menuU2(User user) {
-        // options: 1. view accounts summary, 2. perform transaction, 3. request creation of new account, e. exit
+        // options: 1. view accounts summary, 2. perform transaction, 3. request creation of new account, e. logoff and exit
         System.out.println("enter 1 to view your accounts summary \n" +
                 "enter 2 to perform a transaction \n" +
                 "enter 3 to request creation of new account \n" +
-                "enter e to exit");
+                "enter e to logoff and exit");
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 user.viewInfo();
-                // options: b. back, e. exit
+                // options: b. back, e. logoff and exit
                 System.out.println("enter b to go back \n" +
-                        "enter e to exit");
+                        "enter e to logoff and exit");
                 Scanner optionScan2 = new Scanner(System.in);
                 while (optionScan2.hasNext()) {
                     String optionIn2 = optionScan2.next();
@@ -227,7 +235,7 @@ public class Model {
                     } else {
                         System.out.println("that is not an option \n" +
                                 "enter b to go back \n" +
-                                "enter e to exit");
+                                "enter e to logoff and exit");
                     }
                 }
             } else if (optionIn.equals("2")) {
@@ -246,7 +254,7 @@ public class Model {
                         "enter 1 to view your accounts summary \n" +
                         "enter 2 to perform a transaction \n" +
                         "enter 3 to request creation of new account \n" +
-                        "enter e to exit");
+                        "enter e to logoff and exit");
             }
         }
     }
