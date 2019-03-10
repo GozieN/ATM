@@ -156,7 +156,7 @@ public class Transactions {
          lastAction = "bill";
          try {
              PrintStream originalOut = System.out;
-             PrintStream fileOut = new PrintStream("./outgoing.txt");
+             PrintStream fileOut = new PrintStream("./src/outgoing.txt");
              System.setOut(fileOut);
 
              originalOut.println(senderAccount.getHolderName() + "paid a bill of " + Double.toString(amount));

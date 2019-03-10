@@ -262,7 +262,7 @@ public class BankManager extends BankWorker implements Serializable{
             }
 
             try{
-                File temptFile = new File("./myTempFile.txt");
+                File temptFile = new File("./src/myTempFile.txt");
 
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(temptFile));
