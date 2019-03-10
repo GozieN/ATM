@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 import java.io.FileNotFoundException;
 
-public class BankManager extends BankWorker implements Observer {
+public class BankManager extends BankWorker implements Observer, java.io.Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
@@ -34,7 +34,7 @@ public class BankManager extends BankWorker implements Observer {
      * @param arg
      */
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, Object arg){
         if (arg instanceof Account){
             ((User) o).addToAccountsCreated((Account) arg);
             System.out.println(((User) o).getUsername() +
@@ -58,6 +58,22 @@ public class BankManager extends BankWorker implements Observer {
      */
     public void createUser(String username, String password) {
         User newUser = new User(username, password);
+
+        try {
+            String filename = "Users.txt";
+
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(newUser);
+
+            out.close();
+            file.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         System.out.println("Your account has been created! Your username is: " + newUser.getUsername() + " and" +
                 "your initial password is: " + newUser.getPassword());
 
