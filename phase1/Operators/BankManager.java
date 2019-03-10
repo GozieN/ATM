@@ -1,52 +1,68 @@
 package phase1.Operators;
 
-import phase1.FundHolders.ATM;
-import phase1.FundHolders.Account;
+import phase1.FundHolders.*;
+import phase1.Operators.*;
+
 import java.io.*;
 import java.util.*;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 
-public class BankManager extends BankWorker implements Observer, java.io.Serializable {
-    private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
+public class BankManager extends BankWorker implements Serializable{
+    private ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
     private String password;
-    public ArrayList<User> users = new ArrayList<>();
+    private int numExistingAccounts;
+    private ArrayList<User> users = new ArrayList<>();
 
     public BankManager(String username, String password) {
-        this.username = username;
-        this.password = password;
+        super(username, password);
         numBankManagers += 1;
         bankManagerDatabase.add(this);
     }
 
-    public String getUsername() {
-        return this.username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
     /**
-     * Update the list of accounts that a user has
-     * @param o
-     * @param arg
+     * Create and update the list of accounts that a user has
+     * @param user
+     * @param
      */
-    @Override
-    public void update(Observable o, Object arg){
-        if (arg instanceof Account){
-            ((User) o).addToAccountsCreated((Account) arg);
-            System.out.println(((User) o).getUsername() +
+    public void createNewAccount(double startingAmount, String accountType, User user){
+        Account newAccount = null;
+
+            if (accountType == "LineOfCredit") {
+                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, true);
+
+            } else if (accountType == "Credit"){
+                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, false);
+
+            } else if (accountType == "Savings"){
+                newAccount = new SavingsAccount(numExistingAccounts, user.getUsername(), startingAmount);
+            } else if (accountType == "Chequing"){
+                if (user.getAccountsCreated() != null){
+                    for (Account i:user.getAccountsCreated()){
+                        if (i.getAccountType() == "Chequing"){
+                                newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
+                                        true);
+                            }
+                        }
+                        newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
+                            false);
+                    }
+                }
+
+            if (newAccount == null){
+                System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
+                        "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
+                        "Savings, Chequing");
+            }else{
+            numExistingAccounts++;
+            user.addToAccountsCreated(newAccount);
+            System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account:" +
-                    ((Account) arg).accountType + "with account Number: "
-                    + ((Account) arg).getAccountNum() +  "was created upon your request");
-        }
-        else if(arg instanceof User){
-            users.add((User) arg);
-            createUser(((User) arg).getUsername(), ((User) arg).getPassword());
-        }
-    }
+                    newAccount.accountType + "with account Number: "
+                    + newAccount.getAccountNum() +  "was created upon your request.");
+        }}
 
     /**
      * Create a user
@@ -265,13 +281,13 @@ public class BankManager extends BankWorker implements Observer, java.io.Seriali
                 ex.printStackTrace();
             }
 
-    }
+    }}
 
     /**
      * Print a summary of the user's accounts
      * @param user
      */
-    public void viewInfo(User user) {user.viewInfo();}
+    public void viewInfo(User user){user.viewInfo();}
 
     /**
      * Undo the most recent transaction in the account

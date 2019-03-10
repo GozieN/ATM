@@ -12,10 +12,6 @@ public class User extends Operator {
     private static int numUsers = 0;
     private String username;
     private String password;
-    //private Credit cca = null;
-    //private Credit loca = null;
-    //private ChequingAccount ca = null;
-    //private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private BankManager BM;
 
@@ -26,20 +22,11 @@ public class User extends Operator {
      * @param password
      */
     public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+        super(username, password);
         numUsers++;
         userDatabase.add(this);
     }
 
-
-    /**
-     * Return the user's password
-     * @return String - the user's password
-     */
-    public String getPassword() {
-        return password;
-    }
 
     /**
      * Change the user's password
@@ -49,9 +36,9 @@ public class User extends Operator {
     public void changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
-            System.out.println("your password has successfully been changed");
+            System.out.println(username + ", your password has successfully been changed");
         } else {
-            System.out.println("you have entered the wrong current password. " +
+            System.out.println(username + ",you have entered the wrong current password. " +
                     "unable to change password");
         }
     }
@@ -64,23 +51,6 @@ public class User extends Operator {
         this.BM = BM;
     }
 
-    //    /**
-//     * Request an account to be created
-//     * @param account
-//     */
-//     public void requestAccountCreation(Account account) {
-//         setChanged();
-//         BM.notifyObservers(account);
-//         clearChanged();
-//     }
-
-    /**
-     * Return the user's username
-     * @return
-     */
-    public String getUsername() {
-        return username;
-    }
 
     /**
      * Return a list of the accounts of the users

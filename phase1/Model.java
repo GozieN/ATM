@@ -90,6 +90,7 @@ import java.util.*;
                             String newPasswordIn = newPasswordScan.next();
                             this.userPasswords.add(newPasswordIn);
                             BM.createUser(newUsernameIn, newPasswordIn);
+                            BM.getUsers().get(BM.getUsers().size()).setBM(BM);
                         }
                     } else if (numberIn2.equals("exit")) {
                         // returns to previous screen
@@ -131,4 +132,4 @@ import java.util.*;
         Model model = new Model();
         model.menuOperatorSelect();
     }
-}
+}}
