@@ -1,7 +1,6 @@
 package phase1.Operators;
 
 import phase1.FundHolders.*;
-import phase1.Operators.*;
 
 import java.io.*;
 import java.util.*;
