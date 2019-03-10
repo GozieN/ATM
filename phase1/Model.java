@@ -91,21 +91,43 @@ public class Model {
     }
 
     public void menuBM3(User user){
-        System.out.println("Press 1 to view info or 2 to perform a transacation");
-        Scanner option = new Scanner(System.in);
-        String optionIn = option.next();
-        if (optionIn.toLowerCase()=="e"){
-            exit();
-        }
-        else if (optionIn.toLowerCase()=="b"){
-            backBM(2, user);
-        }
-        else if (Integer.parseInt(optionIn)==1){
-            user.viewInfo();
-        }
-        else if (Integer.parseInt(optionIn)==2){
-            Account acc = new SavingsAccount(100, "he",100); // FOR TESTING
-            Transactions tran = new Transactions(acc);
+        // options: 1. view user accounts summary, 2. perform transaction on user, e. exit
+        System.out.println("enter 1 to view this user's accounts summary \n" +
+                "enter 2 to perform a transaction on this user \n" +
+                "enter e to exit");
+        Scanner optionScan = new Scanner(System.in);
+        while (optionScan.hasNext()) {
+            String optionIn = optionScan.next();
+            if (optionIn.equals("1")) {
+                user.viewInfo();
+                // options: b. back, e. exit
+                System.out.println("enter b to go back \n" +
+                        "enter e to exit");
+                Scanner optionScan2 = new Scanner(System.in);
+                while (optionScan2.hasNext()) {
+                    String optionIn2 = optionScan2.next();
+                    if (optionIn2.equals("b")) {
+                        menuBM3(user);
+                    } else if (optionIn2.equals("e")) {
+                        System.out.println("returning to main menu");
+                        menuOperatorSelect();
+                    } else {
+                        System.out.println("that is not an option \n" +
+                                "enter b to go back \n" +
+                                "enter e to exit");
+                    }
+                }
+            } else if (optionIn.equals("2")) {
+                menuBM4(user);
+            } else if (optionIn.equals("e")) {
+                System.out.println("returning to main menu");
+                menuOperatorSelect();
+            } else {
+                System.out.println("that is not an option \n" +
+                        "enter 1 to view this user's accounts summary \n" +
+                        "enter 2 to perform a transaction on this user \n" +
+                        "enter e to exit");
+            }
         }
     }
 
