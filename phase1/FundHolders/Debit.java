@@ -13,7 +13,7 @@ public abstract class Debit extends Account {
     }
     /**
      * Deposit amount into account
-     * @param amount
+     * @param amount Amount of money to be deposited
      */
    public void deposit(double amount){
         setBalance(getBalance() + amount);
