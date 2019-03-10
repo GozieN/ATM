@@ -15,8 +15,7 @@ public abstract class Debit extends Account {
      * Deposit amount into account
      * @param amount
      */
-   public void deposit(double amount){
-        setBalance(getBalance() + amount);
+   public void deposit(double amount){setBalance(getBalance() + amount);
     }
 }
 
