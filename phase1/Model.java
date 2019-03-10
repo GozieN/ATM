@@ -332,8 +332,8 @@ public class Model {
 
         } catch (IOException e) {}
 
-        Model model2 = new Model();
-        model2.mainMenu();
+        Model model = new Model();
+        model.mainMenu();
 
     }
 }
