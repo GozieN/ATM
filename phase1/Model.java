@@ -3,6 +3,11 @@ package phase1;
 import phase1.FundHolders.ATM;
 import phase1.Operators.BankManager;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -62,7 +67,8 @@ public class Model {
                         while (passwordScan.hasNext()) {
                             String passwordIn = passwordScan.next();
                             if (passwordIn.equals(this.BM.getPassword())) {
-                                // TODO: send to menuBM2
+                                // send to menuBM2
+                                menuBM2();
                             } else {
                                 System.out.println("wrong password. enter your password");
                             }
@@ -104,7 +110,8 @@ public class Model {
                             while (passwordScan.hasNext()) {
                                 String passwordIn = passwordScan.next();
                                 if (passwordIn.equals(this.userPasswords.get(index))) {
-                                    // TODO: send to menuU2
+                                    // send to menuU2
+                                    menuU2();
                                 } else {
                                     System.out.println("wrong password. enter your password");
                                 }
@@ -127,7 +134,7 @@ public class Model {
                         this.userPasswords.add(newPasswordIn);
                         BM.createUser(newUsernameIn, newPasswordIn);
                         BM.getUsers().get(BM.getUsers().size()).setBM(BM);
-                        System.out.println("your user creation is being processed \n" +
+                        System.out.println("your user creation request is being processed \n" +
                                 "returning to main menu");
                         menuOperatorSelect();
                     } else {
@@ -147,7 +154,31 @@ public class Model {
         }
     }
 
+    public void menuU2() {
+        // options: 1. view accounts summary, 2. perform transaction, 3. request creation of new account, e. exit
+        System.out.println("enter 1 to view your accounts summary \n" +
+                "enter 2 to perform a transaction \n" +
+                "enter 3 to request creation of new account \n" +
+                "enter e to exit");
+        Scanner optionScan = new Scanner(System.in);
+        while ()
+    }
+
+    public static void updateDate(String date, File f) throws IOException {
+        FileWriter fw = new FileWriter(f);
+        fw.write(date);
+        fw.close();
+    }
+
     public static void main(String[] args) {
+
+        try {
+            File f = new File("./src/date.txt");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            updateDate(dtf.format(now), f);
+
+        } catch (IOException e) {}
 
         Model model2 = new Model();
         model2.menuOperatorSelect();
