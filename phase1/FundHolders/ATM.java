@@ -3,8 +3,10 @@ package phase1.FundHolders;
 import phase1.Operators.*;
 
 import java.util.*;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.io.PrintStream;
+import java.time.format.*;
+import java.time.*;
 
 public class ATM {
     private int num5bills = 100;
@@ -44,11 +46,43 @@ public class ATM {
      * @param month
      * @param year
      */
-    public void setDate(int day, int month, int year) {
-        this.cal.set(Calendar.DATE, day);
-        this.cal.set(Calendar.MONTH, month);
-        this.cal.set(Calendar.YEAR, year);
+
+    public void setDate(int day, int month, int year) throws IOException {
+
+        DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
+
+        BufferedReader input = new BufferedReader(new FileReader("/date.txt"));
+        String last, line;
+        last = "";
+        line = input.readLine();
+
+        if (line == null) {
+            this.cal.set(Calendar.DATE, day);
+            this.cal.set(Calendar.MONTH, month);
+            this.cal.set(Calendar.YEAR, year);
+
+        } else {
+            while ((line = input.readLine()) != null) {
+                last = line;
+            }
+
+            LocalDateTime yesterday = LocalDateTime.of(Integer.parseInt(last.substring(4, 8)),
+                    Integer.parseInt(last.substring(2, 4)), Integer.parseInt(last.substring(0, 2)),
+                    Integer.parseInt(last.substring(9, 11)), Integer.parseInt(last.substring(12, 14)));
+
+
+            LocalDateTime resetToday = LocalDateTime.now();
+            resetToday = yesterday.plusDays(1);
+
+            String today = d.format(resetToday);
+
+            this.cal.set(Calendar.DATE, Integer.parseInt(today.substring(0, 2)));
+            this.cal.set(Calendar.MONTH, Integer.parseInt(today.substring(2, 4)));
+            this.cal.set(Calendar.YEAR, Integer.parseInt(today.substring(4, 8)));
+        }
+
     }
+
 
     /**
      * Get the date
@@ -65,11 +99,38 @@ public class ATM {
      * @param minute
      * @param second
      */
-    public void setTime(int hour, int minute, int second) { // format hh:mm:ss
-        this.cal.set(Calendar.HOUR, hour);
-        this.cal.set(Calendar.MINUTE, minute);
-        this.cal.set(Calendar.SECOND, second);
-        this.cal.set(Calendar.MILLISECOND, 00);
+    public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
+        DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
+
+        BufferedReader input = new BufferedReader(new FileReader("/date.txt"));
+        String last, line;
+        last = "";
+        line = input.readLine();
+
+        if (line == null) {
+            this.cal.set(Calendar.HOUR, hour);
+            this.cal.set(Calendar.MINUTE, minute);
+            this.cal.set(Calendar.SECOND, second);
+
+        } else {
+            while ((line = input.readLine()) != null) {
+                last = line;
+            }
+
+            LocalDateTime yesterday = LocalDateTime.of(Integer.parseInt(last.substring(4, 8)),
+                    Integer.parseInt(last.substring(2, 4)), Integer.parseInt(last.substring(0, 2)),
+                    Integer.parseInt(last.substring(9, 11)), Integer.parseInt(last.substring(12, 14)));
+
+
+            LocalDateTime resetToday = LocalDateTime.now();
+            resetToday = yesterday.plusDays(1);
+
+            String today = d.format(resetToday);
+
+            this.cal.set(Calendar.HOUR, Integer.parseInt(today.substring(9, 11)));
+            this.cal.set(Calendar.MINUTE, Integer.parseInt(today.substring(12, 14)));
+            this.cal.set(Calendar.SECOND, Integer.parseInt(today.substring(15) + today.substring(16)));
+        }
     }
 
     /**
