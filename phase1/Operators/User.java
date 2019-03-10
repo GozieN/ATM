@@ -7,7 +7,7 @@ import java.util.*;
 /**
  *
  */
-public class User extends Operator {
+public class User extends Operator implements java.io.Serializable{
     private static ArrayList<User> userDatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private String username;
