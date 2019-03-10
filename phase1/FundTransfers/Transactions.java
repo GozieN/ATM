@@ -17,9 +17,6 @@ public class Transactions {
     private Transactions accountReceiver;
 
 
-
-
-
     public Transactions(Account senderAccount){
         this.senderAccount = senderAccount;
     }
@@ -34,7 +31,7 @@ public class Transactions {
     }
 
     /**
-     *
+     * Get last action of user
      * @return A string of the user's last action
      */
     public String getLastAction(){
@@ -131,6 +128,8 @@ public class Transactions {
 
     /**
      * Transfer funds from sender to receiver
+     * @param amount Amount of money to be transferred
+     * @param receiverAccount Account which money will be transferred to
      */
     public void transfer(int amount, Account receiverAccount) {
         withdrawFromAccount(amount);
@@ -141,7 +140,7 @@ public class Transactions {
     }
 
     /**
-     *
+     *Change balance for last receiver
      * @return Alter the balance of the account of the last receiver
      */
     public void receiverBalanceAlterIncrease(double amount) {
@@ -151,7 +150,6 @@ public class Transactions {
     /**
      * Pay the bill
      * @param amount Amount of money to withdraw from account to pay bill
-
      */
      public void payBill(double amount) {
          withdrawFromAccount(amount);
