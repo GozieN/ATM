@@ -51,7 +51,7 @@ public class ATM {
 
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -102,7 +102,7 @@ public class ATM {
     public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
