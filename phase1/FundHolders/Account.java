@@ -27,13 +27,26 @@ public abstract class Account {
         this.balance = balance;
     }
 
+    /**
+     * Get name of account holder
+     * @return String of holder's name
+     */
     public String getHolderName(){
         return holderName;
     }
 
+    /**
+     * Get number of account
+     * @return Int for account's number
+     */
     public int getAccountNum(){
         return accountNum;
     }
+
+    /**
+     * Get type of account
+     * @return String of account type
+     */
     public String getAccountType() { return accountType; }
 
     /**
@@ -52,6 +65,9 @@ public abstract class Account {
         return history;
     }
 
+    /**
+     * Change actions performed in account history
+     */
     public void alterHistory(){
         int lastElementIndex = history.size() - 1;
         if (history.get(lastElementIndex).getLastAction().equals("bill")){
@@ -71,16 +87,26 @@ public abstract class Account {
         }
     }
 
-
+    /**
+     * Add new transactions to history
+     * @param transactionInfo Variables that make up the Transactions class
+     */
     public void updateHistory(Transactions transactionInfo){
         history.add(transactionInfo);
     }
 
+    /**
+     * Set balance of account
+     * @param balance Total amount of money in account
+     */
     public void setBalance(double balance){
         this.balance = balance;
     }
 
-
+    /**
+     * Get balance of account
+     * @return Int for balance of account
+     */
     public double getBalance(){
         return this.balance;
     }

@@ -52,7 +52,7 @@ public class ATM {
 
     /**
      * Get the date
-     * @return
+     * @return A string indicating current date
      */
     public String getDate() {
         return "the date is " + this.cal.getTime().toString().substring(4, 10) + ',' +
@@ -74,15 +74,15 @@ public class ATM {
 
     /**
      * Get the time
-     * @return
+     * @return String indicating the current time on a 24-hour clock
      */
     public String getTime() {
         return "the 24h-time is " + this.cal.getTime().toString().substring(11, 19);
     }
 
     /**
-     * Set the number of 5$ bills
-     * @param num5bills
+     * Set the number of $5 bills
+     * @param num5bills Number of $5 bills
      */
     public void setNum5Bills(int num5bills) {
         this.num5bills = num5bills;
@@ -90,7 +90,7 @@ public class ATM {
 
     /**
      * Get the number of 5$ bills
-     * @return
+     * @return Int of $5 bills in ATM machine
      */
     public int getNum5Bills() {
         return this.num5bills;
@@ -98,15 +98,15 @@ public class ATM {
 
     /**
      * Set the number of 10$ bills
-     * @param num10bills
+     * @param num10bills Number of $10 bills
      */
     public void setNum10Bills(int num10bills) {
         this.num10bills = num10bills;
     }
 
     /**
-     * Get the number of 5$ bills
-     * @return
+     * Get the number of $10 bills
+     * @return Int of $10 bills in ATM machine
      */
     public int getNum10Bills() {
         return this.num10bills;
@@ -114,7 +114,7 @@ public class ATM {
 
     /**
      * Set the number of 20$ bills
-     * @param num20bills
+     * @param num20bills Number of $20 bills
      */
     public void setNum20Bills(int num20bills) {
         this.num20bills = num20bills;
@@ -122,7 +122,7 @@ public class ATM {
 
     /**
      * Get the number of 20$ bills
-     * @return
+     * @return Int of $20 bills in ATM machine
      */
     public int getNum20Bills() {
         return this.num20bills;
@@ -130,7 +130,7 @@ public class ATM {
 
     /**
      * Set the number of 50$ bills
-     * @param num50bills
+     * @param num50bills Number of $50 bills
      */
     public void setNum50Bills(int num50bills) {
         this.num50bills = num50bills;
@@ -138,15 +138,15 @@ public class ATM {
 
     /**
      * Get the number of 50$ bills
-     * @return
+     * @return Int of $50 bills in ATM machine
      */
     public int getNum50Bills() {
         return this.num50bills;
     }
 
-     /* *
+     /**
      * Increase the number of bills in the ATM
-     * @param dollarAmount
+     * @param dollarAmount The amount of money added to ATM machine
      */
     // plus bills into ATM method (from deposit methods)
     public void plus(int dollarAmount) {
@@ -173,7 +173,7 @@ public class ATM {
 
     /**
      * Decrease the number of bills in the ATM
-     * @param dollarAmount
+     * @param dollarAmount The amount of money deducted from ATM machine
      */
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
@@ -198,6 +198,9 @@ public class ATM {
         restock();
     }
 
+    /**
+     * Alert to show need for restock if number of bills are low
+     */
     public void restock() {
         try {
             PrintStream originalOut = System.out;

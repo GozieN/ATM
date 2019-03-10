@@ -1,5 +1,7 @@
 package phase1.FundHolders;
 
+import java.util.Calendar;
+
 public class SavingsAccount extends Debit {
     /**
      * SavingsAccount constructor
@@ -15,12 +17,16 @@ public class SavingsAccount extends Debit {
 //    store string of month and check if string is same as month in getdate method, if changed then increase interest
 
     /**
-     *
+     * Add monthly interest for savings account
      * @param interest Percentage amount of extra money (interest) received as a return for keeping a balance in the
      *                 user's savings account
      */
     public void monthlyInterest(double interest){
-        double increaseBy = interest * getBalance();
-        setBalance(getBalance() - increaseBy);
+//        String currMonth = getDate().substring(12,15)
+////        if (currMonth.equals(month in date)){
+//                setBalance(getBalance());
+//          } else {
+//            double increaseBy = interest * getBalance();
+//            setBalance(getBalance() - increaseBy);
     }
 }
