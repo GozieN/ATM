@@ -52,10 +52,10 @@ import java.util.*;
                     System.out.println("wrong username. enter your username");
                 }
             } else if (numberIn.equals("2")) {
-                // options: 1. login to existing user, 2. request creation of new user, 3. exit
+                // options: 1. login to existing user, 2. request creation of new user, "exit". exit
                 System.out.println("enter 1 to login to existing user \n" +
                         "enter 2 to request creation of new user \n" +
-                        "enter 3 to exit");
+                        "enter 'exit' to exit");
                 Scanner numberScan2 = new Scanner(System.in);
                 while (numberScan2.hasNext()) {
                     String numberIn2 = numberScan2.next();
@@ -92,7 +92,7 @@ import java.util.*;
                             BM.createUser(newUsernameIn, newPasswordIn);
                             System.out.println("your user creation has been requested");
                         }
-                    } else if (numberIn2.equals("3")) {
+                    } else if (numberIn2.equals("exit")) {
                         // returns to previous screen
                         // deeper menus should "log off" and return to first menu (menuoperatorselect)
                         menuOperatorSelect();
