@@ -10,16 +10,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Model {
+ public final class Model {
     private BankManager BM = new BankManager("BM12345", "BMpassword");
     private ATM atm = new ATM();
     private ArrayList<String> userUsernames = new ArrayList<>();
     private ArrayList<String> userPasswords = new ArrayList<>();
 
     // model constructor
-    public Model() {}
+    public Model() {
 
-    // method menuoperatorselect
+    }
+//NEED TO SET THE TRANSACTION ATM TO THIS ATM
+     public ATM getAtm() {
+         return atm;
+     }
+
+     //NEED TO HAVE AN OPTION TO DEPOSIT A CHEQUE - CALLS THE DEPOSIT CHEQUE METHOD IN TRANSACTIONS
+
+     /**
+      * Menu for in person user
+      */
     public void menuOperatorSelect() {
         // options: 1. bankmanager, 2. normal user, 3. exit
         System.out.println("enter 1 for bankmanager \n" +
@@ -95,7 +105,6 @@ public class Model {
         }
     }
 
-    // method menuuserexistingnew
 
     // method ___
 

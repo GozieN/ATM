@@ -21,23 +21,15 @@ public class Credit extends Account {
         }
     }
 
-    /**
-     * withdraw amount from account
-     * @param amount
-     */
-    public void withdraw(double amount){
-        if(isLOC) {
-            setBalance(getBalance() + amount);
-            transaction abc = new transaction(amount, "withdrawn");
-            updateHistory(abc);//updates the transaction history of the account
-        }
-    }
-
-    /**
-     *
-     * @param amount
-     */
-    public void deposit(double amount){
-        setBalance(getBalance() - amount);
-    }
+//    /**
+//     * withdraw amount from account
+//     * @param amount
+//     */
+//    public void withdraw(double amount){
+//        if(isLOC) {
+//            setBalance(getBalance() + amount);
+//            transaction abc = new transaction(amount, "withdrawn");
+//            updateHistory(abc);//updates the transaction history of the account
+//        }
+//    }
 }

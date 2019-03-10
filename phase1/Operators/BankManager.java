@@ -2,7 +2,7 @@ package phase1.Operators;
 
 import phase1.FundHolders.ATM;
 import phase1.FundHolders.Account;
-
+import java.io.*;
 import java.util.*;
 
 public class BankManager extends BankWorker implements Observer {
@@ -201,10 +201,31 @@ public class BankManager extends BankWorker implements Observer {
     }
 
     /**
-     * Add the number of 50$ bills
+     * Read the file to restock the ATM
      * @param atm
-     * @param num50bills
      */
+    public void restockFromFile(ATM atm) {
+
+        try {
+            File file = new File("./alerts.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.equals("Five dollar bills low in stock!")) {
+                    this.ATMSetNum5Bills(atm, 100);
+                } else if (line.equals("Ten dollar bills low in stock!")) {
+                    this.ATMSetNum10Bills(atm, 100);
+                } else if (line.equals("Twenty dollar bills low in stock!")) {
+                    this.ATMSetNum20Bills(atm, 100);
+                } else if (line.equals("Fifty dollar bills low in stock!")) {
+                    this.ATMSetNum50Bills(atm, 100);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 
     /**

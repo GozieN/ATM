@@ -42,12 +42,6 @@ public abstract class Account {
     }
 
 
-    public abstract void deposit(double amount);
-
-
-    public abstract void withdraw(double amount);
-
-
     public void setBalance(double balance){
         this.balance = balance;
     }
@@ -57,10 +51,4 @@ public abstract class Account {
         return this.balance;
     }
 
-    public static class transaction {
-        private int senderAccount;
-        private int receiverAccount;
-        private double amount;
-
-    }
 }

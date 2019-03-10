@@ -14,14 +14,5 @@ public class ChequingAccount extends Debit {
         this.isPrimary = isPrimary;
     }
 
-    /**
-     *Withdraw amount from the account
-     * @param amount
-     */
-    public void withdraw(double amount){
-        if ((getBalance() - amount) >= -100)
-            setBalance(getBalance() - amount);
-    }
-
 }
 

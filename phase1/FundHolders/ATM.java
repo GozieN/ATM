@@ -14,7 +14,7 @@ public class ATM {
     private int num20bills = 100;
     private int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
-    //private BankManager BM;
+    private BankManager BM;
 
     /**
      * ATM class constructor
@@ -216,8 +216,6 @@ public class ATM {
     }
 
     public void restock() {
-//        /REMOVAL OF E.G.BM.addnum50bills(100); BECAUSE BM REAds all the files for restocking (BY SPECS)
-
         try {
             PrintStream originalOut = System.out;
 
@@ -227,12 +225,16 @@ public class ATM {
 
             if (this.num5bills < 20) {
                 originalOut.println("Five dollar bills low in stock!");
+                BM.restockFromFile(this);
             } else if (this.num10bills < 20) {
                 originalOut.println("Ten dollar bills low in stock!");
+                BM.restockFromFile(this);
             } else if (this.num20bills < 20) {
                 originalOut.println("Twenty dollar bills low in stock!");
+                BM.restockFromFile(this);
             } else if (this.num50bills < 20) {
                 originalOut.println("Fifty dollar bills low in stock!");
+                BM.restockFromFile(this);
             }
 
             System.setOut(originalOut);
@@ -240,6 +242,7 @@ public class ATM {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-
     }
+
+
 }
