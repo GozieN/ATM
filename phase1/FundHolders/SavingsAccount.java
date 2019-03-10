@@ -27,7 +27,7 @@ public class SavingsAccount extends Debit {
         String lastLine = "";
 
         try {
-            BufferedReader br = new BufferedReader("./src/date.txt");
+            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
 
             while ((currLine = br.readLine()) != null) {
                 lastLine = currLine;
