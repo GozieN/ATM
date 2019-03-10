@@ -70,8 +70,7 @@ public class Model {
                         while (passwordScan.hasNext()) {
                             String passwordIn = passwordScan.next();
                             if (passwordIn.equals(this.BM.getPassword())) {
-                                User user = new User("h", "f");
-                                menuBM2(user);
+                                menuBM2();
                             } else {
                                 System.out.println("wrong password. enter your password");
                             }
@@ -91,7 +90,7 @@ public class Model {
         }
     }
 
-    public void menuBM2(User user){
+    public void menuBM3(User user){
         System.out.println("Press 1 to view info or 2 to perform a transacation");
         Scanner option = new Scanner(System.in);
         String optionIn = option.next();
