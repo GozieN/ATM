@@ -11,5 +11,12 @@ public abstract class Debit extends Account {
     public Debit(int accountNum, String holderName, double balance, String accountType){
         super(accountNum, holderName, balance, accountType);
     }
+    /**
+     * Deposit amount into account
+     * @param amount
+     */
+   public void deposit(double amount){
+        setBalance(getBalance() + amount);
+    }
 }
 
