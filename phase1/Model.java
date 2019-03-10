@@ -157,6 +157,10 @@ public class Model {
                        menuOperatorSelect();
                    }
                }
+           } else {
+               System.out.println("that is not an option \n" +
+                       "enter 1 for bankmanager \n" +
+                       "enter 2 for user");
            }
        }
    }
