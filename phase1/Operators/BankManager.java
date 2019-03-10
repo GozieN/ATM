@@ -30,18 +30,18 @@ public class BankManager extends BankWorker implements Serializable{
     public void createNewAccount(double startingAmount, String accountType, User user){
         Account newAccount = null;
 
-            if (accountType == "LineOfCredit") {
+            if (accountType.equals("LineOfCredit")) {
                 newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, true);
 
-            } else if (accountType == "Credit"){
+            } else if (accountType.equals("Credit")) {
                 newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, false);
 
-            } else if (accountType == "Savings"){
+            } else if (accountType.equals("Savings")) {
                 newAccount = new SavingsAccount(numExistingAccounts, user.getUsername(), startingAmount);
-            } else if (accountType == "Chequing"){
+            } else if (accountType.equals("Chequing")) {
                 if (user.getAccountsCreated() != null){
                     for (Account i:user.getAccountsCreated()){
-                        if (i.getAccountType() == "Chequing"){
+                        if (i.getAccountType().equals("Chequing")) {
                                 newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
                                         true);
                             }
@@ -301,15 +301,3 @@ public class BankManager extends BankWorker implements Serializable{
 
     }
 
-    //    public void undoMostRecentTransaction(User user, Account account) {
-//    String msg=transactions.get(-1); // Gain access to last element (popping)
-//    if (transactions.size()>0){
-//        transactions.remove(transactions.size()-1);
-//    }
-//    if (){ // "deposit 20" then if deposit in msg you go here, consider ALL cases that involve gaining money
-//
-//    }else if(){ // "withdraw 20" then if withdraw go here, consider ALL cases that involve losing money
-//
-//    }
-//    }
-//    // input parameters: user instance, account num/type
