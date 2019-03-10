@@ -3,6 +3,8 @@ package phase1;
 import phase1.FundHolders.*;
 import phase1.Operators.*;
 import phase1.FundTransfers.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 import java.io.*;
 import java.util.*;
@@ -172,7 +174,9 @@ import java.util.*;
 
         try{
             File f = new File("./src/date.txt");
-            updateDate("01012019", f);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            updateDate(dtf.format(now), f);
 
         } catch(IOException e){}
 
