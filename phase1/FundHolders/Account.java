@@ -9,6 +9,7 @@ public abstract class Account {
     private int accountNum;
     private String holderName;
 
+
     private double balance;
     public String accountType;
     private ArrayList<Transactions> history;
@@ -26,6 +27,7 @@ public abstract class Account {
         this.accountNum = accountNum;
         this.holderName = holderName;
         this.balance = balance;
+
     }
 
     public String getHolderName(){

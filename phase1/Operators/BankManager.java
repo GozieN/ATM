@@ -41,9 +41,6 @@ public class BankManager extends BankWorker implements Observer {
                     ((Account) arg).accountType + "with account Number: "
                     + ((Account) arg).getAccountNum() +  "was created upon your request");
         }
-        else if(arg instanceof String){
-            System.out.println("Your initial password has been set. You are able to change it later.");
-        }
         else if(arg instanceof User){
             users.add((User) arg);
             createUser(((User) arg).getUsername(), ((User) arg).getPassword());
@@ -101,6 +98,14 @@ public class BankManager extends BankWorker implements Observer {
         else {
             System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
         }
+    }
+
+    /**
+     * Get the list of User
+     * @return
+     */
+    public ArrayList<User> getUsers() {
+        return users;
     }
 
     /**

@@ -17,7 +17,7 @@ public class User extends Operator {
     //private ChequingAccount ca = null;
     //private SavingsAccount sa = null;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private double cash;
+    private BankManager BM;
 
 
     /**
@@ -25,13 +25,11 @@ public class User extends Operator {
      * @param username
      * @param password
      */
-// user constructor (BM use ONLY in console)
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         numUsers++;
         userDatabase.add(this);
-        this.cash = 0;
     }
 
 
@@ -59,14 +57,22 @@ public class User extends Operator {
     }
 
     /**
-     * Request an account to be created
-     * @param account
+     * Set the bank manager
+     * @param BM
      */
-     public void requestAccountCreation(Account account) {
-         setChanged();
-         notifyObservers(account);
-         clearChanged();
-     }
+    public void setBM(BankManager BM) {
+        this.BM = BM;
+    }
+
+    //    /**
+//     * Request an account to be created
+//     * @param account
+//     */
+//     public void requestAccountCreation(Account account) {
+//         setChanged();
+//         BM.notifyObservers(account);
+//         clearChanged();
+//     }
 
     /**
      * Return the user's username
@@ -108,11 +114,14 @@ public class User extends Operator {
 
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
+        if (AccountsCreated == null){
+            System.out.println("Nothing to view, you have not created an account yet!");
+        }else{
 
         String s = "Account holder: " + this.username + " Report of FundHolders:";
         for(int i = 0; i < AccountsCreated.size(); i++){
             s += AccountsCreated.get(i).getAccountType() + "Number: " + AccountsCreated.get(i).getAccountNum() + "\n" +
-                    " created on: GETDATEOFCREATION" + "\n Current Balance:" +
+                     "\n Current Balance:" +
                     AccountsCreated.get(i).getBalance() + " Most Recent Transactions: " + "BM GET MOSTRECENTTRANSACTION";
             if (AccountsCreated.get(i) instanceof Debit){
                 totalDebitAmount += AccountsCreated.get(i).getBalance();
@@ -122,26 +131,5 @@ public class User extends Operator {
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
         System.out.println(s);
-    }
+    }}
 }
-
-    // user will not have to input any parameters (direct call)
-
-    // user input parameters: account num/type
-/**
- *
- */
-//    public void transfer(int amount, Account from, Account to) {
-//        from.setBalance(from.getBalance() - amount);
-//        to.setBalance(to.getBalance() + amount);
-//
-//        //[Angela]
-//        try {
-//            PrintStream originalOut = System.out;
-//            PrintStream fileOut = new PrintStream("/.Outgoing.txt");
-//            System.setOut(fileOut);
-//            originalOut.println("[Amount] transferred to [Receiver Account]");
-//            System.setOut(originalOut);
-//        } catch (FileNotFoundException ex) {ex.printStackTrace();}
-//
-//    }

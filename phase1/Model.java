@@ -90,7 +90,6 @@ import java.util.*;
                             String newPasswordIn = newPasswordScan.next();
                             this.userPasswords.add(newPasswordIn);
                             BM.createUser(newUsernameIn, newPasswordIn);
-                            System.out.println("your user creation has been requested");
                         }
                     }
                 }

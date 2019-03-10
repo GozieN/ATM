@@ -99,11 +99,6 @@ public class Transactions {
 
     }
 
-    public void createCheque(String recipient, double amount){
-
-
-    }
-
     /**
      * Pay the bill
      * @param amount
