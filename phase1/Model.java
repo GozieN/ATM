@@ -100,7 +100,7 @@ import java.util.*;
                 }
             }
         }
-
+    }
     // method ___
 
     // scanner: reads user inputs and translates it into method calls
@@ -132,4 +132,4 @@ import java.util.*;
         Model model = new Model();
         model.menuOperatorSelect();
     }
-}}
+}
