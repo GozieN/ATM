@@ -26,12 +26,10 @@ public class Model {
     public Model() {
     }
 
-    //NEED TO SET THE TRANSACTION ATM TO THIS ATM
+    // SET THE TRANSACTION ATM TO THIS ATM
     public ATM getAtm() {
         return atm;
     }
-
-    //NEED TO HAVE AN OPTION TO DEPOSIT A CHEQUE - CALLS THE DEPOSIT CHEQUE METHOD IN TRANSACTIONS
 
     public void mainMenu() {
         // options: 1. bankmanager, 2. normal user
