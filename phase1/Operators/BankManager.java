@@ -243,7 +243,7 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void restockFromFile(ATM atm) throws FileNotFoundException {
 
-        File file = new File("./alerts.txt");
+        File file = new File("./src/alerts.txt");
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
