@@ -33,7 +33,7 @@ public class Model {
 
     //NEED TO HAVE AN OPTION TO DEPOSIT A CHEQUE - CALLS THE DEPOSIT CHEQUE METHOD IN TRANSACTIONS
 
-    public void menuOperatorSelect() {
+    public void mainMenu() {
         // options: 1. bankmanager, 2. normal user
         System.out.println("enter 1 for bankmanager \n" +
                 "enter 2 for normal user");
@@ -81,7 +81,7 @@ public class Model {
                 }
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login \n" +
@@ -110,7 +110,7 @@ public class Model {
                         menuBM3(user);
                     } else if (optionIn2.equals("e")) {
                         System.out.println("returning to main menu");
-                        menuOperatorSelect();
+                        mainMenu();
                     } else {
                         System.out.println("that is not an option \n" +
                                 "enter b to go back \n" +
@@ -121,7 +121,7 @@ public class Model {
                 menuBM4(user);
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to view this user's accounts summary \n" +
@@ -184,7 +184,7 @@ public class Model {
                         BM.getUsers().get(BM.getUsers().size()).setBM(BM);
                         System.out.println("your user creation request is being processed \n" +
                                 "returning to main menu");
-                        menuOperatorSelect();
+                        mainMenu();
                     } else {
                         System.out.println("this username is not available \n" +
                                 "enter another new username");
@@ -192,7 +192,7 @@ public class Model {
                 }
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login to existing user \n" +
@@ -223,7 +223,7 @@ public class Model {
                         menuU2(user);
                     } else if (optionIn2.equals("e")) {
                         System.out.println("returning to main menu");
-                        menuOperatorSelect();
+                        mainMenu();
                     } else {
                         System.out.println("that is not an option \n" +
                                 "enter b to go back \n" +
@@ -240,7 +240,7 @@ public class Model {
                 BM.createNewAccount(0, newAccountTypeIn, user);
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to view your accounts summary \n" +
@@ -308,12 +308,12 @@ public class Model {
 //            menuBM1();
 //        }
 //        else if (i==1){
-//            menuOperatorSelect();
+//            mainMenu();
 //        }
 //    }
 //
 //    public void exit(){
-//        menuOperatorSelect();
+//        mainMenu();
 //    }
 
     public static void updateDate(String date, File f) throws IOException {
@@ -333,7 +333,7 @@ public class Model {
         } catch (IOException e) {}
 
         Model model2 = new Model();
-        model2.menuOperatorSelect();
+        model2.mainMenu();
 
     }
 }
