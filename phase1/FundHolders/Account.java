@@ -15,10 +15,10 @@ public abstract class Account {
 
     /**
      * Account class constructor
-     * @param accountNum
-     * @param holderName
-     * @param balance
-     * @param accountType
+     * @param accountNum Number used to identify a specific account
+     * @param holderName Name of holder of the account
+     * @param balance Amount of money found in account
+     * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
     public Account(int accountNum, String holderName, double balance, String accountType){
         history = new ArrayList<Transactions>();
