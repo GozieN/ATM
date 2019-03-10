@@ -22,37 +22,30 @@ accounts class -Maple + 1 more person
 digital version of UML diagrams ?
 
 
-
-Friday March 7th
-Angela:
-See serializable; model
--Initiation of the day upon program restart
--Alerts.txt (file reading ect)
-- main method txt files
-- request alerts file ??
-
+March 9th
 Jack:
-- start on Model class (,main method)
-    - PCRS: scanner, user re-input (try again)
-    - menus, menu options?
+
 
 Arjun:
--Accounts, see the TransferOfFunds comment at the top of the file
-- See how to call methods below from user input into the ATM
-    -Withdraw
-    -Deposit
+- unit testing
 
-To Update
-(Angel
-Maple)
+Angela:
+outputs ect.
+
+Angel:
+- Work on the model
+-Date out and re-initialization
+- Account interest
+
+Maple:
+- Undo transactions
+-javadoc redo - what the parameters represent
+- unused import statements
 
 Gozie
--Revisit operator package
--UML
--Readme
--javadoc, typos
+- Readme
+- UML
+
 
 Left Todo:
-- unit testing
--
--
+- Check specs and project
