@@ -266,7 +266,7 @@ public class ATM {
         try {
             PrintStream originalOut = System.out;
 
-            PrintStream fileOut = new PrintStream("/.alerts.txt");
+            PrintStream fileOut = new PrintStream("./alerts.txt");
 
             System.setOut(fileOut);
 
