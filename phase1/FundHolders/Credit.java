@@ -8,10 +8,10 @@ public class Credit extends Account {
 
     /**
      * Credit class constructor
-     * @param accountNum
-     * @param holderName
-     * @param balance
-     * @param isLOC
+     * @param accountNum Number used to identify a specific account
+     * @param holderName Name of holder of the account
+     * @param balance Amount of money found in account
+     * @param isLOC Checks if type of account is a Line of Credit
      */
     public Credit(int accountNum, String holderName, double balance, boolean isLOC){
         super(accountNum, holderName, balance, "CreditCardAccount");

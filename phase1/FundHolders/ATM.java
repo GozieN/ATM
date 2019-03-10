@@ -18,10 +18,10 @@ public class ATM {
 
     /**
      * ATM class constructor
-     * @param num5bills
-     * @param num10bills
-     * @param num20bills
-     * @param num50bills
+     * @param num5bills The number of $5 bills in ATM
+     * @param num10bills The number of $10 bills in ATM
+     * @param num20bills The number of $20 bills in ATM
+     * @param num50bills The number of $50 bills in ATM
      */
     public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
          this.num5bills = num5bills;

@@ -3,10 +3,10 @@ package phase1.FundHolders;
 public abstract class Debit extends Account {
     /**
      * Debit class constructor
-     * @param accountNum
-     * @param holderName
-     * @param balance
-     * @param accountType
+     * @param accountNum Number used to identify a specific account
+     * @param holderName Name of holder of the account
+     * @param balance Amount of money found in account
+     * @param accountType Type of account: Chequing or Savings
      */
     public Debit(int accountNum, String holderName, double balance, String accountType){
         super(accountNum, holderName, balance, accountType);
