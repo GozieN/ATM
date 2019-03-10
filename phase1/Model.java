@@ -306,21 +306,6 @@ public class Model {
         }
     }
 
-//    public void backBM(int i, User user){
-//        if (i==3){
-//            menuBM2();
-//        }
-//        else if (i==2){
-//            menuBM1();
-//        }
-//        else if (i==1){
-//            mainMenu();
-//        }
-//    }
-//
-//    public void exit(){
-//        mainMenu();
-//    }
 
     public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
