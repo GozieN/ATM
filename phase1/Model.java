@@ -33,7 +33,7 @@ public class Model {
 
     //NEED TO HAVE AN OPTION TO DEPOSIT A CHEQUE - CALLS THE DEPOSIT CHEQUE METHOD IN TRANSACTIONS
 
-    public void menuOperatorSelect() {
+    public void mainMenu() {
         // options: 1. bankmanager, 2. normal user
         System.out.println("enter 1 for bankmanager \n" +
                 "enter 2 for normal user");
@@ -81,7 +81,7 @@ public class Model {
                 }
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login \n" +
@@ -91,21 +91,43 @@ public class Model {
     }
 
     public void menuBM3(User user){
-        System.out.println("Press 1 to view info or 2 to perform a transacation");
-        Scanner option = new Scanner(System.in);
-        String optionIn = option.next();
-        if (optionIn.toLowerCase()=="e"){
-            exit();
-        }
-        else if (optionIn.toLowerCase()=="b"){
-            backBM(2, user);
-        }
-        else if (Integer.parseInt(optionIn)==1){
-            user.viewInfo();
-        }
-        else if (Integer.parseInt(optionIn)==2){
-            Account acc = new SavingsAccount(100, "he",100); // FOR TESTING
-            Transactions tran = new Transactions(acc);
+        // options: 1. view user accounts summary, 2. perform transaction on user, e. exit
+        System.out.println("enter 1 to view this user's accounts summary \n" +
+                "enter 2 to perform a transaction on this user \n" +
+                "enter e to exit");
+        Scanner optionScan = new Scanner(System.in);
+        while (optionScan.hasNext()) {
+            String optionIn = optionScan.next();
+            if (optionIn.equals("1")) {
+                user.viewInfo();
+                // options: b. back, e. exit
+                System.out.println("enter b to go back \n" +
+                        "enter e to exit");
+                Scanner optionScan2 = new Scanner(System.in);
+                while (optionScan2.hasNext()) {
+                    String optionIn2 = optionScan2.next();
+                    if (optionIn2.equals("b")) {
+                        menuBM3(user);
+                    } else if (optionIn2.equals("e")) {
+                        System.out.println("returning to main menu");
+                        mainMenu();
+                    } else {
+                        System.out.println("that is not an option \n" +
+                                "enter b to go back \n" +
+                                "enter e to exit");
+                    }
+                }
+            } else if (optionIn.equals("2")) {
+                menuBM4(user);
+            } else if (optionIn.equals("e")) {
+                System.out.println("returning to main menu");
+                mainMenu();
+            } else {
+                System.out.println("that is not an option \n" +
+                        "enter 1 to view this user's accounts summary \n" +
+                        "enter 2 to perform a transaction on this user \n" +
+                        "enter e to exit");
+            }
         }
     }
 
@@ -162,7 +184,7 @@ public class Model {
                         BM.getUsers().get(BM.getUsers().size()).setBM(BM);
                         System.out.println("your user creation request is being processed \n" +
                                 "returning to main menu");
-                        menuOperatorSelect();
+                        mainMenu();
                     } else {
                         System.out.println("this username is not available \n" +
                                 "enter another new username");
@@ -170,7 +192,7 @@ public class Model {
                 }
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login to existing user \n" +
@@ -201,7 +223,7 @@ public class Model {
                         menuU2(user);
                     } else if (optionIn2.equals("e")) {
                         System.out.println("returning to main menu");
-                        menuOperatorSelect();
+                        mainMenu();
                     } else {
                         System.out.println("that is not an option \n" +
                                 "enter b to go back \n" +
@@ -218,7 +240,7 @@ public class Model {
                 BM.createNewAccount(0, newAccountTypeIn, user);
             } else if (optionIn.equals("e")) {
                 System.out.println("returning to main menu");
-                menuOperatorSelect();
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to view your accounts summary \n" +
@@ -286,12 +308,12 @@ public class Model {
 //            menuBM1();
 //        }
 //        else if (i==1){
-//            menuOperatorSelect();
+//            mainMenu();
 //        }
 //    }
 //
 //    public void exit(){
-//        menuOperatorSelect();
+//        mainMenu();
 //    }
 
     public static void updateDate(String date, File f) throws IOException {
@@ -310,8 +332,8 @@ public class Model {
 
         } catch (IOException e) {}
 
-        Model model2 = new Model();
-        model2.menuOperatorSelect();
+        Model model = new Model();
+        model.mainMenu();
 
     }
 }
