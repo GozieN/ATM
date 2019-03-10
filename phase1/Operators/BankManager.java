@@ -4,6 +4,7 @@ import phase1.FundHolders.ATM;
 import phase1.FundHolders.Account;
 import java.io.*;
 import java.util.*;
+import java.io.FileNotFoundException;
 
 public class BankManager extends BankWorker implements Observer {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
@@ -204,37 +205,52 @@ public class BankManager extends BankWorker implements Observer {
      * Read the file to restock the ATM
      * @param atm
      */
-    public void restockFromFile(ATM atm) {
+    public void restockFromFile(ATM atm) throws FileNotFoundException {
 
-        try {
-            File file = new File("./alerts.txt");
-            Scanner scanner = new Scanner(file);
+        File file = new File("./alerts.txt");
+        Scanner scanner = new Scanner(file);
 
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.equals("Five dollar bills low in stock!")) {
-                    this.ATMSetNum5Bills(atm, 100);
-                } else if (line.equals("Ten dollar bills low in stock!")) {
-                    this.ATMSetNum10Bills(atm, 100);
-                } else if (line.equals("Twenty dollar bills low in stock!")) {
-                    this.ATMSetNum20Bills(atm, 100);
-                } else if (line.equals("Fifty dollar bills low in stock!")) {
-                    this.ATMSetNum50Bills(atm, 100);
-                }
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.equals("Five dollar bills low in stock!")) {
+                this.ATMSetNum5Bills(atm, 100);
+            } else if (line.equals("Ten dollar bills low in stock!")) {
+                this.ATMSetNum10Bills(atm, 100);
+            } else if (line.equals("Twenty dollar bills low in stock!")) {
+                this.ATMSetNum20Bills(atm, 100);
+            } else if (line.equals("Fifty dollar bills low in stock!")) {
+                this.ATMSetNum50Bills(atm, 100);
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-    }
 
+            try{
+                File temptFile = new File("./myTempFile.txt");
+
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(temptFile));
+
+                String lineToRemove = line;
+                String currentLine;
+
+                while ((currentLine = reader.readLine()) != null) {
+                    String trimmedLine = currentLine.trim();
+                    if (trimmedLine.equals(lineToRemove)) continue;
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+                writer.close();
+                reader.close();
+                boolean successful = temptFile.renameTo(file);
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+    }
 
     /**
      * Print a summary of the user's accounts
      * @param user
      */
-    public void viewInfo(User user) {
-        user.viewInfo();
-    }
+    public void viewInfo(User user) {user.viewInfo();}
 
     /**
      * Undo the most recent transaction in the account
