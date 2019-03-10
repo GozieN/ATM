@@ -72,6 +72,7 @@ public class Model {
                     }
                 }
             } else if (optionIn.equals("e")) {
+                System.out.println("returning to main menu");
                 menuOperatorSelect();
             } else {
                 System.out.println("that is not an option \n" +
@@ -114,9 +115,29 @@ public class Model {
                     }
                 }
             } else if (optionIn.equals("2")) {
-
+                System.out.println("enter a new username");
+                Scanner newUsernameScan = new Scanner(System.in);
+                while (newUsernameScan.hasNext()) {
+                    String newUsernameIn = newUsernameScan.next();
+                    if (!(this.userUsernames.contains(newUsernameIn))) {
+                        this.userUsernames.add(newUsernameIn);
+                        System.out.println("enter a new password");
+                        Scanner newPasswordScan = new Scanner(System.in);
+                        String newPasswordIn = newPasswordScan.next();
+                        this.userPasswords.add(newPasswordIn);
+                        BM.createUser(newUsernameIn, newPasswordIn);
+                        BM.getUsers().get(BM.getUsers().size()).setBM(BM);
+                        System.out.println("your user creation is being processed \n" +
+                                "returning to main menu");
+                        menuOperatorSelect();
+                    } else {
+                        System.out.println("this username is not available \n" +
+                                "enter another new username");
+                    }
+                }
             } else if (optionIn.equals("e")) {
-
+                System.out.println("returning to main menu");
+                menuOperatorSelect();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to login to existing user \n" +
