@@ -230,7 +230,6 @@ public class Model {
                         String newPasswordIn = newPasswordScan.next();
                         this.userPasswords.add(newPasswordIn);
                         BM.createUser(newUsernameIn, newPasswordIn);
-                        BM.getUsers().get(BM.getUsers().size()).setBM(BM);
                         System.out.println("your user creation request is being processed \n" +
                                 "returning to main menu");
                         mainMenu();

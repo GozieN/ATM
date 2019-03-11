@@ -74,11 +74,11 @@ public class BankManager extends BankWorker implements Serializable{
      * @param username Username used for login into accounts
      * @param password Password used for login into accounts
      */
-    public void createUser(String username, String password) {
+    public void createUser (String username, String password) {
         User newUser = new User(username, password);
 
         try {
-            String filename = "./src/Users.txt";
+            String filename = "./phase1/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -88,7 +88,7 @@ public class BankManager extends BankWorker implements Serializable{
             out.close();
             file.close();
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 

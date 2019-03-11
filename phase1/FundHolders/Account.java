@@ -1,10 +1,12 @@
 package phase1.FundHolders;
 
 import phase1.FundTransfers.*;
+
+import java.io.Serializable;
 import java.util.*;
 
 
-public abstract class Account {
+public abstract class Account implements Serializable {
     private int accountNum = 0;
     private String holderName;
 
@@ -73,12 +75,12 @@ public abstract class Account {
         if (history.get(lastElementIndex).getLastAction().equals("bill")){
             System.out.println("Sorry, your last action could not be reversed as you payed a bill");
     }else{
-            if (history.get(lastElementIndex).getLastAction() == "transfer"){
+            if (history.get(lastElementIndex).getLastAction().equals("transfer")) {
                 history.get(lastElementIndex).depositToAccount(history.get(lastElementIndex).getLastAmount());
                 history.get(lastElementIndex).receiverBalanceAlterIncrease(history.get(lastElementIndex).getLastAmount());
-            } else if (history.get(lastElementIndex).getLastAction() == "withdraw"){
+            } else if (history.get(lastElementIndex).getLastAction().equals("withdraw")) {
                 history.get(lastElementIndex).depositToAccount(history.get(lastElementIndex).getLastAmount());
-            }else if (history.get(lastElementIndex).getLastAction() == "deposit"){
+            }else if (history.get(lastElementIndex).getLastAction().equals("deposit")){
                 history.get(lastElementIndex).withdrawFromAccount(history.get(lastElementIndex).getLastAmount());
             }
             history.remove(lastElementIndex);
