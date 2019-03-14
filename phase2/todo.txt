@@ -1,0 +1,55 @@
+Roles:
+
+Txt files (deposits, outgoing, alerts, README) - Angela 
+-	Implement read lines + outputs (alerts.txt + outgoing.txt)
+-	Testing files
+- saving and re-initializing the time of FundHolders.ATM once it has been set the first time by BM
+
+Jackson (will do around half) + 2 more people
+- FundHolders.ATM class
+    - time
+- operator parent class
+- bankmanager subclass
+- user subclass
+
+accounts class -Maple + 1 more person
+-	4 accounts subclasses
+-	Credit card accounts
+-	Line of credit accounts
+-	Chequing account 
+-	Savings accounts
+
+digital version of UML diagrams ?
+
+
+March 9th
+Jack:
+
+
+Arjun:
+- unit testing (with Maple)
+- Account interest (talk to Maple about it)
+
+Angela:
+-outputs ect.
+-user file
+
+
+Angel:
+- Work on the model
+-Date out and re-initialization upon program restart
+
+Maple:
+-javadoc redo - what the parameters represent
+- remove unused import statements
+- unit testing (with Arjun)
+- Account interest (talk to Arjun about it)
+
+Gozie
+- Readme
+- UML
+- Undo transactions
+
+
+Left Todo:
+- Check specs against project
