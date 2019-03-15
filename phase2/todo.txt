@@ -1,6 +1,13 @@
+docs.google.com/document/d/1IPkFsu81MP7C_wHDb9D-Q-NOW4DQwP51u0CRG77LD3E
+
 J Chan::
 - model completion: menuBM2, menuU3, menuBM4
     - menuBM2 takes usernames instead of listing all users
+    - extra backs and/or exits for each input ?
++ You could create a GUI with Java's swing package (JFrames, JPanels, etc.),
+with XML (there are Java XML tutorials online), make a more robust and
+feature-rich command line interface, or other sort of UI.
+    - swing: GUI form
 + Add one more type of employee of the bank who has less access than the
 manager, but can also be a user with their own accounts.
     - implementation::

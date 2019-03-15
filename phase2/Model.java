@@ -102,44 +102,33 @@ public class Model implements java.io.Serializable {
                 Scanner userUsernameScan = new Scanner(System.in);
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
-
                     //[Angela]
-                    User userLookUp = null;
                     try {
+                        User u = null;
                         FileInputStream file = new FileInputStream("Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-
-                        userLookUp = (User) in.readObject();
-
-
+                        u = (User)in.readObject();
                         in.close();
                         file.close();
-
-                        if (userLookUp.getUsername().equals(userUsernameIn)) {
-                            System.out.println("enter in the master access key");
-                            Scanner masterKeyScan = new Scanner(System.in);
-                            String masterKey = masterKeyScan.nextLine();
-                            if (masterKey.equals(BM.getMasterAccessKey())) {
-                                menuBM3(userLookUp);
-                            } else {
-                                System.out.println("Sorry, the key is incorrect!");
+                        if (u.getUsername().equals(userUsernameIn)) {
+                            System.out.println("enter in the master access key to access this user");
+                            Scanner masterAccessKeyScan = new Scanner(System.in);
+                            while (masterAccessKeyScan.hasNext()) {
+                                String masterAccessKeyIn = masterAccessKeyScan.nextLine();
+                                if (masterAccessKeyIn.equals(BM.getMasterAccessKey())) {
+                                    System.out.println("proceeding to user interactions menu");
+                                    menuBM3(u);
+                                } else {
+                                    System.out.println("wrong master access key. try again");
+                                }
                             }
-
                         } else {
-                            System.out.println("It looks like that user does not exist, press b to go back!");
-                            Scanner goBackInput = new Scanner(System.in);
-                            String goBackCall = goBackInput.nextLine();
-                            if (goBackCall.equals("b")) {
-                                menuBM2();
-                            }
+                            System.out.println("that user doesn't exist. enter an existing username");
                         }
-
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
                 }
-
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
@@ -150,51 +139,6 @@ public class Model implements java.io.Serializable {
             }
         }
     }
-
-    //        Scanner optionScan = new Scanner(System.in);
-//        System.out.println("enter 1 to input a user account\n" +
-//                "enter e to logoff and exit");
-//        String option  = optionScan.nextLine();
-//        if (option.equals("1")) {
-//            if (BM.getUsers() == null){
-//                System.out.println("There are no users of the bank");
-//            }else {
-//                Scanner optionScan2 = new Scanner(System.in);
-//                System.out.println("enter an existing username input a user's username from the following:");
-//                for (String username : this.userUsernames) {
-//                    System.out.println(username);
-//                }
-//                String option2 = optionScan2.nextLine();
-//                for (int i = 0; i < BM.getUsers().size(); i++) {
-//                    if (option2.equals(BM.getUsers().get(i).getUsername())) {
-//                        User inputUser = BM.getUsers().get(i);
-//                        Scanner optionScan3 = new Scanner(System.in);
-//                        System.out.println("enter in the master access key");
-//                        String option3 = optionScan3.nextLine();
-//                        if (option3 == BM.getMasterAccessKey()) {
-//
-//                            this.menuBM3(inputUser);
-//                        } else {
-//                            System.out.println("Sorry, that key is incorrect!");
-//                        }
-//                    }
-//                }
-//                Scanner optionScan4 = new Scanner(System.in);
-//                System.out.println("It looks like that user does not exist, press b to go back!");
-//                String option4 = optionScan4.nextLine();
-//                if (option4.equals("b")) {
-//                    this.menuBM2();
-//                }
-//            }
-//            //menuBM3();
-//        } else if (option.equals("e")) {
-//            mainMenu();
-//        } else {
-//            System.out.println("that is not an option \n" +
-//                    "enter 1 to select a user account \n" +
-//                    "enter e to logoff and exit");
-//        }
-//    }
 
     public void menuBM3(User user) {
         // options: 1. view user accounts summary, 2. perform transaction on user, e. logoff and exit
@@ -298,7 +242,6 @@ public class Model implements java.io.Serializable {
                 System.out.println("enter your username");
                 Scanner usernameScan = new Scanner(System.in);
                 while (usernameScan.hasNext()){
-
                     String usernameIn = usernameScan.next();
                     int index = -1;
                     for (String username : this.userUsernames) {
