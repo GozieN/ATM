@@ -103,7 +103,7 @@ public class Model implements java.io.Serializable {
                     // [Angela], j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -246,7 +246,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -278,7 +278,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User) in.readObject();
                         in.close();
@@ -419,8 +419,10 @@ public class Model implements java.io.Serializable {
 
     public static void main(String[] args) {
 
+        System.out.println("current directory: " + System.getProperty("user.dir"));
+
         try {
-            File f = new File("./src/phase2/date.txt");
+            File f = new File("phase2/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
