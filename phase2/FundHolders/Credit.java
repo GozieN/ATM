@@ -3,7 +3,7 @@ package phase2.FundHolders;
 /**
  *
  */
-public class Credit extends Account {
+public class Credit extends Account implements java.io.Serializable{
     boolean isLOC;
 
     /**

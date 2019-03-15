@@ -8,7 +8,7 @@ import java.io.PrintStream;
 //ASK about account -- add print statements from here.
 
 
-public class Transactions {
+public class Transactions implements java.io.Serializable{
     protected Account senderAccount;
     private ATM atm;
     private String lastAction;

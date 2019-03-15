@@ -2,7 +2,7 @@ package phase2.Operators;
 
 import phase2.FundHolders.Account;
 
-public class BankWorker extends Operator {
+public class BankWorker extends Operator implements java.io.Serializable{
 
     private String username;
     private String password;

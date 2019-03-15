@@ -9,14 +9,16 @@ import phase2.Operators.BankManager;
 import phase2.Operators.User;
 
 import java.io.File;
+import java.io.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.server.ExportException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Model {
+public class Model implements java.io.Serializable {
     private BankManager BM = new BankManager("BMuser", "BMpass");
     private ATM atm = new ATM();
     private ArrayList<String> userUsernames = new ArrayList<>();
@@ -100,8 +102,44 @@ public class Model {
                 Scanner userUsernameScan = new Scanner(System.in);
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
-                    if // check for user in Users.txt like it does in menuU1 - need help from Angela
+
+                    //[Angela] - still need to figure out how to look up existing users without creating first.
+                    User userLookUp = null;
+                    try {
+                        FileInputStream file = new FileInputStream("Users.txt");
+                        ObjectInputStream in = new ObjectInputStream(file);
+
+                        userLookUp = (User) in.readObject();
+
+
+                        in.close();
+                        file.close();
+
+                        if (userLookUp.getUsername().equals(userUsernameIn)) {
+                            System.out.println("enter in the master access key");
+                            Scanner masterKeyScan = new Scanner(System.in);
+                            String masterKey = masterKeyScan.nextLine();
+                            if (masterKey.equals(BM.getMasterAccessKey())) {
+                                menuBM3(userLookUp);
+                            } else {
+                                System.out.println("Sorry, the key is incorrect!");
+                            }
+
+                        } else {
+                            System.out.println("It looks like that user does not exist, press b to go back!");
+                            Scanner goBackInput = new Scanner(System.in);
+                            String goBackCall = goBackInput.nextLine();
+                            if (goBackCall.equals("b")) {
+                                menuBM2();
+                            }
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
                 }
+
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
@@ -113,7 +151,7 @@ public class Model {
         }
     }
 
-//        Scanner optionScan = new Scanner(System.in);
+    //        Scanner optionScan = new Scanner(System.in);
 //        System.out.println("enter 1 to input a user account\n" +
 //                "enter e to logoff and exit");
 //        String option  = optionScan.nextLine();
@@ -158,7 +196,7 @@ public class Model {
 //        }
 //    }
 
-    public void menuBM3(User user){
+    public void menuBM3(User user) {
         // options: 1. view user accounts summary, 2. perform transaction on user, e. logoff and exit
         System.out.println("enter 1 to view this user's accounts summary \n" +
                 "enter 2 to perform a transaction on this user \n" +
@@ -259,7 +297,8 @@ public class Model {
             if (optionIn.equals("1")) {
                 System.out.println("enter your username");
                 Scanner usernameScan = new Scanner(System.in);
-                while (usernameScan.hasNext()) {
+                while (usernameScan.hasNext()){
+
                     String usernameIn = usernameScan.next();
                     int index = -1;
                     for (String username : this.userUsernames) {
@@ -417,7 +456,7 @@ public class Model {
     }
 
 
-    public static void updateDate(String date, File f) throws IOException {
+    public static void updateDate(String date, File f) throws IOException{
         FileWriter fw = new FileWriter(f);
         fw.write(date);
         fw.close();
@@ -431,7 +470,7 @@ public class Model {
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
 
-        } catch (IOException e) {}
+        } catch (Exception e) {}
 
         Model model = new Model();
         model.mainMenu();

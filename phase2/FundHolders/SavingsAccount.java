@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 
-public class SavingsAccount extends Debit {
+public class SavingsAccount extends Debit implements java.io.Serializable {
     /**
      * SavingsAccount constructor
      *

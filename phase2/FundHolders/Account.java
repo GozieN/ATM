@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public abstract class Account implements Serializable {
+public abstract class Account implements java.io.Serializable {
     private int accountNum = 0;
     private String holderName;
 

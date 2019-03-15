@@ -3,7 +3,7 @@ package phase2.Operators;
 import phase2.FundHolders.Account;
 
 
-public class Operator {
+public class Operator implements java.io.Serializable{
     private String username;
     private String password;
 
@@ -16,6 +16,8 @@ public class Operator {
         this.username = username;
         this.password = password;
     }
+
+//    public Operator() {}
 
     /**
      * Return the user's username

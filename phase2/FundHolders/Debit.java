@@ -1,6 +1,6 @@
 package phase2.FundHolders;
 
-public abstract class Debit extends Account {
+public abstract class Debit extends Account implements java.io.Serializable {
     /**
      * Debit class constructor
      * @param accountNum Number used to identify a specific account

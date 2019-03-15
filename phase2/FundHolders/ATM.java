@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import java.time.format.*;
 import java.time.*;
 
-public class ATM {
+public class ATM implements java.io.Serializable {
     private int num5bills = 100;
     private int num10bills = 100;
     private int num20bills = 100;
