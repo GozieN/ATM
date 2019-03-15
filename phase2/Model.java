@@ -103,7 +103,7 @@ public class Model implements java.io.Serializable {
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
 
-                    //[Angela] - still need to figure out how to look up existing users without creating first.
+                    //[Angela]
                     User userLookUp = null;
                     try {
                         FileInputStream file = new FileInputStream("Users.txt");
