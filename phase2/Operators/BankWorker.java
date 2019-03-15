@@ -1,9 +1,13 @@
 package phase2.Operators;
 
 import phase2.FundHolders.Account;
+import java.util.*;
 
 public class BankWorker extends Operator {
 
+    private ArrayList<BankWorker> bankWorkerDatabase = new ArrayList<>();
+    private int numBankWorkers = 0;
+    private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private String username;
     private String password;
 
