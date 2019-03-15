@@ -21,8 +21,6 @@ import java.util.Scanner;
 public class Model implements java.io.Serializable {
     private BankManager BM = new BankManager("BMuser", "BMpass");
     private ATM atm = new ATM();
-    private ArrayList<String> userUsernames = new ArrayList<>();
-    private ArrayList<String> userPasswords = new ArrayList<>();
 
     // model constructor
     public Model() {
@@ -102,22 +100,22 @@ public class Model implements java.io.Serializable {
                 Scanner userUsernameScan = new Scanner(System.in);
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
-                    //[Angela]
+                    // [Angela], j
                     try {
-                        User u = null;
+                        User user = null;
                         FileInputStream file = new FileInputStream("Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        u = (User)in.readObject();
+                        user = (User)in.readObject();
                         in.close();
                         file.close();
-                        if (u.getUsername().equals(userUsernameIn)) {
+                        if (user.getUsername().equals(userUsernameIn)) {
                             System.out.println("enter in the master access key to access this user");
                             Scanner masterAccessKeyScan = new Scanner(System.in);
                             while (masterAccessKeyScan.hasNext()) {
                                 String masterAccessKeyIn = masterAccessKeyScan.nextLine();
                                 if (masterAccessKeyIn.equals(BM.getMasterAccessKey())) {
                                     System.out.println("proceeding to user interactions menu");
-                                    menuBM3(u);
+                                    menuBM3(user);
                                 } else {
                                     System.out.println("wrong master access key. try again");
                                 }
@@ -125,8 +123,8 @@ public class Model implements java.io.Serializable {
                         } else {
                             System.out.println("that user doesn't exist. enter an existing username");
                         }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } else if (optionIn.equals("e")) {
@@ -150,27 +148,29 @@ public class Model implements java.io.Serializable {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 user.viewInfo();
-                // options: b. back, e. exit
+                // options: b. back, e. logoff and exit
                 System.out.println("enter b to go back \n" +
-                        "enter e to exit");
+                        "enter e to logoff and exit");
                 Scanner optionScan2 = new Scanner(System.in);
                 while (optionScan2.hasNext()) {
                     String optionIn2 = optionScan2.next();
                     if (optionIn2.equals("b")) {
+                        System.out.println("returning to user interactions menu");
                         menuBM3(user);
                     } else if (optionIn2.equals("e")) {
-                        System.out.println("returning to main menu");
+                        System.out.println("logging off and returning to main menu");
                         mainMenu();
                     } else {
                         System.out.println("that is not an option \n" +
                                 "enter b to go back \n" +
-                                "enter e to exit");
+                                "enter e to logoff and exit");
                     }
                 }
             } else if (optionIn.equals("2")) {
+                System.out.println("proceeding to user transactions menu");
                 menuBM4(user);
             } else if (optionIn.equals("e")) {
-                System.out.println("returning to main menu");
+                System.out.println("logging off and returning to main menu");
                 mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
@@ -241,31 +241,33 @@ public class Model implements java.io.Serializable {
             if (optionIn.equals("1")) {
                 System.out.println("enter your username");
                 Scanner usernameScan = new Scanner(System.in);
-                while (usernameScan.hasNext()){
+                while (usernameScan.hasNext()) {
                     String usernameIn = usernameScan.next();
-                    int index = -1;
-                    for (String username : this.userUsernames) {
-                        index += 1;
-                        if (username.equals(usernameIn)) {
+                    // angela, j
+                    try {
+                        User user = null;
+                        FileInputStream file = new FileInputStream("Users.txt");
+                        ObjectInputStream in = new ObjectInputStream(file);
+                        user = (User)in.readObject();
+                        in.close();
+                        file.close();
+                        if (user.getUsername().equals(usernameIn)) {
                             System.out.println("enter your password");
                             Scanner passwordScan = new Scanner(System.in);
                             while (passwordScan.hasNext()) {
                                 String passwordIn = passwordScan.next();
-                                User user = null;
-                                if (passwordIn.equals(this.userPasswords.get(index))) {
-                                    for (User u : BM.getUsers()) {
-                                        if (user.getUsername().equals(usernameIn)) {
-                                            user = u;
-                                        }
-                                    }
+                                if (user.getPassword().equals(passwordIn)) {
+                                    System.out.println("proceeding to user interactions menu");
                                     menuU2(user);
                                 } else {
                                     System.out.println("wrong password. enter your password");
                                 }
                             }
                         } else {
-                            System.out.println("wrong username. enter your username");
+                            System.out.println("that username does not exist. enter an existing username");
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } else if (optionIn.equals("2")) {
@@ -273,19 +275,28 @@ public class Model implements java.io.Serializable {
                 Scanner newUsernameScan = new Scanner(System.in);
                 while (newUsernameScan.hasNext()) {
                     String newUsernameIn = newUsernameScan.next();
-                    if (!(this.userUsernames.contains(newUsernameIn))) {
-                        this.userUsernames.add(newUsernameIn);
-                        System.out.println("enter a new password");
-                        Scanner newPasswordScan = new Scanner(System.in);
-                        String newPasswordIn = newPasswordScan.next();
-                        this.userPasswords.add(newPasswordIn);
-                        BM.createUser(newUsernameIn, newPasswordIn);
-                        System.out.println("your user creation request is being processed \n" +
-                                "returning to main menu");
-                        mainMenu();
-                    } else {
-                        System.out.println("this username is not available \n" +
-                                "enter another new username");
+                    // angela, j
+                    try {
+                        User user = null;
+                        FileInputStream file = new FileInputStream("Users.txt");
+                        ObjectInputStream in = new ObjectInputStream(file);
+                        user = (User) in.readObject();
+                        in.close();
+                        file.close();
+                        if (!(user.getUsername().equals(newUsernameIn))) {
+                            System.out.println("enter a new password");
+                            Scanner newPasswordScan = new Scanner(System.in);
+                            String newPasswordIn = newPasswordScan.next();
+                            BM.createUser(newUsernameIn, newPasswordIn);
+                            System.out.println("your user creation request is being processed \n" +
+                                    "returning to main menu");
+                            mainMenu();
+                        } else {
+                            System.out.println("this username is not available \n" +
+                                    "enter another new username");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } else if (optionIn.equals("e")) {
@@ -318,9 +329,10 @@ public class Model implements java.io.Serializable {
                 while (optionScan2.hasNext()) {
                     String optionIn2 = optionScan2.next();
                     if (optionIn2.equals("b")) {
+                        System.out.println("returning to user interactions menu");
                         menuU2(user);
                     } else if (optionIn2.equals("e")) {
-                        System.out.println("returning to main menu");
+                        System.out.println("logging off and returning to main menu");
                         mainMenu();
                     } else {
                         System.out.println("that is not an option \n" +
@@ -329,15 +341,15 @@ public class Model implements java.io.Serializable {
                     }
                 }
             } else if (optionIn.equals("2")) {
+                System.out.println("proceeding to user transactions menu");
                 menuU3(user);
             } else if (optionIn.equals("3")) {
-                // request creation of new account
                 System.out.println("enter the account type that you want to create");
                 Scanner newAccountTypeScan = new Scanner(System.in);
                 String newAccountTypeIn = newAccountTypeScan.next();
                 BM.createNewAccount(0, newAccountTypeIn, user);
             } else if (optionIn.equals("e")) {
-                System.out.println("returning to main menu");
+                System.out.println("logging off and returning to main menu");
                 mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
@@ -417,6 +429,5 @@ public class Model implements java.io.Serializable {
 
         Model model = new Model();
         model.mainMenu();
-
     }
 }
