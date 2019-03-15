@@ -426,7 +426,7 @@ public class Model {
     public static void main(String[] args) {
 
         try {
-            File f = new File("./src/date.txt");
+            File f = new File("./src/phase2/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
