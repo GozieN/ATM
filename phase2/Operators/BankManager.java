@@ -99,7 +99,7 @@ public class BankManager extends BankWorker implements Serializable{
     //[Angela]
     /**
      * Delete a user
-     * @param user Username used for login into accounts
+     * @param user the User object that needs to be deleted
      */
 
     public void deleteUser(User user) {
