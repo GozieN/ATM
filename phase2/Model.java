@@ -171,8 +171,11 @@ public class Model implements java.io.Serializable {
                 System.out.println("proceeding to user transactions menu");
                 menuBM4(user);
             } else if (optionIn.equals("3")) {
-                BM.deleteUser(user.getUsername());
-                System.out.println("the user has been deleted. enter e to logoff and exit");
+                BM.deleteUser(user);
+                System.out.println("the user has been deleted");
+                mainMenu();
+
+
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
@@ -413,6 +416,7 @@ public class Model implements java.io.Serializable {
             }
         }
     }
+
 
 
     public static void updateDate(String date, File f) throws IOException{

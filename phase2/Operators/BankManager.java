@@ -99,12 +99,31 @@ public class BankManager extends BankWorker implements Serializable{
     //[Angela]
     /**
      * Delete a user
-     * @param username Username used for login into accounts
+     * @param user Username used for login into accounts
      */
 
-    public void deleteUser(String username) {
+    public void deleteUser(User user) {
+
+        User newUser = new User("", "");
+
+        try {
+            String filename = "./phase2/Users.txt";
+
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(newUser);
+
+            out.close();
+            file.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
 
         User userToRemove = null;
+
         try {
             FileInputStream file = new FileInputStream("./phase2/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
@@ -114,7 +133,7 @@ public class BankManager extends BankWorker implements Serializable{
             in.close();
             file.close();
 
-            if (userToRemove.getUsername().equals(username)) {
+            if (userToRemove.getUsername().equals(user.getUsername())) {
 
                 userToRemove.setUsername(null);
                 userToRemove.setPassword(null);
@@ -144,7 +163,7 @@ public class BankManager extends BankWorker implements Serializable{
      * @param minute
      * @param second
      */
-    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException{ // format hh:mm:ss
+    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
         atm.setTime(hour, minute, second);
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
