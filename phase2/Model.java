@@ -100,7 +100,7 @@ public class Model implements java.io.Serializable {
                 Scanner userUsernameScan = new Scanner(System.in);
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
-                    // [Angela], j
+                    // [Angela]
                     try {
                         User user = null;
                         FileInputStream file = new FileInputStream("phase2/Users.txt");
@@ -142,6 +142,7 @@ public class Model implements java.io.Serializable {
         // options: 1. view user accounts summary, 2. perform transaction on user, e. logoff and exit
         System.out.println("enter 1 to view this user's accounts summary \n" +
                 "enter 2 to perform a transaction on this user \n" +
+                "enter 3 to delete this user\n"+
                 "enter e to logoff and exit");
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
@@ -169,6 +170,9 @@ public class Model implements java.io.Serializable {
             } else if (optionIn.equals("2")) {
                 System.out.println("proceeding to user transactions menu");
                 menuBM4(user);
+            } else if (optionIn.equals("3")) {
+                BM.deleteUser(user.getUsername());
+                System.out.println("the user has been deleted. enter e to logoff and exit");
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();

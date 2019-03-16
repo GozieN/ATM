@@ -96,6 +96,34 @@ public class BankManager extends BankWorker implements Serializable{
                 "your initial password is: " + newUser.getPassword());
     }
 
+    //[Angela]
+    /**
+     * Delete a user
+     * @param username Username used for login into accounts
+     */
+
+    public void deleteUser(String username) {
+
+        User userToRemove = null;
+        try {
+            FileInputStream file = new FileInputStream("./phase2/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            userToRemove = (User) in.readObject();
+
+            in.close();
+            file.close();
+
+            if (userToRemove.getUsername().equals(username)) {
+
+                userToRemove.setUsername(null);
+                userToRemove.setPassword(null);
+                userToRemove.setAccountsCreated(null);
+            }
+
+        } catch (Exception ex) {ex.printStackTrace();}
+    }
+
 
     /**
      * Set the date to be displayed on the ATM
