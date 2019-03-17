@@ -103,7 +103,7 @@ public class Model implements java.io.Serializable {
                     // [Angela]
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("./phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -253,7 +253,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("./phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -285,7 +285,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("./phase2/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User) in.readObject();
                         in.close();

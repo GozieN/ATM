@@ -78,7 +78,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User(username, password);
 
         try {
-            String filename = "phase2/Users.txt";
+            String filename = "./phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -91,9 +91,6 @@ public class BankManager extends BankWorker implements Serializable{
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        System.out.println("Your account has been created! Your username is: " + newUser.getUsername() + " and " +
-                "your initial password is: " + newUser.getPassword());
     }
 
     //[Angela]
