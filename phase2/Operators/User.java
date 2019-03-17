@@ -13,7 +13,6 @@ public class User extends Operator implements java.io.Serializable{
     private String username;
     private String password;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private BankManager BM;
 
 
     /**
@@ -41,14 +40,6 @@ public class User extends Operator implements java.io.Serializable{
             System.out.println(username + ",you have entered the wrong current password. " +
                     "unable to change password");
         }
-    }
-
-    /**
-     * Set the bank manager
-     * @param BM Instance of Bank Manager
-     */
-    public void setBM(BankManager BM) {
-        this.BM = BM;
     }
 
 

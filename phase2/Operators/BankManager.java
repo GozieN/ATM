@@ -35,26 +35,19 @@ public class BankManager extends BankWorker implements Serializable{
     public void createNewAccount(double startingAmount, String accountType, User user){
         Account newAccount = null;
 
-            if (accountType.equals("LineOfCredit")) {
-                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, true);
+            if (accountType.equals("LineOfCreditAccount")) {
+                newAccount = new Credit(user, true);
 
             } else if (accountType.equals("Credit")) {
-                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, false);
+                newAccount = new Credit(user, false);
 
-            } else if (accountType.equals("Savings")) {
-                newAccount = new SavingsAccount(numExistingAccounts, user.getUsername(), startingAmount);
-            } else if (accountType.equals("Chequing")) {
-                if (user.getAccountsCreated() != null){
-                    for (Account i:user.getAccountsCreated()){
-                        if (i.getAccountType().equals("Chequing")) {
-                                newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
-                                        true);
-                            }
-                        }
-                        newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
-                            false);
-                    }
-                }
+            } else if (accountType.equals("SavingsAccount")) {
+                newAccount = new SavingsAccount(user);
+            } else if (accountType.equals("ChequingAccount")) {
+
+                newAccount = new ChequingAccount(user, false);}
+                else{
+                    newAccount = new ChequingAccount(user,true); }
 
             if (newAccount == null){
                 System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +

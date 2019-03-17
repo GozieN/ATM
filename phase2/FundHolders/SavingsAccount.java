@@ -1,6 +1,7 @@
 package phase2.FundHolders;
 
 import java.io.File;
+import phase2.Operators.*;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,15 +9,15 @@ import java.time.LocalDateTime;
 
 
 public class SavingsAccount extends Debit implements java.io.Serializable {
+
+    private User user;
     /**
      * SavingsAccount constructor
      *
-     * @param accountNum Number used to identify a specific account
-     * @param holderName Name of holder of the account
-     * @param balance    Amount of money found in account
+     * @param accountHolder Name of holder of the account
      */
-    public SavingsAccount(int accountNum, String holderName, double balance) {
-        super(accountNum, holderName, balance, "SavingsAccount");
+    public SavingsAccount(User accountHolder) {
+        super(accountHolder, "SavingsAccount");
     }
 
     /**
