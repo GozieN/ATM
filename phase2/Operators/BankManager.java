@@ -116,7 +116,7 @@ public class BankManager extends BankWorker implements Serializable{
         User userToRemove = null;
 
         try {
-            FileInputStream file = new FileInputStream("./phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
 
             userToRemove = (User) in.readObject();
