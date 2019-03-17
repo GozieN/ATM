@@ -35,26 +35,19 @@ public class BankManager extends BankWorker implements Serializable{
     public void createNewAccount(double startingAmount, String accountType, User user){
         Account newAccount = null;
 
-            if (accountType.equals("LineOfCredit")) {
-                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, true);
+            if (accountType.equals("LineOfCreditAccount")) {
+                newAccount = new Credit(user, true);
 
             } else if (accountType.equals("Credit")) {
-                newAccount = new Credit(numExistingAccounts, user.getUsername(), startingAmount, false);
+                newAccount = new Credit(user, false);
 
-            } else if (accountType.equals("Savings")) {
-                newAccount = new SavingsAccount(numExistingAccounts, user.getUsername(), startingAmount);
-            } else if (accountType.equals("Chequing")) {
-                if (user.getAccountsCreated() != null){
-                    for (Account i:user.getAccountsCreated()){
-                        if (i.getAccountType().equals("Chequing")) {
-                                newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
-                                        true);
-                            }
-                        }
-                        newAccount = new ChequingAccount(numExistingAccounts, user.getUsername(), startingAmount,
-                            false);
-                    }
-                }
+            } else if (accountType.equals("SavingsAccount")) {
+                newAccount = new SavingsAccount(user);
+            } else if (accountType.equals("ChequingAccount")) {
+
+                newAccount = new ChequingAccount(user, false);}
+                else{
+                    newAccount = new ChequingAccount(user,true); }
 
             if (newAccount == null){
                 System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
@@ -62,6 +55,7 @@ public class BankManager extends BankWorker implements Serializable{
                         "Savings, Chequing");
             }else{
             numExistingAccounts++;
+            newAccount.setTransactionsInstance();
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account:" +
@@ -78,7 +72,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User(username, password);
 
         try {
-            String filename = "phase2/Users.txt";
+            String filename = "./phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -104,7 +98,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User("", "");
 
         try {
-            String filename = "phase2/Users.txt";
+            String filename = "./phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -122,7 +116,7 @@ public class BankManager extends BankWorker implements Serializable{
         User userToRemove = null;
 
         try {
-            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            FileInputStream file = new FileInputStream("./phase2/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
 
             userToRemove = (User) in.readObject();
@@ -295,7 +289,7 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void restockFromFile(ATM atm) throws FileNotFoundException {
 
-        File file = new File("phase2/alerts.txt");
+        File file = new File("./src/alerts.txt");
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
@@ -311,7 +305,7 @@ public class BankManager extends BankWorker implements Serializable{
             }
 
             try{
-                File temptFile = new File("phase2/myTempFile.txt");
+                File temptFile = new File("./src/myTempFile.txt");
 
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(temptFile));

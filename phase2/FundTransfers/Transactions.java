@@ -27,7 +27,9 @@ public class Transactions implements java.io.Serializable{
      * @param amount Amount of money to deposit
      */
     public void depositIntoATM(ATM atm, int amount) {
+
         atm.plus(amount);
+        depositToAccount(amount);
     }
 
     /**
@@ -50,8 +52,15 @@ public class Transactions implements java.io.Serializable{
      *Withdraw amount from account using ATM
      * @param amount Amount of money to withdraw
      */
-    public void withdrawFromATM(ATM atm, int amount) {
+    public boolean withdrawFromATM(ATM atm, int amount) {
+        if (!(amount%5 ==0)){
+            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. " +
+                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
+                    ".Please enter a new value");}
+
         atm.minus(amount);
+        withdrawFromAccount(amount);
+        return true;
     }
 
     /**
@@ -59,6 +68,11 @@ public class Transactions implements java.io.Serializable{
      * @param amount Amount of money to withdraw
      */
     public void withdrawFromAccount(double amount) {
+        if (!(senderAccount.getBalance() - amount > 0) && !(senderAccount instanceof ChequingAccount) ){
+            System.out.println("Sorry, you are unable to withdraw this amount from your " +
+                    senderAccount.getAccountType() + "try withdrawing a smaller amount or review your account " +
+                    "information!");
+        }
 
         if(senderAccount instanceof Debit){
             if (senderAccount instanceof ChequingAccount){
@@ -72,7 +86,7 @@ public class Transactions implements java.io.Serializable{
         }
         else if (senderAccount instanceof Credit) {
             if(senderAccount.getAccountType() == "LineOfCredit") {
-                senderAccount.setBalance(senderAccount.getBalance() + amount);
+                senderAccount.setBalance(senderAccount.getBalance() - amount);
             }
         }
         lastAction = "withdraw";

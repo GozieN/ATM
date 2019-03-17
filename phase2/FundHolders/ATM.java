@@ -51,7 +51,7 @@ public class ATM implements java.io.Serializable {
 
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("phase2/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -102,7 +102,7 @@ public class ATM implements java.io.Serializable {
     public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("phase2/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -212,21 +212,11 @@ public class ATM implements java.io.Serializable {
     // plus bills into ATM method (from deposit methods)
     public void plus(int dollarAmount) {
         ArrayList<Integer> numberStore = new ArrayList<Integer>();
-        if (dollarAmount <= 10) {
-            numberStore.add(dollarAmount % 10);
-            dollarAmount -= dollarAmount % 10;
-        }
-        if (dollarAmount <= 100) {
-            numberStore.add(dollarAmount % 100);
-            dollarAmount -= dollarAmount % 100;
-        }
-        if (dollarAmount <= 1000) {
-            numberStore.add(dollarAmount % 1000);
-            dollarAmount -= dollarAmount % 1000;
-        }
-        if (dollarAmount <= 10000) {
-            numberStore.add(dollarAmount % 10000);
-            dollarAmount -= dollarAmount % 10000;
+        numberStore.add(dollarAmount % 10); // for fives
+        dollarAmount -= dollarAmount % 10;
+        while (dollarAmount > 0) {
+            numberStore.add(dollarAmount);
+            dollarAmount = dollarAmount / 10;
         }
         for (int number : numberStore) {
             if (number % 50 == 0) {
@@ -249,21 +239,11 @@ public class ATM implements java.io.Serializable {
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
         ArrayList<Integer> numberStore = new ArrayList<Integer>();
-        if (dollarAmount <= 10) {
-            numberStore.add(dollarAmount % 10);
-            dollarAmount -= dollarAmount % 10;
-        }
-        if (dollarAmount <= 100) {
-            numberStore.add(dollarAmount % 100);
-            dollarAmount -= dollarAmount % 100;
-        }
-        if (dollarAmount <= 1000) {
-            numberStore.add(dollarAmount % 1000);
-            dollarAmount -= dollarAmount % 1000;
-        }
-        if (dollarAmount <= 10000) {
-            numberStore.add(dollarAmount % 10000);
-            dollarAmount -= dollarAmount % 10000;
+        numberStore.add(dollarAmount % 10); // for fives
+        dollarAmount -= dollarAmount % 10;
+        while (dollarAmount > 0) {
+            numberStore.add(dollarAmount);
+            dollarAmount = dollarAmount / 10;
         }
         for (int number : numberStore) {
             if (number % 50 == 0) {
@@ -286,7 +266,7 @@ public class ATM implements java.io.Serializable {
         try {
             PrintStream originalOut = System.out;
 
-            PrintStream fileOut = new PrintStream("phase2/alerts.txt");
+            PrintStream fileOut = new PrintStream("./src/alerts.txt");
 
             System.setOut(fileOut);
 
