@@ -48,6 +48,14 @@ public abstract class Account implements java.io.Serializable {
     }
 
     /**
+     * Get the transaction instance of the account. Should only be used by the bank manager upon account
+     * creation by user request.
+     */
+    public Transactions getTransactionsInstance() {
+        return this.transactionsInstance;
+    }
+
+    /**
      * Set the transaction instance of the account. This method should only every be called by the BM when it
      * creates a requested account
      */
