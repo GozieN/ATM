@@ -10,7 +10,7 @@ import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
-import sun.jvm.hotspot.debugger.cdbg.basic.BasicNamedFieldIdentifier;
+// import sun.jvm.hotspot.debugger.cdbg.basic.BasicNamedFieldIdentifier;
 
 import static org.junit.Assert.assertTrue;
 

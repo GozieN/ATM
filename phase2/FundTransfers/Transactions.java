@@ -52,14 +52,17 @@ public class Transactions implements java.io.Serializable{
      *Withdraw amount from account using ATM
      * @param amount Amount of money to withdraw
      */
-    public boolean withdrawFromATM(ATM atm, int amount) {
+    public boolean withdrawFromATM(int amount) {
         if (!(amount%5 ==0)){
             System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. " +
                     " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
-                    ".Please enter a new value");}
+                    ".Please enter a new value");
+        return false;
+        }
 
         atm.minus(amount);
         withdrawFromAccount(amount);
+        System.out.println("withdrawal complete");
         return true;
     }
 
