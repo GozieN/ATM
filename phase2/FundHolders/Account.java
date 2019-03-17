@@ -14,6 +14,7 @@ public abstract class Account implements java.io.Serializable {
     private User user;
     private double balance;
     public String accountType;
+    private Transactions transactionsInstance;
     private ArrayList<Transactions> history;
 
     /**
@@ -26,6 +27,7 @@ public abstract class Account implements java.io.Serializable {
         this.user = accountHolder;
         this.accountType = accountType;
         this.accountNum++;
+        this.transactionsInstance = transactionsInstance;
         this.holderName = accountHolder.getUsername();
     }
 
@@ -37,9 +39,23 @@ public abstract class Account implements java.io.Serializable {
         return holderName;
     }
 
-    public User getUser(){
-        return this.user;
+    /**
+     * Set the transaction instance of the account. Should only be used by the bank manager upon account
+     * creation by user request.
+     */
+    public void setTransactionsInstance() {
+        this.transactionsInstance = new Transactions(this);
     }
+
+    /**
+     * Set the transaction instance of the account. This method should only every be called by the BM when it
+     * creates a requested account
+     */
+    public void Transactions () {
+        this.transactionsInstance = new Transactions(this);
+    }
+
+
 
     /**
      * Get number of account

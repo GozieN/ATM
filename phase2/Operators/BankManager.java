@@ -55,6 +55,7 @@ public class BankManager extends BankWorker implements Serializable{
                         "Savings, Chequing");
             }else{
             numExistingAccounts++;
+            newAccount.setTransactionsInstance();
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account:" +
