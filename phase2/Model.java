@@ -139,10 +139,10 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuBM3(User user) {
-        // options: 1. view user accounts summary, 2. perform transaction on user, e. logoff and exit
+        // options: 1. view user accounts summary, 2. perform transaction on user, 3. delete user, e. logoff and exit
         System.out.println("enter 1 to view this user's accounts summary \n" +
                 "enter 2 to perform a transaction on this user \n" +
-                "enter 3 to delete this user\n"+
+                "enter 3 to delete this user \n" +
                 "enter e to logoff and exit");
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
@@ -174,8 +174,6 @@ public class Model implements java.io.Serializable {
                 BM.deleteUser(user);
                 System.out.println("the user has been deleted");
                 mainMenu();
-
-
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
@@ -368,54 +366,103 @@ public class Model implements java.io.Serializable {
         }
     }
 
-    public void menuU3(User user) {
-        // options:
-        System.out.println("Enter 'I' to View Info, Enter 'T' to Perform a Transaction, or Enter 'A' to Request a New Account");
-        Scanner menuOption = new Scanner(System.in);
-        String optionIn = menuOption.next();
-        ArrayList<Account> accounts = user.getAccountsCreated(); // NEED TO FIGURE OUT HOW TO STORE THE ACCOUNTS FROM BEFORE!!!!
-        if (optionIn.equals("I")) {
-            user.viewInfo();
-        } else if (optionIn.equals("T")) {
-            System.out.println("Enter '' to Withdraw from Account, Enter 'WM' to Withdraw from ATM, Enter 'DA' to Deposit into Account, Enter 'DM' to Deposit into ATM, Enter 'CA' to Deposit Cheque into ATM, Enter 'TA' to Transfer from Account to Account, Enter 'PB' to Pay Bill, A to create new Account: ");
-            Scanner transOption = new Scanner(System.in);
-            String transIn = transOption.next();
-            System.out.println("Enter the amount: \n");
-            Scanner amtOption = new Scanner(System.in);
-            double amt = Double.parseDouble(amtOption.next());
-            Transactions transactions = new Transactions(new ChequingAccount(100, "me", 1000, true)); // FIX THIS!!! JUST TESTING
-            if (transIn.equals("WA")) {
-                transactions.withdrawFromAccount(amt);
-            } else if (transIn.equals("WM")) {
-                transactions.withdrawFromATM(atm, (int) amt);
-            } else if (transIn.equals("DA")) {
-                transactions.depositToAccount(amt);
-            } else if (transIn.equals("DM")) {
-                transactions.depositIntoATM(atm, (int) amt);
-            } else if (transIn.equals("CA")) {
-                transactions.depositChequeToAccount(amt);
-            } else if (transIn.equals("TA")) { // SENDING TO AN ACC NEEDS TO BE ALTERED, TOO MUCH INFO NEEDED
-                System.out.println("Enter the Account Number of the Receiving Account: ");
-                Scanner accN = new Scanner(System.in);
-                int accNum = Integer.parseInt(accN.next());
-                System.out.println("Enter the Holder Name of the Receiving Account: ");
-                Scanner holderN = new Scanner(System.in);
-                String holder = holderN.next();
-                System.out.println("Enter the Balance of the Receiving Account: ");
-                Scanner balanceN = new Scanner(System.in);
-                double balance = Double.parseDouble(balanceN.next());
-                System.out.println("Enter the Type of the Receiving Account: ");
-                Scanner typeS = new Scanner(System.in);
-                String type = typeS.next();
-                Account receiverAccount = new SavingsAccount(accNum, holder, balance); // NEED TO CHANGE HOW TO CHANGE TRANSACTIONS
-                transactions.transfer((int) amt, receiverAccount);
-            } else if (transIn.equals("PB")) {
-                transactions.payBill(amt);
-            } else if (optionIn.equals("A")) {
-                user.addToAccountsCreated(new ChequingAccount(101, "me", 1000, true)); // NEED TO CHANGE AFTER TESTING
+    public void menuU3 (User user) {
+        // options: 1. withdraw from ATM, 2. transfer money between accounts, 3. deposit to account (cash), 4. deposit cheque to account, b. back, e. logoff and exit
+        System.out.println("enter 1 to withdraw cash from ATM \n" +
+                "enter 2 to transfer money between accounts \n" +
+                "enter 3 to deposit cash into an account \n" +
+                "enter 4 to deposit a cheque into an account \n" +
+                "enter 5 to pay a bill \n" +
+                "enter b to go back \n" +
+                "enter e to logoff and exit");
+        Scanner optionScan = new Scanner(System.in);
+        while (optionScan.hasNext()) {
+            String optionIn = optionScan.next();
+            if (optionIn.equals("1")) {
+                System.out.println("select the specified number prefixing the account from which you are withdrawing cash from");
+                int userNumAccounts = 0;
+                for (Account account : user.getAccountsCreated()) {
+                    userNumAccounts += 1;
+                    System.out.println(userNumAccounts + ": " +
+                            account.getAccountType() + ' ' + account.getAccountNum());
+                }
+                Scanner optionNumber = new Scanner(System.in);
+                while (fromAccountScan.hasNext()) {
+                    String fromAccountIn = fromAccountScan.next();
+
+                }
+            } else if (optionIn.equals("2")) {
+
+            } else if (optionIn.equals("3")) {
+
+            } else if (optionIn.equals("4")) {
+
+            } else if (optionIn.equals("5")) {
+
+            } else if (optionIn.equals("b")) {
+
+            } else if (optionIn.equals("e")) {
+
+            } else {
+                System.out.println("that is not an option \n" +
+                        "enter 1 to withdraw cash from ATM \n" +
+                        "enter 2 to transfer money between accounts \n" +
+                        "enter 3 to deposit cash into an account \n" +
+                        "enter 4 to deposit a cheque into an account \n" +
+                        "enter b to go back \n" +
+                        "enter e to logoff and exit");
             }
         }
     }
+
+//    public void menuU3(User user) {
+//        // options:
+//        System.out.println("Enter 'I' to View Info, Enter 'T' to Perform a Transaction, or Enter 'A' to Request a New Account");
+//        Scanner menuOption = new Scanner(System.in);
+//        String optionIn = menuOption.next();
+//        ArrayList<Account> accounts = user.getAccountsCreated(); // NEED TO FIGURE OUT HOW TO STORE THE ACCOUNTS FROM BEFORE!!!!
+//        if (optionIn.equals("I")) {
+//            user.viewInfo();
+//        } else if (optionIn.equals("T")) {
+//            System.out.println("Enter '' to Withdraw from Account, Enter 'WM' to Withdraw from ATM, Enter 'DA' to Deposit into Account, Enter 'DM' to Deposit into ATM, Enter 'CA' to Deposit Cheque into ATM, Enter 'TA' to Transfer from Account to Account, Enter 'PB' to Pay Bill, A to create new Account: ");
+//            Scanner transOption = new Scanner(System.in);
+//            String transIn = transOption.next();
+//            System.out.println("Enter the amount: \n");
+//            Scanner amtOption = new Scanner(System.in);
+//            double amt = Double.parseDouble(amtOption.next());
+//            Transactions transactions = new Transactions(new ChequingAccount(100, "me", 1000, true)); // FIX THIS!!! JUST TESTING
+//            if (transIn.equals("WA")) {
+//                transactions.withdrawFromAccount(amt);
+//            } else if (transIn.equals("WM")) {
+//                transactions.withdrawFromATM(atm, (int) amt);
+//            } else if (transIn.equals("DA")) {
+//                transactions.depositToAccount(amt);
+//            } else if (transIn.equals("DM")) {
+//                transactions.depositIntoATM(atm, (int) amt);
+//            } else if (transIn.equals("CA")) {
+//                transactions.depositChequeToAccount(amt);
+//            } else if (transIn.equals("TA")) { // SENDING TO AN ACC NEEDS TO BE ALTERED, TOO MUCH INFO NEEDED
+//                System.out.println("Enter the Account Number of the Receiving Account: ");
+//                Scanner accN = new Scanner(System.in);
+//                int accNum = Integer.parseInt(accN.next());
+//                System.out.println("Enter the Holder Name of the Receiving Account: ");
+//                Scanner holderN = new Scanner(System.in);
+//                String holder = holderN.next();
+//                System.out.println("Enter the Balance of the Receiving Account: ");
+//                Scanner balanceN = new Scanner(System.in);
+//                double balance = Double.parseDouble(balanceN.next());
+//                System.out.println("Enter the Type of the Receiving Account: ");
+//                Scanner typeS = new Scanner(System.in);
+//                String type = typeS.next();
+//                Account receiverAccount = new SavingsAccount(accNum, holder, balance); // NEED TO CHANGE HOW TO CHANGE TRANSACTIONS
+//                transactions.transfer((int) amt, receiverAccount);
+//            } else if (transIn.equals("PB")) {
+//                transactions.payBill(amt);
+//            } else if (optionIn.equals("A")) {
+//                user.addToAccountsCreated(new ChequingAccount(101, "me", 1000, true)); // NEED TO CHANGE AFTER TESTING
+//            }
+//        }
+//    }
 
 
 
