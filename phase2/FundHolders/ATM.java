@@ -283,31 +283,27 @@ public class ATM implements java.io.Serializable {
      * Alert to show need for restock if number of bills are low
      */
     public void restock() {
+
+        BM = new BankManager("new", "bm");
+
         try {
-            PrintStream originalOut = System.out;
-
-            PrintStream fileOut = new PrintStream("phase2/alerts.txt");
-
-            System.setOut(fileOut);
-
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/alerts.txt"));
             if (this.num5bills < 20) {
-                originalOut.println("Five dollar bills low in stock!");
-                BM.restockFromFile(this);
+                writer.write("Five dollar bills low in stock!");
             } else if (this.num10bills < 20) {
-                originalOut.println("Ten dollar bills low in stock!");
-                BM.restockFromFile(this);
+                writer.write("Ten dollar bills low in stock!");
             } else if (this.num20bills < 20) {
-                originalOut.println("Twenty dollar bills low in stock!");
-                BM.restockFromFile(this);
+                writer.write("Twenty dollar bills low in stock!");
             } else if (this.num50bills < 20) {
-                originalOut.println("Fifty dollar bills low in stock!");
-                BM.restockFromFile(this);
+                writer.write("Fifty dollar bills low in stock!");
             }
 
-            System.setOut(originalOut);
+            writer.close();
+            BM.restockFromFile(this);
 
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
 }
