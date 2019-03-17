@@ -367,6 +367,7 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuU3 (User user) {
+        // user transactions menu
         // options: 1. withdraw from ATM, 2. transfer money between accounts, 3. deposit to account (cash), 4. deposit cheque to account, b. back, e. logoff and exit
         System.out.println("enter 1 to withdraw cash from ATM \n" +
                 "enter 2 to transfer money between accounts \n" +
@@ -375,21 +376,46 @@ public class Model implements java.io.Serializable {
                 "enter 5 to pay a bill \n" +
                 "enter b to go back \n" +
                 "enter e to logoff and exit");
+        int numUserAccounts = 0;
+        ArrayList<Integer> numUserAccountsAL = new ArrayList<>();
+        for (Account account : user.getAccountsCreated()) {
+            numUserAccounts += 1;
+            numUserAccountsAL.add(numUserAccounts);
+        }
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 System.out.println("select the specified number prefixing the account from which you are withdrawing cash from");
-                int userNumAccounts = 0;
-                for (Account account : user.getAccountsCreated()) {
-                    userNumAccounts += 1;
-                    System.out.println(userNumAccounts + ": " +
-                            account.getAccountType() + ' ' + account.getAccountNum());
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
                 }
-                Scanner optionNumber = new Scanner(System.in);
-                while (fromAccountScan.hasNext()) {
-                    String fromAccountIn = fromAccountScan.next();
-
+                Scanner optionScan2 = new Scanner(System.in);
+                while (optionScan2.hasNext()) {
+                    String optionIn2 = optionScan2.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.valueOf(optionIn2)) ) {
+                        selectedNumPrefixAcc = Integer.valueOf(optionIn2);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the amount that you would like to withdraw");
+                            Scanner amountScan = new Scanner(System.in);
+                            int amountIn = amountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransaction().withdrawfromATM(amountIn) == true) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("withdrawal complete \n" +
+                                "returning to transactions menu");
+                        menuU3(user);
+                    } else if (optionIn2.equals("b")) {
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    } else {
+                        System.out.println("that is not an option \n " +
+                                "enter a valid option or enter b to return to the transactions menu");
+                    }
                 }
             } else if (optionIn.equals("2")) {
 
