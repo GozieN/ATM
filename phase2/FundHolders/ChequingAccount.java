@@ -1,4 +1,5 @@
 package phase2.FundHolders;
+
 public class ChequingAccount extends Debit implements java.io.Serializable{
     private boolean isPrimary;
 

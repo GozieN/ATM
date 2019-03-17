@@ -51,7 +51,7 @@ public class ATM implements java.io.Serializable {
 
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("phase2/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -102,7 +102,7 @@ public class ATM implements java.io.Serializable {
     public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("phase2/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -286,7 +286,7 @@ public class ATM implements java.io.Serializable {
         try {
             PrintStream originalOut = System.out;
 
-            PrintStream fileOut = new PrintStream("./src/alerts.txt");
+            PrintStream fileOut = new PrintStream("phase2/alerts.txt");
 
             System.setOut(fileOut);
 

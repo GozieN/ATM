@@ -78,7 +78,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User(username, password);
 
         try {
-            String filename = "./phase2/Users.txt";
+            String filename = "phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -104,7 +104,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User("", "");
 
         try {
-            String filename = "./phase2/Users.txt";
+            String filename = "phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -122,7 +122,7 @@ public class BankManager extends BankWorker implements Serializable{
         User userToRemove = null;
 
         try {
-            FileInputStream file = new FileInputStream("./phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
 
             userToRemove = (User) in.readObject();
@@ -295,7 +295,7 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void restockFromFile(ATM atm) throws FileNotFoundException {
 
-        File file = new File("./src/alerts.txt");
+        File file = new File("phase2/alerts.txt");
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
@@ -311,7 +311,7 @@ public class BankManager extends BankWorker implements Serializable{
             }
 
             try{
-                File temptFile = new File("./src/myTempFile.txt");
+                File temptFile = new File("phase2/myTempFile.txt");
 
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 BufferedWriter writer = new BufferedWriter(new FileWriter(temptFile));
