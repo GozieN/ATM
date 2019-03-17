@@ -266,7 +266,7 @@ public class ATM implements java.io.Serializable {
         try {
             PrintStream originalOut = System.out;
 
-            PrintStream fileOut = new PrintStream("./src/alerts.txt");
+            PrintStream fileOut = new PrintStream("phase2/alerts.txt");
 
             System.setOut(fileOut);
 
@@ -290,4 +290,5 @@ public class ATM implements java.io.Serializable {
             ex.printStackTrace();
         }
     }
+
 }
