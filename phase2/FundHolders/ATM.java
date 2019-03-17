@@ -210,27 +210,37 @@ public class ATM implements java.io.Serializable {
      * @param dollarAmount The amount of money added to ATM machine
      */
     // plus bills into ATM method (from deposit methods)
-    public void plus(int dollarAmount) {
-        ArrayList<Integer> numberStore = new ArrayList<Integer>();
-        numberStore.add(dollarAmount % 10); // for fives
-        dollarAmount -= dollarAmount % 10;
-        while (dollarAmount > 0) {
-            numberStore.add(dollarAmount);
-            dollarAmount = dollarAmount / 10;
-        }
-        for (int number : numberStore) {
-            if (number % 50 == 0) {
-                this.num50bills += number / 50;
-            } else if (number % 20 == 0) {
-                this.num20bills += number / 20;
-            } else if (number % 10 == 0) {
-                this.num10bills += number / 10;
-            } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                this.num5bills += number / 5;
-            }
-        }
-        restock();
-    }
+     public void plus(int dollarAmount) {
+         ArrayList<Integer> numberStore = new ArrayList<Integer>();
+         if (dollarAmount <= 10) {
+             numberStore.add(dollarAmount % 10);
+             dollarAmount -= dollarAmount % 10;
+         }
+         if (dollarAmount <= 100) {
+             numberStore.add(dollarAmount % 100);
+             dollarAmount -= dollarAmount % 100;
+         }
+         if (dollarAmount <= 1000) {
+             numberStore.add(dollarAmount % 1000);
+             dollarAmount -= dollarAmount % 1000;
+         }
+         if (dollarAmount <= 10000) {
+             numberStore.add(dollarAmount % 10000);
+             dollarAmount -= dollarAmount % 10000;
+         }
+         for (int number : numberStore) {
+             if (number % 50 == 0) {
+                 this.num50bills += number / 50;
+             } else if (number % 20 == 0) {
+                 this.num20bills += number / 20;
+             } else if (number % 10 == 0) {
+                 this.num10bills += number / 10;
+             } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
+                 this.num5bills += number / 5;
+             }
+         }
+         restock();
+     }
 
     /**
      * Decrease the number of bills in the ATM
@@ -239,11 +249,21 @@ public class ATM implements java.io.Serializable {
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
         ArrayList<Integer> numberStore = new ArrayList<Integer>();
-        numberStore.add(dollarAmount % 10); // for fives
-        dollarAmount -= dollarAmount % 10;
-        while (dollarAmount > 0) {
-            numberStore.add(dollarAmount);
-            dollarAmount = dollarAmount / 10;
+        if (dollarAmount <= 10) {
+            numberStore.add(dollarAmount % 10);
+            dollarAmount -= dollarAmount % 10;
+        }
+        if (dollarAmount <= 100) {
+            numberStore.add(dollarAmount % 100);
+            dollarAmount -= dollarAmount % 100;
+        }
+        if (dollarAmount <= 1000) {
+            numberStore.add(dollarAmount % 1000);
+            dollarAmount -= dollarAmount % 1000;
+        }
+        if (dollarAmount <= 10000) {
+            numberStore.add(dollarAmount % 10000);
+            dollarAmount -= dollarAmount % 10000;
         }
         for (int number : numberStore) {
             if (number % 50 == 0) {
@@ -262,33 +282,38 @@ public class ATM implements java.io.Serializable {
     /**
      * Alert to show need for restock if number of bills are low
      */
-    public void restock() {
+
+    public void restock () {
+
         try {
-            PrintStream originalOut = System.out;
-
-            PrintStream fileOut = new PrintStream("phase2/alerts.txt");
-
-            System.setOut(fileOut);
-
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/alerts.txt"));
             if (this.num5bills < 20) {
-                originalOut.println("Five dollar bills low in stock!");
-                BM.restockFromFile(this);
-            } else if (this.num10bills < 20) {
-                originalOut.println("Ten dollar bills low in stock!");
-                BM.restockFromFile(this);
-            } else if (this.num20bills < 20) {
-                originalOut.println("Twenty dollar bills low in stock!");
-                BM.restockFromFile(this);
-            } else if (this.num50bills < 20) {
-                originalOut.println("Fifty dollar bills low in stock!");
-                BM.restockFromFile(this);
+                writer.write("Five dollar bills low in stock!\n");
             }
 
-            System.setOut(originalOut);
+            if (this.num10bills < 20) {
+                writer.write("Ten dollar bills low in stock!\n");
+            }
 
-        } catch (FileNotFoundException ex) {
+            if (this.num20bills < 20) {
+                writer.write("Twenty dollar bills low in stock!\n");
+            }
+
+            if (this.num50bills < 20) {
+                writer.write("Fifty dollar bills low in stock!\n");
+            }
+
+            writer.close();
+//            BM.restockFromFile(this);
+
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        ATM atm = new ATM(4, 1, 9, 100);
+        atm.restock();
     }
 
 }
