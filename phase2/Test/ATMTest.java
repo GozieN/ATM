@@ -3,18 +3,22 @@ import phase2.FundTransfers.*;
 import phase2.FundHolders.*;
 import phase2.Operators.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
 
 import org.junit.Before;
 import org.junit.Test;
+import sun.jvm.hotspot.debugger.cdbg.basic.BasicNamedFieldIdentifier;
+
 import static org.junit.Assert.assertTrue;
 
 
 public class ATMTest {
 
     private ATM atm;
+    private BankManager bm = new BankManager("new", "bm");
 
     @Before
     public void setUp() {atm = new ATM();}
@@ -38,13 +42,10 @@ public class ATMTest {
 
         atm = new ATM(4, 100, 100, 100);
 
+        atm.restock();
 
-        for (int i = 0; i < 10; i++) {
-            atm.restock();
-            if (atm.getNum5Bills() >= 104) {
-                result = true;
-                break;
-            }
+        if (atm.getNum5Bills() >= 10) {
+            result = true;
         }
 
         assertTrue(result);
