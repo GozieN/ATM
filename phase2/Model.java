@@ -510,8 +510,8 @@ public class Model implements java.io.Serializable {
                                             System.out.println("returning to transactions menu");
                                             menuU3(user);
                                         }
-                                    } catch (Exception ex) {
-                                        ex.printStackTrace();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
                                     System.out.println("returning to transactions menu");
                                     menuU3(user);
@@ -535,7 +535,31 @@ public class Model implements java.io.Serializable {
                     }
                 }
             } else if (optionIn.equals("3")) {
-
+                System.out.println("select the specified number prefixing the account that you are depositing cash into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the amount that you would like to deposit");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("4")) {
 
             } else if (optionIn.equals("5")) {
