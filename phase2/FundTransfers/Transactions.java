@@ -26,7 +26,7 @@ public class Transactions implements java.io.Serializable{
      * Deposit amount into account
      * @param amount Amount of money to deposit
      */
-    public boolean depositIntoATM(ATM atm, int amount) {
+    public boolean depositIntoATM(int amount) {
         if (!(amount % 5 == 0 || amount > 0)){
             System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
                     " negative inputs." +
