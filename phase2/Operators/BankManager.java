@@ -72,7 +72,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User(username, password);
 
         try {
-            String filename = "./phase2/Users.txt";
+            String filename = "phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -98,7 +98,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User("", "");
 
         try {
-            String filename = "./phase2/Users.txt";
+            String filename = "phase2/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -116,7 +116,7 @@ public class BankManager extends BankWorker implements Serializable{
         User userToRemove = null;
 
         try {
-            FileInputStream file = new FileInputStream("./phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
 
             userToRemove = (User) in.readObject();
@@ -287,46 +287,39 @@ public class BankManager extends BankWorker implements Serializable{
      * Read the file to restock the ATM
      * @param atm Instance of ATM machine
      */
-    public void restockFromFile(ATM atm) throws FileNotFoundException {
+    public void restockFromFile(ATM atm){
+        File file = new File("phase2/alerts.txt");
 
-        File file = new File("./src/alerts.txt");
-        Scanner scanner = new Scanner(file);
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
 
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (line.equals("Five dollar bills low in stock!")) {
-                this.ATMSetNum5Bills(atm, 100);
-            } else if (line.equals("Ten dollar bills low in stock!")) {
-                this.ATMSetNum10Bills(atm, 100);
-            } else if (line.equals("Twenty dollar bills low in stock!")) {
-                this.ATMSetNum20Bills(atm, 100);
-            } else if (line.equals("Fifty dollar bills low in stock!")) {
-                this.ATMSetNum50Bills(atm, 100);
-            }
-
-            try{
-                File temptFile = new File("./src/myTempFile.txt");
-
-                BufferedReader reader = new BufferedReader(new FileReader(file));
-                BufferedWriter writer = new BufferedWriter(new FileWriter(temptFile));
-
-                String lineToRemove = line;
-                String currentLine;
-
-                while ((currentLine = reader.readLine()) != null) {
-                    String trimmedLine = currentLine.trim();
-                    if (trimmedLine.equals(lineToRemove)) continue;
-                    writer.write(currentLine + System.getProperty("line.separator"));
+                if (line.equals("Five dollar bills low in stock!")) {
+                    this.ATMSetNum5Bills(atm, 100);
+                    line = scan.nextLine();
                 }
-                writer.close();
-                reader.close();
-                boolean successful = temptFile.renameTo(file);
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
+                if (line.equals("Ten dollar bills low in stock!")) {
+                    this.ATMSetNum10Bills(atm, 100);
+                    line = scan.nextLine();
+                }
+
+                if (line.equals("Twenty dollar bills low in stock!")) {
+                    this.ATMSetNum20Bills(atm, 100);
+                    line = scan.nextLine();
+                }
+
+                if (line.equals("Fifty dollar bills low in stock!")) {
+                    this.ATMSetNum50Bills(atm, 100);
+                    line = scan.nextLine();
+                }
             }
+            scan.close();
 
-    }}
+        } catch (Exception ex) {ex.printStackTrace();}
+    }
+
 
     /**
      * Print a summary of the user's accounts
