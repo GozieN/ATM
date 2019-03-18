@@ -541,6 +541,7 @@ public class Model implements java.io.Serializable {
                 Scanner newAccountTypeScan = new Scanner(System.in);
                 String newAccountTypeIn = newAccountTypeScan.next();
                 BM.createNewAccount(0, newAccountTypeIn, user);
+                menuU2(user);
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
