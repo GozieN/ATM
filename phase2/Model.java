@@ -561,13 +561,63 @@ public class Model implements java.io.Serializable {
                     }
                 }
             } else if (optionIn.equals("4")) {
-
+                System.out.println("select the specified number prefixing the account that you are depositing a cheque into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the cheque that you would like to deposit");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(depositAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("5")) {
-
+                System.out.println("select the specified number prefixing the account that you are paying your bill from \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the bill that you are paying");
+                            Scanner billAmountScan = new Scanner(System.in);
+                            int billAmountIn = billAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(billAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("b")) {
-
+                System.out.println("returning to interactions menu");
+                menuU2(user);
             } else if (optionIn.equals("e")) {
-
+                System.out.println("logging off and returning to main menu");
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to withdraw cash from ATM \n" +

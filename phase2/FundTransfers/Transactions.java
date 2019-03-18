@@ -215,7 +215,7 @@ public class Transactions implements java.io.Serializable{
             lastAction = "bill";
             try {
                 PrintStream originalOut = System.out;
-                PrintStream fileOut = new PrintStream("./src/outgoing.txt");
+                PrintStream fileOut = new PrintStream("phase2/outgoing.txt");
                 System.setOut(fileOut);
 
                 originalOut.println(senderAccount.getHolderName() + "paid a bill of " + Double.toString(amount));
