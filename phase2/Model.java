@@ -493,6 +493,21 @@ public class Model implements java.io.Serializable {
                                     // files - need help from Angela: database of account instances ?
                                     // if toAccountIn exists in accountsDatabase
                                         // then transfer money to toAccountIn (other user's account)
+
+                                    Account account = null;
+                                    try {
+                                        FileInputStream input = new FileInputStream("phase2/AccountDatabase.txt");
+                                        ObjectInputStream in = new ObjectInputStream(input);
+
+                                        account = (Account) in.readObject();
+
+                                        in.close();
+                                        input.close();
+
+                                        if (account.getAccountNum() == Integer.parseInt(toAccountIn)) {
+                                            user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(100, account);
+                                        }
+                                    } catch (Exception ex) {ex.printStackTrace();}
                                 }
                                 System.out.println("returning to transactions menu");
                                 menuU3(user);
