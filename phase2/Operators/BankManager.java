@@ -8,13 +8,13 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 
 public class BankManager extends BankWorker implements Serializable{
-    private ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
+    private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
     private String password;
     private int numExistingAccounts;
     private ArrayList<User> users = new ArrayList<>();
-    private String accesskey = "900";
+    private String accessKey = "900";
 
     public BankManager(String username, String password) {
         super(username, password);
@@ -23,7 +23,7 @@ public class BankManager extends BankWorker implements Serializable{
     }
 
     public String getMasterAccessKey() {
-        return this.accesskey;
+        return this.accessKey;
     }
 
     /**

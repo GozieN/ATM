@@ -9,6 +9,7 @@ import java.util.*;
 
 
 public abstract class Account implements java.io.Serializable {
+    private static ArrayList<Account> accountsDatabase = new ArrayList<>();
     private static int accountNum = 0;
     private String holderName;
     private User user;
@@ -22,7 +23,8 @@ public abstract class Account implements java.io.Serializable {
      * @param accountHolder holder of the account
      * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
-    public Account(User accountHolder, String accountType){
+    public Account(User accountHolder, String accountType) {
+        accountsDatabase.add(this);
         history = new ArrayList<Transactions>();
         this.user = accountHolder;
         this.accountType = accountType;
