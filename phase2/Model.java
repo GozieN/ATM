@@ -452,7 +452,7 @@ public class Model implements java.io.Serializable {
                                             System.out.println("enter the amount of money you want to transfer");
                                             Scanner transferAmountScan = new Scanner(System.in);
                                             int transferAmountIn = transferAmountScan.nextInt();
-                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1)) == true) { // when gozie fixes transactions this should not have error
+                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
                                                 flag = true;
                                             }
                                         }
@@ -490,15 +490,25 @@ public class Model implements java.io.Serializable {
                                 Scanner toAccountScan = new Scanner(System.in);
                                 while (toAccountScan.hasNext()) {
                                     String toAccountIn = toAccountScan.next();
-                                    Account account = null;
+                                    Account toAccount = null;
                                     try {
-                                        FileInputStream input = new FileInputStream("phase2/AccountDatabase.txt");
+                                        FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
                                         ObjectInputStream in = new ObjectInputStream(input);
-                                        account = (Account) in.readObject();
+                                        toAccount = (Account) in.readObject();
                                         in.close();
                                         input.close();
-                                        if (account.getAccountNum() == Integer.parseInt(toAccountIn)) {
-                                            user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(100, account);
+                                        if (toAccount.getAccountNum() == Integer.valueOf(toAccountIn)) {
+                                            boolean flag = false;
+                                            while (flag == false) {
+                                                System.out.println("enter the amount of money you want to transfer");
+                                                Scanner transferAmountScan = new Scanner(System.in);
+                                                int transferAmountIn = transferAmountScan.nextInt();
+                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, toAccount)) {
+                                                    flag = true;
+                                                }
+                                            }
+                                            System.out.println("returning to transactions menu");
+                                            menuU3(user);
                                         }
                                     } catch (Exception ex) {
                                         ex.printStackTrace();
