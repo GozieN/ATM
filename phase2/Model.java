@@ -225,8 +225,8 @@ public class Model implements java.io.Serializable {
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("select the specified number prefixing the account that money is being transferred to");
                                 for (int i = 1; i < numUserAccounts + 1; i++) {
                                     System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
@@ -236,8 +236,8 @@ public class Model implements java.io.Serializable {
                                 while (selectedNumPrefixToAccScan.hasNext()) {
                                     String selectedNumPrefixToAccIn = selectedNumPrefixToAccScan.next();
                                     int selectedNumPrefixToAcc = 0;
-                                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixToAccIn)) ) {
-                                        selectedNumPrefixToAcc = Integer.valueOf(selectedNumPrefixToAccIn);
+                                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixToAccIn)) ) {
+                                        selectedNumPrefixToAcc = Integer.parseInt(selectedNumPrefixToAccIn);
                                         boolean flag = false;
                                         while (flag == false) {
                                             System.out.println("enter the amount of money being transferred");
@@ -275,8 +275,8 @@ public class Model implements java.io.Serializable {
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("enter the account number of the account that money is being transferred to");
                                 Scanner toAccountScan = new Scanner(System.in);
                                 while (toAccountScan.hasNext()) {
@@ -288,7 +288,7 @@ public class Model implements java.io.Serializable {
                                         toAccount = (Account) in.readObject();
                                         in.close();
                                         input.close();
-                                        if (toAccount.getAccountNum() == Integer.valueOf(toAccountIn)) {
+                                        if (toAccount.getAccountNum() == Integer.parseInt(toAccountIn)) {
                                             boolean flag = false;
                                             while (flag == false) {
                                                 System.out.println("enter the amount of money being transferred");
@@ -336,8 +336,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the amount that you are depositing into this user's account");
@@ -362,8 +362,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the dollar amount of the cheque that you are depositing");
@@ -388,8 +388,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the dollar amount of the bill is being paid");
@@ -584,14 +584,14 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the amount that you would like to withdraw");
                             Scanner withdrawAmountScan = new Scanner(System.in);
                             int withdrawAmountIn = withdrawAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().withdrawFromATM(withdrawAmountIn) == true) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().withdrawFromATM(withdrawAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -622,8 +622,8 @@ public class Model implements java.io.Serializable {
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("select the specified number prefixing the account that you are transferring money to");
                                 for (int i = 1; i < numUserAccounts + 1; i++) {
                                     System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
@@ -633,8 +633,8 @@ public class Model implements java.io.Serializable {
                                 while (selectedNumPrefixToAccScan.hasNext()) {
                                     String selectedNumPrefixToAccIn = selectedNumPrefixToAccScan.next();
                                     int selectedNumPrefixToAcc = 0;
-                                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixToAccIn)) ) {
-                                        selectedNumPrefixToAcc = Integer.valueOf(selectedNumPrefixToAccIn);
+                                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixToAccIn)) ) {
+                                        selectedNumPrefixToAcc = Integer.parseInt(selectedNumPrefixToAccIn);
                                         boolean flag = false;
                                         while (flag == false) {
                                             System.out.println("enter the amount of money you want to transfer");
@@ -672,8 +672,8 @@ public class Model implements java.io.Serializable {
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("enter the account number of the account that you are transferring money to");
                                 Scanner toAccountScan = new Scanner(System.in);
                                 while (toAccountScan.hasNext()) {
@@ -685,7 +685,7 @@ public class Model implements java.io.Serializable {
                                         toAccount = (Account) in.readObject();
                                         in.close();
                                         input.close();
-                                        if (toAccount.getAccountNum() == Integer.valueOf(toAccountIn)) {
+                                        if (toAccount.getAccountNum() == Integer.parseInt(toAccountIn)) {
                                             boolean flag = false;
                                             while (flag == false) {
                                                 System.out.println("enter the amount of money you want to transfer");
@@ -733,8 +733,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the amount that you would like to deposit");
@@ -759,8 +759,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the dollar amount of the cheque that you would like to deposit");
@@ -785,8 +785,8 @@ public class Model implements java.io.Serializable {
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the dollar amount of the bill that you are paying");

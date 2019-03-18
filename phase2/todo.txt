@@ -8,12 +8,7 @@ J Chan::
 with XML (there are Java XML tutorials online), make a more robust and
 feature-rich command line interface, or other sort of UI.
     - swing: GUI form
-+ Add one more type of employee of the bank who has less access than the
-manager, but can also be a user with their own accounts.
-    - implementation::
-        - no creating new user/accounts capabilities
-        - only viewing capabilities of normal users
-        - has its own bank accounts
+    - OR javaFX ? (newer, more optimized) - but less guides on it and stuff
 
 Angela::
 - FSL ? files
