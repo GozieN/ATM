@@ -311,9 +311,5 @@ public class ATM implements java.io.Serializable {
         }
     }
 
-    public static void main(String[] args) {
-        ATM atm = new ATM(4, 1, 9, 10);
-        atm.restock();
-    }
 
 }
