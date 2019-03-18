@@ -14,7 +14,7 @@ public class ATM implements java.io.Serializable {
     private int num20bills = 100;
     private int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
-    private BankManager BM;
+    private BankManager BM =  new BankManager("", "");
 
     /**
      * ATM class constructor
@@ -304,7 +304,7 @@ public class ATM implements java.io.Serializable {
             }
 
             writer.close();
-//            BM.restockFromFile(this);
+            BM.restockFromFile(this);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -312,7 +312,7 @@ public class ATM implements java.io.Serializable {
     }
 
     public static void main(String[] args) {
-        ATM atm = new ATM(4, 1, 9, 100);
+        ATM atm = new ATM(4, 1, 9, 10);
         atm.restock();
     }
 
