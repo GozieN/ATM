@@ -26,12 +26,13 @@ public class Model implements java.io.Serializable {
     public Model() {
     }
 
-    // SET THE TRANSACTION ATM TO THIS ATM
+    // set the transaction atm to this atm
     public ATM getAtm() {
         return atm;
     }
 
     public void mainMenu() {
+        // main menu
         // options: 1. bankmanager, 2. normal user
         System.out.println("enter 1 for bankmanager \n" +
                 "enter 2 for normal user");
@@ -51,6 +52,7 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuBM1() {
+        // BM login menu
         // options: 1. login, e. exit
         System.out.println("enter 1 to login \n" +
                 "enter e to exit");
@@ -89,7 +91,8 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuBM2() {
-        // options: 1. select/input user, e. logoff and exit
+        // BM user select (input) menu
+        // options: 1. select (input) user, e. logoff and exit
         System.out.println("enter 1 to input a user \n" +
                 "enter e to logoff and exit");
         Scanner optionScan = new Scanner(System.in);
@@ -139,6 +142,7 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuBM3(User user) {
+        // BM user interactions menu
         // options: 1. view user accounts summary, 2. perform transaction on user, 3. delete user, e. logoff and exit
         System.out.println("enter 1 to view this user's accounts summary \n" +
                 "enter 2 to perform a transaction on this user \n" +
@@ -149,7 +153,6 @@ public class Model implements java.io.Serializable {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 user.viewInfo();
-                // options: b. back, e. logoff and exit
                 System.out.println("enter b to go back \n" +
                         "enter e to logoff and exit");
                 Scanner optionScan2 = new Scanner(System.in);
@@ -187,55 +190,238 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuBM4(User user) {
-        // options:
-//        System.out.println("Enter 'I' to View Info, Enter 'T' to Perform a Transaction, or Enter 'A' to Request a New Account");
-//        Scanner menuOption = new Scanner(System.in);
-//        String optionIn = menuOption.next();
-//        ArrayList<Account> accounts = user.getAccountsCreated(); // NEED TO FIGURE OUT HOW TO STORE THE ACCOUNTS FROM BEFORE!!!!
-//        if (optionIn.equals("I")) {
-//            user.viewInfo();
-//        } else if (optionIn.equals("T")) {
-//            System.out.println("Enter '' to Withdraw from Account, Enter 'WM' to Withdraw from ATM, Enter 'DA' to Deposit into Account, Enter 'DM' to Deposit into ATM, Enter 'CA' to Deposit Cheque into ATM, Enter 'TA' to Transfer from Account to Account, Enter 'PB' to Pay Bill, A to create new Account: ");
-//            Scanner transOption = new Scanner(System.in);
-//            String transIn = transOption.next();
-//            System.out.println("Enter the amount: \n");
-//            Scanner amtOption = new Scanner(System.in);
-//            double amt = Double.parseDouble(amtOption.next());
-//            Transactions transactions = new Transactions(new ChequingAccount(100, "me", 1000, true)); // FIX THIS!!! JUST TESTING
-//            if (transIn.equals("WA")) {
-//                transactions.withdrawFromAccount(amt);
-//            } else if (transIn.equals("WM")) {
-//                transactions.withdrawFromATM(atm, (int) amt);
-//            } else if (transIn.equals("DA")) {
-//                transactions.depositToAccount(amt);
-//            } else if (transIn.equals("DM")) {
-//                transactions.depositIntoATM(atm, (int) amt);
-//            } else if (transIn.equals("CA")) {
-//                transactions.depositChequeToAccount(amt);
-//            } else if (transIn.equals("TA")) { // SENDING TO AN ACC NEEDS TO BE ALTERED, TOO MUCH INFO NEEDED
-//                System.out.println("Enter the Account Number of the Receiving Account: ");
-//                Scanner accN = new Scanner(System.in);
-//                int accNum = Integer.parseInt(accN.next());
-//                System.out.println("Enter the Holder Name of the Receiving Account: ");
-//                Scanner holderN = new Scanner(System.in);
-//                String holder = holderN.next();
-//                System.out.println("Enter the Balance of the Receiving Account: ");
-//                Scanner balanceN = new Scanner(System.in);
-//                double balance = Double.parseDouble(balanceN.next());
-//                System.out.println("Enter the Type of the Receiving Account: ");
-//                Scanner typeS = new Scanner(System.in);
-//                String type = typeS.next();
-//                Account receiverAccount = new SavingsAccount(accNum, holder, balance); // NEED TO CHANGE HOW TO CHANGE TRANSACTIONS
-//                transactions.transfer((int) amt, receiverAccount);
-//            } else if (transIn.equals("PB")) {
-//                transactions.payBill(amt);
-//            } else if (optionIn.equals("A")) {
-//                user.addToAccountsCreated(new ChequingAccount(101, "me", 1000, true)); // NEED TO CHANGE AFTER TESTING
-//            }
-//        }
+        // BM user transactions menu
+        // options: 1. transfer money between accounts, 2. deposit to account (cash), 3. deposit cheque to account, 4. pay bill, b. back, e. logoff and exit
+        System.out.println("enter 1 to transfer money between accounts \n" +
+                "enter 2 to deposit cash into an account \n" +
+                "enter 3 to deposit a cheque into an account \n" +
+                "enter 4 to pay a bill \n" +
+                "enter b to go back \n" +
+                "enter e to logoff and exit");
+        int numUserAccounts = 0;
+        ArrayList<Integer> numUserAccountsAL = new ArrayList<>();
+        for (Account account : user.getAccountsCreated()) {
+            numUserAccounts += 1;
+            numUserAccountsAL.add(numUserAccounts);
+        }
+        Scanner optionScan = new Scanner(System.in);
+        while (optionScan.hasNext()) {
+            String optionIn = optionScan.next();
+            if (optionIn.equals("1")) {
+                System.out.println("enter 1 to transfer money between this user's accounts \n" +
+                        "enter 2 to transfer money from one of this user's accounts to another bank user's account \n" +
+                        "enter b to go back");
+                Scanner optionScan2 = new Scanner(System.in);
+                while (optionScan2.hasNext()) {
+                    String optionIn2 = optionScan2.next();
+                    if (optionIn2.equals("1")) {
+                        System.out.println("select the specified number prefixing the account that money is being transferred from");
+                        for (int i = 1; i < numUserAccounts + 1; i++) {
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                        }
+                        Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
+                        while (selectedNumPrefixFromAccScan.hasNext()) {
+                            String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
+                            int selectedNumPrefixFromAcc = 0;
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
+                                System.out.println("select the specified number prefixing the account that money is being transferred to");
+                                for (int i = 1; i < numUserAccounts + 1; i++) {
+                                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                                }
+                                Scanner selectedNumPrefixToAccScan = new Scanner(System.in);
+                                while (selectedNumPrefixToAccScan.hasNext()) {
+                                    String selectedNumPrefixToAccIn = selectedNumPrefixToAccScan.next();
+                                    int selectedNumPrefixToAcc = 0;
+                                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixToAccIn)) ) {
+                                        selectedNumPrefixToAcc = Integer.parseInt(selectedNumPrefixToAccIn);
+                                        boolean flag = false;
+                                        while (flag == false) {
+                                            System.out.println("enter the amount of money being transferred");
+                                            Scanner transferAmountScan = new Scanner(System.in);
+                                            int transferAmountIn = transferAmountScan.nextInt();
+                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
+                                                flag = true;
+                                            }
+                                        }
+                                        System.out.println("returning to user transactions menu");
+                                        menuU3(user);
+                                    } else if (selectedNumPrefixFromAccIn.equals("b")) {
+                                        System.out.println("returning to user transactions menu");
+                                        menuU3(user);
+                                    } else {
+                                        System.out.println("that is not an option \n " +
+                                                "enter a valid option or enter b to return to user transactions menu");
+                                    }
+                                }
+                            } else if (selectedNumPrefixFromAccIn.equals("b")) {
+                                System.out.println("returning to user transactions menu");
+                                menuU3(user);
+                            } else {
+                                System.out.println("that is not an option \n " +
+                                        "enter a valid option or enter b to return to the user transactions menu");
+                            }
+                        }
+                    } else if (optionIn2.equals("2")) {
+                        System.out.println("select the specified number prefixing the account that money is being transferred from");
+                        for (int i = 1; i < numUserAccounts + 1; i++) {
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                        }
+                        Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
+                        while (selectedNumPrefixFromAccScan.hasNext()) {
+                            String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
+                            int selectedNumPrefixFromAcc = 0;
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
+                                System.out.println("enter the account number of the account that money is being transferred to");
+                                Scanner toAccountScan = new Scanner(System.in);
+                                while (toAccountScan.hasNext()) {
+                                    String toAccountIn = toAccountScan.next();
+                                    Account toAccount = null;
+                                    try {
+                                        FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
+                                        ObjectInputStream in = new ObjectInputStream(input);
+                                        toAccount = (Account) in.readObject();
+                                        in.close();
+                                        input.close();
+                                        if (toAccount.getAccountNum() == Integer.parseInt(toAccountIn)) {
+                                            boolean flag = false;
+                                            while (flag == false) {
+                                                System.out.println("enter the amount of money being transferred");
+                                                Scanner transferAmountScan = new Scanner(System.in);
+                                                int transferAmountIn = transferAmountScan.nextInt();
+                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, toAccount)) {
+                                                    flag = true;
+                                                }
+                                            }
+                                            System.out.println("returning to user transactions menu");
+                                            menuU3(user);
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    System.out.println("returning to user transactions menu");
+                                    menuU3(user);
+                                }
+                            } else if (selectedNumPrefixFromAccIn.equals("b")) {
+                                System.out.println("returning to user transactions menu");
+                                menuU3(user);
+                            } else {
+                                System.out.println("that is not an option \n " +
+                                        "enter a valid option or enter b to return to the user transactions menu");
+                            }
+                        }
+                    } else if (optionIn2.equals("b")) {
+                        System.out.println("returning to user transactions menu");
+                        menuU3(user);
+                    } else {
+                        System.out.println("that is not an option \n " +
+                                "enter 1 to transfer money between this user's accounts \n" +
+                                "enter 2 to transfer money from one of this user's accounts to another bank user's account \n" +
+                                "enter b to go back");
+                    }
+                }
+            } else if (optionIn.equals("2")) {
+                System.out.println("select the specified number prefixing the account that you are depositing cash into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the amount that you are depositing into this user's account");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to user transactions menu");
+                        menuU3(user);
+                    }
+                }
+            } else if (optionIn.equals("3")) {
+                System.out.println("select the specified number prefixing the account that you are depositing a cheque into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the cheque that you are depositing");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(depositAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to user transactions menu");
+                        menuU3(user);
+                    }
+                }
+            } else if (optionIn.equals("4")) {
+                System.out.println("select the specified number prefixing the account that the bill is being paid from \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the bill is being paid");
+                            Scanner billAmountScan = new Scanner(System.in);
+                            int billAmountIn = billAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(billAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to user transactions menu");
+                        menuU3(user);
+                    }
+                }
+            } else if (optionIn.equals("b")) {
+                System.out.println("returning to user interactions menu");
+                menuU2(user);
+            } else if (optionIn.equals("e")) {
+                System.out.println("logging off and returning to main menu");
+                mainMenu();
+            } else {
+                System.out.println("that is not an option \n" +
+                        "enter 1 to transfer money between this user's accounts \n" +
+                        "enter 2 to deposit cash into an account of this user \n" +
+                        "enter 3 to deposit a cheque into an account of this user \n" +
+                        "enter 4 to pay a bill from an account of this user \n" +
+                        "enter b to go back to user interactions menu \n" +
+                        "enter e to logoff and exit");
+            }
+        }
     }
 
     public void menuU1() {
+        // user login, request creation of new user menu
         // options: 1. login, 2. request creation of new user, e. exit
         System.out.println("enter 1 to login to existing user \n" +
                 "enter 2 to request creation of new user \n" +
@@ -317,6 +503,7 @@ public class Model implements java.io.Serializable {
     }
 
     public void menuU2(User user) {
+        // user interactions menu
         // options: 1. view accounts summary, 2. perform transaction, 3. request creation of new account, e. logoff and exit
         System.out.println("enter 1 to view your accounts summary \n" +
                 "enter 2 to perform a transaction \n" +
@@ -353,6 +540,7 @@ public class Model implements java.io.Serializable {
                 Scanner newAccountTypeScan = new Scanner(System.in);
                 String newAccountTypeIn = newAccountTypeScan.next();
                 BM.createNewAccount(0, newAccountTypeIn, user);
+                menuU2(user);
             } else if (optionIn.equals("e")) {
                 System.out.println("logging off and returning to main menu");
                 mainMenu();
@@ -368,7 +556,7 @@ public class Model implements java.io.Serializable {
 
     public void menuU3 (User user) {
         // user transactions menu
-        // options: 1. withdraw from ATM, 2. transfer money between accounts, 3. deposit to account (cash), 4. deposit cheque to account, b. back, e. logoff and exit
+        // options: 1. withdraw from ATM, 2. transfer money between accounts, 3. deposit to account (cash), 4. deposit cheque to account, 5. pay bill, b. back, e. logoff and exit
         System.out.println("enter 1 to withdraw cash from ATM \n" +
                 "enter 2 to transfer money between accounts \n" +
                 "enter 3 to deposit cash into an account \n" +
@@ -389,21 +577,21 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are withdrawing cash from \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
                     String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
                     int selectedNumPrefixAcc = 0;
-                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixAccIn)) ) {
-                        selectedNumPrefixAcc = Integer.valueOf(selectedNumPrefixAccIn);
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
                         boolean flag = false;
                         while (flag == false) {
                             System.out.println("enter the amount that you would like to withdraw");
                             Scanner withdrawAmountScan = new Scanner(System.in);
                             int withdrawAmountIn = withdrawAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().withdrawFromATM(withdrawAmountIn) == true) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().withdrawFromATM(withdrawAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -427,26 +615,26 @@ public class Model implements java.io.Serializable {
                     if (optionIn2.equals("1")) {
                         System.out.println("select the specified number prefixing the account that you are transferring money from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("select the specified number prefixing the account that you are transferring money to");
                                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                                 }
                                 Scanner selectedNumPrefixToAccScan = new Scanner(System.in);
                                 while (selectedNumPrefixToAccScan.hasNext()) {
                                     String selectedNumPrefixToAccIn = selectedNumPrefixToAccScan.next();
                                     int selectedNumPrefixToAcc = 0;
-                                    if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixToAccIn)) ) {
-                                        selectedNumPrefixToAcc = Integer.valueOf(selectedNumPrefixToAccIn);
+                                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixToAccIn)) ) {
+                                        selectedNumPrefixToAcc = Integer.parseInt(selectedNumPrefixToAccIn);
                                         boolean flag = false;
                                         while (flag == false) {
                                             System.out.println("enter the amount of money you want to transfer");
@@ -477,15 +665,15 @@ public class Model implements java.io.Serializable {
                     } else if (optionIn2.equals("2")) {
                         System.out.println("select the specified number prefixing the account that you are transferring money from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
                             String selectedNumPrefixFromAccIn = selectedNumPrefixFromAccScan.next();
                             int selectedNumPrefixFromAcc = 0;
-                            if (numUserAccountsAL.contains( Integer.valueOf(selectedNumPrefixFromAccIn)) ) {
-                                selectedNumPrefixFromAcc = Integer.valueOf(selectedNumPrefixFromAccIn);
+                            if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixFromAccIn)) ) {
+                                selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("enter the account number of the account that you are transferring money to");
                                 Scanner toAccountScan = new Scanner(System.in);
                                 while (toAccountScan.hasNext()) {
@@ -497,7 +685,7 @@ public class Model implements java.io.Serializable {
                                         toAccount = (Account) in.readObject();
                                         in.close();
                                         input.close();
-                                        if (toAccount.getAccountNum() == Integer.valueOf(toAccountIn)) {
+                                        if (toAccount.getAccountNum() == Integer.parseInt(toAccountIn)) {
                                             boolean flag = false;
                                             while (flag == false) {
                                                 System.out.println("enter the amount of money you want to transfer");
@@ -510,8 +698,8 @@ public class Model implements java.io.Serializable {
                                             System.out.println("returning to transactions menu");
                                             menuU3(user);
                                         }
-                                    } catch (Exception ex) {
-                                        ex.printStackTrace();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
                                     System.out.println("returning to transactions menu");
                                     menuU3(user);
@@ -535,15 +723,89 @@ public class Model implements java.io.Serializable {
                     }
                 }
             } else if (optionIn.equals("3")) {
-
+                System.out.println("select the specified number prefixing the account that you are depositing cash into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the amount that you would like to deposit");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("4")) {
-
+                System.out.println("select the specified number prefixing the account that you are depositing a cheque into \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the cheque that you would like to deposit");
+                            Scanner depositAmountScan = new Scanner(System.in);
+                            int depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(depositAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("5")) {
-
+                System.out.println("select the specified number prefixing the account that you are paying your bill from \n" +
+                        "or enter b to go back");
+                for (int i = 1; i < numUserAccounts + 1; i++) {
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
+                }
+                Scanner selectedNumPrefixAccScan = new Scanner(System.in);
+                while (selectedNumPrefixAccScan.hasNext()) {
+                    String selectedNumPrefixAccIn = selectedNumPrefixAccScan.next();
+                    int selectedNumPrefixAcc = 0;
+                    if (numUserAccountsAL.contains( Integer.parseInt(selectedNumPrefixAccIn)) ) {
+                        selectedNumPrefixAcc = Integer.parseInt(selectedNumPrefixAccIn);
+                        boolean flag = false;
+                        while (flag == false) {
+                            System.out.println("enter the dollar amount of the bill that you are paying");
+                            Scanner billAmountScan = new Scanner(System.in);
+                            int billAmountIn = billAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(billAmountIn)) {
+                                flag = true;
+                            }
+                        }
+                        System.out.println("returning to transactions menu");
+                        menuU3(user);
+                    }
+                }
             } else if (optionIn.equals("b")) {
-
+                System.out.println("returning to interactions menu");
+                menuU2(user);
             } else if (optionIn.equals("e")) {
-
+                System.out.println("logging off and returning to main menu");
+                mainMenu();
             } else {
                 System.out.println("that is not an option \n" +
                         "enter 1 to withdraw cash from ATM \n" +
@@ -556,75 +818,22 @@ public class Model implements java.io.Serializable {
         }
     }
 
-//    public void menuU3(User user) {
-//        // options:
-//        System.out.println("Enter 'I' to View Info, Enter 'T' to Perform a Transaction, or Enter 'A' to Request a New Account");
-//        Scanner menuOption = new Scanner(System.in);
-//        String optionIn = menuOption.next();
-//        ArrayList<Account> accounts = user.getAccountsCreated(); // NEED TO FIGURE OUT HOW TO STORE THE ACCOUNTS FROM BEFORE!!!!
-//        if (optionIn.equals("I")) {
-//            user.viewInfo();
-//        } else if (optionIn.equals("T")) {
-//            System.out.println("Enter '' to Withdraw from Account, Enter 'WM' to Withdraw from ATM, Enter 'DA' to Deposit into Account, Enter 'DM' to Deposit into ATM, Enter 'CA' to Deposit Cheque into ATM, Enter 'TA' to Transfer from Account to Account, Enter 'PB' to Pay Bill, A to create new Account: ");
-//            Scanner transOption = new Scanner(System.in);
-//            String transIn = transOption.next();
-//            System.out.println("Enter the amount: \n");
-//            Scanner amtOption = new Scanner(System.in);
-//            double amt = Double.parseDouble(amtOption.next());
-//            Transactions transactions = new Transactions(new ChequingAccount(user, false));
-//            if (transIn.equals("WA")) {
-//                transactions.withdrawFromAccount(amt);
-//            } else if (transIn.equals("WM")) {
-//                transactions.withdrawFromATM((int) amt);
-//            } else if (transIn.equals("DA")) {
-//                transactions.depositToAccount(amt);
-//            } else if (transIn.equals("DM")) {
-//                transactions.depositIntoATM(atm, (int) amt);
-//            } else if (transIn.equals("CA")) {
-//                transactions.depositChequeToAccount(amt);
-//            } else if (transIn.equals("TA")) { // SENDING TO AN ACC NEEDS TO BE ALTERED, TOO MUCH INFO NEEDED
-//                System.out.println("Enter the Account Number of the Receiving Account: ");
-//                Scanner accN = new Scanner(System.in);
-//                int accNum = Integer.parseInt(accN.next());
-//                System.out.println("Enter the Holder Name of the Receiving Account: ");
-//                Scanner holderN = new Scanner(System.in);
-//                String holder = holderN.next();
-//                System.out.println("Enter the Balance of the Receiving Account: ");
-//                Scanner balanceN = new Scanner(System.in);
-//                double balance = Double.parseDouble(balanceN.next());
-//                System.out.println("Enter the Type of the Receiving Account: ");
-//                Scanner typeS = new Scanner(System.in);
-//                String type = typeS.next();
-//                //Account receiverAccount = new SavingsAccount(accNum, holder, balance); // NEED TO CHANGE HOW TO CHANGE TRANSACTIONS
-//                //transactions.transfer((int) amt, receiverAccount);
-//            } else if (transIn.equals("PB")) {
-//                transactions.payBill(amt);
-//            } else if (optionIn.equals("A")) {
-//                //user.addToAccountsCreated(new ChequingAccount(101, "me", 1000, true)); // NEED TO CHANGE AFTER TESTING
-//            }
-//        }
-//    }
-
-
-
-    public static void updateDate(String date, File f) throws IOException{
+    public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
         fw.write(date);
         fw.close();
     }
 
     public static void main(String[] args) {
-
         System.out.println("current directory: " + System.getProperty("user.dir"));
-
         try {
             File f = new File("phase2/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
-
-        } catch (Exception e) {}
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Model model = new Model();
         model.mainMenu();
     }

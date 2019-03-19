@@ -1,18 +1,47 @@
-docs.google.com/document/d/1IPkFsu81MP7C_wHDb9D-Q-NOW4DQwP51u0CRG77LD3E
+google doc: docs.google.com/document/d/1IPkFsu81MP7C_wHDb9D-Q-NOW4DQwP51u0CRG77LD3E
 
-J Chan::
-- model completion: menuBM2, menuU3, menuBM4
-    - menuBM2 takes usernames instead of listing all users
+project presentation information: https://q.utoronto.ca/courses/68685/pages/project-presentation-information
+
+sign up for presentation time: https://docs.google.com/spreadsheets/d/1pr6tK0r5gNCRzWufaRYZGP0LdsWOzICJKx2vOTMiNf4/edit#gid=0
+
+
+
+jchan::
+- model completion::
+    - menuBM2, menuU3, menuBM4 - finished
+    - menuBM2 takes usernames instead of listing all users - finished
+    - model is finished
     - extra backs and/or exits for each input ?
+
+gozie::
+- gui diagrams ?
+- ask prof for detailed feedback on phase1
+    - operators class, interfaces, bankworker, etc
+
+gozie, jchan::
+- bankworker: less func than BM and has its own accounts
+    - whatever structure needs to be changed in Operator package
+- optimize / shorten model ?
 + You could create a GUI with Java's swing package (JFrames, JPanels, etc.),
 with XML (there are Java XML tutorials online), make a more robust and
 feature-rich command line interface, or other sort of UI.
     - swing: GUI form
-+ Add one more type of employee of the bank who has less access than the
-manager, but can also be a user with their own accounts.
-    - implementation::
-        - no creating new user/accounts capabilities
-        - only viewing capabilities of normal users
-        - has its own bank accounts
+    - OR javaFX ? (newer, more optimized) - but less guides on it and stuff
+    - move model over to gui
+    - add missing viewsingleaccountsummary
 
--
+Angela::
+- FSL ? files
+- finish unit testing
+- testing in general
+
+Angel::
+- different kinds of users
+- optimize refactor transactions ?
+
+Maple, Arjun::
+- see google doc
+
+Maple::
+- finish unit testing
+
