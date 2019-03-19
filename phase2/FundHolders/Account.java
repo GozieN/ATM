@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public abstract class Account implements java.io.Serializable {
+public abstract class Account implements Serializable {
     private static ArrayList<Account> accountsDatabase = new ArrayList<>();
     private static int accountNumTotal = 0;
     private int accountNum = accountNumTotal;
