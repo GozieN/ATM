@@ -58,9 +58,9 @@ public class BankManager extends BankWorker implements Serializable{
             newAccount.setTransactionsInstance();
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
-                    ", the following account:" +
-                    newAccount.accountType + "with account Number: "
-                    + newAccount.getAccountNum() +  "was created upon your request.");
+                    ", the following account: " +
+                    newAccount.accountType + " with account Number: "
+                    + newAccount.getAccountNum() +  " was created upon your request.");
         }}
 
     /**
