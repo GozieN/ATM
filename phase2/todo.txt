@@ -1,16 +1,34 @@
 docs.google.com/document/d/1IPkFsu81MP7C_wHDb9D-Q-NOW4DQwP51u0CRG77LD3E
 
-J Chan::
-- model completion: menuBM2, menuU3, menuBM4
+jchan::
+- model completion::
+    - menuBM2, menuU3, menuBM4 - finished
     - menuBM2 takes usernames instead of listing all users
     - extra backs and/or exits for each input ?
+
+gozie, jchan::
+- bankworker: less func than BM and has its own accounts
+    - whatever structure needs to be changed in Operator package
+- optimize / shorten model ?
 + You could create a GUI with Java's swing package (JFrames, JPanels, etc.),
 with XML (there are Java XML tutorials online), make a more robust and
 feature-rich command line interface, or other sort of UI.
     - swing: GUI form
     - OR javaFX ? (newer, more optimized) - but less guides on it and stuff
+    - move model over to gui
+    - add missing viewsingleaccountsummary
 
 Angela::
 - FSL ? files
--
+- finish unit testing
+- testing in general
+
+Angel::
+- different kinds of users
+
+Maple, Arjun::
+- see google doc
+
+Maple::
+- finish unit testing
 

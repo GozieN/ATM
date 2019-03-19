@@ -60,4 +60,3 @@ public class Operator implements java.io.Serializable{
                 "" + "Account summary:" + account.getAccountType() +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
 }
-
