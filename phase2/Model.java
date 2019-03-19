@@ -26,7 +26,7 @@ public class Model implements java.io.Serializable {
     public Model() {
     }
 
-    // SET THE TRANSACTION ATM TO THIS ATM
+    // set the transaction atm to this atm
     public ATM getAtm() {
         return atm;
     }
@@ -819,24 +819,22 @@ public class Model implements java.io.Serializable {
         }
     }
 
-    public static void updateDate(String date, File f) throws IOException{
+    public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
         fw.write(date);
         fw.close();
     }
 
     public static void main(String[] args) {
-
         System.out.println("current directory: " + System.getProperty("user.dir"));
-
         try {
             File f = new File("phase2/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
-
-        } catch (Exception e) {}
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Model model = new Model();
         model.mainMenu();
     }
