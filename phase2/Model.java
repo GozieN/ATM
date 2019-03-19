@@ -153,7 +153,6 @@ public class Model implements java.io.Serializable {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 user.viewInfo();
-                // options: b. back, e. logoff and exit
                 System.out.println("enter b to go back \n" +
                         "enter e to logoff and exit");
                 Scanner optionScan2 = new Scanner(System.in);
@@ -208,7 +207,7 @@ public class Model implements java.io.Serializable {
         Scanner optionScan = new Scanner(System.in);
         while (optionScan.hasNext()) {
             String optionIn = optionScan.next();
-            if (optionIn.equals('1')) {
+            if (optionIn.equals("1")) {
                 System.out.println("enter 1 to transfer money between this user's accounts \n" +
                         "enter 2 to transfer money from one of this user's accounts to another bank user's account \n" +
                         "enter b to go back");
