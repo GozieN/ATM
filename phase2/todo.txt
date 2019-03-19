@@ -6,6 +6,10 @@ jchan::
     - menuBM2 takes usernames instead of listing all users
     - extra backs and/or exits for each input ?
 
+gozie::
+- ask prof for detailed feedback on phase1
+    - operators class, interfaces, bankworker, etc
+
 gozie, jchan::
 - bankworker: less func than BM and has its own accounts
     - whatever structure needs to be changed in Operator package
