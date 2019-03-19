@@ -211,22 +211,13 @@ public class ATM implements java.io.Serializable {
      */
     // plus bills into ATM method (from deposit methods)
      public void plus(int dollarAmount) {
-         ArrayList<Integer> numberStore = new ArrayList<Integer>();
-         if (dollarAmount <= 10) {
-             numberStore.add(dollarAmount % 10);
-             dollarAmount -= dollarAmount % 10;
-         }
-         if (dollarAmount <= 100) {
-             numberStore.add(dollarAmount % 100);
-             dollarAmount -= dollarAmount % 100;
-         }
-         if (dollarAmount <= 1000) {
-             numberStore.add(dollarAmount % 1000);
-             dollarAmount -= dollarAmount % 1000;
-         }
-         if (dollarAmount <= 10000) {
-             numberStore.add(dollarAmount % 10000);
-             dollarAmount -= dollarAmount % 10000;
+         ArrayList<Integer> numberStore = new ArrayList<>();
+         String amountStringRepresentation = String.valueOf(dollarAmount);
+         int amountNumDigits = amountStringRepresentation.length();
+         int multiplier = 1;
+         for (int i = amountNumDigits-1; i >= 0; i--) {
+            numberStore.add( Character.getNumericValue(amountStringRepresentation.charAt(i)) * multiplier );
+            multiplier = multiplier * 10;
          }
          for (int number : numberStore) {
              if (number % 50 == 0) {
@@ -248,22 +239,13 @@ public class ATM implements java.io.Serializable {
      */
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
-        ArrayList<Integer> numberStore = new ArrayList<Integer>();
-        if (dollarAmount <= 10) {
-            numberStore.add(dollarAmount % 10);
-            dollarAmount -= dollarAmount % 10;
-        }
-        if (dollarAmount <= 100) {
-            numberStore.add(dollarAmount % 100);
-            dollarAmount -= dollarAmount % 100;
-        }
-        if (dollarAmount <= 1000) {
-            numberStore.add(dollarAmount % 1000);
-            dollarAmount -= dollarAmount % 1000;
-        }
-        if (dollarAmount <= 10000) {
-            numberStore.add(dollarAmount % 10000);
-            dollarAmount -= dollarAmount % 10000;
+        ArrayList<Integer> numberStore = new ArrayList<>();
+        String amountStringRepresentation = String.valueOf(dollarAmount);
+        int amountNumDigits = amountStringRepresentation.length();
+        int multiplier = 1;
+        for (int i = amountNumDigits-1; i >= 0; i--) {
+            numberStore.add( Character.getNumericValue(amountStringRepresentation.charAt(i)) * multiplier );
+            multiplier = multiplier * 10;
         }
         for (int number : numberStore) {
             if (number % 50 == 0) {
@@ -282,7 +264,6 @@ public class ATM implements java.io.Serializable {
     /**
      * Alert to show need for restock if number of bills are low
      */
-
     public void restock () {
 
         try {
@@ -310,6 +291,4 @@ public class ATM implements java.io.Serializable {
             ex.printStackTrace();
         }
     }
-
-
 }
