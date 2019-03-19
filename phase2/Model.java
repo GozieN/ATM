@@ -218,8 +218,8 @@ public class Model implements java.io.Serializable {
                     if (optionIn2.equals("1")) {
                         System.out.println("select the specified number prefixing the account that money is being transferred from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
@@ -229,8 +229,8 @@ public class Model implements java.io.Serializable {
                                 selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("select the specified number prefixing the account that money is being transferred to");
                                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                                 }
                                 Scanner selectedNumPrefixToAccScan = new Scanner(System.in);
                                 while (selectedNumPrefixToAccScan.hasNext()) {
@@ -268,8 +268,8 @@ public class Model implements java.io.Serializable {
                     } else if (optionIn2.equals("2")) {
                         System.out.println("select the specified number prefixing the account that money is being transferred from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
@@ -329,8 +329,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are depositing cash into \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -355,8 +355,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are depositing a cheque into \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -381,8 +381,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that the bill is being paid from \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -578,8 +578,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are withdrawing cash from \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -616,8 +616,8 @@ public class Model implements java.io.Serializable {
                     if (optionIn2.equals("1")) {
                         System.out.println("select the specified number prefixing the account that you are transferring money from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
@@ -627,8 +627,8 @@ public class Model implements java.io.Serializable {
                                 selectedNumPrefixFromAcc = Integer.parseInt(selectedNumPrefixFromAccIn);
                                 System.out.println("select the specified number prefixing the account that you are transferring money to");
                                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                                 }
                                 Scanner selectedNumPrefixToAccScan = new Scanner(System.in);
                                 while (selectedNumPrefixToAccScan.hasNext()) {
@@ -666,8 +666,8 @@ public class Model implements java.io.Serializable {
                     } else if (optionIn2.equals("2")) {
                         System.out.println("select the specified number prefixing the account that you are transferring money from");
                         for (int i = 1; i < numUserAccounts + 1; i++) {
-                            System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                                    ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                            System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                                    ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                         }
                         Scanner selectedNumPrefixFromAccScan = new Scanner(System.in);
                         while (selectedNumPrefixFromAccScan.hasNext()) {
@@ -727,8 +727,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are depositing cash into \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -753,8 +753,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are depositing a cheque into \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {
@@ -779,8 +779,8 @@ public class Model implements java.io.Serializable {
                 System.out.println("select the specified number prefixing the account that you are paying your bill from \n" +
                         "or enter b to go back");
                 for (int i = 1; i < numUserAccounts + 1; i++) {
-                    System.out.println(i + ": " + user.getAccountsCreated().get(i).getAccountType() +
-                            ' ' + user.getAccountsCreated().get(i).getAccountNum());
+                    System.out.println(i + ": " + user.getAccountsCreated().get(i-1).getAccountType() +
+                            ' ' + user.getAccountsCreated().get(i-1).getAccountNum());
                 }
                 Scanner selectedNumPrefixAccScan = new Scanner(System.in);
                 while (selectedNumPrefixAccScan.hasNext()) {

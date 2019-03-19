@@ -10,7 +10,8 @@ import java.util.*;
 
 public abstract class Account implements java.io.Serializable {
     private static ArrayList<Account> accountsDatabase = new ArrayList<>();
-    private static int accountNum = 0;
+    private static int accountNumTotal = 0;
+    private int accountNum = accountNumTotal;
     private String holderName;
     private User user;
     private double balance;
@@ -28,7 +29,7 @@ public abstract class Account implements java.io.Serializable {
         history = new ArrayList<Transactions>();
         this.user = accountHolder;
         this.accountType = accountType;
-        this.accountNum++;
+        this.accountNumTotal++;
         this.transactionsInstance = transactionsInstance;
         this.holderName = accountHolder.getUsername();
     }
