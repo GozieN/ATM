@@ -32,36 +32,51 @@ public class BankManager extends BankWorker implements Serializable{
      * @param startingAmount Amount of money the account will start off with
      * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
-    public void createNewAccount(double startingAmount, String accountType, User user){
+    public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
 
-            if (accountType.equals("LineOfCreditAccount")) {
-                newAccount = new Credit(user, true);
+        if (accountType.equals("LineOfCreditAccount")) {
+            newAccount = new Credit(user, true);
 
-            } else if (accountType.equals("Credit")) {
-                newAccount = new Credit(user, false);
+        } else if (accountType.equals("Credit")) {
+            newAccount = new Credit(user, false);
 
-            } else if (accountType.equals("SavingsAccount")) {
-                newAccount = new SavingsAccount(user);
-            } else if (accountType.equals("ChequingAccount")) {
+        } else if (accountType.equals("SavingsAccount")) {
+            newAccount = new SavingsAccount(user);
+        } else if (accountType.equals("ChequingAccount")) {
+            newAccount = new ChequingAccount(user, false);
+        } else {
+            newAccount = new ChequingAccount(user, true);
+        }
 
-                newAccount = new ChequingAccount(user, false);}
-                else{
-                    newAccount = new ChequingAccount(user,true); }
+        //[Angela]
+        User userInFile = null;
+        try {
+            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            userInFile = (User) in.readObject();
+            in.close();
+            file.close();
+            if (userInFile.getUsername().equals(user.getUsername())) {
+                userInFile.addToAccountsCreated(newAccount);
+            }
+        } catch (Exception ex) {ex.printStackTrace();}
 
-            if (newAccount == null){
-                System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
-                        "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
-                        "Savings, Chequing");
-            }else{
+
+        if (newAccount == null) {
+            System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
+                    "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
+                    "Savings, Chequing");
+        } else {
             numExistingAccounts++;
             newAccount.setTransactionsInstance();
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account: " +
                     newAccount.accountType + " with account Number: "
-                    + newAccount.getAccountNum() +  " was created upon your request.");
-        }}
+                    + newAccount.getAccountNum() + " was created upon your request.");
+        }
+    }
 
     /**
      * Create a user
@@ -69,22 +84,60 @@ public class BankManager extends BankWorker implements Serializable{
      * @param password Password used for login into accounts
      */
     public void createUser (String username, String password) {
+
         User newUser = new User(username, password);
+        User existingUser = null;
+        List<User> userInFileList = new ArrayList<User>();
 
         try {
-            String filename = "phase2/Users.txt";
 
-            FileOutputStream file = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(file);
+            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            existingUser = (User) in.readObject();
 
-            out.writeObject(newUser);
+            userInFileList.add(existingUser);
 
-            out.close();
+            in.close();
             file.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+
+        try {
+            FileOutputStream file2 = new FileOutputStream("phase2/Users.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file2);
+
+            out.writeObject(newUser);
+            for (User obj: userInFileList) {
+                if (!(obj.getUsername().equals(newUser.getUsername()))) {
+                    out.writeObject(obj);
+                }
+            }
+
+            out.close();
+            file2.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        User user = null;
+
+        try {
+            FileInputStream file3 = new FileInputStream("phase2/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file3);
+
+            user = (User) in.readObject();
+
+//            System.out.println(user.getUsername());
+
+            in.close();
+            file3.close();
+
+        } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
     //[Angela]
@@ -352,7 +405,32 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void undoMostRecentTransaction(Account account) {
         account.alterHistory();
-        }
-
     }
+
+    public static void main(String[] args) {
+        BankManager bm = new BankManager("", "");
+        bm.createUser("angela", "chung");
+        bm.createUser("chung", "angela");
+        bm.createUser("hey", "you");
+//        User userInFile = new User("hey", "you");
+//        bm.deleteUser(userInFile);
+
+//        User user = null;
+//        try {
+//            FileInputStream file = new FileInputStream("phase2/Users.txt");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//
+//            user = (User) in.readObject();
+//
+//            System.out.println(user.getUsername());
+//
+//            in.close();
+//            file.close();
+
+//            System.out.println(user.getUsername());
+
+//        } catch (Exception ex) {ex.printStackTrace();}
+    }
+
+}
 
