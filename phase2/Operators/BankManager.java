@@ -263,10 +263,10 @@ public class BankManager extends BankWorker implements Serializable{
      * @param num50bills Number of $50 bills in ATM
      */
     public void ATMSetNum50Bills(ATM atm, int num50bills) {
-        atm.setNum5Bills(num50bills);
+        atm.setNum5Bills(atm.getNum50Bills() + num50bills);
         if (num50bills >= 0) {
             System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
-                    "the number of $50 bills in the ATM is now : " + atm.getNum50Bills());
+                    "the number of $50 bills in the ATM is now : " + (atm.getNum50Bills() + num50bills));
         }
         else {
             System.out.println("the number of $50 bills in the ATM is now: " + num50bills);
@@ -288,68 +288,55 @@ public class BankManager extends BankWorker implements Serializable{
      * @param atm Instance of ATM machine
      */
     public void restockFromFile(ATM atm) {
-        File file = new File("phase2/alerts.txt");
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line;
-            line = reader.readLine();
+            File file = new File("phase2/alerts.txt");
+            Scanner scan = new Scanner(file);
+            int state = 0;
 
-            while (line != null) {
-                if (line.equals("Five dollar bills low in stock!")) {
-                    this.ATMSetNum5Bills(atm, 100);
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                switch (state) {
 
-                }
-//
-                if (line.equals("Ten dollar bills low in stock!")) {
-                    this.ATMSetNum10Bills(atm, 100);
-//                    nextLine = scan.nextLine();
+                    case 0:
+                        if (line.equals("Five dollar bills low in stock!")) {
+                            this.ATMSetNum5Bills(atm, 100);
+                            line = scan.nextLine();
+                            state = 1;
+                        }
+
+                    case 1:
+                        if (line.equals("Ten dollar bills low in stock!")) {
+                            this.ATMSetNum10Bills(atm, 100);
+                            line = scan.nextLine();
+                            state = 2;
+                        }
+
+
+                    case 2:
+                        if (line.equals("Twenty dollar bills low in stock!")) {
+                            this.ATMSetNum20Bills(atm, 100);
+                            line = scan.nextLine();
+                            state = 3;
+
+                        }
+
+                    case 3:
+                        if (line.equals("Fifty dollar bills low in stock!")) {
+                            line = scan.toString();
+                            this.ATMSetNum50Bills(atm, 100);
+                        }
                 }
 
-                if (line.equals("Twenty dollar bills low in stock!")) {
-                    this.ATMSetNum20Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-                }
-
-                if (line.equals("Fifty dollar bills low in stock!")) {
-                    this.ATMSetNum50Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-                }
             }
+            scan.close();
 
-            reader.close();
+        } catch (NoSuchElementException e) {
+            System.out.println("Scanning finished");
 
-        } catch (Exception ex) {ex.printStackTrace();}
-
-//        try {
-//            Scanner scan = new Scanner(file);
-//            while (scan.toString() !=  null) {
-//                String nextLine = scan.nextLine();
-//
-//                if (nextLine.equals("Five dollar bills low in stock!")) {
-//                    this.ATMSetNum5Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-//                }
-//
-//                if (nextLine.equals("Ten dollar bills low in stock!")) {
-//                    this.ATMSetNum10Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-//                }
-//
-//                if (nextLine.equals("Twenty dollar bills low in stock!")) {
-//                    this.ATMSetNum20Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-//                }
-//
-//                if (nextLine.equals("Fifty dollar bills low in stock!")) {
-//                    this.ATMSetNum50Bills(atm, 100);
-//                    nextLine = scan.nextLine();
-//                }
-//
-//            }
-//
-//            scan.close();
-//
-//        } catch (Exception ex) {ex.printStackTrace();}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 
