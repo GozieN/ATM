@@ -812,6 +812,7 @@ public class Model implements java.io.Serializable {
                         "enter 2 to transfer money between accounts \n" +
                         "enter 3 to deposit cash into an account \n" +
                         "enter 4 to deposit a cheque into an account \n" +
+                        "enter 5 to pay a bill \n" +
                         "enter b to go back \n" +
                         "enter e to logoff and exit");
             }

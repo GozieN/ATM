@@ -8,7 +8,7 @@ import java.io.PrintStream;
 //ASK about account -- add print statements from here.
 
 
-public class Transactions implements java.io.Serializable{
+public class Transactions implements java.io.Serializable {
     protected Account senderAccount;
     private ATM atm;
     private String lastAction;
@@ -17,23 +17,24 @@ public class Transactions implements java.io.Serializable{
     private Transactions accountReceiver;
 
 
-    public Transactions(Account senderAccount){
+    public Transactions(Account senderAccount) {
         this.senderAccount = senderAccount;
     }
 
 
     /**
      * Deposit amount into account
+     *
      * @param amount Amount of money to deposit
      */
     public boolean depositIntoATM(int amount) {
-        if (!(amount % 5 == 0 || amount > 0)){
-            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
+        if (!(amount % 5 == 0 || amount > 0)) {
+            System.out.println("Sorry, this machine only deposits cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
                     " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
+                    " At the moment, the most" + "we can deposit is" + (amount - amount % 5) + " and not" + (amount) +
                     ".Please enter a new value");
             return false;
-        }else{
+        } else {
             atm.plus(amount);
             depositToAccount(amount);
             return true;
@@ -42,14 +43,16 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Get last action of user
+     *
      * @return A string of the user's last action
      */
-    public String getLastAction(){
+    public String getLastAction() {
         return lastAction;
     }
 
     /**
      * Set the atm
+     *
      * @param atm Instance of ATM machine
      */
     public void setAtm(ATM atm) {
@@ -57,14 +60,15 @@ public class Transactions implements java.io.Serializable{
     }
 
     /**
-     *Withdraw amount from account using ATM
+     * Withdraw amount from account using ATM
+     *
      * @param amount Amount of money to withdraw
      */
     public boolean withdrawFromATM(int amount) {
-        if (!(amount%5 ==0) || amount > 0){
+        if (!(amount % 5 == 0) || amount > 0) {
             System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
                     " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
+                    " At the moment, the most" + "we can give you is" + (amount - amount % 5) + " and not" + (amount) +
                     ".Please enter a new value");
             return false;
         }
@@ -75,28 +79,28 @@ public class Transactions implements java.io.Serializable{
     }
 
     /**
-     *Withdraw amount from account
+     * Withdraw amount from account
+     *
      * @param amount Amount of money to withdraw
      */
     public boolean withdrawFromAccount(double amount) {
-        if (!(senderAccount.getBalance() - amount > 0) && !(senderAccount instanceof ChequingAccount) ){
+        if (!(senderAccount.getBalance() - amount > 0) && !(senderAccount instanceof ChequingAccount)) {
             System.out.println("Sorry, you are unable to withdraw this amount from your " +
                     senderAccount.getAccountType() + "try withdrawing a smaller amount or review your account " +
                     "information!");
             return false;
         }
-        if(senderAccount instanceof Debit){
-            if (senderAccount instanceof ChequingAccount){
-                if ((senderAccount.getBalance() - amount) >= -100){
-                    senderAccount.setBalance(senderAccount.getBalance() - amount);}
-            }
-            else if (senderAccount instanceof SavingsAccount){
+        if (senderAccount instanceof Debit) {
+            if (senderAccount instanceof ChequingAccount) {
+                if ((senderAccount.getBalance() - amount) >= -100) {
+                    senderAccount.setBalance(senderAccount.getBalance() - amount);
+                }
+            } else if (senderAccount instanceof SavingsAccount) {
                 if ((senderAccount.getBalance() - amount) >= 0)
                     senderAccount.setBalance(senderAccount.getBalance() - amount);
             }
-        }
-        else if (senderAccount instanceof Credit) {
-            if(senderAccount.getAccountType() == "LineOfCredit") {
+        } else if (senderAccount instanceof Credit) {
+            if (senderAccount.getAccountType() == "LineOfCredit") {
                 senderAccount.setBalance(senderAccount.getBalance() - amount);
             }
         }
@@ -109,43 +113,47 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Deposit amount into account
+     *
      * @param amount Amount of money to deposit
      */
     public boolean depositToAccount(double amount) {
-        if (!(amount%5 ==0) || amount > 0){
-            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
+        if (!(amount % 5 == 0) || amount > 0) {
+            System.out.println("Sorry, this machine deposits cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
                     " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
+                    " At the moment, the most" + "we can deposit is" + (amount - amount % 5) + " and not" + (amount) +
                     ".Please enter a new value");
             return false;
-        }
-        else{
+        } else {
             senderAccount.setBalance(senderAccount.getBalance() + amount);
             lastAction = "deposit";
             System.out.println("Deposit successful, Account: " + senderAccount.getAccountNum() +
                     " now has an increased balance of: " + senderAccount.getBalance() + "CAD$");
             return true;
-        }}
+        }
+    }
 
     /**
      * Deposit amount into account from cheque
+     *
      * @param amount Amount of money to deposit
      */
     public boolean depositChequeToAccount(double amount) {
-        if (!(amount%5 ==0) || amount > 0){
-            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
+        if (!(amount % 5 == 0) || amount > 0) {
+            System.out.println("Sorry, this machine only deposits in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
                     " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
+                    " At the moment, the most" + "we can deposit is" + (amount - amount % 5) + " and not" + (amount) +
                     ".Please enter a new value");
             return false;
-        }else{
+        } else {
             lastAction = "deposit";
             depositToAccount(amount);
             return true;
-        }}
+        }
+    }
 
     /**
      * Set the previous transaction
+     *
      * @param lastAction the previous transaction performed
      */
     public void setLastAction(String lastAction) {
@@ -154,6 +162,7 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Set the previous transaction
+     *
      * @param lastAmount previous transaction performed
      */
     public void setLastAmount(int lastAmount) {
@@ -162,6 +171,7 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Get the last amount in the previous transaction
+     *
      * @return lastAmount from the previous transaction performed
      */
     public int getLastAmount() {
@@ -170,29 +180,24 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Transfer funds from sender to receiver
-     * @param amount Amount of money to be transferred
+     *
+     * @param amount          Amount of money to be transferred
      * @param receiverAccount Account which money will be transferred to
      */
     public boolean transfer(int amount, Account receiverAccount) {
-        if (!(amount%5 ==0) || amount > 0){
-            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
-                    " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
-                    ".Please enter a new value");
-            return false;
-        }else{
-            withdrawFromAccount(amount);
-            accountReceiver = new Transactions(receiverAccount);
-            accountReceiver.depositToAccount(amount);
-            lastAction = "transfer";
-            lastreciever = receiverAccount;
-            System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
-                    senderAccount.getBalance());
-            return true;
-        }}
+        withdrawFromAccount(amount);
+        accountReceiver = new Transactions(receiverAccount);
+        accountReceiver.depositToAccount(amount);
+        lastAction = "transfer";
+        lastreciever = receiverAccount;
+        System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
+                senderAccount.getBalance());
+        return true;
+    }
 
     /**
-     *Change balance for last receiver
+     * Change balance for last receiver
+     *
      * @return Alter the balance of the account of the last receiver
      */
     public void receiverBalanceAlterIncrease(double amount) {
@@ -201,29 +206,23 @@ public class Transactions implements java.io.Serializable{
 
     /**
      * Pay the bill
+     *
      * @param amount Amount of money to withdraw from account to pay bill
      */
     public boolean payBill(double amount) {
-        if (!(amount%5 ==0) || amount > 0){
-            System.out.println("Sorry, this machine only gives cash in 5$, 10$, 20$ and 50$ bills. We also do not accept" +
-                    " negative inputs." +
-                    " At the moment, the most" + "we can give you is" + (amount - amount%5) + " and not" + (amount) +
-                    ".Please enter a new value");
-            return false;
-        }else{
-            withdrawFromAccount(amount);
-            lastAction = "bill";
-            try {
-                PrintStream originalOut = System.out;
-                PrintStream fileOut = new PrintStream("phase2/outgoing.txt");
-                System.setOut(fileOut);
+        withdrawFromAccount(amount);
+        lastAction = "bill";
+        try {
+            PrintStream originalOut = System.out;
+            PrintStream fileOut = new PrintStream("phase2/outgoing.txt");
+            System.setOut(fileOut);
 
-                originalOut.println(senderAccount.getHolderName() + "paid a bill of " + Double.toString(amount));
+            originalOut.println(senderAccount.getHolderName() + "paid a bill of " + Double.toString(amount));
 
-                System.setOut(originalOut);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } return true;
+            System.setOut(originalOut);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
         }
+        return true;
     }
 }
