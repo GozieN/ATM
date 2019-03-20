@@ -29,6 +29,7 @@ feature-rich command line interface, or other sort of UI.
     - OR javaFX ? (newer, more optimized) - but less guides on it and stuff
     - move model over to gui
     - add missing viewsingleaccountsummary
+    - add missing undolasttransaction
 
 Angela::
 - FSL ? files
@@ -44,4 +45,7 @@ Maple, Arjun::
 
 Maple::
 - finish unit testing
+
+people::
+- all those extra funcs given by phase 2 spec
 
