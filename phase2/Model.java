@@ -514,7 +514,6 @@ public class Model implements java.io.Serializable {
             String optionIn = optionScan.next();
             if (optionIn.equals("1")) {
                 user.viewInfo();
-                // options: b. back, e. logoff and exit
                 System.out.println("enter b to go back \n" +
                         "enter e to logoff and exit");
                 Scanner optionScan2 = new Scanner(System.in);
