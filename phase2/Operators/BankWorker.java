@@ -1,9 +1,11 @@
 package phase2.Operators;
 
 import phase2.FundHolders.Account;
-import java.util.*;
 
-public class BankWorker extends Operator implements java.io.Serializable{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class BankWorker extends Operator implements Serializable {
 
     private ArrayList<BankWorker> bankWorkerDatabase = new ArrayList<>();
     private int numBankWorkers = 0;
@@ -13,6 +15,7 @@ public class BankWorker extends Operator implements java.io.Serializable{
 
     public BankWorker(String username, String password){
         super(username, password);
+
     }
     /**
      * Print a summary of a single account.

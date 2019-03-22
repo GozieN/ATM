@@ -1,9 +1,8 @@
 package phase2.FundHolders;
-
-import phase2.FundTransfers.*;
+import com.sun.istack.internal.Nullable;
 import phase2.Operators.*;
-
-
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.*;
 
@@ -13,11 +12,11 @@ public abstract class Account implements Serializable {
     private static int accountNumTotal = 0;
     private int accountNum = accountNumTotal;
     private String holderName;
-    private User user;
     private double balance;
     public String accountType;
-    private Transactions transactionsInstance;
-    private ArrayList<Transactions> history;
+    public ATM atm;
+    private Object[] transactionInfoTempHolder;
+    private Stack<Object[]> history;
 
     /**
      * Account class constructor
@@ -26,12 +25,11 @@ public abstract class Account implements Serializable {
      */
     public Account(User accountHolder, String accountType) {
         accountsDatabase.add(this);
-        history = new ArrayList<Transactions>();
-        this.user = accountHolder;
+        history = new Stack<>();
         this.accountType = accountType;
         this.accountNumTotal++;
-        this.transactionsInstance = transactionsInstance;
         this.holderName = accountHolder.getUsername();
+        this.transactionInfoTempHolder = new Object[2];
     }
 
     /**
@@ -42,31 +40,6 @@ public abstract class Account implements Serializable {
         return holderName;
     }
 
-    /**
-     * Set the transaction instance of the account. Should only be used by the bank manager upon account
-     * creation by user request.
-     */
-    public void setTransactionsInstance() {
-        this.transactionsInstance = new Transactions(this);
-    }
-
-    /**
-     * Get the transaction instance of the account. Should only be used by the bank manager upon account
-     * creation by user request.
-     */
-    public Transactions getTransactionsInstance() {
-        return this.transactionsInstance;
-    }
-
-    /**
-     * Set the transaction instance of the account. This method should only every be called by the BM when it
-     * creates a requested account
-     */
-    public void Transactions () {
-        this.transactionsInstance = new Transactions(this);
-    }
-
-
 
     /**
      * Get number of account
@@ -76,6 +49,12 @@ public abstract class Account implements Serializable {
         return accountNum;
     }
 
+    public void setATM(ATM a){
+        this.atm = a;
+    }
+
+
+
     /**
      * Get type of account
      * @return String of account type
@@ -83,42 +62,27 @@ public abstract class Account implements Serializable {
     public String getAccountType() { return accountType; }
 
     /**
-     * Get the history of the account's transactions
-     * @return The list of transaction history
-     */
-    public ArrayList<Transactions> getHistory(){
-        return history;
-    }
-
-    /**
      * Change actions performed in account history
      */
-    public void alterHistory(){
-        int lastElementIndex = history.size() - 1;
-        if (history.get(lastElementIndex).getLastAction().equals("bill")){
-            System.out.println("Sorry, your last action could not be reversed as you payed a bill");
+    public void undoTransaction(){
+        Object[] transferInfo = history.pop();
+        if (transferInfo[0].equals("bill")){
+            history.push(transferInfo);
+            System.out.println("Sorry, your last action could not be reversed because you payed a bill last or" +
+                    "have never performed a transaction on the class");
     }else{
-            if (history.get(lastElementIndex).getLastAction().equals("transfer")) {
-                history.get(lastElementIndex).depositToAccount(history.get(lastElementIndex).getLastAmount());
-                history.get(lastElementIndex).receiverBalanceAlterIncrease(history.get(lastElementIndex).getLastAmount());
-            } else if (history.get(lastElementIndex).getLastAction().equals("withdraw")) {
-                history.get(lastElementIndex).depositToAccount(history.get(lastElementIndex).getLastAmount());
-            }else if (history.get(lastElementIndex).getLastAction().equals("deposit")){
-                history.get(lastElementIndex).withdrawFromAccount(history.get(lastElementIndex).getLastAmount());
+            if (transferInfo[0].equals("transfer")) {
+                ((Account) transferInfo[2]).transfer((double) transferInfo[1], this);
+            } else if (transferInfo[0].equals("withdraw")) {
+                ((Account) transferInfo[2]).depositToAccount((double) transferInfo[1]);
+            }else if (transferInfo[0].equals("deposit") || transferInfo[0].equals("cheque deposit")){
+                ((Account) transferInfo[2]).withdrawFromAccount((double) transferInfo[1]);
             }
-            history.remove(lastElementIndex);
-            System.out.println(getHolderName() + ", The last action that you performed a" + history.get(lastElementIndex).getLastAction()
-                    + " has been reversed upon your request.");
+            System.out.println(getHolderName() + ", The last action that you performed a" + transferInfo[0] + "" +
+                    " of amount " + transferInfo[1] + " has been reversed upon your request.");
         }
     }
 
-    /**
-     * Add new transactions to history
-     * @param transactionInfo Variables that make up the Transactions class
-     */
-    public void updateHistory(Transactions transactionInfo){
-        history.add(transactionInfo);
-    }
 
     /**
      * Set balance of account
@@ -135,4 +99,169 @@ public abstract class Account implements Serializable {
     public double getBalance(){
         return this.balance;
     }
-}
+
+    /**
+     * Deposit amount into account
+     * @param amount Amount of money to deposit
+     */
+    public boolean depositIntoATM(int amount) {
+        if (!validAmountInput(amount)){
+            return false;
+        }else{
+            atm.plus(amount);
+            this.depositToAccount(amount);
+            return true;
+        }
+    }
+
+    /**
+     *Withdraw amount from account using ATM
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromATM(int amount) {
+        if (!validAmountInput(amount)){
+            return false;
+        }else{
+        atm.minus(amount);
+        withdrawFromAccount(amount);
+        return true;
+    }}
+
+    /**
+     *Withdraw amount from account
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromAccount(double amount) {
+        if (!(balance - amount > 0) && !(this instanceof ChequingAccount) ){
+            System.out.println("Sorry, you are unable to withdraw this amount from your " +
+                    accountType + "try withdrawing a smaller amount or review your account " +
+                    "information!");
+            return false;
+        }
+        if(this instanceof Debit){
+            if (this instanceof ChequingAccount){
+                if ((balance - amount) >= -100){
+                    balance -= amount;}
+            }
+            else if (this instanceof SavingsAccount){
+                if ((balance - amount) >= 0){
+                    balance -= amount;
+                }
+            }}
+            else if (this instanceof Credit) {
+                if(this.getAccountType() == "LineOfCredit") {
+                    if ((balance - amount) >= 0){
+                        balance -= amount;
+                    }
+                }
+            }
+            this.updateHistory("withdraw", amount, null);
+            System.out.println("Withdrawal successful, Account: " + this.accountNum +
+                    " now has a decreased balance of: " + balance + "$CAD");
+            return true;}
+
+
+    /**
+     * Set the transaction holder
+     */
+    public void updateHistory(String action, double amount, @Nullable Account receiver){
+        transactionInfoTempHolder[0] = action;
+        transactionInfoTempHolder[1] = amount;
+        transactionInfoTempHolder[2] = receiver;
+        history.add(transactionInfoTempHolder);
+        clearTransactionTempHolder();
+    }
+
+    /**
+     * Clear the transaction holder
+     */
+     public void clearTransactionTempHolder(){
+         for( int i = 0; i <3; i++){
+             transactionInfoTempHolder[i] = null;
+         }
+         transactionInfoTempHolder = null;
+     }
+
+    /**
+     * Deposit amount into account
+         * @param amount Amount of money to deposit
+         */
+        public boolean depositToAccount(double amount) {
+                this.balance =+amount;
+                System.out.println("Deposit successful, Account: " + this.accountNum +
+                        " now has an increased balance of: " + balance + "CAD$");
+                this.updateHistory("deposit", amount, null);
+                return true;
+            }
+
+        /**
+         * Deposit amount into account from cheque
+         * @param amount Amount of money to deposit
+         */
+        public boolean depositChequeToAccount(double amount, Account senderAccount) {
+                depositToAccount(amount);
+                this.updateHistory("cheque", amount, null);
+                return true;
+            }
+
+
+        /**
+         * Transfer funds from sender to receiver
+         * @param amount Amount of money to be transferred
+         * @param receiverAccount Account which money will be transferred to
+         */
+        public boolean transfer(double amount, Account receiverAccount) {
+                withdrawFromAccount(amount);
+                receiverAccount.depositToAccount(amount);
+                receiverAccount.updateHistory("transfer", amount, this);
+                System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
+                        receiverAccount.getBalance() + "$CAD");
+                return true;
+            }
+
+        /**
+         * View the last action performed in this account/
+         */
+        public void viewLastAction() {
+            Object[] lastActionInfo = history.pop();
+            history.push(lastActionInfo);
+            if (lastActionInfo[2] == null){
+            System.out.println("Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+                    "an amount of: " + lastActionInfo[1]);}
+            else{
+                System.out.println("Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+                        "an amount of: " + lastActionInfo[1] + "\n " +
+                        "To account number: " + (((Account) lastActionInfo[2]).getAccountNum()));}
+            }
+
+
+    /**
+         * Pay the bill
+         * @param amount Amount of money to withdraw from account to pay bill
+         */
+        public boolean payBill(double amount) {
+
+                withdrawFromAccount(amount);
+                try {
+                    PrintStream originalOut = System.out;
+                    PrintStream fileOut = new PrintStream("phase2/outgoing.txt");
+                    System.setOut(fileOut);
+
+                    originalOut.println(holderName + "paid a bill of " + Double.toString(amount));
+
+                    System.setOut(originalOut);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                this.updateHistory("bill", amount, null);
+                return true;}
+
+            /**
+             * check if amount is usable by atm
+             * @param amount - the amount of funds being checked
+             */
+            public boolean validAmountInput(double amount){
+                return amount%5 ==0 || amount < 0;
+
+            }
+        }
