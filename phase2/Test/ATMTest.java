@@ -16,7 +16,6 @@ import static org.junit.Assert.assertTrue;
 
 
 public class ATMTest {
-
     private ATM atm;
     private BankManager bm = new BankManager("new", "bm");
 
