@@ -37,17 +37,17 @@ public class RequestNewUserCreationController extends Menu implements java.io.Se
 			file.close();
 			if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
 					!(this.newUsernameIn.getText().equals(""))) {
-				this.newUsernameInStatus.setText("valid username");
+				this.newUsernameInStatus.setText("valid new username");
 			} else {
 				this.newUsernameInStatus.setText("this username is not available. try again");
 			}
 			if (!(this.newPasswordIn.getText()).equals("")) {
-				this.newPasswordInStatus.setText("valid password");
+				this.newPasswordInStatus.setText("valid new password");
 			} else {
 				this.newPasswordInStatus.setText("this field cannot be left blank. try again");
 			}
-			if (this.newUsernameInStatus.getText().equals("valid username") &&
-					this.newPasswordInStatus.getText().equals("valid password")) {
+			if (this.newUsernameInStatus.getText().equals("valid new username") &&
+					this.newPasswordInStatus.getText().equals("valid new password")) {
 				GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
 				this.endStatus.setText("your user creation request is being processed \n" +
 						"click exit to return to the main menu");
