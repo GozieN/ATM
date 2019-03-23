@@ -1,4 +1,4 @@
-package phase2;
+package phase2.UserInterface;
 
 import phase2.FundHolders.ATM;
 import phase2.FundHolders.Account;
@@ -102,7 +102,7 @@ public class Model implements java.io.Serializable {
                     // [Angela]
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -390,7 +390,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the bill is being paid");
                             Scanner billAmountScan = new Scanner(System.in);
                             int billAmountIn = billAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(billAmountIn)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).payBill(billAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -433,7 +433,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -465,7 +465,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User) in.readObject();
                         in.close();
@@ -761,7 +761,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the cheque that you would like to deposit");
                             Scanner depositAmountScan = new Scanner(System.in);
                             double depositAmountIn = depositAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(depositAmountIn, )) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(depositAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -787,7 +787,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the bill that you are paying");
                             Scanner billAmountScan = new Scanner(System.in);
                             int billAmountIn = billAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(billAmountIn,)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).payBill(billAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -823,7 +823,7 @@ public class Model implements java.io.Serializable {
     public static void main(String[] args) {
         System.out.println("current directory: " + System.getProperty("user.dir"));
         try {
-            File f = new File("phase2/date.txt");
+            File f = new File("phase2/txtfiles/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);

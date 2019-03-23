@@ -198,7 +198,7 @@ public abstract class Account implements Serializable {
          * Deposit amount into account from cheque
          * @param amount Amount of money to deposit
          */
-        public boolean depositChequeToAccount(double amount, Account senderAccount) {
+        public boolean depositChequeToAccount(double amount) {
                 depositToAccount(amount);
                 this.updateHistory("cheque", amount, null);
                 return true;

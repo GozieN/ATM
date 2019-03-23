@@ -4,7 +4,6 @@ import phase2.FundHolders.*;
 
 import java.io.*;
 import java.util.*;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 
 public class BankManager extends BankWorker implements Serializable{
@@ -52,7 +51,7 @@ public class BankManager extends BankWorker implements Serializable{
         //[Angela]
         User userInFile = null;
         try {
-            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
             userInFile = (User) in.readObject();
             in.close();
@@ -90,7 +89,7 @@ public class BankManager extends BankWorker implements Serializable{
 
         try {
 
-            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
             existingUser = (User) in.readObject();
 
@@ -105,7 +104,7 @@ public class BankManager extends BankWorker implements Serializable{
 
 
         try {
-            FileOutputStream file2 = new FileOutputStream("phase2/Users.txt");
+            FileOutputStream file2 = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file2);
 
             out.writeObject(newUser);
@@ -125,7 +124,7 @@ public class BankManager extends BankWorker implements Serializable{
         User user = null;
 
         try {
-            FileInputStream file3 = new FileInputStream("phase2/Users.txt");
+            FileInputStream file3 = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file3);
 
             user = (User) in.readObject();
@@ -150,7 +149,7 @@ public class BankManager extends BankWorker implements Serializable{
         User newUser = new User("", "");
 
         try {
-            String filename = "phase2/Users.txt";
+            String filename = "phase2/txtfiles/Users.txt";
 
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -168,7 +167,7 @@ public class BankManager extends BankWorker implements Serializable{
         User userToRemove = null;
 
         try {
-            FileInputStream file = new FileInputStream("phase2/Users.txt");
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
 
             userToRemove = (User) in.readObject();
@@ -342,7 +341,7 @@ public class BankManager extends BankWorker implements Serializable{
     public void restockFromFile(ATM atm) {
 
         try {
-            File file = new File("phase2/alerts.txt");
+            File file = new File("phase2/txtfiles/alerts.txt");
             Scanner scan = new Scanner(file);
             int state = 0;
 
