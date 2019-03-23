@@ -5,8 +5,8 @@ import phase2.FundHolders.Account;
 import phase2.Operators.BankManager;
 import phase2.Operators.User;
 
-import java.io.File;
 import java.io.*;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -14,12 +14,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Model implements java.io.Serializable {
+public class ScannerUI implements java.io.Serializable {
     private BankManager BM = new BankManager("BMuser", "BMpass");
     private ATM atm = new ATM();
 
-    // model constructor
-    public Model() {
+    // scannerUI constructor
+    public ScannerUI() {
     }
 
     // set the transaction atm to this atm
@@ -467,7 +467,7 @@ public class Model implements java.io.Serializable {
                         User user = null;
                         FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        user = (User) in.readObject();
+                        user = (User)in.readObject();
                         in.close();
                         file.close();
                         if (!(user.getUsername().equals(newUsernameIn))) {
@@ -830,7 +830,7 @@ public class Model implements java.io.Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Model model = new Model();
-        model.mainMenu();
+        ScannerUI scannerUI = new ScannerUI();
+        scannerUI.mainMenu();
     }
 }

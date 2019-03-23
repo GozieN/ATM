@@ -1,6 +1,8 @@
 package phase2.FundHolders;
+
 import phase2.Operators.*;
-public class ChequingAccount extends Debit implements java.io.Serializable{
+
+public class ChequingAccount extends Debit implements java.io.Serializable {
     private boolean isPrimary;
     private User user;
 
@@ -13,6 +15,4 @@ public class ChequingAccount extends Debit implements java.io.Serializable{
         super(accountHolder, "ChequingAccount");
         this.isPrimary = isPrimary;
     }
-
 }
-
