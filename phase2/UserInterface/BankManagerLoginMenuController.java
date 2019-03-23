@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.*;
 
-public class ConsultantLoginController extends Menu implements java.io.Serializable {
+public class BankManagerLoginMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private TextField usernameIn;
 	@FXML
@@ -24,11 +24,16 @@ public class ConsultantLoginController extends Menu implements java.io.Serializa
 	private Label loginFailed;
 
 	public void login(ActionEvent event) throws Exception {
-		// TODO: where to get consultant credentials ?
+		if (this.usernameIn.getText().equals(GUI.getBM().getUsername()) &&
+				this.passwordIn.getText().equals(GUI.getBM().getPassword())) {
+			// TODO: next BM scene
+		} else {
+			this.loginFailed.setText("invalid credentials. try again");
+		}
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "LoginOptionsScene.fxml";
+		String previousMenu = "LoginOptionsMenuScene.fxml";
 		super.back(event, previousMenu);
 	}
 

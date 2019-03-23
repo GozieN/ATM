@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.*;
 
-public class RequestNewUserCreationController extends Menu implements java.io.Serializable {
+public class RequestNewUserAccountCreationMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private TextField newUsernameIn;
 	@FXML
@@ -25,9 +25,13 @@ public class RequestNewUserCreationController extends Menu implements java.io.Se
 	@FXML
 	private Label newPasswordInStatus;
 	@FXML
+	private PasswordField newPasswordConfirmIn;
+	@FXML
+	private Label newPasswordConfirmStatus;
+	@FXML
 	private Label endStatus;
 
-	public void requestNewUserCreation(ActionEvent event) throws Exception {
+	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
 		try {
 			User user = null;
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
@@ -46,10 +50,17 @@ public class RequestNewUserCreationController extends Menu implements java.io.Se
 			} else {
 				this.newPasswordInStatus.setText("this field cannot be left blank. try again");
 			}
+			if (!(this.newPasswordConfirmIn.getText().equals("")) &&
+					this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
+				this.newPasswordConfirmStatus.setText("confirmed new password");
+			} else {
+				this.newPasswordConfirmStatus.setText("new password not confirmed. try again");
+			}
 			if (this.newUsernameInStatus.getText().equals("valid new username") &&
-					this.newPasswordInStatus.getText().equals("valid new password")) {
+					this.newPasswordInStatus.getText().equals("valid new password") &&
+					this.newPasswordConfirmStatus.getText().equals("confirmed new password")) {
 				GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
-				this.endStatus.setText("your user creation request is being processed \n" +
+				this.endStatus.setText("your user account creation request is being processed \n" +
 						"click exit to return to the main menu");
 			}
 		} catch (Exception e) {

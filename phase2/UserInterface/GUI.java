@@ -21,10 +21,12 @@ public class GUI extends Application implements java.io.Serializable {
     @Override
     public void start(Stage mainStage) throws Exception {
         mainStage.setTitle("ATM");
-        Parent parent = FXMLLoader.load(getClass().getResource("MainMenuScene.fxml"));
-        Scene mainMenuScene = new Scene(parent, 800, 600);
-        mainStage.setScene(mainMenuScene);
-        mainStage.show();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("MainMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene mainMenuScene = new Scene(parent);
+		mainStage.setScene(mainMenuScene);
+		mainStage.show();
     }
 
     public static BankManager getBM() {
