@@ -1,7 +1,9 @@
 package phase2.FundHolders;
 
 import phase2.Operators.*;
-public class Credit extends Account implements java.io.Serializable{
+import java.io.Serializable;
+
+public class Credit extends Account implements Serializable {
     private User user;
     boolean isLOC;
 

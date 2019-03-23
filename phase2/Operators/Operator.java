@@ -59,4 +59,5 @@ public class Operator implements java.io.Serializable{
         System.out.println("Account holder: " + account.getHolderName() +
                 "" + "Account summary:" + account.getAccountType() +"Account Number: "
                 + account.getAccountNum() + " contains: " + account.getBalance() + "currency");}
+
 }
