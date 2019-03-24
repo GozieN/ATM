@@ -273,7 +273,6 @@ public abstract class Account implements Serializable {
                 return amount%5 ==0 || amount < 0;
 
             }
-        }
 
 
         public boolean addToBill(double amount) {
@@ -298,3 +297,5 @@ public abstract class Account implements Serializable {
 //            this.updateHistory("");
             System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
             return true; }
+
+}
