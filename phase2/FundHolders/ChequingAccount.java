@@ -1,18 +1,24 @@
-package phase2.FundHolders;
+package FundHolders;
 
-import phase2.Operators.*;
+import phase2.Operators.User;
 
-public class ChequingAccount extends Debit implements java.io.Serializable {
-    private boolean isPrimary;
+import java.util.Stack;
+
+public class ChequingAccount implements java.io.Serializable {
+    private double balance;
     private User user;
+    private Stack history;
+    private int accNum;
+    private String holderName;
 
     /**
      * ChequingAccount class constructor
-     * @param accountHolder Name of holder of the account
-     * @param isPrimary If multiple chequing accounts exists, checks if it is the primary/default account
+     *
      */
-    public ChequingAccount(User accountHolder, boolean isPrimary){
-        super(accountHolder, "ChequingAccount");
-        this.isPrimary = isPrimary;
+    public ChequingAccount(int accNum, String holder, double balance) {
+        this.balance=balance;
+        history = new Stack<>();
+        this.accNum=accNum;
+        this.holderName = holder;
     }
 }

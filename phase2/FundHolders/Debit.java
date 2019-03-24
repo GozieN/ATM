@@ -1,4 +1,4 @@
-package phase2.FundHolders;
+package FundHolders;
 
 import phase2.Operators.*;
 

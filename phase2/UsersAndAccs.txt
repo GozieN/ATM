@@ -1,6 +1,6 @@
 Account and User List:
 Accounts:
-	AccountType AccNum HolderName Balance
+    AccountType AccNum HolderName Balance
 End Accounts
 Users:
 	username password

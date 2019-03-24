@@ -1,6 +1,5 @@
 package phase2.FundHolders;
 import com.sun.istack.internal.Nullable;
-import phase2.Operators.*;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.Serializable;
@@ -8,14 +7,11 @@ import java.util.*;
 
 
 public abstract class Account implements Serializable {
-    private static ArrayList<Account> accountsDatabase = new ArrayList<>();
-    private static int accountNumTotal = 0;
-    private int accountNum = accountNumTotal;
     private String holderName;
     private double balance;
-    public String accountType;
-    public ATM atm;
-    private Object[] transactionInfoTempHolder;
+    private int accNum;
+    //public ATM atm;
+    //private Object[] transactionInfoTempHolder;
     private Stack<Object[]> history;
 
     /**
@@ -23,13 +19,11 @@ public abstract class Account implements Serializable {
      * @param accountHolder holder of the account
      * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
-    public Account(User accountHolder, String accountType) {
-        accountsDatabase.add(this);
+    public Account(int accNum, String holder, double balance) {
+        this.balance=balance;
         history = new Stack<>();
-        this.accountType = accountType;
-        this.accountNumTotal++;
-        this.holderName = accountHolder.getUsername();
-        this.transactionInfoTempHolder = new Object[2];
+        this.accNum=accNum;
+        this.holderName = holder;
     }
 
     /**
@@ -46,12 +40,12 @@ public abstract class Account implements Serializable {
      * @return Int for account's number
      */
     public int getAccountNum(){
-        return accountNum;
+        return accNum;
     }
 
-    public void setATM(ATM a){
-        this.atm = a;
-    }
+    //public void setATM(ATM a){
+    //    this.atm = a;
+    //}
 
 
 
@@ -59,7 +53,7 @@ public abstract class Account implements Serializable {
      * Get type of account
      * @return String of account type
      */
-    public String getAccountType() { return accountType; }
+    //public String getAccountType() { return accountType; }
 
     /**
      * Change actions performed in account history
@@ -127,10 +121,7 @@ public abstract class Account implements Serializable {
         return true;
     }}
 
-    /**
-     *Withdraw amount from account
-     * @param amount Amount of money to withdraw
-     */
+    /*
     public boolean withdrawFromAccount(double amount) {
         if (!(balance - amount > 0) && !(this instanceof ChequingAccount) ){
             System.out.println("Sorry, you are unable to withdraw this amount from your " +
@@ -159,7 +150,7 @@ public abstract class Account implements Serializable {
             System.out.println("Withdrawal successful, Account: " + this.accountNum +
                     " now has a decreased balance of: " + balance + "$CAD");
             return true;}
-
+    */
 
     /**
      * Set the transaction holder
