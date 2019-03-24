@@ -4,7 +4,7 @@ import phase2.Operators.User;
 
 import java.util.Stack;
 
-public class ChequingAccount extends Account implements java.io.Serializable {
+public class ChequingAccount extends Debit implements java.io.Serializable {
     private double balance;
     private User user;
     private Stack history;
@@ -15,8 +15,11 @@ public class ChequingAccount extends Account implements java.io.Serializable {
      * ChequingAccount class constructor
      *
      */
-    public ChequingAccount(User accountHolder, String accountType) {
+    public ChequingAccount(User accountHolder, boolean isPrimary) {
         super(accountHolder, accountType);
         history = new Stack<>();
     }
+
+    @Override
+
 }

@@ -1,7 +1,7 @@
 package phase2.UserInterface;
 
 import javafx.scene.control.ComboBox;
-import phase2.FundHolders.*;
+import phase2.FundStores.*;
 import phase2.Operators.*;
 
 import java.io.*;

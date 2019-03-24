@@ -1,7 +1,7 @@
 package phase2.UserInterface;
 
-import phase2.FundHolders.ATM;
-import phase2.FundHolders.Account;
+import phase2.FundStores.ATM;
+import phase2.FundStores.Account;
 import phase2.Operators.BankManager;
 import phase2.Operators.User;
 

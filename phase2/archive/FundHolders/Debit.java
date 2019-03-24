@@ -15,11 +15,4 @@ public abstract class Debit extends Account implements java.io.Serializable {
         super(accountHolder, accountType);
     }
 
-    /**
-     * Deposit amount into account
-     * @param amount Amount of money to be deposited
-     */
-   public void deposit(double amount){
-        setBalance(getBalance() + amount);
-   }
 }

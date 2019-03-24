@@ -1,19 +1,16 @@
-package UserInterface;
+package phase2.UserInterface;
 
 import phase2.Operators.User;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.paint.Color;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import phase2.FundHolders.Account;
-import FundHolders.ChequingAccount;
-import FundHolders.Debit;
-import FundHolders.Credit;
+import phase2.FundStores.*;
+import phase2.FundStores.Debt.*;
+import phase2.FundStores.Asset.*;
+
+
 
 
 public class SaveFileParser {

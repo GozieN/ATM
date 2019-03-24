@@ -1,6 +1,6 @@
 package phase2.Operators;
 
-import phase2.FundHolders.Account;
+import phase2.FundStores.Account;
 
 import java.util.ArrayList;
 

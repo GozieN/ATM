@@ -1,6 +1,10 @@
 package phase2.Operators;
 
-import phase2.FundHolders.*;
+import phase2.FundStores.*;
+import phase2.FundStores.Account;
+import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.SavingsAccount;
+import phase2.FundStores.Debt.Credit;
 
 import java.io.*;
 import java.util.*;
@@ -15,7 +19,7 @@ public class BankManager extends BankWorker implements Observer, Serializable{
     private int numMessages;
     private ArrayList<User> users = new ArrayList<>();
     private String accessKey = "900";
-    private Queue<Integer> inbox = new ArrayDeque<Integer>();
+    private Queue<String> inbox = new ArrayDeque<String>();
 
     public BankManager(String username, String password) {
         super(username, password);
@@ -45,7 +49,11 @@ public class BankManager extends BankWorker implements Observer, Serializable{
         } else if (accountType.equals("SavingsAccount")) {
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("ChequingAccount")) {
-            newAccount = new ChequingAccount(user, "Chequing");
+            user.setNumChequingAccounts();
+            if (user.getNumChequingAccounts() == 1){
+                newAccount = new ChequingAccount(user, "Chequing", true);
+            }
+            else {newAccount = new ChequingAccount(user, "Chequing", false);}
         }
 
         //[Angela]

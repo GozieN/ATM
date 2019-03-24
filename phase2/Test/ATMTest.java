@@ -1,10 +1,8 @@
 package phase2.Test;
-import phase2.FundHolders.*;
+import phase2.FundStores.*;
 import phase2.Operators.*;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Random;
 
 
 import org.junit.Before;

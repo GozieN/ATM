@@ -1,6 +1,8 @@
 package phase2.Operators;
 
-import phase2.FundHolders.*;
+import phase2.FundStores.*;
+import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.SavingsAccount;
 
 import java.util.*;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.Iterator;
 public class User extends Operator implements Serializable, Iterable<Account>{
     private static ArrayList<User> userDatabase;
     private static int numUsers = 0;
+    private int numChequingAccounts = 0;
     private String username;
     private String password;
     private String userType;
@@ -47,6 +50,24 @@ public class User extends Operator implements Serializable, Iterable<Account>{
                     "unable to change password";
             return s;
         }
+    }
+
+    /**
+     * Return the number of Chequing accounts the user has to determine what we should
+     * designate to be a primary account!
+     * @return the number of chequing accounts the user has
+     */
+    public int getNumChequingAccounts(){
+        return numChequingAccounts;
+    }
+
+    /**
+     * Return the number of Chequing accounts the user has to determine what we should
+     * designate to be a primary account!
+     * @return the number of chequing accounts the user has
+     */
+    public void setNumChequingAccounts(){
+         ++numChequingAccounts;
     }
 
     /**
@@ -101,7 +122,7 @@ public class User extends Operator implements Serializable, Iterable<Account>{
                      "\n Current Balance:" +
                     accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
                     accountsCreated.get(i).viewLastAction();
-            if (accountsCreated.get(i) instanceof Debit){
+            if (accountsCreated.get(i) instanceof ChequingAccount || accountsCreated.get(i) instanceof SavingsAccount){
                 totalDebitAmount += accountsCreated.get(i).getBalance();
             }else{
                 totalCreditAmount += accountsCreated.get(i).getBalance();
