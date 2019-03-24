@@ -17,6 +17,7 @@ public abstract class Account implements Serializable {
     public ATM atm;
     private Object[] transactionInfoTempHolder;
     private Stack<Object[]> history;
+    private double creditLimit;
 
     /**
      * Account class constructor
@@ -114,6 +115,10 @@ public abstract class Account implements Serializable {
         }
     }
 
+    public void setCreditLimit(double creditLimit) { this.creditLimit = creditLimit;}
+
+    public double getCreditLimit() {return this.creditLimit;}
+
     /**
      *Withdraw amount from account using ATM
      * @param amount Amount of money to withdraw
@@ -148,17 +153,19 @@ public abstract class Account implements Serializable {
                     balance -= amount;
                 }
             }}
+            // withdrawFromAccount for credit accounts means to "pay bills"
             else if (this instanceof Credit) {
                 if(this.getAccountType() == "LineOfCredit") {
-                    if ((balance - amount) >= 0){
                         balance -= amount;
-                    }
+                }else {
+                    balance -= amount;
                 }
             }
             this.updateHistory("withdraw", amount, null);
             System.out.println("Withdrawal successful, Account: " + this.accountNum +
                     " now has a decreased balance of: " + balance + "$CAD");
             return true;}
+
 
 
     /**
@@ -265,3 +272,27 @@ public abstract class Account implements Serializable {
 
             }
         }
+
+
+        public boolean addToBill(double amount) {
+
+            if (this instanceof Credit) {
+                if (this.getAccountType() == "LineOfCredit") {
+                    if ((balance + amount) > getCreditLimit()) {
+                        System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
+                                "as you have reached your credit limit");
+                    } else if ((balance + amount) < getCreditLimit()) {
+                        depositToAccount(amount);
+                    } else {
+                        if ((balance + amount) > getCreditLimit()) {
+                            System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
+                                    "as you have reached your credit limit");
+                        } else if ((balance + amount) < getCreditLimit()) {
+                            depositToAccount(amount);
+                        }
+                    }
+                }
+            }
+//            this.updateHistory("");
+            System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
+            return true; }
