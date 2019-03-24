@@ -3,9 +3,9 @@ package phase2.Operators;
 import phase2.FundHolders.Account;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class UserConsultant extends BankWorker{
+
+public class UserConsultant extends BankWorker {
     private ArrayList<BankWorker> bankWorkerDatabase = new ArrayList<>();
     private int numBankWorkers = 0;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
@@ -13,6 +13,7 @@ public class UserConsultant extends BankWorker{
     private String password;
     private String currentUserBeingConsulted;
     private String lastMessagetoBM;
+    private BankManager BM;
 
     public UserConsultant(String username, String password){
         super(username, password);
@@ -46,6 +47,13 @@ public class UserConsultant extends BankWorker{
     }
 
     /**
+     * Set Bank Manager
+     */
+    public void setBM(BankManager BM) {
+        this.BM = BM;
+    }
+
+    /**
      * Return The kind of user to create.
      * @return The kind of user to create.
      */
@@ -53,12 +61,14 @@ public class UserConsultant extends BankWorker{
         return currentUserBeingConsulted;
     }
 
-//    /**
-//     * Contact the Bank Manager!
-//     *
-//     */
-//    public contactBM(String message){
-//        lastMessagetoBM = message;
-//        se
-//    }
+    /**
+     * Contact the Bank Manager!
+     *
+     */
+    public void contactBM(String message){
+        lastMessagetoBM = message;
+        setChanged();
+        notifyObservers();
+        BM.update(this, lastMessagetoBM);
+    }
 }
