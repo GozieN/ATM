@@ -52,16 +52,15 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 			}
 			if (!(this.newPasswordConfirmIn.getText().equals("")) &&
 					this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
-				this.newPasswordConfirmStatus.setText("confirmed new password");
+				this.newPasswordConfirmStatus.setText("matches new password");
 			} else {
-				this.newPasswordConfirmStatus.setText("new password not confirmed. try again");
+				this.newPasswordConfirmStatus.setText("does not match new password. try again");
 			}
 			if (this.newUsernameInStatus.getText().equals("valid new username") &&
 					this.newPasswordInStatus.getText().equals("valid new password") &&
-					this.newPasswordConfirmStatus.getText().equals("confirmed new password")) {
+					this.newPasswordConfirmStatus.getText().equals("matches new password")) {
 				GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
-				this.endStatus.setText("your user account creation request is being processed \n" +
-						"click exit to return to the main menu");
+				this.endStatus.setText("your user account creation request is being processed");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
