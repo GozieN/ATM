@@ -229,16 +229,18 @@ public abstract class Account implements Serializable {
         /**
          * View the last action performed in this account/
          */
-        public void viewLastAction() {
+        public String viewLastAction() {
             Object[] lastActionInfo = history.pop();
             history.push(lastActionInfo);
             if (lastActionInfo[2] == null){
-            System.out.println("Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
-                    "an amount of: " + lastActionInfo[1]);}
+            String s = "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+                    "an amount of: " + lastActionInfo[1];
+            return s;}
             else{
-                System.out.println("Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+                String s ="Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
                         "an amount of: " + lastActionInfo[1] + "\n " +
-                        "To account number: " + (((Account) lastActionInfo[2]).getAccountNum()));}
+                        "To account number: " + (((Account) lastActionInfo[2]).getAccountNum());
+            return s;}
             }
 
 

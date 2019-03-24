@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.*;
 
-public class UserLoginController extends Menu implements java.io.Serializable {
+public class UserLoginMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private TextField usernameIn;
 	@FXML
@@ -33,7 +33,15 @@ public class UserLoginController extends Menu implements java.io.Serializable {
 			file.close();
 			if (user.getUsername().equals(this.loginFailed.getText()) &&
 					user.getPassword().equals(this.passwordIn.getText())) {
-				// TODO: next scene - pass on user instance
+				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+				Parent parent = loader.load();
+				Scene userInteractionsMenuScene = new Scene(parent);
+				UserInteractionsMenuController controller = loader.getController();
+				controller.initialize(user);
+				mainStage.setScene(userInteractionsMenuScene);
+				mainStage.show();
 			} else {
 				this.loginFailed.setText("invalid credentials. try again");
 			}
@@ -43,7 +51,7 @@ public class UserLoginController extends Menu implements java.io.Serializable {
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "LoginOptionsScene.fxml";
+		String previousMenu = "LoginOptionsMenuScene.fxml";
 		super.back(event, previousMenu);
 	}
 
