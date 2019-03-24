@@ -1,0 +1,8 @@
+Account and User List:
+Accounts:
+	AccountType AccNum HolderName Balance
+End Accounts
+Users:
+	username password
+End Users
+End of List
