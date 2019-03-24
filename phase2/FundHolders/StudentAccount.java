@@ -1,5 +1,4 @@
 package phase2.FundHolders;
-
 import phase2.Operators.*;
 
 public class StudentAccount extends Debit implements java.io.Serializable {

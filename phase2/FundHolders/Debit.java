@@ -1,5 +1,6 @@
-package FundHolders;
+package phase2.FundHolders;
 
+import phase2.FundHolders.Account;
 import phase2.Operators.*;
 
 public abstract class Debit extends Account implements java.io.Serializable {

@@ -1,10 +1,10 @@
-package FundHolders;
+package phase2.FundHolders;
 
 import phase2.Operators.User;
 
 import java.util.Stack;
 
-public class ChequingAccount implements java.io.Serializable {
+public class ChequingAccount extends Account implements java.io.Serializable {
     private double balance;
     private User user;
     private Stack history;
@@ -15,10 +15,8 @@ public class ChequingAccount implements java.io.Serializable {
      * ChequingAccount class constructor
      *
      */
-    public ChequingAccount(int accNum, String holder, double balance) {
-        this.balance=balance;
+    public ChequingAccount(User accountHolder, String accountType) {
+        super(accountHolder, accountType);
         history = new Stack<>();
-        this.accNum=accNum;
-        this.holderName = holder;
     }
 }

@@ -1,6 +1,6 @@
-package FundHolders;
+package phase2.FundHolders;
 
-import Operators.*;
+import phase2.Operators.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
