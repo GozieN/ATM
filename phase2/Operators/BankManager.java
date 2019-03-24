@@ -6,14 +6,16 @@ import java.io.*;
 import java.util.*;
 import java.io.Serializable;
 
-public class BankManager extends BankWorker implements Serializable{
+public class BankManager extends BankWorker implements Observer, Serializable{
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
     private String password;
     private int numExistingAccounts;
+    private int numMessages;
     private ArrayList<User> users = new ArrayList<>();
     private String accessKey = "900";
+    private Queue<Integer> inbox = new ArrayDeque<Integer>();
 
     public BankManager(String username, String password) {
         super(username, password);
@@ -388,7 +390,6 @@ public class BankManager extends BankWorker implements Serializable{
         }
     }
 
-
     /**
      * Print a summary of the user's accounts
      * @param user Instance of user
@@ -401,6 +402,26 @@ public class BankManager extends BankWorker implements Serializable{
      */
     public void undoMostRecentTransaction(Account account) {
         account.undoTransaction();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        String s = "";
+        s = numMessages + ". " + arg;
+        numMessages++;
+//        inbox.add(s);
+    }
+
+    /**
+     * View the messages in inbox from the consultant!
+     */
+    public String viewInbox() {
+        String s = "";
+        if (inbox.isEmpty()){
+            s = "You have no messages at the moment!";
+        } else{
+            s = inbox.toString();
+        } return s;
     }
 
     public static void main(String[] args) {

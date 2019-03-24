@@ -2,8 +2,10 @@ package phase2.Operators;
 
 import phase2.FundHolders.Account;
 
+import java.util.Observable;
 
-public class Operator implements java.io.Serializable{
+
+public class Operator extends Observable implements java.io.Serializable{
     private String username;
     private String password;
 
