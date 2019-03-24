@@ -1,29 +1,25 @@
-package phase2;
+package phase2.UserInterface;
 
 import phase2.FundHolders.ATM;
 import phase2.FundHolders.Account;
-import phase2.FundHolders.ChequingAccount;
-import phase2.FundHolders.SavingsAccount;
-import phase2.FundTransfers.Transactions;
 import phase2.Operators.BankManager;
 import phase2.Operators.User;
 
-import java.io.File;
 import java.io.*;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.rmi.server.ExportException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Model implements java.io.Serializable {
+public class ScannerUI implements java.io.Serializable {
     private BankManager BM = new BankManager("BMuser", "BMpass");
     private ATM atm = new ATM();
 
-    // model constructor
-    public Model() {
+    // scannerUI constructor
+    public ScannerUI() {
     }
 
     // set the transaction atm to this atm
@@ -106,7 +102,7 @@ public class Model implements java.io.Serializable {
                     // [Angela]
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -242,7 +238,7 @@ public class Model implements java.io.Serializable {
                                             System.out.println("enter the amount of money being transferred");
                                             Scanner transferAmountScan = new Scanner(System.in);
                                             int transferAmountIn = transferAmountScan.nextInt();
-                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
+                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
                                                 flag = true;
                                             }
                                         }
@@ -293,7 +289,7 @@ public class Model implements java.io.Serializable {
                                                 System.out.println("enter the amount of money being transferred");
                                                 Scanner transferAmountScan = new Scanner(System.in);
                                                 int transferAmountIn = transferAmountScan.nextInt();
-                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, toAccount)) {
+                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).transfer(transferAmountIn, toAccount)) {
                                                     flag = true;
                                                 }
                                             }
@@ -342,7 +338,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the amount that you are depositing into this user's account");
                             Scanner depositAmountScan = new Scanner(System.in);
                             int depositAmountIn = depositAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositIntoATM(depositAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -368,7 +364,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the cheque that you are depositing");
                             Scanner depositAmountScan = new Scanner(System.in);
                             int depositAmountIn = depositAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(depositAmountIn)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(depositAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -394,7 +390,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the bill is being paid");
                             Scanner billAmountScan = new Scanner(System.in);
                             int billAmountIn = billAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(billAmountIn)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).payBill(billAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -437,7 +433,7 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
                         user = (User)in.readObject();
                         in.close();
@@ -469,9 +465,9 @@ public class Model implements java.io.Serializable {
                     // angela, j
                     try {
                         User user = null;
-                        FileInputStream file = new FileInputStream("phase2/Users.txt");
+                        FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        user = (User) in.readObject();
+                        user = (User)in.readObject();
                         in.close();
                         file.close();
                         if (!(user.getUsername().equals(newUsernameIn))) {
@@ -590,7 +586,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the amount that you would like to withdraw");
                             Scanner withdrawAmountScan = new Scanner(System.in);
                             int withdrawAmountIn = withdrawAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().withdrawFromATM(withdrawAmountIn)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).withdrawFromATM(withdrawAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -639,7 +635,7 @@ public class Model implements java.io.Serializable {
                                             System.out.println("enter the amount of money you want to transfer");
                                             Scanner transferAmountScan = new Scanner(System.in);
                                             int transferAmountIn = transferAmountScan.nextInt();
-                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
+                                            if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).transfer(transferAmountIn, user.getAccountsCreated().get(selectedNumPrefixToAcc - 1))) {
                                                 flag = true;
                                             }
                                         }
@@ -690,7 +686,7 @@ public class Model implements java.io.Serializable {
                                                 System.out.println("enter the amount of money you want to transfer");
                                                 Scanner transferAmountScan = new Scanner(System.in);
                                                 int transferAmountIn = transferAmountScan.nextInt();
-                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).getTransactionsInstance().transfer(transferAmountIn, toAccount)) {
+                                                if (user.getAccountsCreated().get(selectedNumPrefixFromAcc - 1).transfer(transferAmountIn, toAccount)) {
                                                     flag = true;
                                                 }
                                             }
@@ -739,7 +735,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the amount that you would like to deposit");
                             Scanner depositAmountScan = new Scanner(System.in);
                             int depositAmountIn = depositAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositIntoATM(depositAmountIn)) { // gozie - depositIntoATM method in Transactions still takes atm parameter ?
                                 flag = true;
                             }
                         }
@@ -764,8 +760,8 @@ public class Model implements java.io.Serializable {
                         while (flag == false) {
                             System.out.println("enter the dollar amount of the cheque that you would like to deposit");
                             Scanner depositAmountScan = new Scanner(System.in);
-                            int depositAmountIn = depositAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(depositAmountIn)) {
+                            double depositAmountIn = depositAmountScan.nextInt();
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).depositChequeToAccount(depositAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -791,7 +787,7 @@ public class Model implements java.io.Serializable {
                             System.out.println("enter the dollar amount of the bill that you are paying");
                             Scanner billAmountScan = new Scanner(System.in);
                             int billAmountIn = billAmountScan.nextInt();
-                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).getTransactionsInstance().depositChequeToAccount(billAmountIn)) {
+                            if (user.getAccountsCreated().get(selectedNumPrefixAcc - 1).payBill(billAmountIn)) {
                                 flag = true;
                             }
                         }
@@ -827,14 +823,14 @@ public class Model implements java.io.Serializable {
     public static void main(String[] args) {
         System.out.println("current directory: " + System.getProperty("user.dir"));
         try {
-            File f = new File("phase2/date.txt");
+            File f = new File("phase2/txtfiles/date.txt");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             updateDate(dtf.format(now), f);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Model model = new Model();
-        model.mainMenu();
+        ScannerUI scannerUI = new ScannerUI();
+        scannerUI.mainMenu();
     }
 }

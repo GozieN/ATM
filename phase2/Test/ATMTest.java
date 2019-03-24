@@ -1,5 +1,4 @@
 package phase2.Test;
-import phase2.FundTransfers.*;
 import phase2.FundHolders.*;
 import phase2.Operators.*;
 
@@ -16,7 +15,6 @@ import static org.junit.Assert.assertTrue;
 
 
 public class ATMTest {
-
     private ATM atm;
     private BankManager bm = new BankManager("new", "bm");
 

@@ -4,7 +4,6 @@ import phase2.Operators.*;
 
 import java.util.*;
 import java.io.*;
-import java.io.PrintStream;
 import java.time.format.*;
 import java.time.*;
 
@@ -267,7 +266,7 @@ public class ATM implements java.io.Serializable {
     public void restock () {
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/alerts.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/alerts.txt"));
             if (this.num5bills < 20) {
                 writer.write("Five dollar bills low in stock!\n");
             }
