@@ -27,6 +27,9 @@ public class BankManager extends BankWorker implements Observer, Serializable{
         bankManagerDatabase.add(this);
     }
 
+    public List<User> getUserList() {return users;}
+
+
     public String getMasterAccessKey() {
         return this.accessKey;
     }
@@ -57,17 +60,17 @@ public class BankManager extends BankWorker implements Observer, Serializable{
         }
 
         //[Angela]
-        User userInFile = null;
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            userInFile = (User) in.readObject();
-            in.close();
-            file.close();
-            if (userInFile.getUsername().equals(user.getUsername())) {
-                userInFile.addToAccountsCreated(newAccount);
-            }
-        } catch (Exception ex) {ex.printStackTrace();}
+//        User userInFile = null;
+//        try {
+//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//            userInFile = (User) in.readObject();
+//            in.close();
+//            file.close();
+//            if (userInFile.getUsername().equals(user.getUsername())) {
+//                userInFile.addToAccountsCreated(newAccount);
+//            }
+//        } catch (Exception ex) {ex.printStackTrace();}
 
 
         if (newAccount == null) {
@@ -90,37 +93,14 @@ public class BankManager extends BankWorker implements Observer, Serializable{
      * @param password Password used for login into accounts
      */
     public void createUser (String username, String password) {
-
         User newUser = new User(username, password);
-        User existingUser = null;
-        List<User> userInFileList = new ArrayList<User>();
-
-        try {
-
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            existingUser = (User) in.readObject();
-
-            userInFileList.add(existingUser);
-
-            in.close();
-            file.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
+        users.add(newUser);
 
         try {
             FileOutputStream file2 = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file2);
 
-            out.writeObject(newUser);
-            for (User obj: userInFileList) {
-                if (!(obj.getUsername().equals(newUser.getUsername()))) {
-                    out.writeObject(obj);
-                }
-            }
+            out.writeObject(users);
 
             out.close();
             file2.close();
@@ -128,21 +108,6 @@ public class BankManager extends BankWorker implements Observer, Serializable{
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        User user = null;
-
-        try {
-            FileInputStream file3 = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file3);
-
-            user = (User) in.readObject();
-
-//            System.out.println(user.getUsername());
-
-            in.close();
-            file3.close();
-
-        } catch (Exception ex) {ex.printStackTrace();}
 
     }
 
@@ -154,41 +119,20 @@ public class BankManager extends BankWorker implements Observer, Serializable{
 
     public void deleteUser(User user) {
 
-        User newUser = new User("", "");
+        for (User obj: users) {
+            if (user.getUsername().equals(obj.getUsername())) {
+                users.remove(obj);
+            }
+        }
 
         try {
-            String filename = "phase2/txtfiles/Users.txt";
-
-            FileOutputStream file = new FileOutputStream(filename);
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            out.writeObject(newUser);
+            out.writeObject(users);
 
             out.close();
             file.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-
-        User userToRemove = null;
-
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            userToRemove = (User) in.readObject();
-
-            in.close();
-            file.close();
-
-            if (userToRemove.getUsername().equals(user.getUsername())) {
-
-                userToRemove.setUsername(null);
-                userToRemove.setPassword(null);
-                userToRemove.setAccountsCreated(null);
-            }
 
         } catch (Exception ex) {ex.printStackTrace();}
     }
