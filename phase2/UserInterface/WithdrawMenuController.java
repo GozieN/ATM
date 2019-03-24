@@ -69,10 +69,10 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene userInteractionsMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		Scene userTransactionsMenuScene = new Scene(parent);
+		UserTransactionsMenuController controller = loader.getController();
 		controller.initialize(this.user);
-		mainStage.setScene(userInteractionsMenuScene);
+		mainStage.setScene(userTransactionsMenuScene);
 		mainStage.show();
 	}
 

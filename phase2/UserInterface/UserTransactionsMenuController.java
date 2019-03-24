@@ -38,7 +38,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 			loader.setLocation(getClass().getResource("WithdrawMenuScene.fxml"));
 			Parent parent = loader.load();
 			Scene withdrawMenuScene = new Scene(parent);
-			UserInteractionsMenuController controller = loader.getController();
+			WithdrawMenuController controller = loader.getController();
 			controller.initialize(this.user);
 			mainStage.setScene(withdrawMenuScene);
 			mainStage.show();
@@ -54,7 +54,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 			loader.setLocation(getClass().getResource("DepositMenuScene.fxml"));
 			Parent parent = loader.load();
 			Scene depositMenuScene = new Scene(parent);
-			UserInteractionsMenuController controller = loader.getController();
+			DepositMenuController controller = loader.getController();
 			controller.initialize(this.user);
 			mainStage.setScene(depositMenuScene);
 			mainStage.show();
@@ -67,10 +67,10 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 		if (!(this.user.getAccountsCreated().isEmpty())) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("TransferMenuScene.fxml"));
+			loader.setLocation(getClass().getResource("TransferOptionsMenuScene.fxml"));
 			Parent parent = loader.load();
 			Scene transferMenuScene = new Scene(parent);
-			UserInteractionsMenuController controller = loader.getController();
+			TransferOptionsMenuController controller = loader.getController();
 			controller.initialize(this.user);
 			mainStage.setScene(transferMenuScene);
 			mainStage.show();
@@ -86,7 +86,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 			loader.setLocation(getClass().getResource("PayBillMenuScene.fxml"));
 			Parent parent = loader.load();
 			Scene payBillMenuScene = new Scene(parent);
-			UserInteractionsMenuController controller = loader.getController();
+			PayBillMenuController controller = loader.getController();
 			controller.initialize(this.user);
 			mainStage.setScene(payBillMenuScene);
 			mainStage.show();
