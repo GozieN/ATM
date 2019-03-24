@@ -37,13 +37,15 @@ public class User extends Operator implements Serializable, Iterable<Account>{
      * @param currentPassword The current password used to login to account
      * @param newPassword Create new password for login to account
      */
-    public void changePassword(String currentPassword, String newPassword) {
+    public String changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
-            System.out.println(username + ", your password has successfully been changed");
+            String s = username + ", your password has successfully been changed";
+            return s;
         } else {
-            System.out.println(username + ",you have entered the wrong current password. " +
-                    "unable to change password");
+            String s = username + ",you have entered the wrong current password. " +
+                    "unable to change password";
+            return s;
         }
     }
 
@@ -84,19 +86,21 @@ public class User extends Operator implements Serializable, Iterable<Account>{
     /**
      * Get a summary of the user's accounts
      */
-    public void viewInfo(){
+    public String viewInfo(){
 
         int totalDebitAmount = 0;
         int totalCreditAmount = 0;
         if (accountsCreated == null){
-            System.out.println("Nothing to view, you have not created an account yet!");
+            String s = "Nothing to view, you have not created an account yet!";
+            return s;
         }else{
 
         String s = "Account holder: " + this.username + " Report of FundHolders:";
         for(int i = 0; i < accountsCreated.size(); i++){
             s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
                      "\n Current Balance:" +
-                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " + "BM GET MOSTRECENTTRANSACTION";
+                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
+                    accountsCreated.get(i).viewLastAction();
             if (accountsCreated.get(i) instanceof Debit){
                 totalDebitAmount += accountsCreated.get(i).getBalance();
             }else{
@@ -104,7 +108,7 @@ public class User extends Operator implements Serializable, Iterable<Account>{
             }
         }
         s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
-        System.out.println(s);
+        return s;
     }}
 
     @Override
