@@ -49,7 +49,7 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 		int amount = Integer.parseInt(this.amount.getText());
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
-			if (amount >= 0) {
+			if (amount >= 0 && amount % 5 == 0) {
 				this.amountStatus.setText("valid amount");
 				if (amount <= selectedAccount.getBalance()) {
 					selectedAccount.withdrawFromATM(amount);

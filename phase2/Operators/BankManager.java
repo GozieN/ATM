@@ -43,9 +43,7 @@ public class BankManager extends BankWorker implements Serializable{
         } else if (accountType.equals("SavingsAccount")) {
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("ChequingAccount")) {
-            newAccount = new ChequingAccount(user, false);
-        } else {
-            newAccount = new ChequingAccount(user, true);
+            newAccount = new ChequingAccount(user, "Chequing");
         }
 
         //[Angela]
