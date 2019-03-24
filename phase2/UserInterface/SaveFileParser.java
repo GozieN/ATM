@@ -1,4 +1,4 @@
-package UserInterface;
+package phase2.UserInterface;
 
 import phase2.Operators.User;
 import javafx.scene.control.Alert;
@@ -10,10 +10,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import phase2.FundHolders.Account;
-import FundHolders.ChequingAccount;
-import FundHolders.Debit;
-import FundHolders.Credit;
+import phase2.FundHolders.*;
 
 
 public class SaveFileParser {
@@ -55,7 +52,7 @@ public class SaveFileParser {
                             String accType=m.group(1);
                             String[] splitted=line.split("\\s+");
                             if (accType=="ChequingAccount"){
-                                ChequingAccount acc=new ChequingAccount(Integer.parseInt(splitted[1]), splitted[2], Double.parseDouble(splitted[3]));
+                                //ChequingAccount acc=new ChequingAccount(Integer.parseInt(splitted[1]), splitted[2], Double.parseDouble(splitted[3]));
                             }else if(accType=="Credit"){
 
                             }else if(accType=="Debit"){

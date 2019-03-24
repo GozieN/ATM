@@ -28,7 +28,7 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		loader.setLocation(getClass().getResource("AccountsSummaryMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene accountsSummaryMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		AccountsSummaryMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(accountsSummaryMenuScene);
 		mainStage.show();
@@ -40,7 +40,7 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene userTransactionsMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		UserTransactionsMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(userTransactionsMenuScene);
 		mainStage.show();
@@ -52,7 +52,7 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		loader.setLocation(getClass().getResource("RequestNewBankAccountCreationMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene requestNewBankAccountCreationMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		RequestNewBankAccountCreationMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(requestNewBankAccountCreationMenuScene);
 		mainStage.show();
@@ -64,7 +64,7 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		loader.setLocation(getClass().getResource("ChangeUserAccountPasswordMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene changeUserAccountPasswordMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		ChangeUserAccountPasswordMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(changeUserAccountPasswordMenuScene);
 		mainStage.show();
