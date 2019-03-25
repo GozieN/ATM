@@ -17,8 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class DepositMenuController extends Menu implements java.io.Serializable {
+public class DepositCashMenuController extends Menu implements java.io.Serializable {
 	private User user;
+	private String operatorType;
 
 	@FXML
 	private ComboBox<String> userBankAccounts;
@@ -31,8 +32,9 @@ public class DepositMenuController extends Menu implements java.io.Serializable 
 	@FXML
 	private Label endStatus;
 
-	public void initialize(User user) {
+	public void initialize(User user, String operatorType) {
 		this.user = user;
+		this.operatorType = operatorType;
 		for (Account account : this.user.getAccountsCreated()) {
 			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
 					" " + account.getAccountType());
@@ -68,12 +70,12 @@ public class DepositMenuController extends Menu implements java.io.Serializable 
 	public void back(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("DepositOptionsMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene userTransactionsMenuScene = new Scene(parent);
-		UserTransactionsMenuController controller = loader.getController();
-		controller.initialize(this.user);
-		mainStage.setScene(userTransactionsMenuScene);
+		Scene depositOptionsMenuScene = new Scene(parent);
+		DepositOptionsMenuController controller = loader.getController();
+		controller.initialize(this.user, this.operatorType);
+		mainStage.setScene(depositOptionsMenuScene);
 		mainStage.show();
 	}
 

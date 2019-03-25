@@ -19,12 +19,14 @@ import javafx.event.*;
 
 public class AllAccountsSummaryMenuController extends Menu implements java.io.Serializable {
 	private User user;
+	private String operatorType;
 
 	@FXML
 	private TextArea allAccountsSummary;
 
-	public void initialize(User user) {
+	public void initialize(User user, String operatorType) {
 		this.user = user;
+		this.operatorType = operatorType;
 		this.allAccountsSummary.setText(this.user.viewInfo());
 	}
 
@@ -35,7 +37,7 @@ public class AllAccountsSummaryMenuController extends Menu implements java.io.Se
 		Parent parent = loader.load();
 		Scene accountsSummaryOptionsMenuScene = new Scene(parent);
 		AccountsSummaryOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(accountsSummaryOptionsMenuScene);
 		mainStage.show();
 	}

@@ -24,9 +24,9 @@ public class SingleAccountSummaryMenuController extends Menu implements java.io.
 	@FXML
 	private TextArea singleAccountSummary;
 
-	public void initialize(User user, Account account) {
+	public void initialize(User user, Account account, String operatorType) {
 		this.user = user;
-		this.operatorType =
+		this.operatorType = operatorType;
 		this.singleAccountSummary.setText(this.user.singleAccountSummary(account));
 	}
 
@@ -37,7 +37,7 @@ public class SingleAccountSummaryMenuController extends Menu implements java.io.
 		Parent parent = loader.load();
 		Scene accountsSummaryOptionsMenuScene = new Scene(parent);
 		AccountsSummaryOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(accountsSummaryOptionsMenuScene);
 		mainStage.show();
 	}

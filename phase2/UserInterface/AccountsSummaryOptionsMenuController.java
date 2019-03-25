@@ -38,7 +38,7 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 		Parent parent = loader.load();
 		Scene allAccountsSummaryMenuScene = new Scene(parent);
 		AllAccountsSummaryMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(allAccountsSummaryMenuScene);
 		mainStage.show();
 	}
@@ -58,7 +58,7 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 			Parent parent = loader.load();
 			Scene singleAccountSummaryMenuScene = new Scene(parent);
 			SingleAccountSummaryMenuController controller = loader.getController();
-			controller.initialize(this.user, selectedAccount);
+			controller.initialize(this.user, selectedAccount, this.operatorType);
 			mainStage.setScene(singleAccountSummaryMenuScene);
 			mainStage.show();
 		} else {

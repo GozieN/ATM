@@ -33,7 +33,7 @@ public class TransferOptionsMenuController extends Menu implements java.io.Seria
 		Parent parent = loader.load();
 		Scene transferToSelfMenuScene = new Scene(parent);
 		TransferToSelfMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(transferToSelfMenuScene);
 		mainStage.show();
 	}
@@ -45,7 +45,7 @@ public class TransferOptionsMenuController extends Menu implements java.io.Seria
 		Parent parent = loader.load();
 		Scene transferToElseMenuScene = new Scene(parent);
 		TransferToElseMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(transferToElseMenuScene);
 		mainStage.show();
 	}

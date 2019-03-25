@@ -19,6 +19,7 @@ import javafx.event.*;
 
 public class TransferToSelfMenuController extends Menu implements java.io.Serializable {
 	private User user;
+	private String operatorType;
 
 	@FXML
 	private ComboBox<String> userBankAccounts1;
@@ -35,8 +36,9 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 	@FXML
 	private Label endStatus;
 
-	public void initialize(User user) {
+	public void initialize(User user, String operatorType) {
 		this.user = user;
+		this.operatorType = operatorType;
 		for (Account account : this.user.getAccountsCreated()) {
 			this.userBankAccounts1.getItems().add(String.valueOf(account.getAccountNum()) +
 					" " + account.getAccountType());
@@ -99,7 +101,7 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 		Parent parent = loader.load();
 		Scene transferOptionsMenuScene = new Scene(parent);
 		TransferOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user);
+		controller.initialize(this.user, this.operatorType);
 		mainStage.setScene(transferOptionsMenuScene);
 		mainStage.show();
 	}

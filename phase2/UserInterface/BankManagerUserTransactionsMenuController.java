@@ -39,12 +39,12 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 	public void deposit(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("DepositMenuScene.fxml")); //depositmenuoptions -> cash, cheque
+		loader.setLocation(getClass().getResource("DepositOptionsMenuScene.fxml")); //depositmenuoptions -> cash, cheque
 		Parent parent = loader.load();
-		Scene depositMenuScene = new Scene(parent);
-		DepositMenuController controller = loader.getController();
+		Scene depositOptionsMenuScene = new Scene(parent);
+		DepositOptionsMenuController controller = loader.getController();
 		controller.initialize(this.user, "BankManager");
-		mainStage.setScene(depositMenuScene);
+		mainStage.setScene(depositOptionsMenuScene);
 		mainStage.show();
 	}
 
