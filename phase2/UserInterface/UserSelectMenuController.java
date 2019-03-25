@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
+import java.util.*;
 
 public class UserSelectMenuController extends Menu implements java.io.Serializable {
 	@FXML
@@ -28,34 +29,44 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 	Label masterAccessKeyInStatus;
 
 	public void selectUser(ActionEvent event) throws Exception {
-		User user = null;
+//		User user = null;
+		ArrayList<User> userList = new ArrayList<>();
 		try {
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
 			ObjectInputStream in = new ObjectInputStream(file);
-			user = (User)in.readObject();
+//			user = (User)in.readObject();
+			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+			for (User obj: userList) {
+				if (obj.getUsername().equals(this.userUsernameIn.getText())) {
+					if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
+						Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
+						Parent parent = loader.load();
+						Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
+						BankManagerUserInteractionsMenuController controller = loader.getController();
+						controller.initialize(obj);
+						mainStage.setScene(bankManagerUserInteractionsMenuScene);
+						mainStage.show();
+					} else {
+						this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
+					}
+				} else {
+					this.userUsernameInStatus.setText("that user does not exist. try again");
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (user.getUsername().equals(this.userUsernameIn.getText())) {
-			if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
-				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
-				Parent parent = loader.load();
-				Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
-				BankManagerUserInteractionsMenuController controller = loader.getController();
-				controller.initialize(user);
-				mainStage.setScene(bankManagerUserInteractionsMenuScene);
-				mainStage.show();
-			} else {
-				this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
-			}
-		} else {
-			this.userUsernameInStatus.setText("that user does not exist. try again");
-		}
+
 	}
+
 
 	public void back(ActionEvent event) throws Exception {
 		String previousMenu = "BankManagerLoginMenuScene.fxml";

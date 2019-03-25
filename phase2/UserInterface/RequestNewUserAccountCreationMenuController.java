@@ -16,6 +16,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
+import java.util.*;
+
 
 public class RequestNewUserAccountCreationMenuController extends Menu implements java.io.Serializable {
 	@FXML
@@ -34,35 +36,40 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 	private Label endStatus;
 
 	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
+		ArrayList<User> userList = new ArrayList<>();
 		try {
-			User user = null;
+//			User user = null;
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
 			ObjectInputStream in = new ObjectInputStream(file);
-			user = (User) in.readObject();
+//			user = (User) in.readObject();
+			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-			if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
-					!(this.newUsernameIn.getText().equals(""))) {
-				this.newUsernameInStatus.setText("valid new username");
-			} else {
-				this.newUsernameInStatus.setText("this username is not available. try again");
-			}
-			if (!(this.newPasswordIn.getText()).equals("")) {
-				this.newPasswordInStatus.setText("valid new password");
-			} else {
-				this.newPasswordInStatus.setText("this field cannot be left blank. try again");
-			}
-			if (!(this.newPasswordConfirmIn.getText().equals("")) &&
-					this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
-				this.newPasswordConfirmStatus.setText("matches new password");
-			} else {
-				this.newPasswordConfirmStatus.setText("does not match new password. try again");
-			}
-			if (this.newUsernameInStatus.getText().equals("valid new username") &&
-					this.newPasswordInStatus.getText().equals("valid new password") &&
-					this.newPasswordConfirmStatus.getText().equals("matches new password")) {
-				GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
-				this.endStatus.setText("your user account creation request is being processed");
+
+			for (User obj: userList) {
+				if (!(obj.getUsername().equals(this.newUsernameIn.getText())) &&
+						!(this.newUsernameIn.getText().equals(""))) {
+					this.newUsernameInStatus.setText("valid new username");
+				} else {
+					this.newUsernameInStatus.setText("this username is not available. try again");
+				}
+				if (!(this.newPasswordIn.getText()).equals("")) {
+					this.newPasswordInStatus.setText("valid new password");
+				} else {
+					this.newPasswordInStatus.setText("this field cannot be left blank. try again");
+				}
+				if (!(this.newPasswordConfirmIn.getText().equals("")) &&
+						this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
+					this.newPasswordConfirmStatus.setText("matches new password");
+				} else {
+					this.newPasswordConfirmStatus.setText("does not match new password. try again");
+				}
+				if (this.newUsernameInStatus.getText().equals("valid new username") &&
+						this.newPasswordInStatus.getText().equals("valid new password") &&
+						this.newPasswordConfirmStatus.getText().equals("matches new password")) {
+					GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
+					this.endStatus.setText("your user account creation request is being processed");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
