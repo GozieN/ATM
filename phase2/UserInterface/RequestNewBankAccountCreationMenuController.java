@@ -1,6 +1,5 @@
 package phase2.UserInterface;
 
-import javafx.scene.control.ComboBox;
 import phase2.FundStores.*;
 import phase2.Operators.*;
 
@@ -12,8 +11,10 @@ import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
 public class RequestNewBankAccountCreationMenuController extends Menu implements java.io.Serializable {

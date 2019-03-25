@@ -375,31 +375,5 @@ public class BankManager extends BankWorker implements Observer, Serializable{
             s = inbox.toString();
         } return s;
     }
-
-    public static void main(String[] args) {
-        BankManager bm = new BankManager("", "");
-        bm.createUser("angela", "chung");
-        bm.createUser("chung", "angela");
-        bm.createUser("hey", "you");
-//        User userInFile = new User("hey", "you");
-//        bm.deleteUser(userInFile);
-
-//        User user = null;
-//        try {
-//            FileInputStream file = new FileInputStream("phase2/Users.txt");
-//            ObjectInputStream in = new ObjectInputStream(file);
-//
-//            user = (User) in.readObject();
-//
-//            System.out.println(user.getUsername());
-//
-//            in.close();
-//            file.close();
-
-//            System.out.println(user.getUsername());
-
-//        } catch (Exception ex) {ex.printStackTrace();}
-    }
-
 }
 

@@ -677,7 +677,7 @@ public class ScannerUI implements java.io.Serializable {
                                     try {
                                         FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
                                         ObjectInputStream in = new ObjectInputStream(input);
-                                        toAccount = (Account) in.readObject();
+                                        toAccount = (Account)in.readObject();
                                         in.close();
                                         input.close();
                                         if (toAccount.getAccountNum() == Integer.parseInt(toAccountIn)) {
@@ -692,6 +692,8 @@ public class ScannerUI implements java.io.Serializable {
                                             }
                                             System.out.println("returning to transactions menu");
                                             menuU3(user);
+                                        } else {
+                                            System.out.println("that account does not exist. try again");
                                         }
                                     } catch (Exception e) {
                                         e.printStackTrace();

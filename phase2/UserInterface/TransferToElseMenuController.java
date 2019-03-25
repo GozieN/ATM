@@ -17,17 +17,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class TransferToSelfMenuController extends Menu implements java.io.Serializable {
+public class TransferToElseMenuController extends Menu implements java.io.Serializable {
 	private User user;
 
 	@FXML
-	private ComboBox<String> userBankAccounts1;
+	private ComboBox<String> userBankAccounts;
 	@FXML
-	private Label userBankAccounts1Status;
+	private Label userBankAccountsStatus;
 	@FXML
-	private ComboBox<String> userBankAccounts2;
+	private TextField toAccountIn;
 	@FXML
-	private Label userBankAccounts2Status;
+	private Label toAccountInStatus;
 	@FXML
 	private TextField amountIn;
 	@FXML
@@ -38,9 +38,7 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 	public void initialize(User user) {
 		this.user = user;
 		for (Account account : this.user.getAccountsCreated()) {
-			this.userBankAccounts1.getItems().add(String.valueOf(account.getAccountNum()) +
-					" " + account.getAccountType());
-			this.userBankAccounts2.getItems().add(String.valueOf(account.getAccountNum()) +
+			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
 					" " + account.getAccountType());
 		}
 	}
@@ -48,29 +46,35 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 	public void transfer(ActionEvent event) throws Exception {
 		Account selectedAccount1 = null;
 		Account selectedAccount2 = null;
-		String[] split1 = this.userBankAccounts1.getValue().split("\\s");
+		String[] split1 = this.userBankAccounts.getValue().split("\\s");
 		for (Account account : this.user.getAccountsCreated()) {
 			if (account.getAccountNum() == Integer.parseInt(split1[0])) {
 				selectedAccount1 = account;
 			}
 		}
-		String[] split2 = this.userBankAccounts2.getValue().split("\\s");
-		for (Account account : this.user.getAccountsCreated()) {
-			if (account.getAccountNum() == Integer.parseInt(split2[0])) {
-				selectedAccount2 = account;
+		if (!(toAccountIn.getText().equals(""))) {
+			try {
+				FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
+				ObjectInputStream in = new ObjectInputStream(input);
+				selectedAccount2 = (Account)in.readObject();
+				in.close();
+				input.close();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			if (!(selectedAccount2.getAccountNum() == Integer.parseInt(toAccountIn.getText()))) {
+				toAccountInStatus.setText("that bank account does not exist. try again");
+				endStatus.setText("");
+			}
+		} else {
+			toAccountInStatus.setText("no bank account entered. try again");
+			endStatus.setText("");
 		}
 		int amount = Integer.parseInt(this.amountIn.getText());
-		if (!(this.userBankAccounts1.getSelectionModel().isEmpty())) {
-			this.userBankAccounts1Status.setText(this.userBankAccounts1.getValue() + " selected");
+		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
+			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 		} else {
-			this.userBankAccounts1Status.setText("no bank account selected. try again");
-			this.endStatus.setText("");
-		}
-		if (!(this.userBankAccounts2.getSelectionModel().isEmpty())) {
-			this.userBankAccounts2Status.setText(this.userBankAccounts2.getValue() + " selected");
-		} else {
-			this.userBankAccounts2Status.setText("no bank account selected. try again");
+			this.userBankAccountsStatus.setText("no bank account selected. try again");
 			this.endStatus.setText("");
 		}
 		if (amount >= 0) {
