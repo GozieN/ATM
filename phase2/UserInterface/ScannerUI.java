@@ -100,27 +100,35 @@ public class ScannerUI implements java.io.Serializable {
                 while (userUsernameScan.hasNext()) {
                     String userUsernameIn = userUsernameScan.next();
                     // [Angela]
+//                    User user = null;
+                    ArrayList<User> userList = new ArrayList<>();
                     try {
-                        User user = null;
+//                        User user = null;
                         FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        user = (User)in.readObject();
+                        userList = (ArrayList) in.readObject();
+//                        user = (User)in.readObject();
                         in.close();
                         file.close();
-                        if (user.getUsername().equals(userUsernameIn)) {
-                            System.out.println("enter in the master access key to access this user");
-                            Scanner masterAccessKeyScan = new Scanner(System.in);
-                            while (masterAccessKeyScan.hasNext()) {
-                                String masterAccessKeyIn = masterAccessKeyScan.nextLine();
-                                if (masterAccessKeyIn.equals(BM.getMasterAccessKey())) {
-                                    System.out.println("proceeding to user interactions menu");
-                                    menuBM3(user);
-                                } else {
-                                    System.out.println("wrong master access key. try again");
+
+                        for (User obj: userList) {
+//                            if (user.getUsername().equals(userUsernameIn)) {
+                            if (obj.getUsername().equals(userUsernameIn)) {
+                                System.out.println("enter in the master access key to access this user");
+                                Scanner masterAccessKeyScan = new Scanner(System.in);
+                                while (masterAccessKeyScan.hasNext()) {
+                                    String masterAccessKeyIn = masterAccessKeyScan.nextLine();
+                                    if (masterAccessKeyIn.equals(BM.getMasterAccessKey())) {
+                                        System.out.println("proceeding to user interactions menu");
+//                                        menuBM3(user);
+                                        menuBM3(obj);
+                                    } else {
+                                        System.out.println("wrong master access key. try again");
+                                    }
                                 }
+                            } else {
+                                System.out.println("that user doesn't exist. enter an existing username");
                             }
-                        } else {
-                            System.out.println("that user doesn't exist. enter an existing username");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -136,6 +144,7 @@ public class ScannerUI implements java.io.Serializable {
             }
         }
     }
+
 
     public void menuBM3(User user) {
         // BM user interactions menu
@@ -431,27 +440,35 @@ public class ScannerUI implements java.io.Serializable {
                 while (usernameScan.hasNext()) {
                     String usernameIn = usernameScan.next();
                     // angela, j
+//                    User user = null;
+                    ArrayList<User> userList = new ArrayList<>();
                     try {
-                        User user = null;
+//                        User user = null;
                         FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        user = (User)in.readObject();
+                        userList = (ArrayList) in.readObject();
+//                        user = (User)in.readObject();
                         in.close();
                         file.close();
-                        if (user.getUsername().equals(usernameIn)) {
-                            System.out.println("enter your password");
-                            Scanner passwordScan = new Scanner(System.in);
-                            while (passwordScan.hasNext()) {
-                                String passwordIn = passwordScan.next();
-                                if (user.getPassword().equals(passwordIn)) {
-                                    System.out.println("proceeding to user interactions menu");
-                                    menuU2(user);
-                                } else {
-                                    System.out.println("wrong password. enter your password");
+                        for (User obj: userList) {
+//                            if (user.getUsername().equals(usernameIn)) {
+                            if (obj.getUsername().equals(usernameIn)) {
+                                System.out.println("enter your password");
+                                Scanner passwordScan = new Scanner(System.in);
+                                while (passwordScan.hasNext()) {
+                                    String passwordIn = passwordScan.next();
+//                                    if (user.getPassword().equals(passwordIn)) {
+                                    if (obj.getUsername().equals(passwordIn)) {
+                                        System.out.println("proceeding to user interactions menu");
+//                                        menuU2(user);
+                                        menuU2(obj);
+                                    } else {
+                                        System.out.println("wrong password. enter your password");
+                                    }
                                 }
+                            } else {
+                                System.out.println("that username does not exist. enter an existing username");
                             }
-                        } else {
-                            System.out.println("that username does not exist. enter an existing username");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -463,24 +480,30 @@ public class ScannerUI implements java.io.Serializable {
                 while (newUsernameScan.hasNext()) {
                     String newUsernameIn = newUsernameScan.next();
                     // angela, j
+//                    User user = null;
+                    ArrayList<User> userList = new ArrayList<>();
                     try {
-                        User user = null;
+//                        User user = null;
                         FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
                         ObjectInputStream in = new ObjectInputStream(file);
-                        user = (User)in.readObject();
+//                        user = (User)in.readObject();
+                        userList = (ArrayList) in.readObject();
                         in.close();
                         file.close();
-                        if (!(user.getUsername().equals(newUsernameIn))) {
-                            System.out.println("enter a new password");
-                            Scanner newPasswordScan = new Scanner(System.in);
-                            String newPasswordIn = newPasswordScan.next();
-                            BM.createUser(newUsernameIn, newPasswordIn);
-                            System.out.println("your user creation request is being processed \n" +
-                                    "returning to main menu");
-                            mainMenu();
-                        } else {
-                            System.out.println("this username is not available \n" +
-                                    "enter another new username");
+                        for (User obj: userList) {
+//                            if (!(user.getUsername().equals(newUsernameIn))) {
+                            if (!(obj.getUsername().equals(newUsernameIn))) {
+                                System.out.println("enter a new password");
+                                Scanner newPasswordScan = new Scanner(System.in);
+                                String newPasswordIn = newPasswordScan.next();
+                                BM.createUser(newUsernameIn, newPasswordIn);
+                                System.out.println("your user creation request is being processed \n" +
+                                        "returning to main menu");
+                                mainMenu();
+                            } else {
+                                System.out.println("this username is not available \n" +
+                                        "enter another new username");
+                            }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -497,6 +520,7 @@ public class ScannerUI implements java.io.Serializable {
             }
         }
     }
+
 
     public void menuU2(User user) {
         // user interactions menu
