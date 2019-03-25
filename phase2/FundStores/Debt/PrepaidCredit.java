@@ -16,6 +16,11 @@ import java.time.LocalDateTime;
 public class PrepaidCredit extends Debit implements Serializable {
     private User user;
 
+    /**
+     * PrepaidCredit constructor
+     * @param accountHolder
+     * @param accountType
+     */
     public PrepaidCredit (User accountHolder, String accountType){ super(accountHolder, "Prepaid Credit"); }
 
     public void monthlyFees(double fee) {
