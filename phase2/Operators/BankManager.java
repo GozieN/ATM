@@ -375,5 +375,15 @@ public class BankManager extends BankWorker implements Observer, Serializable{
             s = inbox.toString();
         } return s;
     }
+
+    public static void main(String[] args) {
+        BankManager bm = new BankManager("", "");
+        bm.createUser("b", "b");
+        bm.createUser("c", "c");
+        bm.createUser("a", "a");
+        bm.createUser("d", "d");
+
+    }
+
 }
 
