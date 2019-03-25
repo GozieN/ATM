@@ -41,6 +41,21 @@ public abstract class Account implements Serializable {
     }
 
     /**
+     * Overloading for Account class constructor to take in two distinct users
+     * @param accountHolder
+     * @param accountType
+     */
+    public Account(User accountHolder, User accountHolder2, String accountType) {
+        accountsDatabase.add(this);
+        history = new Stack<>();
+        this.accountType = accountType;
+        this.accountNumTotal++;
+        this.holderName = accountHolder.getUsername();
+        this.holderName = accountHolder2.getUsername();
+        this.transactionInfoTempHolder = new Object[2];
+    }
+
+    /**
      * Get name of account holder
      * @return String of holder's name
      */
