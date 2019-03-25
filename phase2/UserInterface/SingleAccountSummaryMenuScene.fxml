@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.SingleAccountSummaryMenuController">
+	<children>
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[single account summary menu]">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<TextArea fx:id="singleAccountSummary" layoutX="87.0" layoutY="83.0" prefHeight="234.0" prefWidth="376.0" />
+		<Button layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#back" text="back">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button layoutX="90.0" layoutY="342.0" mnemonicParsing="false" onAction="#exit" text="exit">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+	</children>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package phase2.UserInterface;
+package phase2.otherfiles;
 
 import phase2.Operators.User;
 
@@ -9,9 +9,6 @@ import java.util.regex.Pattern;
 import phase2.FundStores.*;
 import phase2.FundStores.Debt.*;
 import phase2.FundStores.Asset.*;
-
-
-
 
 public class SaveFileParser {
     private Pattern fileStart=Pattern.compile("^Account and User List:");
@@ -52,7 +49,7 @@ public class SaveFileParser {
                             String accType=m.group(1);
                             String[] splitted=line.split("\\s+");
                             if (accType=="ChequingAccount"){
-                                ChequingAccount acc=new ChequingAccount(Integer.parseInt(splitted[1]), splitted[2], Double.parseDouble(splitted[3]));
+                                //ChequingAccount acc=new ChequingAccount(Integer.parseInt(splitted[1]), splitted[2], Double.parseDouble(splitted[3]));
                             }else if(accType=="Credit"){
 
                             }else if(accType=="Debit"){

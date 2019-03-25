@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-
 public abstract class Account implements Serializable {
     private static ArrayList<Account> accountsDatabase = new ArrayList<>();
     private static int accountNumTotal = 0;
@@ -49,7 +48,6 @@ public abstract class Account implements Serializable {
         return holderName;
     }
 
-
     /**f
      * Get number of account
      * @return Int for account's number
@@ -61,8 +59,6 @@ public abstract class Account implements Serializable {
     public void setATM(ATM a){
         this.atm = a;
     }
-
-
 
     /**
      * Get type of account
@@ -91,7 +87,6 @@ public abstract class Account implements Serializable {
                     " of amount " + transferInfo[1] + " has been reversed upon your request.");
         }
     }
-
 
     /**
      * Set balance of account
@@ -174,8 +169,6 @@ public abstract class Account implements Serializable {
                 " now has a decreased balance of: " + balance + "$CAD");
         return true;}
 
-
-
     /**
      * Set the transaction holder
      */
@@ -219,7 +212,6 @@ public abstract class Account implements Serializable {
         return true;
     }
 
-
     /**
      * Transfer funds from sender to receiver
      * @param amount Amount of money to be transferred
@@ -251,7 +243,6 @@ public abstract class Account implements Serializable {
             return s;}
     }
 
-
     /**
      * Pay the bill
      * @param amount Amount of money to withdraw from account to pay bill
@@ -279,12 +270,9 @@ public abstract class Account implements Serializable {
      */
     public boolean validAmountInput(double amount){
         return amount%5 ==0 || amount < 0;
-
     }
 
-
     public boolean addToBill(double amount) {
-
         if (this instanceof Credit) {
             if (this.getAccountType() == "LineOfCredit") {
                 if ((balance + amount) > getCreditLimit()) {

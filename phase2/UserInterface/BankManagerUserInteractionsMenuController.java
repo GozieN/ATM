@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class UserInteractionsMenuController extends Menu implements java.io.Serializable {
+public class BankManagerUserInteractionsMenuController extends Menu implements java.io.Serializable {
 	private User user;
 
 	@FXML
@@ -37,11 +37,11 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 			Parent parent = loader.load();
 			Scene accountsSummaryOptionsMenuScene = new Scene(parent);
 			AccountsSummaryOptionsMenuController controller = loader.getController();
-			controller.initialize(this.user, "User");
+			controller.initialize(this.user, "BankManager");
 			mainStage.setScene(accountsSummaryOptionsMenuScene);
 			mainStage.show();
 		} else {
-			this.noAccounts1.setText("you have no accounts");
+			this.noAccounts1.setText("this user has no accounts");
 		}
 	}
 
@@ -49,44 +49,32 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		if (!(this.user.getAccountsCreated().isEmpty())) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
+			loader.setLocation(getClass().getResource("BankManagerUserTransactionsMenuScene.fxml"));
 			Parent parent = loader.load();
-			Scene userTransactionsMenuScene = new Scene(parent);
-			UserTransactionsMenuController controller = loader.getController();
+			Scene bankManagerUserTransactionsMenuScene = new Scene(parent);
+			BankManagerUserTransactionsMenuController controller = loader.getController();
 			controller.initialize(this.user);
-			mainStage.setScene(userTransactionsMenuScene);
+			mainStage.setScene(bankManagerUserTransactionsMenuScene);
 			mainStage.show();
 		} else {
-			this.noAccounts2.setText("you have no accounts");
+			this.noAccounts2.setText("this user has no accounts");
 		}
 	}
 
-	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
+	public void createNewBankAccount(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("RequestNewBankAccountCreationMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("CreateNewBankAccountMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene requestNewBankAccountCreationMenuScene = new Scene(parent);
-		RequestNewBankAccountCreationMenuController controller = loader.getController();
+		Scene createNewBankAccountMenuScene = new Scene(parent);
+		CreateNewBankAccountMenuController controller = loader.getController();
 		controller.initialize(this.user);
-		mainStage.setScene(requestNewBankAccountCreationMenuScene);
-		mainStage.show();
-	}
-
-	public void changeUserAccountPassword(ActionEvent event) throws Exception {
-		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("ChangeUserAccountPasswordMenuScene.fxml"));
-		Parent parent = loader.load();
-		Scene changeUserAccountPasswordMenuScene = new Scene(parent);
-		ChangeUserAccountPasswordMenuController controller = loader.getController();
-		controller.initialize(this.user);
-		mainStage.setScene(changeUserAccountPasswordMenuScene);
+		mainStage.setScene(createNewBankAccountMenuScene);
 		mainStage.show();
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "UserLoginMenuScene.fxml";
+		String previousMenu = "UserSelectMenuScene.fxml";
 		super.back(event, previousMenu);
 	}
 

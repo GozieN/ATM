@@ -17,29 +17,26 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class AccountsSummaryMenuController extends Menu implements java.io.Serializable {
+public class SingleAccountSummaryMenuController extends Menu implements java.io.Serializable {
 	private User user;
 
 	@FXML
-	private TextArea accountsSummary;
+	private TextArea singleAccountSummary;
 
-	public void initialize(User user) {
+	public void initialize(User user, Account account) {
 		this.user = user;
-	}
-
-	public void viewAccountsSummary(ActionEvent event) throws Exception {
-		this.accountsSummary.setText(this.user.viewInfo());
+		this.singleAccountSummary.setText(this.user.singleAccountSummary(account));
 	}
 
 	public void back(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("AccountsSummaryOptionsMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene userInteractionsMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		Scene accountsSummaryOptionsMenuScene = new Scene(parent);
+		AccountsSummaryOptionsMenuController controller = loader.getController();
 		controller.initialize(this.user);
-		mainStage.setScene(userInteractionsMenuScene);
+		mainStage.setScene(accountsSummaryOptionsMenuScene);
 		mainStage.show();
 	}
 

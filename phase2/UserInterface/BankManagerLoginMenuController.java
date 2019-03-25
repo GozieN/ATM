@@ -28,7 +28,13 @@ public class BankManagerLoginMenuController extends Menu implements java.io.Seri
 	public void login(ActionEvent event) throws Exception {
 		if (this.usernameIn.getText().equals(GUI.getBM().getUsername()) &&
 				this.passwordIn.getText().equals(GUI.getBM().getPassword())) {
-			// TODO: next BM scene
+			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("UserSelectMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene userSelectMenuScene = new Scene(parent);
+			mainStage.setScene(userSelectMenuScene);
+			mainStage.show();
 		} else {
 			this.loginFailed.setText("invalid credentials. try again");
 		}

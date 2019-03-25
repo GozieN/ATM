@@ -19,6 +19,7 @@ import javafx.event.*;
 
 public class WithdrawMenuController extends Menu implements java.io.Serializable {
 	private User user;
+	private String operatorType;
 
 	@FXML
 	private ComboBox<String> userBankAccounts;
@@ -31,8 +32,9 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 	@FXML
 	private Label endStatus;
 
-	public void initialize(User user) {
+	public void initialize(User user, String operatorType) {
 		this.user = user;
+		this.operatorType = operatorType;
 		for (Account account : this.user.getAccountsCreated()) {
 			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
 					" " + account.getAccountType());
@@ -71,15 +73,27 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
-		Parent parent = loader.load();
-		Scene userTransactionsMenuScene = new Scene(parent);
-		UserTransactionsMenuController controller = loader.getController();
-		controller.initialize(this.user);
-		mainStage.setScene(userTransactionsMenuScene);
-		mainStage.show();
+		if (this.operatorType.equals("BankManager")) {
+			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("BankManagerUserTransactionsMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene bankManagerUserTransactionsMenuScene = new Scene(parent);
+			BankManagerUserTransactionsMenuController controller = loader.getController();
+			controller.initialize(this.user);
+			mainStage.setScene(bankManagerUserTransactionsMenuScene);
+			mainStage.show();
+		} else if (this.operatorType.equals("User")) {
+			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene userTransactionsMenuScene = new Scene(parent);
+			UserTransactionsMenuController controller = loader.getController();
+			controller.initialize(this.user);
+			mainStage.setScene(userTransactionsMenuScene);
+			mainStage.show();
+		}
 	}
 
 	public void exit(ActionEvent event) throws Exception {

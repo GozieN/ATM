@@ -52,9 +52,9 @@ public class TransferToElseMenuController extends Menu implements java.io.Serial
 				selectedAccount1 = account;
 			}
 		}
-		if (!(toAccountIn.getText().equals(""))) {
+		if (!(this.toAccountIn.getText().equals(""))) {
 			try {
-				FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
+				FileInputStream input = new FileInputStream("phase2/txtfiles/accountDatabase.txt");
 				ObjectInputStream in = new ObjectInputStream(input);
 				selectedAccount2 = (Account)in.readObject();
 				in.close();
@@ -62,13 +62,13 @@ public class TransferToElseMenuController extends Menu implements java.io.Serial
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (!(selectedAccount2.getAccountNum() == Integer.parseInt(toAccountIn.getText()))) {
-				toAccountInStatus.setText("that bank account does not exist. try again");
-				endStatus.setText("");
+			if (!(selectedAccount2.getAccountNum() == Integer.parseInt(this.toAccountIn.getText()))) {
+				this.toAccountInStatus.setText("that bank account does not exist. try again");
+				this.endStatus.setText("");
 			}
 		} else {
-			toAccountInStatus.setText("no bank account entered. try again");
-			endStatus.setText("");
+			this.toAccountInStatus.setText("no bank account entered. try again");
+			this.endStatus.setText("");
 		}
 		int amount = Integer.parseInt(this.amountIn.getText());
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {

@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class UserTransactionsMenuController extends Menu implements java.io.Serializable {
+public class BankManagerUserTransactionsMenuController extends Menu implements java.io.Serializable {
 	private User user;
 
 	public void initialize(User user) {
@@ -31,7 +31,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 		Parent parent = loader.load();
 		Scene withdrawMenuScene = new Scene(parent);
 		WithdrawMenuController controller = loader.getController();
-		controller.initialize(this.user, "User");
+		controller.initialize(this.user, "BankManager");
 		mainStage.setScene(withdrawMenuScene);
 		mainStage.show();
 	}
@@ -39,11 +39,11 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 	public void deposit(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("DepositMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("DepositMenuScene.fxml")); //depositmenuoptions -> cash, cheque
 		Parent parent = loader.load();
 		Scene depositMenuScene = new Scene(parent);
 		DepositMenuController controller = loader.getController();
-		controller.initialize(this.user, "User");
+		controller.initialize(this.user, "BankManager");
 		mainStage.setScene(depositMenuScene);
 		mainStage.show();
 	}
@@ -55,7 +55,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 		Parent parent = loader.load();
 		Scene transferMenuScene = new Scene(parent);
 		TransferOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user, "User");
+		controller.initialize(this.user, "BankManager");
 		mainStage.setScene(transferMenuScene);
 		mainStage.show();
 	}
@@ -67,7 +67,7 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 		Parent parent = loader.load();
 		Scene payBillMenuScene = new Scene(parent);
 		PayBillMenuController controller = loader.getController();
-		controller.initialize(this.user, "User");
+		controller.initialize(this.user, "BankManager");
 		mainStage.setScene(payBillMenuScene);
 		mainStage.show();
 	}
@@ -75,12 +75,12 @@ public class UserTransactionsMenuController extends Menu implements java.io.Seri
 	public void back(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene userInteractionsMenuScene = new Scene(parent);
-		UserInteractionsMenuController controller = loader.getController();
+		Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
+		BankManagerUserInteractionsMenuController controller = loader.getController();
 		controller.initialize(this.user);
-		mainStage.setScene(userInteractionsMenuScene);
+		mainStage.setScene(bankManagerUserInteractionsMenuScene);
 		mainStage.show();
 	}
 

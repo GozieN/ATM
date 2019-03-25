@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 
-public class PayBillMenuController extends Menu implements java.io.Serializable {
+public class AccountsSummaryOptionsMenuController extends Menu implements java.io.Serializable {
 	private User user;
 	private String operatorType;
 
@@ -25,23 +25,25 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 	private ComboBox<String> userBankAccounts;
 	@FXML
 	private Label userBankAccountsStatus;
-	@FXML
-	private TextField amount;
-	@FXML
-	private Label amountStatus;
-	@FXML
-	private Label endStatus;
 
 	public void initialize(User user, String operatorType) {
 		this.user = user;
 		this.operatorType = operatorType;
-		for (Account account : this.user.getAccountsCreated()) {
-			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
-					" " + account.getAccountType());
-		}
 	}
 
-	public void payBill(ActionEvent event) throws Exception {
+	public void viewAllAccountsSummary(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("AllAccountsSummaryMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene allAccountsSummaryMenuScene = new Scene(parent);
+		AllAccountsSummaryMenuController controller = loader.getController();
+		controller.initialize(this.user);
+		mainStage.setScene(allAccountsSummaryMenuScene);
+		mainStage.show();
+	}
+
+	public void viewSingleAccountSummary(ActionEvent event) throws Exception {
 		Account selectedAccount = null;
 		String[] split = this.userBankAccounts.getValue().split("\\s");
 		for (Account account : this.user.getAccountsCreated()) {
@@ -49,26 +51,18 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 				selectedAccount = account;
 			}
 		}
-		int amount = Integer.parseInt(this.amount.getText());
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
-			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
-			if (amount >= 0) {
-				this.amountStatus.setText("valid amount");
-				if (amount <= selectedAccount.getBalance()) {
-					selectedAccount.payBill(amount);
-					this.endStatus.setText("bill payment successful");
-				} else {
-					this.amountStatus.setText("this account does not have enough funds to pay a bill of $" + amount);
-					this.endStatus.setText("");
-				}
-			} else {
-				this.amountStatus.setText("invalid amount. try again");
-				this.endStatus.setText("");
-			}
+			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("SingleAccountSummaryMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene singleAccountSummaryMenuScene = new Scene(parent);
+			SingleAccountSummaryMenuController controller = loader.getController();
+			controller.initialize(this.user, selectedAccount);
+			mainStage.setScene(singleAccountSummaryMenuScene);
+			mainStage.show();
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
-			this.amountStatus.setText("");
-			this.endStatus.setText("");
 		}
 	}
 
@@ -76,22 +70,22 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 		if (this.operatorType.equals("BankManager")) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("BankManagerUserTransactionsMenuScene.fxml"));
+			loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
 			Parent parent = loader.load();
-			Scene bankManagerUserTransactionsMenuScene = new Scene(parent);
-			BankManagerUserTransactionsMenuController controller = loader.getController();
+			Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
+			BankManagerUserInteractionsMenuController controller = loader.getController();
 			controller.initialize(this.user);
-			mainStage.setScene(bankManagerUserTransactionsMenuScene);
+			mainStage.setScene(bankManagerUserInteractionsMenuScene);
 			mainStage.show();
 		} else if (this.operatorType.equals("User")) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("UserTransactionsMenuScene.fxml"));
+			loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
 			Parent parent = loader.load();
-			Scene userTransactionsMenuScene = new Scene(parent);
-			UserTransactionsMenuController controller = loader.getController();
+			Scene userInteractionsMenuScene = new Scene(parent);
+			UserInteractionsMenuController controller = loader.getController();
 			controller.initialize(this.user);
-			mainStage.setScene(userTransactionsMenuScene);
+			mainStage.setScene(userInteractionsMenuScene);
 			mainStage.show();
 		}
 	}
