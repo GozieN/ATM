@@ -272,6 +272,11 @@ public abstract class Account implements Serializable {
         return amount%5 ==0 || amount < 0;
     }
 
+    /**
+     * Add amount to credit card bill if sum of balance and amount is less than given credit limit
+     * @param amount Amount of money to add to bill
+     * @return True if money is added to bill
+     */
     public boolean addToBill(double amount) {
         if (this instanceof Credit) {
             if (this.getAccountType() == "LineOfCredit") {
