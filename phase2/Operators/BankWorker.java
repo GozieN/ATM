@@ -15,17 +15,18 @@ public class BankWorker extends Operator implements Serializable {
 
     public BankWorker(String username, String password){
         super(username, password);
-
     }
     /**
      * Print a summary of a single account.
      * @param account Instance of account
      */
-    public void singleAccountSummary(Account account) {
-        System.out.println("Account holder: " + account.getHolderName() + " "
+    public String singleAccountSummary(Account account) {
+        String s = "Account holder: " + account.getHolderName() + " "
                 + "DATE AND TIME " +
                 "" + "Account summary:" + account.accountType +"Account Number: "
-                + account.getAccountNum() + " contains: " + account.getBalance() + "CAD$");}
+                + account.getAccountNum() + " contains: " + account.getBalance() + "CAD$";
+        return s;
+    }
 
     /**
      * Print the balance of the account.

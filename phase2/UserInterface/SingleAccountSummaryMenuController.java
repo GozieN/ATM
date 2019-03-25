@@ -19,12 +19,14 @@ import javafx.event.*;
 
 public class SingleAccountSummaryMenuController extends Menu implements java.io.Serializable {
 	private User user;
+	private String operatorType;
 
 	@FXML
 	private TextArea singleAccountSummary;
 
 	public void initialize(User user, Account account) {
 		this.user = user;
+		this.operatorType =
 		this.singleAccountSummary.setText(this.user.singleAccountSummary(account));
 	}
 
