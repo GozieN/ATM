@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.DeleteUserAccountMenuController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[delete user account menu]">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="34.0" layoutY="128.0" text="WARNING: this action is irreversible - once the user account has been deleted, it cannot be recovered">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="147.0" text="if this action completes successfully and the user account is deleted, this ATM will return to the main menu">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="masterAccessKeyIn" layoutX="148.0" layoutY="281.0" onAction="#deleteUserAccount" promptText="master access key">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Button layoutX="400.0" layoutY="281.0" mnemonicParsing="false" onAction="#deleteUserAccount" text="DELETE USER ACCOUNT">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="masterAccessKeyInStatus" layoutX="405.0" layoutY="273.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

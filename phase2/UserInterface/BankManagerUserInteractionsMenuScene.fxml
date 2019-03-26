@@ -12,22 +12,22 @@
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="149.0" layoutY="179.0" mnemonicParsing="false" onAction="#viewAccountsSummary" text="view account(s) summary">
+		<Button layoutX="149.0" layoutY="181.0" mnemonicParsing="false" onAction="#viewAccountsSummary" text="view account(s) summary">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Label fx:id="noAccounts1" layoutX="405.0" layoutY="186.0">
+		<Label fx:id="noAccounts1" layoutX="405.0" layoutY="188.0">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Button layoutX="149.0" layoutY="230.0" mnemonicParsing="false" onAction="#performTransaction" text="perform transaction">
+		<Button layoutX="149.0" layoutY="231.0" mnemonicParsing="false" onAction="#performTransaction" text="perform transaction">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Label fx:id="noAccounts2" layoutX="358.0" layoutY="237.0">
+		<Label fx:id="noAccounts2" layoutX="358.0" layoutY="238.0">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -37,6 +37,11 @@
 				<Font size="20.0" />
 			</font>
 		</Button>
+      <Button layoutX="149.0" layoutY="332.0" mnemonicParsing="false" onAction="#createNewBankAccount" text="delete user account">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
 		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
 			<font>
 				<Font size="20.0" />

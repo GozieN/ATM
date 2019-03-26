@@ -63,6 +63,18 @@ public class BankManagerUserInteractionsMenuController extends Menu implements j
 		mainStage.show();
 	}
 
+	public void deleteUserAccount(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("DeleteUserAccountMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene deleteUserAccountMenuScene = new Scene(parent);
+		DeleteUserAccountMenuController controller = loader.getController();
+		controller.initialize(this.user);
+		mainStage.setScene(deleteUserAccountMenuScene);
+		mainStage.show();
+	}
+
 	public void back(ActionEvent event) throws Exception {
 		String previousMenu = "UserSelectMenuScene.fxml";
 		super.back(event, previousMenu);

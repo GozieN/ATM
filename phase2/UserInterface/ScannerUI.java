@@ -287,7 +287,7 @@ public class ScannerUI implements java.io.Serializable {
                                     String toAccountIn = toAccountScan.next();
                                     Account toAccount = null;
                                     try {
-                                        FileInputStream input = new FileInputStream("phase2/accountDatabase.txt");
+                                        FileInputStream input = new FileInputStream("phase2/txtfiles/AccountDatabase.txt");
                                         ObjectInputStream in = new ObjectInputStream(input);
                                         toAccount = (Account) in.readObject();
                                         in.close();
