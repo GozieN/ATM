@@ -7,9 +7,6 @@ import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
-import phase2.UserInterface.MainMenu.*;
-import phase2.UserInterface.BankEmployeeUserMenus.BankManagerMenus.*;
-
 
 
 public class DeleteUserAccountMenuController extends Menu implements java.io.Serializable {
