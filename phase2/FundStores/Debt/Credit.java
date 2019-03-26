@@ -1,7 +1,7 @@
 package phase2.FundStores.Debt;
 
 import phase2.FundStores.Account;
-import phase2.Operators.User;
+import phase2.Operators.BankAccountUser.User;
 
 import java.io.Serializable;
 

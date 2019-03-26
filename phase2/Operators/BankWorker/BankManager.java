@@ -1,16 +1,17 @@
-package phase2.Operators;
+package phase2.Operators.BankWorker;
 
 import phase2.FundStores.*;
 import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
+import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
 import java.util.*;
 import java.io.Serializable;
 
-public class BankManager extends BankWorker implements Observer, Serializable{
+public class BankManager extends BankEmployee implements Observer, Serializable{
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
@@ -85,6 +86,37 @@ public class BankManager extends BankWorker implements Observer, Serializable{
                     newAccount.accountType + " with account Number: "
                     + newAccount.getAccountNum() + " was created upon your request.");
         }
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewCapabilities(){
+        String s = "";
+        s = "As the Bank Manger, you are able to do the following: \n" +
+                "- Approve and create all kinds of users\n" +
+                "- Create user accounts upon creation \n" +
+                "- Delete a user account upon request.\n" +
+                "- Create a user account upon request. \n" +
+                "- View a summary of a user's single account. \n" +
+                "- View a summary of all of a user's existing accounts \n" +
+                "- Restock the ATM \n" +
+                "- View your message inbox, that can be populated with Consultant Messages!";
+
+        return s;
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewContract(){
+        String s = "";
+        s = "As the designated Bank Manager, " +
+                "you agree not to engage in fraudulent behavior, " +
+                "especially when dealing with user related transactions and ATM restocking. Click next to agree.";
+        return s;
     }
 
     /**

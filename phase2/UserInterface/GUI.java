@@ -1,9 +1,5 @@
 package phase2.UserInterface;
 
-import phase2.FundStores.*;
-import phase2.Operators.*;
-
-import java.io.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.event.*;
+import phase2.Operators.BankWorker.BankManager;
 
 public class GUI extends Application implements java.io.Serializable {
     private static BankManager BM = new BankManager("BMuser", "BMpass");

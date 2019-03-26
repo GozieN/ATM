@@ -2,8 +2,8 @@ package phase2.UserInterface;
 
 import phase2.FundStores.ATM;
 import phase2.FundStores.Account;
-import phase2.Operators.BankManager;
-import phase2.Operators.User;
+import phase2.Operators.BankWorker.BankManager;
+import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
 import java.io.File;

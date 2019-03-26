@@ -1,12 +1,12 @@
 package phase2.Test;
 import phase2.FundStores.*;
-import phase2.Operators.*;
 
 import java.io.FileNotFoundException;
 
 
 import org.junit.Before;
 import org.junit.Test;
+import phase2.Operators.BankWorker.BankManager;
 // import sun.jvm.hotspot.debugger.cdbg.basic.BasicNamedFieldIdentifier;
 
 import static org.junit.Assert.assertTrue;

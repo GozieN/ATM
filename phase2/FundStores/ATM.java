@@ -1,6 +1,6 @@
 package phase2.FundStores;
 
-import phase2.Operators.BankManager;
+import phase2.Operators.BankWorker.BankManager;
 
 import java.io.*;
 import java.time.LocalDateTime;

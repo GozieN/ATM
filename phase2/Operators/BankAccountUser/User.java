@@ -1,8 +1,10 @@
-package phase2.Operators;
+package phase2.Operators.BankAccountUser;
 
 import phase2.FundStores.*;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
+import phase2.Operators.Contract;
+import phase2.Operators.Operator;
 
 import java.util.*;
 import java.io.Serializable;
@@ -11,12 +13,12 @@ import java.util.Iterator;
 /**
  *
  */
-public class User extends Operator implements Serializable, Iterable<Account>{
+public class User extends Operator implements Serializable, Iterable<Account>, Contract {
     private static ArrayList<User> userDatabase;
     private static int numUsers = 0;
     private int numChequingAccounts = 0;
-    private String username;
     private String password;
+    private String username;
     private String userType;
     private ArrayList<Account> accountsCreated;
 
@@ -29,7 +31,7 @@ public class User extends Operator implements Serializable, Iterable<Account>{
     public User(String username, String password) {
         super(username, password);
         numUsers++;
-        this.userDatabase = new ArrayList<User>();
+        //this.userDatabase = new ArrayList<User>(); - WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
     }
@@ -51,6 +53,61 @@ public class User extends Operator implements Serializable, Iterable<Account>{
             return s;
         }
     }
+
+    /**
+     * Return the type of user that this is
+     * @return a string representing the type of user
+     */
+
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * Opt into of the point system
+     * @return String - the confirmation.
+     */
+    public String optIntoPointSystem(){
+        String s = "";
+        PointSystemUser alteredUser;
+        alteredUser = new PointSystemUser(getUsername(), getPassword());
+        alteredUser.setAccountsCreated(this.getAccountsCreated());
+        this.numUsers -= 1;
+        //iterate over arrayList of users and replace instance!!
+        s = "You have successfully opted int of the point system! You will start with " +
+                "an point balance of of 50 point.";
+        return s;
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewCapabilities(){
+        String s = "";
+        s = "As a new Point System User, you are able to do the following: \n" +
+                "- Request to delete your account at any point in time.\n" +
+                "- Opt into being a point system user at any point in time.\n" +
+                "- Change your password at any time. \n" +
+                "- Create a new account at any time. \n" +
+                "- View a summary of a single account. \n" +
+                "- View a summary of all your existing accounts";
+
+        return s;
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewContract(){
+        String s;
+        s = "As a new Standard User of the Bank, " +
+                "you agree not to engage in fraudulent behavior, " +
+                "especially when filling in information for account consultation purposes. Click next to agree.";
+        return s;
+    }
+
 
     /**
      * Return the number of Chequing accounts the user has to determine what we should
