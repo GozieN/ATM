@@ -50,10 +50,9 @@ public class ATM implements Serializable {
      */
 
     public void setDate(int day, int month, int year) throws IOException {
-
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -91,8 +90,7 @@ public class ATM implements Serializable {
      * @return A string indicating current date
      */
     public String getDate() {
-        return "the date is " + this.cal.getTime().toString().substring(4, 10) + ',' +
-                cal.getTime().toString().substring(24, 28);
+        return this.cal.getTime().toString().substring(4, 10) + ',' + cal.getTime().toString().substring(24, 28);
     }
 
     /**
@@ -140,7 +138,7 @@ public class ATM implements Serializable {
      * @return String indicating the current time on a 24-hour clock
      */
     public String getTime() {
-        return "the 24h-time is " + this.cal.getTime().toString().substring(11, 19);
+        return " " + this.cal.getTime().toString().substring(11, 19);
     }
 
     /**
