@@ -1,12 +1,13 @@
-package phase2.Operators;
+package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
+import phase2.Operators.Contract;
 
 import java.util.ArrayList;
 
 
-public class UserConsultant extends BankWorker {
-    private ArrayList<BankWorker> bankWorkerDatabase = new ArrayList<>();
+public class UserConsultant extends BankEmployee implements Contract {
+    private ArrayList<BankEmployee> bankEmployeeDatabase = new ArrayList<>();
     private int numBankWorkers = 0;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private String username;
@@ -17,6 +18,35 @@ public class UserConsultant extends BankWorker {
 
     public UserConsultant(String username, String password){
         super(username, password);
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewCapabilities(){
+        String s = "";
+        s = "As a User Consultant for the Bank, you are able to do the following: \n" +
+                "- Advise users on account creation.\n" +
+                "- Message Bank Manager about complaints.\n" +
+                "- Change your password at any time. \n" +
+                "- Create a new account at any time. \n" +
+                "- View a summary of a single account. \n" +
+                "- View a summary of all your existing accounts";
+
+        return s;
+    }
+
+    /**
+     * Display the features that this user has.
+     * @return String - the features this user has!
+     */
+    public String viewContract(){
+        String s;
+        s = "As a User Consultant for the Bank, " +
+                "you agree not to engage in fraudulent behavior, " +
+                "and agree not to abuse the Bank Manager messaging system. Click next to agree.";
+        return s;
     }
 
     // input prompts, --> create account button

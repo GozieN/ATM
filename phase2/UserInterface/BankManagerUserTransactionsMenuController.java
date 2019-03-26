@@ -1,21 +1,10 @@
 package phase2.UserInterface;
 
-import phase2.FundStores.*;
-import phase2.Operators.*;
-
-import java.io.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.ComboBox;
 import javafx.event.*;
+import phase2.Operators.BankAccountUser.User;
 
 public class BankManagerUserTransactionsMenuController extends Menu implements java.io.Serializable {
 	private User user;

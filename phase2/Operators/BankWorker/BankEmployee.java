@@ -1,19 +1,20 @@
-package phase2.Operators;
+package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
+import phase2.Operators.Operator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BankWorker extends Operator implements Serializable {
+public class BankEmployee extends Operator implements Serializable {
 
-    private ArrayList<BankWorker> bankWorkerDatabase = new ArrayList<>();
+    private ArrayList<BankEmployee> bankEmployeeDatabase = new ArrayList<>();
     private int numBankWorkers = 0;
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private String username;
     private String password;
 
-    public BankWorker(String username, String password){
+    public BankEmployee(String username, String password){
         super(username, password);
     }
     /**

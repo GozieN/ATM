@@ -3,10 +3,10 @@ import phase2.FundStores.Asset.*;
 import phase2.FundStores.Debt.*;
 
 
-import phase2.Operators.*;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
+import phase2.Operators.BankAccountUser.User;
 
 import static junit.framework.TestCase.assertEquals;
 
