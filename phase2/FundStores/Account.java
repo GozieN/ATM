@@ -5,7 +5,8 @@ import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
-import phase2.Operators.User;
+import phase2.Operators.BankAccountUser.PointSystemUser;
+import phase2.Operators.BankAccountUser.User;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -18,8 +19,11 @@ public abstract class Account implements Serializable {
     private static int accountNumTotal = 0;
     private int accountNum = accountNumTotal;
     private String holderName;
+    private String holderName2;
     private double balance;
     public String accountType;
+    private int numPoints;
+    private ArrayList<User> accountUsers = new ArrayList<User>();
 
     public ATM atm;
     private Object[] transactionInfoTempHolder;
@@ -33,6 +37,7 @@ public abstract class Account implements Serializable {
      */
     public Account(User accountHolder, String accountType) {
         accountsDatabase.add(this);
+        this.accountUsers.add(accountHolder);
         history = new Stack<>();
         this.accountType = accountType;
         this.accountNumTotal++;
@@ -50,9 +55,14 @@ public abstract class Account implements Serializable {
         history = new Stack<>();
         this.accountType = accountType;
         this.accountNumTotal++;
+        this.accountUsers.add(accountHolder);
+        this.accountUsers.add(accountHolder2);
         this.holderName = accountHolder.getUsername();
-        this.holderName = accountHolder2.getUsername();
+        this.holderName2 = accountHolder2.getUsername();
         this.transactionInfoTempHolder = new Object[2];
+        if (accountHolder instanceof PointSystemUser){
+            numPoints = 50;
+        }
     }
 
     /**
@@ -61,6 +71,14 @@ public abstract class Account implements Serializable {
      */
     public String getHolderName(){
         return holderName;
+    }
+
+    /**
+     * Return the number of points that the account contains
+     * @return int - representing the number of points.
+     */
+    public int getNumPoints() {
+        return numPoints;
     }
 
     /**f
@@ -73,6 +91,22 @@ public abstract class Account implements Serializable {
 
     public void setATM(ATM a){
         this.atm = a;
+    }
+
+    /**
+     * Increase the number of points the account contains.
+     */
+    public void increasePoints(){
+        if (accountUsers.get(1) instanceof PointSystemUser){
+            this.numPoints += 5;}
+    }
+
+    /**
+     * Decrease the number of points the account contains.
+     */
+    public void decreasePoints(){
+        if (accountUsers.get(1) instanceof PointSystemUser || accountUsers.get(2) instanceof PointSystemUser){
+            this.numPoints -= 20;}
     }
 
     /**
@@ -129,6 +163,7 @@ public abstract class Account implements Serializable {
         }else{
             atm.plus(amount);
             this.depositToAccount(amount);
+            increasePoints();
             return true;
         }
     }
@@ -165,6 +200,7 @@ public abstract class Account implements Serializable {
         }else{
             atm.minus(amount);
             withdrawFromAccount(amount);
+            increasePoints();
             return true;
         }}
 
@@ -200,6 +236,7 @@ public abstract class Account implements Serializable {
         this.updateHistory("withdraw", amount, null);
         System.out.println("Withdrawal successful, Account: " + this.accountNum +
                 " now has a decreased balance of: " + balance + "$CAD");
+        increasePoints();
         return true;}
 
     /**
@@ -232,6 +269,7 @@ public abstract class Account implements Serializable {
         System.out.println("Deposit successful, Account: " + this.accountNum +
                 " now has an increased balance of: " + balance + "CAD$");
         this.updateHistory("deposit", amount, null);
+        increasePoints();
         return true;
     }
 
@@ -242,6 +280,7 @@ public abstract class Account implements Serializable {
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
         this.updateHistory("cheque", amount, null);
+        increasePoints();
         return true;
     }
 
@@ -256,6 +295,7 @@ public abstract class Account implements Serializable {
         receiverAccount.updateHistory("transfer", amount, this);
         System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
                 receiverAccount.getBalance() + "$CAD");
+        increasePoints();
         return true;
     }
 
@@ -295,6 +335,7 @@ public abstract class Account implements Serializable {
             ex.printStackTrace();
         }
         this.updateHistory("bill", amount, null);
+        increasePoints();
         return true;}
 
     /**
@@ -328,7 +369,7 @@ public abstract class Account implements Serializable {
                 }
             }
         }
-//            this.updateHistory("");
+//            this.updateHistory(""); - FIGURE OUT BILL UNDOS - maybe BM treats as special case!
         System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
         return true; }
 }

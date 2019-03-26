@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.MoveMoneyMenus.TransferOptionsMenuController">
+	<children>
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[transfer options menu]">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button layoutX="120.0" layoutY="204.0" mnemonicParsing="false" onAction="#transferToSelf" text="transfer to self">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+      <Button layoutX="120.0" layoutY="254.0" mnemonicParsing="false" onAction="#transferToElse" text="transfer to else">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+		<Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+			<font>
+				<Font size="20.0" />
+			</font>
+		</Button>
+	</children>
+</AnchorPane>

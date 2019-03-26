@@ -1,14 +1,12 @@
 package phase2.otherfiles;
 
-import phase2.Operators.User;
+import phase2.Operators.BankAccountUser.User;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import phase2.FundStores.*;
-import phase2.FundStores.Debt.*;
-import phase2.FundStores.Asset.*;
 
 public class SaveFileParser {
     private Pattern fileStart=Pattern.compile("^Account and User List:");
