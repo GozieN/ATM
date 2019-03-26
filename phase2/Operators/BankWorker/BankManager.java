@@ -414,8 +414,6 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         bm.createUser("c", "c");
         bm.createUser("a", "a");
         bm.createUser("d", "d");
-
     }
-
 }
 

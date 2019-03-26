@@ -31,7 +31,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     public User(String username, String password) {
         super(username, password);
         numUsers++;
-        //this.userDatabase = new ArrayList<User>(); - WOULD ERASE OLD INFO!
+        this.userDatabase = new ArrayList<User>();// - WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
     }
