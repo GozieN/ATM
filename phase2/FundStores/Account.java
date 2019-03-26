@@ -168,9 +168,22 @@ public abstract class Account implements Serializable {
         }
     }
 
-    public void setCreditLimit(double creditLimit) { this.creditLimit = creditLimit;}
+    /**
+     * Set credit limit of account
+     * @param creditLimit Limit of which a user can spend in their credit account
+     */
+    public void setCreditLimit(double creditLimit) {
+        if (this instanceof PrepaidCredit){
+            this.creditLimit = getBalance();
+        } else { this.creditLimit = creditLimit;}
+    }
 
+    /**
+     * Get credit limit of account
+     * @return Double for amount of money user can spend on credit account
+     */
     public double getCreditLimit() {return this.creditLimit;}
+
 
     /**
      *Withdraw amount from account using ATM
@@ -341,17 +354,15 @@ public abstract class Account implements Serializable {
                             "as you have reached your credit limit");
                 } else if ((balance + amount) < getCreditLimit()) {
                     depositToAccount(amount);
-                } else {
-                    if ((balance + amount) > getCreditLimit()) {
-                        System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
-                                "as you have reached your credit limit");
-                    } else if ((balance + amount) < getCreditLimit()) {
-                        depositToAccount(amount);
+                }}
+            else if ((balance + amount) > getCreditLimit()) {
+                System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
+                        "as you have reached your credit limit");
+                } else if ((balance + amount) < getCreditLimit()) {
+                    depositToAccount(amount);
                     }
-                }
             }
-        }
-//            this.updateHistory(""); - FIGURE OUT BILL UNDOS - maybe BM treats as special case!
+        this.updateHistory(""); - FIGURE OUT BILL UNDOS - maybe BM treats as special case!
         System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
         return true; }
 }

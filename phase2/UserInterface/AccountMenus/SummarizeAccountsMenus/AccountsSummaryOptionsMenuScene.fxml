@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.AccountMenus.SummarizeAccountsMenus.AccountsSummaryOptionsMenuController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[accounts summary options menu]">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="126.0" layoutY="199.0" mnemonicParsing="false" onAction="#viewAllAccountsSummary" text="view all accounts summary">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="userBankAccounts" layoutX="126.0" layoutY="288.0" prefWidth="150.0" promptText="bank account" />
+      <Button layoutX="283.0" layoutY="288.0" mnemonicParsing="false" onAction="#viewSingleAccountSummary" text="view single account summary" />
+      <Label fx:id="userBankAccountsStatus" layoutX="459.0" layoutY="292.0" />
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="91.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

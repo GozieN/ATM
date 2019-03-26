@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.LoginMenus.LoginOptionsMenuController">
+   <children>
+      <Button layoutX="15.0" layoutY="14.0" mnemonicParsing="false" text="[login options menu]">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="141.0" layoutY="198.0" mnemonicParsing="false" onAction="#userLogin" text="user login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="141.0" layoutY="249.0" mnemonicParsing="false" onAction="#consultantLogin" text="consultant login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="141.0" layoutY="300.0" mnemonicParsing="false" onAction="#bankManagerLogin" text="bank manager login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
