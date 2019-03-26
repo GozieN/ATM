@@ -72,6 +72,24 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         } catch (Exception ex) {ex.printStackTrace();}
 
 
+        for (User obj: users) {
+            if (obj == user) {
+                obj.getAccountsCreated().add(newAccount);
+            }
+        }
+
+        ArrayList<User> userList = new ArrayList<>();
+        userList = users;
+
+        try {
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(userList);
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
+
+
         if (newAccount == null) {
             System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
