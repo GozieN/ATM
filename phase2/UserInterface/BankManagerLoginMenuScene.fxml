@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.BankManagerLoginMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.BankManagerLoginMenuController">
 	<children>
 		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[bank manager login menu]">
 			<font>
@@ -28,7 +28,7 @@
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Label fx:id="loginFailed" layoutX="387.0" layoutY="263.0">
+		<Label fx:id="loginFailed" layoutX="383.0" layoutY="329.0">
 			<font>
 				<Font size="20.0" />
 			</font>

@@ -53,6 +53,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 			}
 		} else {
 			this.bankAccountTypesStatus.setText("no bank account type selected. try again");
+			this.endStatus.setText("");
 		}
 	}
 

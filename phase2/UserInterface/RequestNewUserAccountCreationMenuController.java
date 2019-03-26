@@ -45,24 +45,32 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-
 			for (User obj: userList) {
 				if (!(obj.getUsername().equals(this.newUsernameIn.getText())) &&
 						!(this.newUsernameIn.getText().equals(""))) {
 					this.newUsernameInStatus.setText("valid new username");
+				} else if (this.newUsernameIn.getText().equals("")) {
+					this.newUsernameInStatus.setText("this field cannot be left blank. try again");
+					this.endStatus.setText("");
 				} else {
 					this.newUsernameInStatus.setText("this username is not available. try again");
+					this.endStatus.setText("");
 				}
 				if (!(this.newPasswordIn.getText()).equals("")) {
 					this.newPasswordInStatus.setText("valid new password");
 				} else {
 					this.newPasswordInStatus.setText("this field cannot be left blank. try again");
+					this.endStatus.setText("");
 				}
 				if (!(this.newPasswordConfirmIn.getText().equals("")) &&
 						this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
 					this.newPasswordConfirmStatus.setText("matches new password");
+				} else if (this.newPasswordConfirmIn.getText().equals("")) {
+					this.newPasswordConfirmStatus.setText("this field cannot be left blank. try again");
+					this.endStatus.setText("");
 				} else {
 					this.newPasswordConfirmStatus.setText("does not match new password. try again");
+					this.endStatus.setText("");
 				}
 				if (this.newUsernameInStatus.getText().equals("valid new username") &&
 						this.newPasswordInStatus.getText().equals("valid new password") &&
