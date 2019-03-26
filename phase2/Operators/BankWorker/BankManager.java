@@ -61,17 +61,15 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         }
 
         //[Angela]
-//        User userInFile = null;
-//        try {
-//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-//            ObjectInputStream in = new ObjectInputStream(file);
-//            userInFile = (User) in.readObject();
-//            in.close();
-//            file.close();
-//            if (userInFile.getUsername().equals(user.getUsername())) {
-//                userInFile.addToAccountsCreated(newAccount);
-//            }
-//        } catch (Exception ex) {ex.printStackTrace();}
+        try {
+            ArrayList<Account> accountsList = new ArrayList<>();
+            accountsList = newAccount.getAccountsDatabase();
+
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/AccountDatabase.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(accountsList);
+
+        } catch (Exception ex) {ex.printStackTrace();}
 
 
         if (newAccount == null) {
