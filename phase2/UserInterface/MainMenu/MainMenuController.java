@@ -4,6 +4,7 @@ import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.event.*;
+import phase2.UserInterface.*;
 
 public class MainMenuController extends Menu implements java.io.Serializable {
 

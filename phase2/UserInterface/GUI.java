@@ -10,8 +10,9 @@ import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import phase2.Operators.BankWorker.BankManager;
+import java.io.Serializable;
 
-public class GUI extends Application implements java.io.Serializable {
+public class GUI extends Application implements Serializable {
     private static BankManager BM = new BankManager("BMuser", "BMpass");
 
     @Override

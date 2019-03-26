@@ -31,7 +31,7 @@ public class ATM implements Serializable {
          this.num20bills = num20bills;
          this.num50bills = num50bills;
          this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
-         //this.BM = new BankManager();
+         //this.BM = new BankManagerMenus();
     }
 
     /**
@@ -39,7 +39,7 @@ public class ATM implements Serializable {
      */
     public ATM() {
         this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
-        //this.BM = new BankManager();
+        //this.BM = new BankManagerMenus();
     }
 
     /**
