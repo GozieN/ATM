@@ -18,11 +18,21 @@
 				<Font size="20.0" />
 			</font>
 		</TextField>
+      <Label fx:id="usernameInStatus" layoutX="382.0" layoutY="226.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
 		<PasswordField fx:id="passwordIn" layoutX="127.0" layoutY="271.0" onAction="#login" promptText="password">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</PasswordField>
+      <Label fx:id="passwordInStatus" layoutX="382.0" layoutY="278.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
 		<Button layoutX="303.0" layoutY="322.0" mnemonicParsing="false" onAction="#login" text="login">
 			<font>
 				<Font size="20.0" />
