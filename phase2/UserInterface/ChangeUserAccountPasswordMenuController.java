@@ -44,23 +44,28 @@ public class ChangeUserAccountPasswordMenuController extends Menu implements jav
 			this.currentPasswordInStatus.setText("matches current password");
 		} else {
 			this.currentPasswordInStatus.setText("does not match current password. try again");
+			this.endStatus.setText("");
 		}
 		if (!(this.newPasswordIn.getText()).equals("")) {
 			this.newPasswordInStatus.setText("valid new password");
 		} else {
 			this.newPasswordInStatus.setText("this field cannot be left blank. try again");
+			this.endStatus.setText("");
 		}
 		if (!(this.newPasswordConfirmIn.getText().equals("")) &&
 				this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
 			this.newPasswordConfirmStatus.setText("matches new password");
 		} else {
 			this.newPasswordConfirmStatus.setText("does not match new password. try again");
+			this.endStatus.setText("");
 		}
 		if (this.currentPasswordInStatus.getText().equals("matches current password") &&
 		this.newPasswordInStatus.getText().equals("valid new password") &&
 		this.newPasswordConfirmStatus.getText().equals("matches new password")) {
 			this.user.changePassword(this.currentPasswordIn.getText(), this.newPasswordIn.getText());
 			this.endStatus.setText("your password has been changed");
+		} else {
+			this.endStatus.setText("");
 		}
 	}
 

@@ -77,6 +77,8 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 						this.newPasswordConfirmStatus.getText().equals("matches new password")) {
 					GUI.getBM().createUser(this.newUsernameIn.getText(), this.newPasswordIn.getText());
 					this.endStatus.setText("your user account creation request is being processed");
+				} else {
+					this.endStatus.setText("");
 				}
 			}
 		} catch (Exception e) {

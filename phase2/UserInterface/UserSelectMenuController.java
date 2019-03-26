@@ -60,11 +60,9 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 					this.userUsernameInStatus.setText("that user does not exist. try again");
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 

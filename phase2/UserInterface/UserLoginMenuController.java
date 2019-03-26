@@ -55,12 +55,10 @@ public class UserLoginMenuController extends Menu implements java.io.Serializabl
 					this.loginFailed.setText("invalid credentials. try again");
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	public void back(ActionEvent event) throws Exception {
 		String previousMenu = "LoginOptionsMenuScene.fxml";
