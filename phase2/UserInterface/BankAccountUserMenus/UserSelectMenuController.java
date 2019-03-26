@@ -1,4 +1,4 @@
-package phase2.UserInterface;
+package phase2.UserInterface.BankAccountUserMenus;
 
 import java.io.*;
 
@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
+import phase2.UserInterface.BankEmployeeUserMenus.BankManagerMenus.BankManagerUserInteractionsMenuController;
+import phase2.UserInterface.GUI;
+import phase2.UserInterface.MainMenu.Menu;
 
 import java.util.*;
 
