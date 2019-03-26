@@ -66,6 +66,8 @@ public class UserLoginMenuController extends Menu implements java.io.Serializabl
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else {
+			this.loginFailed.setText("invalid credentials. try again");
 		}
 	}
 

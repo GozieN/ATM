@@ -12,7 +12,8 @@
 		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[user login menu]">
 			<font>
 				<Font size="20.0" />
-			</font></Button>
+			</font>
+		</Button>
 		<TextField fx:id="usernameIn" layoutX="127.0" layoutY="219.0" onAction="#login" promptText="username">
 			<font>
 				<Font size="20.0" />
