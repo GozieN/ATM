@@ -10,10 +10,13 @@ import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import phase2.Operators.BankWorker.BankManager;
+import phase2.Operators.BankWorker.UserConsultant;
+
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
     private static BankManager BM = new BankManager("BMuser", "BMpass");
+    private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
 
     @Override
     public void start(Stage mainStage) throws Exception {
@@ -28,6 +31,10 @@ public class GUI extends Application implements Serializable {
 
     public static BankManager getBM() {
         return BM;
+    }
+
+    public static UserConsultant getUC() {
+        return UC;
     }
 
     public static void updateDate(String date, File f) throws IOException {

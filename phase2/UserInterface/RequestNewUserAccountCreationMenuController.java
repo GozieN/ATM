@@ -13,7 +13,6 @@ import phase2.UserInterface.Menu;
 
 import java.util.*;
 
-
 public class RequestNewUserAccountCreationMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private TextField newUsernameIn;
