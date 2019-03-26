@@ -182,12 +182,7 @@ public abstract class Account implements Serializable {
      * Get credit limit of account
      * @return Double for amount of money user can spend on credit account
      */
-    public double getCreditLimit() {
-        if (this instanceof PrepaidCredit) {
-            return getBalance();
-        } else {
-            return this.creditLimit; }
-    }
+    public double getCreditLimit() {return this.creditLimit;}
 
 
     /**
