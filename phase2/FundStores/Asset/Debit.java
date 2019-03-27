@@ -15,5 +15,4 @@ public abstract class Debit extends Account implements Serializable {
     public Debit(User accountHolder, String accountType){
         super(accountHolder, accountType);
     }
-
 }

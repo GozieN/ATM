@@ -43,21 +43,20 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-
         if (accountType.equals("LineOfCreditAccount")) {
             newAccount = new Credit(user, true);
 
-        } else if (accountType.equals("Credit")) {
+        } else if (accountType.equals("credit")) {
             newAccount = new Credit(user, false);
 
-        } else if (accountType.equals("SavingsAccount")) {
+        } else if (accountType.equals("savings")) {
             newAccount = new SavingsAccount(user);
-        } else if (accountType.equals("ChequingAccount")) {
+        } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
             if (user.getNumChequingAccounts() == 1){
-                newAccount = new ChequingAccount(user, "Chequing", true);
+                newAccount = new ChequingAccount(user, "chequing", true);
             }
-            else {newAccount = new ChequingAccount(user, "Chequing", false);}
+            else {newAccount = new ChequingAccount(user, "chequing", false);}
         }
 
         //[Angela]
