@@ -41,4 +41,10 @@ public abstract class Debit extends Account implements Serializable {
         super(accountHolder);
         accountType = "Debit";
     }
+
+    public Debit(User accountHolder, User accountHolder2){
+        super(accountHolder);
+        accountType = "Debit";
+    }
+
 }
