@@ -27,5 +27,9 @@ public class StudentAccount extends Debit implements Serializable {
         return true;
     }
 
-    public
+    public void monthlyInterest(double interest) {
+        if (("01").equals(getLastLine().substring(0, 2))) {
+            this.notrasfers = 0;
+        }
+    }
 }
