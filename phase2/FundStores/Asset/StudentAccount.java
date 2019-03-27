@@ -10,21 +10,26 @@ public class StudentAccount extends Debit implements Serializable {
     private int notrasfers;
 
     public StudentAccount(User accountHolder){
-        super(accountHolder, "StudentAccount");
+        super(accountHolder);
         setBalance(50);
     }
 
     @Override
     public boolean withdrawFromAccount(double amount){
-        if (((getBalance() - amount) >= 0) && (notrasfers < 20)){
+        if (((getBalance() - amount) >= 0) && (notrasfers < 20)) {
             setBalance(getBalance() - amount);
             notrasfers += 1;
+            this.updateHistory("withdraw", amount, null);
+            System.out.println("Withdrawal successful, Account: " + this.getAccountNum() +
+                    " now has a decreased balance of: " + this.getBalance() + "$CAD");
+            ((PointSystemUser) getAccountHolder()).increasePoints();
+            return true;
         }
-        this.updateHistory("withdraw", amount, null);
-        System.out.println("Withdrawal successful, Account: " + this.getAccountNum() +
-                " now has a decreased balance of: " + this.getBalance() + "$CAD");
-        ((PointSystemUser) getAccountHolder()).increasePoints();
-        return true;
+        else{
+            System.out.println("Withdrawal unsuccessful monthly withdrawal limit reached, Account: " +
+                    this.getAccountNum() + " now has a balance of: " + this.getBalance() + "$CAD");
+            return false;
+        }
     }
 
     public void monthlyInterest(double interest) {
