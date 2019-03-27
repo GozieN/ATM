@@ -5,6 +5,7 @@ import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
@@ -45,19 +46,19 @@ public class BankManager extends BankEmployee implements Serializable{
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
         if (accountType.equals("LineOfCreditAccount")) {
-            newAccount = new Credit(user, true);
+            newAccount = new LineOfCredit(user);
 
         } else if (accountType.equals("credit")) {
-            newAccount = new Credit(user, false);
+            newAccount = new Credit(user);
 
         } else if (accountType.equals("savings")) {
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
             if (user.getNumChequingAccounts() == 1){
-                newAccount = new ChequingAccount(user, "chequing", true);
+                newAccount = new ChequingAccount(user, true);
             }
-            else {newAccount = new ChequingAccount(user, "chequing", false);}
+            else {newAccount = new ChequingAccount(user, false);}
         }
 
         //[Angela]

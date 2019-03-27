@@ -24,7 +24,7 @@ public class StudentAccount extends Debit implements Serializable {
             this.updateHistory("withdraw", amount, null);
             System.out.println("Withdrawal successful, Account: " + this.getAccountNum() +
                     " now has a decreased balance of: " + this.getBalance() + "$CAD");
-            ((PointSystemUser) getAccountHolder()).increasePoints();
+            ((PointSystemUser) getAccountHolder()).setNumPointsIncrease();
             return true;
         }
         else{
