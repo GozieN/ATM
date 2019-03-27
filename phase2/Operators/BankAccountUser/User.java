@@ -72,8 +72,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         PointSystemUser alteredUser;
         alteredUser = new PointSystemUser(getUsername(), getPassword());
         alteredUser.setAccountsCreated(this.getAccountsCreated());
-        this.numUsers -= 1;
-        //iterate over arrayList of users and replace instance!!
+        //IN GUI CALL BM.delete(this);
         s = "You have successfully opted int of the point system! You will start with " +
                 "an point balance of of 50 point.";
         return s;

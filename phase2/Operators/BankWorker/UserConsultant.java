@@ -12,9 +12,10 @@ public class UserConsultant extends BankEmployee implements Contract {
     private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
     private String username;
     private String password;
-    private String currentUserBeingConsulted;
+    static int numUsersConsulted = 1;
+    private String currentUserBeingConsultedType;
+    private ArrayList<String> UserAdviseHistory = new ArrayList<>();
     private String lastMessagetoBM;
-    private BankManager BM;
 
     public UserConsultant(String username, String password){
         super(username, password);
@@ -49,53 +50,70 @@ public class UserConsultant extends BankEmployee implements Contract {
         return s;
     }
 
+    /**
+     * Add to the record of the account recommendations
+     * @param record
+     */
+    public void addToUserAdviseHistory(String record){
+        UserAdviseHistory.add(record);
+
+    }
+
     // input prompts, --> create account button
     /**
      * Advise to the user base on their information.
      * @param age
-     * @return
+     * @return A string detailing the outcome of the account creation based on user input.
      */
-    public String reportUserAccountAdvice(int age, boolean joinPointSystem){
+    public String reportUserAccountAdvice(int age, boolean inSchool){
+        numUsersConsulted++;
         String s = "";
-            if (age < 16) {
+        String record = "";
+
+        if (age < 16) {
                 s = "Sorry, you must be at least 16 years of age to create an account" +
                         " with us! Come back in " + (16 - age) + " years!";
+                record = "Number of users consulted: " + numUsersConsulted + "\n Account type recommendation: illegible " +
+                        "for account creation.";
             }
-            else if (age >= 16 && 25 >= age) {
-                currentUserBeingConsulted = "Student";
-                s = "Based on your information, it looks like a Student account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";}
-            else if(age > 25 && 60 < age){
-                currentUserBeingConsulted = "Standard";
-                s = "Based on your information, it looks like our standard account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";}
+            else if (age >= 16 && 25 >= age && inSchool) {
+                currentUserBeingConsultedType = "Student";
+                s = "Based on your information, it looks like a Student Bank Account is the " +
+                        "right fit for you! We are transferring you over to the account creation page!";
+                record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
+                        currentUserBeingConsultedType;
+            }
             else if(age > 60){
-                currentUserBeingConsulted = "Retired/Pension";
-                s = "Based on your information, it looks like a pension/retirement account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";}
+                currentUserBeingConsultedType = "Retired/Pension";
+                s = "Based on your information, it looks like a Pension/Retirement Bank Account is the " +
+                        "right fit for you! We are transferring you over to the account creation page!";
+                record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
+                        currentUserBeingConsultedType;
+            }
+            else{
+                currentUserBeingConsultedType = "Standard";
+                s = "Based on your information, it looks like our Standard Bank Account is the " +
+                        "right fit for you! We are transferring you over to the account creation page!";
+                record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
+                        currentUserBeingConsultedType;
+                }
+        addToUserAdviseHistory(record);
         return s;
     }
 
     /**
-     * Set Bank Manager
+     * Get the history of actions!
+     * @return Histoty of
      */
-    public void setBM(BankManager BM) {
-        this.BM = BM;
-    }
-
-    /**
-     * Return The kind of user to create.
-     * @return The kind of user to create.
-     */
-    public String getCurrentUserBeingConsulted() {
-        return currentUserBeingConsulted;
+    public ArrayList<String> getUserAdviseHistory() {
+        return UserAdviseHistory;
     }
 
     /**
      * Contact the Bank Manager!
      *
      */
-    public void contactBM(String message){
+    public void contactBM(String message, BankManager BM){
         lastMessagetoBM = message;
         setChanged();
         notifyObservers();

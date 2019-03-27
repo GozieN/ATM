@@ -1,6 +1,8 @@
 package phase2.Operators.BankAccountUser;
 
 import phase2.FundStores.Account;
+import phase2.FundStores.Asset.Debit;
+import phase2.FundStores.Debt.Credit;
 import phase2.Operators.Contract;
 
 import java.util.ArrayList;
@@ -13,12 +15,13 @@ public class PointSystemUser extends User implements Contract {
     private String username;
     private String userType;
     private ArrayList<Account> accountsCreated;
+    private int numPoints = 0;
 
 
     public PointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
-        //this.userDatabase = new ArrayList<User>(); - WOULD ERASE OLD INFO!
+        this.userDatabase = new ArrayList<User>(); //- WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
     }
@@ -59,19 +62,30 @@ public class PointSystemUser extends User implements Contract {
      * Increase the balance of the account based on the number of points that the account holds
      * @param account
      */
-    public boolean cashPoints(Account account){
-        if (account.getNumPoints() < 20){
-            System.out.println("Sorry, you do not have enough points to cash at the moment!");
-            return false;
+    public String cashPoints(Account account){
+        if (!account.pointsToCash()){
+            return "Sorry, you do not have enough points to cash at the moment!";
+        }else{
+            return "You have successfully cashed all of your available points." +
+                    " Your new number of points is: " + account.getNumPoints();
         }
-        else{
-            while (account.getNumPoints() > 20){
-                account.increasePoints();
-                account.decreasePoints();
-                account.setBalance(account.getBalance() + 1.50);}
-            System.out.println("You have successfully cashed all of your available points." +
-                    " Your new number of points is: " + account.getNumPoints());
-            return true; } }
+    }
+
+    /**
+     * Increase the balance of the account based on the number of points that all of the user's accounts holds
+     *
+     */
+    public double getNetTotal(){
+        double totalAsset = 0;
+        double totalDebt = 0;
+        for (Account account: accountsCreated){
+            if (account instanceof Debit){
+                totalAsset += account.getBalance();
+            } else if (account instanceof Credit){
+                totalDebt -= account.getBalance();
+            }
+        } return totalAsset - totalDebt;
+    }
 
     /**
      * Opt out of the point system
@@ -82,7 +96,7 @@ public class PointSystemUser extends User implements Contract {
         User alteredUser;
         alteredUser = new User(getUsername(), getPassword());
         alteredUser.setAccountsCreated(this.getAccountsCreated());
-        this.numUsers -= 1;
+        //IN GUI CALL BM.delete(this);
         //iterate over arrayList of users and replace instance!!
         s = "You have successfully opted out of the point system! You can always chose to join once again.";
         return s;
