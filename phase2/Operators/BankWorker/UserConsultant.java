@@ -2,7 +2,10 @@ package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
 import phase2.Operators.Contract;
+import sun.reflect.annotation.ExceptionProxy;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
@@ -55,6 +58,14 @@ public class UserConsultant extends BankEmployee implements Contract {
      */
     public void addToUserAdviseHistory(String record){
         UserAdviseHistory.add(record);
+
+        try {
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/UserAdviseHistory.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(UserAdviseHistory);
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
 
     }
 
