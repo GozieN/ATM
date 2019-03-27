@@ -15,7 +15,6 @@ public class UserConsultant extends BankEmployee implements Contract {
     static int numUsersConsulted = 1;
     private String currentUserBeingConsultedType;
     private ArrayList<String> UserAdviseHistory = new ArrayList<>();
-    private String lastMessagetoBM;
 
     public UserConsultant(String username, String password){
         super(username, password);
@@ -103,7 +102,7 @@ public class UserConsultant extends BankEmployee implements Contract {
 
     /**
      * Get the history of actions!
-     * @return Histoty of
+     * @return History of advice given
      */
     public ArrayList<String> getUserAdviseHistory() {
         return UserAdviseHistory;
@@ -114,9 +113,6 @@ public class UserConsultant extends BankEmployee implements Contract {
      *
      */
     public void contactBM(String message, BankManager BM){
-        lastMessagetoBM = message;
-        setChanged();
-        notifyObservers();
-        BM.update(this, lastMessagetoBM);
+        BM.populateInbox(message);
     }
 }

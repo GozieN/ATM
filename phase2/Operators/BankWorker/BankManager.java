@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 import java.io.Serializable;
 
-public class BankManager extends BankEmployee implements Observer, Serializable{
+public class BankManager extends BankEmployee implements Serializable{
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
@@ -407,12 +407,11 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         account.undoTransaction();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
+    public void populateInbox(String msg) {
         String s = "";
-        s = numMessages + ". " + arg;
+        s = numMessages + ". " + msg;
         numMessages++;
-//        inbox.add(s);
+        inbox.add(s);
     }
 
     /**

@@ -2,7 +2,9 @@ package phase2.Operators.BankAccountUser;
 
 import phase2.FundStores.*;
 import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.Debit;
 import phase2.FundStores.Asset.SavingsAccount;
+import phase2.FundStores.Debt.Credit;
 import phase2.Operators.Contract;
 import phase2.Operators.Operator;
 
@@ -19,8 +21,9 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private int numChequingAccounts = 0;
     private String password;
     private String username;
-    private String userType;
     private ArrayList<Account> accountsCreated;
+    private int numTimesOptedIntoPointSystem = 0;
+
 
 
     /**
@@ -55,26 +58,21 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     }
 
     /**
-     * Return the type of user that this is
-     * @return a string representing the type of user
-     */
-
-    public String getUserType() {
-        return userType;
-    }
-
-    /**
      * Opt into of the point system
      * @return String - the confirmation.
      */
     public String optIntoPointSystem(){
+        numTimesOptedIntoPointSystem++;
         String s = "";
         PointSystemUser alteredUser;
         alteredUser = new PointSystemUser(getUsername(), getPassword());
         alteredUser.setAccountsCreated(this.getAccountsCreated());
+        if (this.numTimesOptedIntoPointSystem > 1){
+            alteredUser.setNumPoints(0);
+        }
         //IN GUI CALL BM.delete(this);
-        s = "You have successfully opted int of the point system! You will start with " +
-                "an point balance of of 50 point.";
+        s = "You have successfully opted int of the point system! If this is your first time opting into this service, " +
+                "you get an initial point balance of 50.";
         return s;
     }
 
@@ -127,11 +125,20 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     }
 
     /**
-     * Set the type of the account.
-     * @param userType the type of the user.
+     * Return the net total accounted for by all of the user's accounts.
+     * @return the net total
+     *
      */
-    public void setUserType(String userType){
-        this.userType = userType;
+    public double getNetTotal(){
+        double totalAsset = 0;
+        double totalDebt = 0;
+        for (Account account: accountsCreated){
+            if (account instanceof Debit){
+                totalAsset += account.getBalance();
+            } else if (account instanceof Credit){
+                totalDebt -= account.getBalance();
+            }
+        } return totalAsset - totalDebt;
     }
 
 
@@ -164,9 +171,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * Get a summary of the user's accounts
      */
     public String viewInfo(){
-
-        int totalDebitAmount = 0;
-        int totalCreditAmount = 0;
         if (accountsCreated == null){
             String s = "Nothing to view, you have not created an account yet!";
             return s;
@@ -178,15 +182,11 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
                      "\n Current Balance:" +
                     accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
                     accountsCreated.get(i).viewLastAction();
-            if (accountsCreated.get(i) instanceof ChequingAccount || accountsCreated.get(i) instanceof SavingsAccount){
-                totalDebitAmount += accountsCreated.get(i).getBalance();
-            }else{
-                totalCreditAmount += accountsCreated.get(i).getBalance();
-            }
         }
-        s += "Net Total: " + (totalDebitAmount - totalCreditAmount);
+        s += "Net Total: " + getNetTotal();
         return s;
     }}
+
 
     @Override
     public Iterator<Account> iterator() {

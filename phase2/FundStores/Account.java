@@ -13,11 +13,13 @@ import java.io.PrintStream;
 import java.io.Serializable;
 import java.nio.Buffer;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Stack;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-public abstract class Account implements Serializable {
+public class Account implements Serializable, Observer {
     private static ArrayList<Account> accountsDatabase = new ArrayList<>();
     private static int accountNumTotal = 0;
     private int accountNum = accountNumTotal;
@@ -25,13 +27,15 @@ public abstract class Account implements Serializable {
     private String holderName2;
     private double balance;
     public String accountType;
-    private int numPoints;
     private ArrayList<User> accountUsers = new ArrayList<User>();
 
     public ATM atm;
     private Object[] transactionInfoTempHolder;
     private Stack<Object[]> history;
     private double creditLimit;
+    private User accountHolder;
+    private User accountHolder2;
+
 
 
     /**
@@ -44,12 +48,10 @@ public abstract class Account implements Serializable {
         this.accountUsers.add(accountHolder);
         history = new Stack<>();
         this.accountType = accountType;
+        this.accountHolder = accountHolder;
         this.accountNumTotal++;
         this.holderName = accountHolder.getUsername();
         this.transactionInfoTempHolder = new Object[2];
-        if (accountHolder instanceof PointSystemUser){
-            numPoints = 50;
-        }
     }
 
     /**
@@ -62,14 +64,13 @@ public abstract class Account implements Serializable {
         history = new Stack<>();
         this.accountType = accountType;
         this.accountNumTotal++;
+        this.accountHolder = accountHolder;
+        this.accountHolder2 = accountHolder2;
         this.accountUsers.add(accountHolder);
         this.accountUsers.add(accountHolder2);
         this.holderName = accountHolder.getUsername();
         this.holderName2 = accountHolder2.getUsername();
         this.transactionInfoTempHolder = new Object[2];
-        if (accountHolder instanceof PointSystemUser){
-            numPoints = 50;
-        }
     }
 
     public ArrayList<Account> getAccountsDatabase() {return accountsDatabase;}
@@ -82,13 +83,6 @@ public abstract class Account implements Serializable {
         return holderName;
     }
 
-    /**
-     * Return the number of points that the account contains
-     * @return int - representing the number of points.
-     */
-    public int getNumPoints() {
-        return numPoints;
-    }
 
     /**f
      * Get number of account
@@ -102,21 +96,6 @@ public abstract class Account implements Serializable {
         this.atm = a;
     }
 
-    /**
-     * Increase the number of points the account contains.
-     */
-    public void increasePoints(){
-        if (accountUsers.get(1) instanceof PointSystemUser){
-            this.numPoints += 5;}
-    }
-
-    /**
-     * Decrease the number of points the account contains.
-     */
-    public void decreasePoints(){
-        if (accountUsers.get(1) instanceof PointSystemUser || accountUsers.get(2) instanceof PointSystemUser){
-            this.numPoints -= 20;}
-    }
 
     /**
      * Get type of account
@@ -172,12 +151,11 @@ public abstract class Account implements Serializable {
         }else{
             atm.plus(amount);
             this.depositToAccount(amount);
-            increasePoints();
             return true;
         }
     }
 
-    /**
+    /*
      * Set credit limit of account
      * @param creditLimit Limit of which a user can spend in their credit account
      */
@@ -204,7 +182,7 @@ public abstract class Account implements Serializable {
         }else{
             atm.minus(amount);
             withdrawFromAccount(amount);
-            increasePoints();
+            ((PointSystemUser) accountHolder).increasePoints();
             return true;
         }}
 
@@ -240,7 +218,7 @@ public abstract class Account implements Serializable {
         this.updateHistory("withdraw", amount, null);
         System.out.println("Withdrawal successful, Account: " + this.accountNum +
                 " now has a decreased balance of: " + balance + "$CAD");
-        increasePoints();
+        ((PointSystemUser) accountHolder).increasePoints();
         return true;}
 
     /**
@@ -273,7 +251,7 @@ public abstract class Account implements Serializable {
         System.out.println("Deposit successful, Account: " + this.accountNum +
                 " now has an increased balance of: " + balance + "CAD$");
         this.updateHistory("deposit", amount, null);
-        increasePoints();
+        ((PointSystemUser) accountHolder).increasePoints();
         return true;
     }
 
@@ -284,7 +262,7 @@ public abstract class Account implements Serializable {
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
         this.updateHistory("cheque", amount, null);
-        increasePoints();
+        ((PointSystemUser) accountHolder).increasePoints();
         return true;
     }
 
@@ -299,10 +277,8 @@ public abstract class Account implements Serializable {
         receiverAccount.updateHistory("transfer", amount, this);
         System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
                 receiverAccount.getBalance() + "$CAD");
-        increasePoints();
+        ((PointSystemUser) accountHolder).increasePoints();
         return true;
-
-
     }
 
     /**
@@ -338,7 +314,7 @@ public abstract class Account implements Serializable {
         }
 
         this.updateHistory("bill", amount, null);
-        increasePoints();
+        ((PointSystemUser) accountHolder).increasePoints();
         return true;}
 
     /**
@@ -376,16 +352,26 @@ public abstract class Account implements Serializable {
         return true;
     }
 
-    public boolean pointsToCash(){
-        if (numPoints < 20){
-            return false;
+        public boolean cashPoints(){
+        if (((PointSystemUser) accountHolder).getNumPoints()  < 20){
+             return false;
         }
         else{
-            while (numPoints > 20){
-                increasePoints();
-                decreasePoints();
+            while (((PointSystemUser) accountHolder).getNumPoints() > 20){
+                PointSystemUser ah = (PointSystemUser) accountHolder;
+                ah.increasePoints();
+                ah.decreasePoints();
                 balance +=  1.50;}
-            return true; }
+            return true;}
     }
 
-}
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (cashPoints() && (boolean) arg){
+            System.out.println("Sorry, you do not have enough points to cash at the moment!");}
+        else{
+            System.out.println("You have successfully cashed all of your available points." +
+                    " You now have " + ((PointSystemUser) accountHolder).getNumPoints() + " points.");}
+    }
+    }

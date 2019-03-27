@@ -6,8 +6,9 @@ import phase2.FundStores.Debt.Credit;
 import phase2.Operators.Contract;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class PointSystemUser extends User implements Contract {
+public class PointSystemUser extends User implements Contract, Rewardable {
     private static ArrayList<User> userDatabase;
     private static int numUsers = 0;
     private int numChequingAccounts = 0;
@@ -24,6 +25,8 @@ public class PointSystemUser extends User implements Contract {
         this.userDatabase = new ArrayList<User>(); //- WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
+        numPoints = 50;
+
     }
 
     /**
@@ -58,47 +61,87 @@ public class PointSystemUser extends User implements Contract {
         return s;
     }
 
-    /**
-     * Increase the balance of the account based on the number of points that the account holds
-     * @param account
+    @Override
+    /*
+     *Add to the accounts created
+     * @param account Instance of account
      */
-    public String cashPoints(Account account){
-        if (!account.pointsToCash()){
-            return "Sorry, you do not have enough points to cash at the moment!";
-        }else{
-            return "You have successfully cashed all of your available points." +
-                    " Your new number of points is: " + account.getNumPoints();
-        }
+    public void addToAccountsCreated(Account account) {
+        accountsCreated.add(account);
+        addObserver(account);
     }
 
     /**
-     * Increase the balance of the account based on the number of points that all of the user's accounts holds
-     *
+     * Return the number of points that the account contains
+     * @return int - representing the number of points.
      */
-    public double getNetTotal(){
-        double totalAsset = 0;
-        double totalDebt = 0;
-        for (Account account: accountsCreated){
-            if (account instanceof Debit){
-                totalAsset += account.getBalance();
-            } else if (account instanceof Credit){
-                totalDebt -= account.getBalance();
-            }
-        } return totalAsset - totalDebt;
+    public int getNumPoints() {
+        return numPoints;
     }
+
+    /**
+     * Return the number of points that the account contains
+     * @return int - representing the number of points.
+     */
+    public int viewRewards() {
+        return getNumPoints();
+    }
+
+    /**
+     * Set the number of points that the account should contain
+     */
+    public void setNumPoints(int newNum) {
+        this.numPoints = newNum;
+    }
+
+
+    /**
+     * Increase the number of points the account contains.
+     */
+    public void increasePoints(){
+            this.numPoints += 5;
+    }
+
+
+    /**
+     * Decrease the number of points the account contains.
+     */
+    public void decreasePoints(){
+            this.numPoints -= 20;
+    }
+
+    /**
+     * Prompt the point rewards to be cashed by notifying each account.
+     */
+    public void retrieveRewards(){
+        notifyObservers();
+        }
+
+    /**
+     * update the accounts so they cash their points.
+     */
+    @Override
+     public void notifyObservers(){
+        for (Account a: accountsCreated){
+            a.update(this, true);
+        }
+     }
 
     /**
      * Opt out of the point system
      * @return String - the confirmation.
      */
     public String optOutOfPointSystem(){
+
         String s = "";
         User alteredUser;
         alteredUser = new User(getUsername(), getPassword());
+
         alteredUser.setAccountsCreated(this.getAccountsCreated());
         //IN GUI CALL BM.delete(this);
         //iterate over arrayList of users and replace instance!!
-        s = "You have successfully opted out of the point system! You can always chose to join once again.";
+        s = "You have successfully opted out of the point system! You can always chose to later on but" +
+                "you will not receive the original 50 points to deter abuse of the free points!";
         return s;
     }
 }
