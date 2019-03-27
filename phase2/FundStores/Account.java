@@ -30,6 +30,7 @@ public abstract class Account implements Serializable {
     private Stack<Object[]> history;
     private double creditLimit;
 
+
     /**
      * Account class constructor
      * @param accountHolder holder of the account
@@ -43,6 +44,9 @@ public abstract class Account implements Serializable {
         this.accountNumTotal++;
         this.holderName = accountHolder.getUsername();
         this.transactionInfoTempHolder = new Object[2];
+        if (accountHolder instanceof PointSystemUser){
+            numPoints = 50;
+        }
     }
 
     /**
@@ -367,4 +371,17 @@ public abstract class Account implements Serializable {
 //        return true; }
         return true;
     }
+
+    public boolean pointsToCash(){
+        if (numPoints < 20){
+            return false;
+        }
+        else{
+            while (numPoints > 20){
+                increasePoints();
+                decreasePoints();
+                balance +=  1.50;}
+            return true; }
+    }
+
 }
