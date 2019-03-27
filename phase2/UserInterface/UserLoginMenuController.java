@@ -17,41 +17,57 @@ public class UserLoginMenuController extends Menu implements java.io.Serializabl
 	@FXML
 	private TextField usernameIn;
 	@FXML
+	private Label usernameInStatus;
+	@FXML
 	private PasswordField passwordIn;
+	@FXML
+	private Label passwordInStatus;
 	@FXML
 	private Label loginFailed;
 
 	public void login(ActionEvent event) throws Exception {
-//		User user = null;
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-//			user = (User)in.readObject();
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-			for (User obj: userList) {
-				if (obj.getUsername().equals(this.usernameIn.getText()) &&
-						obj.getPassword().equals(this.passwordIn.getText())) {
-					Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
-					Parent parent = loader.load();
-					Scene userInteractionsMenuScene = new Scene(parent);
-					UserInteractionsMenuController controller = loader.getController();
-					controller.initialize(obj);
-					mainStage.setScene(userInteractionsMenuScene);
-					mainStage.show();
-				} else {
-					this.loginFailed.setText("invalid credentials. try again");
+		if (this.usernameIn.getText().isEmpty()) {
+			this.usernameInStatus.setText("this field cannot be empty. try again");
+			this.loginFailed.setText("login failed. try again");
+		} else {
+			this.usernameInStatus.setText("");
+		}
+		if (this.passwordIn.getText().isEmpty()) {
+			this.passwordInStatus.setText("this field cannot be empty. try again");
+			this.loginFailed.setText("login failed. try again");
+		} else {
+			this.passwordInStatus.setText("");
+		}
+		if (!(this.usernameIn.getText().isEmpty()) &&
+				!(this.passwordIn.getText().isEmpty())) {
+			ArrayList<User> userList = new ArrayList<>();
+			try {
+				FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+				ObjectInputStream in = new ObjectInputStream(file);
+				userList = (ArrayList<User>) in.readObject();
+				in.close();
+				file.close();
+				for (User obj: userList) {
+					if (obj.getUsername().equals(this.usernameIn.getText()) &&
+							obj.getPassword().equals(this.passwordIn.getText())) {
+						Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+						Parent parent = loader.load();
+						Scene userInteractionsMenuScene = new Scene(parent);
+						UserInteractionsMenuController controller = loader.getController();
+						controller.initialize(obj);
+						mainStage.setScene(userInteractionsMenuScene);
+						mainStage.show();
+					} else {
+						this.loginFailed.setText("invalid credentials. try again");
+					}
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			this.loginFailed.setText("invalid credentials. try again");
 		}
 	}
 

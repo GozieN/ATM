@@ -11,12 +11,14 @@ import javafx.stage.*;
 import javafx.scene.*;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
+import phase2.FundStores.ATM;
 
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
     private static BankManager BM = new BankManager("BMuser", "BMpass");
     private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+    private static ATM atm = new ATM();
 
     @Override
     public void start(Stage mainStage) throws Exception {
@@ -36,6 +38,8 @@ public class GUI extends Application implements Serializable {
     public static UserConsultant getUC() {
         return UC;
     }
+
+    public static ATM getAtm() {return atm;}
 
     public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);

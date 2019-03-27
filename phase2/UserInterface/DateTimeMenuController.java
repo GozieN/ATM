@@ -3,13 +3,17 @@ package phase2.UserInterface;
 import javafx.fxml.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
+import phase2.FundStores.ATM;
 
 public class DateTimeMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private Label dateTime;
 
 	public void initialize() throws Exception {
-		String dateTime = "";
+		ATM atm = GUI.getAtm();
+		String date = atm.getDate();
+		String time = atm.getTime();
+		String dateTime = atm.getDate() + " " + atm.getTime();
 		// angela TODO: assign dateTime to date, time from file
 		this.dateTime.setText(dateTime);
 	}

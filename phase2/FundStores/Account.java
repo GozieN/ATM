@@ -11,8 +11,11 @@ import phase2.Operators.BankAccountUser.User;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.Serializable;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public abstract class Account implements Serializable {
     private static ArrayList<Account> accountsDatabase = new ArrayList<>();
@@ -68,6 +71,8 @@ public abstract class Account implements Serializable {
             numPoints = 50;
         }
     }
+
+    public ArrayList<Account> getAccountsDatabase() {return accountsDatabase;}
 
     /**
      * Get name of account holder
@@ -296,6 +301,8 @@ public abstract class Account implements Serializable {
                 receiverAccount.getBalance() + "$CAD");
         increasePoints();
         return true;
+
+
     }
 
     /**
@@ -323,16 +330,13 @@ public abstract class Account implements Serializable {
 
         withdrawFromAccount(amount);
         try {
-            PrintStream originalOut = System.out;
-            PrintStream fileOut = new PrintStream("phase2/outgoing.txt");
-            System.setOut(fileOut);
-
-            originalOut.println(holderName + "paid a bill of " + Double.toString(amount));
-
-            System.setOut(originalOut);
-        } catch (FileNotFoundException ex) {
+            BufferedWriter out = new BufferedWriter(new FileWriter("phase2/txtfiles/Outgoing.txt"));
+            out.write(holderName + "paid a bill of " + Double.toString(amount));
+            out.close();
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
+
         this.updateHistory("bill", amount, null);
         increasePoints();
         return true;}
