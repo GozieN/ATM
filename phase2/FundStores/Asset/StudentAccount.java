@@ -6,6 +6,8 @@ import phase2.FundStores.Account;
 import java.io.Serializable;
 
 public class StudentAccount extends Debit implements Serializable {
+    private String accountType;
 
-    public StudentAccount(User accountHolder){super(accountHolder, "StudentAccount"); }
+    public StudentAccount(User accountHolder){super(accountHolder);
+        accountType  = "student";}
 }

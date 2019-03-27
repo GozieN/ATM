@@ -12,7 +12,8 @@ public abstract class Debit extends Account implements Serializable {
      * @param accountHolder Name of holder of the account
      */
 
-    public Debit(User accountHolder, String accountType){
-        super(accountHolder, accountType);
+    public Debit(User accountHolder){
+        super(accountHolder);
+        accountType = "Debit";
     }
 }

@@ -10,13 +10,15 @@ public class ChequingAccount extends Debit implements java.io.Serializable {
     private Stack history;
     private int accNum;
     private String holderName;
+    private String accountType;
 
     /**
      * ChequingAccount class constructor
      *
      */
-    public ChequingAccount(User accountHolder, String accountType, boolean isPrimary) {
-        super(accountHolder, accountType);
+    public ChequingAccount(User accountHolder, boolean isPrimary) {
+        super(accountHolder);
+        accountType  = "chequing";
         history = new Stack<>();
     }
 }

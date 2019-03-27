@@ -1,4 +1,4 @@
-package phase2.FundStores.Debt;
+package phase2.FundStores.Asset;
 
 import phase2.FundStores.Asset.Debit;
 import phase2.Operators.BankAccountUser.User;
@@ -15,13 +15,18 @@ import java.time.LocalDateTime;
 
 public class PrepaidCredit extends Debit implements Serializable {
     private User user;
+    private double initialAmount;
 
     /**
      * PrepaidCredit constructor
      * @param accountHolder
-     * @param accountType
      */
-    public PrepaidCredit (User accountHolder, String accountType){ super(accountHolder, "Prepaid Credit"); }
+    public PrepaidCredit (User accountHolder, double initialAmount){
+        super(accountHolder);
+        accountType = "Prepaid Credit";
+        if (initialAmount > 0 ){
+            this.initialAmount = initialAmount; }
+    }
 
     public void monthlyFees(double fee) {
         LocalDateTime currdate = LocalDateTime.now();

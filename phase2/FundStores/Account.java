@@ -4,7 +4,7 @@ import com.sun.istack.internal.Nullable;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
 import phase2.FundStores.Asset.SavingsAccount;
-import phase2.FundStores.Debt.Credit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
@@ -32,22 +32,19 @@ public class Account implements Serializable, Observer {
     public ATM atm;
     private Object[] transactionInfoTempHolder;
     private Stack<Object[]> history;
-    private double creditLimit;
     private User accountHolder;
     private User accountHolder2;
-
 
 
     /**
      * Account class constructor
      * @param accountHolder holder of the account
-     * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
-    public Account(User accountHolder, String accountType) {
+    public Account(User accountHolder) {
         accountsDatabase.add(this);
         this.accountUsers.add(accountHolder);
         history = new Stack<>();
-        this.accountType = accountType;
+        this.accountType = "Account";
         this.accountHolder = accountHolder;
         this.accountNumTotal++;
         this.holderName = accountHolder.getUsername();
@@ -57,12 +54,11 @@ public class Account implements Serializable, Observer {
     /**
      * Overloading for Account class constructor to take in two distinct users
      * @param accountHolder
-     * @param accountType
      */
-    public Account(User accountHolder, User accountHolder2, String accountType) {
+    public Account(User accountHolder, User accountHolder2) {
         accountsDatabase.add(this);
         history = new Stack<>();
-        this.accountType = accountType;
+        this.accountType = "Account";
         this.accountNumTotal++;
         this.accountHolder = accountHolder;
         this.accountHolder2 = accountHolder2;
@@ -108,10 +104,13 @@ public class Account implements Serializable, Observer {
      */
     public void undoTransaction(){
         Object[] transferInfo = history.pop();
+        if (transferInfo == null){
+            System.out.println("Sorry, your last action could not be reversed because you " +
+                    "have yet to make a transaction");
+        }
         if (transferInfo[0].equals("bill")){
             history.push(transferInfo);
-            System.out.println("Sorry, your last action could not be reversed because you payed a bill last or" +
-                    "have never performed a transaction on the class");
+            System.out.println("Sorry, your last action could not be reversed because you payed a bill.");
         }else{
             if (transferInfo[0].equals("transfer")) {
                 ((Account) transferInfo[2]).transfer((double) transferInfo[1], this);
@@ -120,7 +119,7 @@ public class Account implements Serializable, Observer {
             }else if (transferInfo[0].equals("deposit") || transferInfo[0].equals("cheque deposit")){
                 ((Account) transferInfo[2]).withdrawFromAccount((double) transferInfo[1]);
             }
-            System.out.println(getHolderName() + ", The last action that you performed a" + transferInfo[0] + "" +
+            System.out.println(getHolderName() + ", The last action that you performed was a" + transferInfo[0] + "" +
                     " of amount " + transferInfo[1] + " has been reversed upon your request.");
         }
     }
@@ -155,22 +154,6 @@ public class Account implements Serializable, Observer {
         }
     }
 
-    /*
-     * Set credit limit of account
-     * @param creditLimit Limit of which a user can spend in their credit account
-     */
-//    public void setCreditLimit(double creditLimit) {
-//        if (this instanceof PrepaidCredit){
-//            this.creditLimit = getBalance();
-//        } else { this.creditLimit = creditLimit;}
-//    }
-
-    /**
-     * Get credit limit of account
-     * @return Double for amount of money user can spend on credit account
-     */
-    public double getCreditLimit() {return this.creditLimit;}
-
 
     /**
      *Withdraw amount from account using ATM
@@ -182,7 +165,7 @@ public class Account implements Serializable, Observer {
         }else{
             atm.minus(amount);
             withdrawFromAccount(amount);
-            ((PointSystemUser) accountHolder).increasePoints();
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();
             return true;
         }}
 
@@ -206,19 +189,14 @@ public class Account implements Serializable, Observer {
                 if ((balance - amount) >= 0){
                     balance -= amount;
                 }
-            }}
-        // withdrawFromAccount for credit accounts means to "pay bills"
-        else if (this instanceof Credit) {
-            if(this.getAccountType() == "LineOfCredit") {
-                balance -= amount;
-            }else {
-                balance -= amount;
             }
+        }else if (this instanceof LineOfCredit){
+            balance -= amount;
         }
         this.updateHistory("withdraw", amount, null);
         System.out.println("Withdrawal successful, Account: " + this.accountNum +
                 " now has a decreased balance of: " + balance + "$CAD");
-        ((PointSystemUser) accountHolder).increasePoints();
+        ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;}
 
     /**
@@ -251,7 +229,7 @@ public class Account implements Serializable, Observer {
         System.out.println("Deposit successful, Account: " + this.accountNum +
                 " now has an increased balance of: " + balance + "CAD$");
         this.updateHistory("deposit", amount, null);
-        ((PointSystemUser) accountHolder).increasePoints();
+        ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;
     }
 
@@ -262,7 +240,7 @@ public class Account implements Serializable, Observer {
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
         this.updateHistory("cheque", amount, null);
-        ((PointSystemUser) accountHolder).increasePoints();
+        ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;
     }
 
@@ -277,7 +255,7 @@ public class Account implements Serializable, Observer {
         receiverAccount.updateHistory("transfer", amount, this);
         System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
                 receiverAccount.getBalance() + "$CAD");
-        ((PointSystemUser) accountHolder).increasePoints();
+        ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;
     }
 
@@ -303,7 +281,6 @@ public class Account implements Serializable, Observer {
      * @param amount Amount of money to withdraw from account to pay bill
      */
     public boolean payBill(double amount) {
-
         withdrawFromAccount(amount);
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("phase2/txtfiles/Outgoing.txt"));
@@ -314,7 +291,7 @@ public class Account implements Serializable, Observer {
         }
 
         this.updateHistory("bill", amount, null);
-        ((PointSystemUser) accountHolder).increasePoints();
+        ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;}
 
     /**
@@ -325,32 +302,6 @@ public class Account implements Serializable, Observer {
         return amount%5 ==0 || amount < 0;
     }
 
-    /**
-     * Add amount to credit card bill if sum of balance and amount is less than given credit limit
-     * @param amount Amount of money to add to bill
-     * @return True if money is added to bill
-     */
-    public boolean addToBill(double amount) {
-        if (this instanceof Credit) {
-            if (this.getAccountType() == "LineOfCredit") {
-                if ((balance + amount) > getCreditLimit()) {
-                    System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
-                            "as you have reached your credit limit");
-                } else if ((balance + amount) < getCreditLimit()) {
-                    depositToAccount(amount);
-                }
-            } else if ((balance + amount) > getCreditLimit()) {
-                System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
-                        "as you have reached your credit limit");
-            } else if ((balance + amount) < getCreditLimit()) {
-                depositToAccount(amount);
-            }
-        }
-//        this.updateHistory(""); - FIGURE OUT BILL UNDOS - maybe BM treats as special case!
-//        System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
-//        return true; }
-        return true;
-    }
 
         public boolean cashPoints(){
         if (((PointSystemUser) accountHolder).getNumPoints()  < 20){
@@ -359,8 +310,8 @@ public class Account implements Serializable, Observer {
         else{
             while (((PointSystemUser) accountHolder).getNumPoints() > 20){
                 PointSystemUser ah = (PointSystemUser) accountHolder;
-                ah.increasePoints();
-                ah.decreasePoints();
+                ah.setNumPointsIncrease();
+                ah.setNumPointsDecrease();
                 balance +=  1.50;}
             return true;}
     }
