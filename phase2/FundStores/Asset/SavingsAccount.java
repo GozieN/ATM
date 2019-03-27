@@ -17,6 +17,11 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
      *
      * @param accountHolder Name of holder of the account
      */
+    public SavingsAccount(User accountHolder, User accountHolder2) {
+        super(accountHolder, accountHolder2);
+        this.accountType  = "savings";
+    }
+
     public SavingsAccount(User accountHolder) {
         super(accountHolder);
         this.accountType  = "savings";
