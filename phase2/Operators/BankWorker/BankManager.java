@@ -374,6 +374,14 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         }
     }
 
+    public String viewConsultationRecords(UserConsultant consultant){
+        String history = "";
+        for(String s : consultant.getUserAdviseHistory()){
+            history += s;
+        }
+        return history;
+    }
+
     /**
      * Print a summary of the user's accounts
      * @param user Instance of user
