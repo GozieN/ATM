@@ -1,7 +1,6 @@
 package phase2.UserInterface;
 
 import java.io.*;
-
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
@@ -12,7 +11,6 @@ import phase2.Operators.BankAccountUser.User;
 import phase2.UserInterface.BankManagerUserInteractionsMenuController;
 import phase2.UserInterface.GUI;
 import phase2.UserInterface.Menu;
-
 import java.util.*;
 
 public class UserSelectMenuController extends Menu implements java.io.Serializable {
@@ -26,18 +24,13 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 	Label masterAccessKeyInStatus;
 
 	public void selectUser(ActionEvent event) throws Exception {
-//		User user = null;
 		ArrayList<User> userList = new ArrayList<>();
 		try {
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
 			ObjectInputStream in = new ObjectInputStream(file);
-//			user = (User)in.readObject();
-			userList = (ArrayList<User>) in.readObject();
+			userList = (ArrayList<User>)in.readObject();
 			in.close();
 			file.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 			for (User obj: userList) {
 				if (obj.getUsername().equals(this.userUsernameIn.getText())) {
 					if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
@@ -62,9 +55,8 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 		}
 	}
 
-
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "BankManagerLoginMenuScene.fxml";
+		String previousMenu = "BankManagerInteractionsMenuScene.fxml";
 		super.back(event, previousMenu);
 	}
 

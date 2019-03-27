@@ -42,10 +42,10 @@ public class ConsultantLoginMenuController extends Menu implements java.io.Seria
 					this.passwordIn.getText().equals(GUI.getUC().getPassword())) {
 				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("ConsultantInteractionsMenuScene.fxml"));
+				loader.setLocation(getClass().getResource("ConsultantUseOptionsMenuScene.fxml"));
 				Parent parent = loader.load();
-				Scene consultantInteractionsMenuScene = new Scene(parent);
-				mainStage.setScene(consultantInteractionsMenuScene);
+				Scene consultantUseOptionsMenuScene = new Scene(parent);
+				mainStage.setScene(consultantUseOptionsMenuScene);
 				mainStage.show();
 			} else {
 				this.loginFailed.setText("invalid credentials. try again");
