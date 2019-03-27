@@ -61,13 +61,12 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
         }
 
         //[Angela]
-        try {
-            ArrayList<Account> accountsList = new ArrayList<>();
-            accountsList = newAccount.getAccountsDatabase();
+        newAccount.getAccountsDatabase().add(newAccount);
 
+        try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/AccountDatabase.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(accountsList);
+            out.writeObject(newAccount.getAccountsDatabase());
 
         } catch (Exception ex) {ex.printStackTrace();}
 
@@ -78,13 +77,10 @@ public class BankManager extends BankEmployee implements Observer, Serializable{
             }
         }
 
-        ArrayList<User> userList = new ArrayList<>();
-        userList = users;
-
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(userList);
+            out.writeObject(users);
             out.close();
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
