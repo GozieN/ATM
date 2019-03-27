@@ -316,6 +316,10 @@ public class Account implements Serializable, Observer {
             return true;}
     }
 
+    public User getAccountHolder(){
+        return accountHolder;
+    }
+
 
     @Override
     public void update(Observable o, Object arg) {

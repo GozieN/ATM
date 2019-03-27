@@ -49,10 +49,7 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
      *                 user's savings account
      */
     public void monthlyInterest(double interest) {
-        LocalDateTime currdate = LocalDateTime.now();
-        if ((currdate.toString().substring(5, 7)).equals(getLastLine().substring(2, 4))) {
-            setBalance(getBalance());
-        } else {
+        if (("01").equals(getLastLine().substring(0, 2))) {
             double increaseBy = interest * getBalance();
             setBalance(getBalance() - increaseBy);
         }

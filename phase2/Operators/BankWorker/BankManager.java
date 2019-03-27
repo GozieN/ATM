@@ -10,6 +10,7 @@ import phase2.Operators.BankAccountUser.User;
 import java.io.*;
 import java.util.*;
 import java.io.Serializable;
+import java.io.BufferedReader;
 
 public class BankManager extends BankEmployee implements Serializable{
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
@@ -385,12 +386,24 @@ public class BankManager extends BankEmployee implements Serializable{
         }
     }
 
-    public String viewConsultationRecords(UserConsultant consultant){
+    public void viewConsultationRecords(UserConsultant consultant){
         String history = "";
-        for(String s : consultant.getUserAdviseHistory()){
-            history += s;
-        }
-        return history;
+
+        try {
+            BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/UserAdviceHistory.txt"));
+            String line = read.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = read.readLine();
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();}
+
+//        for(String s : consultant.getUserAdviseHistory()){
+//            history += s;
+//        }
+//        return history;
     }
 
     /**

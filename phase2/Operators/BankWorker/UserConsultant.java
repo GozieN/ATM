@@ -2,8 +2,13 @@ package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
 import phase2.Operators.Contract;
+import sun.reflect.annotation.ExceptionProxy;
 
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
 
 
 public class UserConsultant extends BankEmployee implements Contract {
@@ -55,6 +60,12 @@ public class UserConsultant extends BankEmployee implements Contract {
      */
     public void addToUserAdviseHistory(String record){
         UserAdviseHistory.add(record);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/UserAdviceHistory"));
+            writer.write(record);
+            writer.close();
+        } catch (Exception ex) {ex.printStackTrace();}
 
     }
 
