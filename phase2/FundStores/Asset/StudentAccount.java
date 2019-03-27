@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class StudentAccount extends Debit implements Serializable {
     private int notrasfers;
     private double savefor;
+    private String savetilldate;
 
     public StudentAccount(User accountHolder){
         super(accountHolder);
@@ -39,15 +40,42 @@ public class StudentAccount extends Debit implements Serializable {
         }
     }
 
-    public void startSaving(double amount){
+    public void startSaving(double amount, int year){
         if(amount < getBalance()){
             setBalance(getBalance() - amount);
+            int interest;
+            if (year == 1){
+                interest = 6;
+            }
+            else if((year > 1) && (year <= 8)){
+                interest = 8;
+            }
+            else{
+                interest = 9;
+            }
+            int x = Integer.parseInt(getLastLine().substring(4, 8)) + year;
             savefor += amount;
-            System.out.println("A savings for your student account has been opened. This money won't be able to " +
+            savetilldate = getLastLine().substring(0, 3) + x + interest;
+            System.out.println("A savings for your student account has been opened. Your savings scheme now has : " +
+                    this.savefor + "CAD. This money cannot " +
                     "accessed by you unless you break the savings scheme");
         }
         else{
             System.out.println("Your balance is below the amount you want to add to your savings scheme...");
         }
+    }
+
+    public void breakSaveFor(){
+        String x = getLastLine().substring(0, 8);
+        String compareto = savetilldate.substring(4, 8) + savetilldate.substring(2, 4) + savetilldate.substring(0, 2);
+        String y = x.substring(4, 8) + x.substring(2, 4) + x.substring(0, 2);
+        if(Integer.parseInt(y) >= Integer.parseInt(compareto)){
+            setBalance(getBalance() + (savefor + (savefor * Integer.parseInt(savetilldate.substring(8, 9))/100)));
+        }
+        else{
+            setBalance(getBalance() + savefor);
+        }
+        savefor = 0;
+        savetilldate = "";
     }
 }
