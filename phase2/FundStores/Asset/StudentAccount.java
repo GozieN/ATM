@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class StudentAccount extends Debit implements Serializable {
     private int notrasfers;
+    private double savefor;
 
     public StudentAccount(User accountHolder){
         super(accountHolder);
@@ -32,9 +33,21 @@ public class StudentAccount extends Debit implements Serializable {
         }
     }
 
-    public void monthlyInterest(double interest) {
+    public void updateNotransfers(double interest) {
         if (("01").equals(getLastLine().substring(0, 2))) {
             this.notrasfers = 0;
+        }
+    }
+
+    public void startSaving(double amount){
+        if(amount < getBalance()){
+            setBalance(getBalance() - amount);
+            savefor += amount;
+            System.out.println("A savings for your student account has been opened. This money won't be able to " +
+                    "accessed by you unless you break the savings scheme");
+        }
+        else{
+            System.out.println("Your balance is below the amount you want to add to your savings scheme...");
         }
     }
 }
