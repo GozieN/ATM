@@ -80,7 +80,7 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "MainMenuScene.fxml";
+		String previousMenu = "NewUserMenuScene.fxml";
 		super.back(event, previousMenu);
 	}
 
