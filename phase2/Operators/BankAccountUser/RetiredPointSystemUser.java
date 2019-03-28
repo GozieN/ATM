@@ -4,7 +4,7 @@ import phase2.FundStores.Account;
 
 import java.util.ArrayList;
 
-public class RetiredUser extends PointSystemUser{
+public class RetiredPointSystemUser extends PointSystemUser{
     private static ArrayList<User> userDatabase;
     private static int numUsers = 0;
     private int numChequingAccounts = 0;
@@ -15,7 +15,7 @@ public class RetiredUser extends PointSystemUser{
     private int numPoints = 0;
 
 
-    public RetiredUser(String username, String password){
+    public RetiredPointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
         this.userDatabase = new ArrayList<User>(); //- WOULD ERASE OLD INFO!

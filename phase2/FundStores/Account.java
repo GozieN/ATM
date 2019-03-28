@@ -141,6 +141,15 @@ public class Account implements Serializable, Observer {
     }
 
     /**
+     * Get the history of account
+     * @return stack form of history
+     */
+    public Stack<Object[]> getHistory(){
+        return this.history;
+    }
+
+
+    /**
      * Deposit amount into account
      * @param amount Amount of money to deposit
      */

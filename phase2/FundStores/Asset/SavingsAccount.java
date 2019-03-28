@@ -1,5 +1,6 @@
 package phase2.FundStores.Asset;
 
+import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.BufferedReader;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 
 public class SavingsAccount extends Debit implements java.io.Serializable {
 
-    private User user;
+    private User accountHolder;
     private String accountType;
 
     /**
@@ -19,6 +20,7 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
      */
     public SavingsAccount(User accountHolder, User accountHolder2) {
         super(accountHolder, accountHolder2);
+        this.accountHolder = accountHolder;
         this.accountType  = "savings";
     }
 
@@ -31,10 +33,13 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
     /**
      * Add monthly interest for savings account
      *
-     * @param interest Percentage amount of extra money (interest) received as a return for keeping a balance in the
-     *                 user's savings account
      */
-    public void monthlyInterest(double interest) {
+    public void monthlyInterest() {
+        double interest = 1.5;
+        if (this.accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).getIsGoldMember();
+            interest = 3.5;
+        }
         if (("01").equals(getLastLine().substring(0, 2))) {
             double increaseBy = interest * getBalance();
             setBalance(getBalance() - increaseBy);

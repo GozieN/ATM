@@ -15,6 +15,7 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     private String password;
     private String username;
     private String userType;
+    private boolean isGoldMember;
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
@@ -26,7 +27,14 @@ public class PointSystemUser extends User implements Contract, Rewardable {
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
         numPoints = 100;
+    }
 
+    /**
+     * Return whether the user is a gold member
+     * @return if it is or isn't
+     */
+    public boolean getIsGoldMember(){
+        return isGoldMember;
     }
 
     /**
@@ -100,6 +108,9 @@ public class PointSystemUser extends User implements Contract, Rewardable {
      */
     public void setNumPointsIncrease() {
         this.numPoints += 5;
+        if (isGoldMember){
+            numPoints += 5*5;
+        }
     }
 
     /**
