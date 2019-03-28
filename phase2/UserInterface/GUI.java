@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
+import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
 import phase2.FundStores.ATM;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 public class GUI extends Application implements Serializable {
     private static BankManager BM = new BankManager("BMuser", "BMpass");
     private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+    private static User U = new User("zzzzz", "zzzzz");
     private static ATM atm = new ATM();
 
     @Override
@@ -37,6 +39,10 @@ public class GUI extends Application implements Serializable {
 
     public static UserConsultant getUC() {
         return UC;
+    }
+
+    public static User getU() {
+        return U;
     }
 
     public static ATM getAtm() {return atm;}

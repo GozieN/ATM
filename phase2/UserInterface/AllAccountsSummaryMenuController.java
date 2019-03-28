@@ -1,9 +1,9 @@
 package phase2.UserInterface;
 
 import javafx.fxml.*;
+import javafx.scene.control.Label;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.control.TextArea;
 import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
@@ -12,7 +12,7 @@ public class AllAccountsSummaryMenuController extends Menu implements java.io.Se
 	private String operatorType;
 
 	@FXML
-	private TextArea allAccountsSummary;
+	private Label allAccountsSummary;
 
 	public void initialize(User user, String operatorType) {
 		this.user = user;
