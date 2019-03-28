@@ -165,7 +165,8 @@ public class Account implements Serializable, Observer {
         }else{
             atm.minus(amount);
             withdrawFromAccount(amount);
-            ((PointSystemUser) accountHolder).setNumPointsIncrease();
+            if (accountHolder instanceof PointSystemUser){
+                ((PointSystemUser) accountHolder).setNumPointsIncrease();}
             return true;
         }}
 
@@ -196,7 +197,8 @@ public class Account implements Serializable, Observer {
         this.updateHistory("withdraw", amount, null);
         System.out.println("Withdrawal successful, Account: " + this.accountNum +
                 " now has a decreased balance of: " + balance + "$CAD");
-        ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;}
 
     /**
@@ -229,7 +231,8 @@ public class Account implements Serializable, Observer {
         System.out.println("Deposit successful, Account: " + this.accountNum +
                 " now has an increased balance of: " + balance + "CAD$");
         this.updateHistory("deposit", amount, null);
-        ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
     }
 
@@ -240,7 +243,8 @@ public class Account implements Serializable, Observer {
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
         this.updateHistory("cheque", amount, null);
-        ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
     }
 
@@ -255,7 +259,8 @@ public class Account implements Serializable, Observer {
         receiverAccount.updateHistory("transfer", amount, this);
         System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
                 receiverAccount.getBalance() + "$CAD");
-        ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
     }
 
@@ -291,7 +296,8 @@ public class Account implements Serializable, Observer {
         }
 
         this.updateHistory("bill", amount, null);
-        ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;}
 
     /**

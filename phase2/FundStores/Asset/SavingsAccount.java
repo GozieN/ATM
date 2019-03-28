@@ -17,30 +17,16 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
      *
      * @param accountHolder Name of holder of the account
      */
+    public SavingsAccount(User accountHolder, User accountHolder2) {
+        super(accountHolder, accountHolder2);
+        this.accountType  = "savings";
+    }
+
     public SavingsAccount(User accountHolder) {
         super(accountHolder);
         this.accountType  = "savings";
     }
 
-    /**
-     * Helper function to get last line of date.txt file
-     *
-     * @return last line on file
-     */
-    public String getLastLine() {
-        String currLine;
-        String lastLine = "";
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
-
-            while ((currLine = br.readLine()) != null) {
-                lastLine = currLine;
-            }
-        } catch (IOException e) {
-        }
-        return lastLine;
-    }
 
     /**
      * Add monthly interest for savings account

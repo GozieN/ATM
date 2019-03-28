@@ -23,9 +23,9 @@ public class AccountTest {
     public void SetUp(){
         user = new User("TestUser", "TestPassword");
         savingsAccount = new SavingsAccount(user);
-        chequingAccount = new ChequingAccount(user,"Chequing", true);
-        creditAccount = new Credit(user, false);
-        lineOfCreditAccount = new Credit(user, true);
+        chequingAccount = new ChequingAccount(user, true);
+        creditAccount = new Credit(user);
+        lineOfCreditAccount = new Credit(user);
     }
 
     @After
