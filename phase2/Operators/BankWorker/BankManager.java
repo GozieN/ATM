@@ -431,13 +431,19 @@ public class BankManager extends BankEmployee implements Serializable{
     /**
      * View the messages in inbox from the consultant!
      */
-    public String viewInbox() {
+   public String viewInbox() throws Exception{
         String s = "";
         if (inbox.isEmpty()){
             s = "You have no messages at the moment!";
         } else{
             s = inbox.toString();
-        } return s;
+        }
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
+        writer.write(s);
+        writer.close();
+
+        return s;
     }
 
     public static void main(String[] args) {
