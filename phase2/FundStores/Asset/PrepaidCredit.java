@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 // up to limit given + incurs $3 deduction every month)
 
 public class PrepaidCredit extends Credit implements Serializable {
-    private User user;
-    private double initialAmount;
+
 
     /**
      * PrepaidCredit constructor

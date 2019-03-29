@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 public abstract class Debit extends Account implements Serializable {
 
-    private User user;
     /**
      * Debit class constructor
      * @param accountHolder Name of holder of the account

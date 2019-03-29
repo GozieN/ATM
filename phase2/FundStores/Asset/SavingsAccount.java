@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 
 public class SavingsAccount extends Debit implements java.io.Serializable {
 
-    private User accountHolder;
-    private String accountType;
 
     /**
      * SavingsAccount constructor
@@ -20,7 +18,6 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
      */
     public SavingsAccount(User accountHolder, User accountHolder2) {
         super(accountHolder, accountHolder2);
-        this.accountHolder = accountHolder;
         this.accountType  = "savings";
     }
 
