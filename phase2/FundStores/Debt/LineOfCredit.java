@@ -2,7 +2,6 @@ package phase2.FundStores.Debt;
 
 import phase2.FundStores.ATM;
 import phase2.FundStores.Account;
-import phase2.FundStores.Transferable;
 import phase2.FundStores.Withdrawable;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
