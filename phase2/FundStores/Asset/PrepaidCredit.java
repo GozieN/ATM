@@ -2,6 +2,7 @@ package phase2.FundStores.Asset;
 
 import phase2.FundStores.Asset.Debit;
 import phase2.Operators.BankAccountUser.User;
+import phase2.FundStores.Debt.Credit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

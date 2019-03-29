@@ -4,10 +4,12 @@ import com.sun.istack.internal.Nullable;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
 import phase2.FundStores.Asset.SavingsAccount;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.Credit;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.BankWorker.BankManager;
+import phase2.FundStores.ATM;
+
 
 import java.io.*;
 import java.nio.Buffer;
@@ -206,7 +208,7 @@ public class Account implements Serializable, Observer {
                     balance -= amount;
                 }
             }
-        }else if (this instanceof LineOfCredit){
+        }else if (this instanceof Credit){
             balance -= amount;
         }
         this.updateHistory("withdraw", amount, null);
