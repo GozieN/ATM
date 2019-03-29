@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 // PrepaidCredit account works like a prepaid gift card (only able to reload, balance never goes under 0, can only spend
 // up to limit given + incurs $3 deduction every month)
 
-public class PrepaidCredit extends Credit implements Serializable {
+public class PrepaidCredit extends Debit implements Serializable {
 
 
     /**
@@ -24,32 +24,17 @@ public class PrepaidCredit extends Credit implements Serializable {
                 //MUST SET INITIAL AMOUNT.
         super(accountHolder);
         accountType = "Prepaid Credit";
-        if (initialAmount > 0 ){
-            this.initialAmount = initialAmount; }
+        if (balance > 0 ){
+            this.balance = balance; }
     }
 
-    public void monthlyFees(double fee) {
-        LocalDateTime currdate = LocalDateTime.now();
-        if ((currdate.toString().substring(5, 7)).equals(getLastLine().substring(2, 4))) {
-            setBalance(getBalance());
-        } else {
-            setBalance(getBalance() - fee);
-        }
-    }
-
-    public String getLastLine() {
-        String currLine;
-        String lastLine = "";
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
-
-            while ((currLine = br.readLine()) != null) {
-                lastLine = currLine;
+    public void monthlyFees() {
+        double fee = 3;
+        if (("01").equals(getLastLine().substring(0, 2))) {
+            if (balance > 3) {
+                setBalance(getBalance() - fee);
+            } else {
+                addToBill(fee);
             }
-        } catch (IOException e) {
         }
-        return lastLine;}
-}
-
-
+    }
