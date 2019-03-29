@@ -80,7 +80,7 @@ public class Account implements Serializable, Observer {
     }
 
 
-    /**f
+    /**
      * Get number of account
      * @return Int for account's number
      */
