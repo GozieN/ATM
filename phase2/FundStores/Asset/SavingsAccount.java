@@ -29,7 +29,7 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
         String lastLine = "";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
 
             while ((currLine = br.readLine()) != null) {
                 lastLine = currLine;

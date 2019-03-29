@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 
 
 // PrepaidCredit account works like a prepaid gift card (only able to reload, balance never goes under 0, can only spend
-// up to limit given + incurs 3% deduction every month)
+// up to limit given + incurs $3 deduction every month)
 
-public class PrepaidCredit extends Debit implements Serializable {
+public class PrepaidCredit extends Credit implements Serializable {
     private User user;
 
     /**
@@ -37,7 +37,7 @@ public class PrepaidCredit extends Debit implements Serializable {
         String lastLine = "";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
 
             while ((currLine = br.readLine()) != null) {
                 lastLine = currLine;
