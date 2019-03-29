@@ -15,7 +15,6 @@ public class LineOfCredit extends Credit{
 
     public LineOfCredit(User accountHolder){
         super(accountHolder);
-        this.isLOC = isLOC;
         accountType = "LineOfCredit";
         accountsDatabase.add(this);
         this.accountUsers.add(accountHolder);
