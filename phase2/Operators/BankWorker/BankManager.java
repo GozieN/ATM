@@ -13,7 +13,7 @@ import java.util.*;
 import java.io.Serializable;
 import java.io.BufferedReader;
 
-public class BankManager extends BankEmployee implements Serializable{
+public class BankManager extends BankEmployee implements Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
@@ -37,6 +37,7 @@ public class BankManager extends BankEmployee implements Serializable{
         return this.accessKey;
     }
 
+    @SuppressWarnings("unchecked")
     /**
      * Create and update the list of accounts that a user has
      * @param user Array list of user accounts
@@ -55,25 +56,17 @@ public class BankManager extends BankEmployee implements Serializable{
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
-            if (user.getNumChequingAccounts() == 1){
+            if (user.getNumChequingAccounts() == 1) {
                 newAccount = new ChequingAccount(user, true);
+            } else {
+                newAccount = new ChequingAccount(user, false);
             }
-            else {newAccount = new ChequingAccount(user, false);}
         }
 
-        //[Angela]
-        newAccount.getAccountsDatabase().add(newAccount);
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/AccountDatabase.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(newAccount.getAccountsDatabase());
-
-        } catch (Exception ex) {ex.printStackTrace();}
-
-
-        for (User obj: users) {
-            if (obj == user) {
+        ArrayList<User> usersCopy = new ArrayList<>();
+        usersCopy = (ArrayList<User>) users.clone();
+        for (User obj: usersCopy) {
+            if (obj.getUsername().equals(user.getUsername())) {
                 obj.getAccountsCreated().add(newAccount);
             }
         }
@@ -81,14 +74,14 @@ public class BankManager extends BankEmployee implements Serializable{
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(users);
+            out.writeObject(usersCopy);
             out.close();
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
 
 
         if (newAccount == null) {
-            System.out.println("Sorry, it seems as though an error occurred when creating your account. Please" +
+            System.out.println("Sorry, it seems as though an error occurred when creating your account. Please " +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
                     "Savings, Chequing");
         } else {
@@ -98,6 +91,14 @@ public class BankManager extends BankEmployee implements Serializable{
                     ", the following account: " +
                     newAccount.accountType + " with account Number: "
                     + newAccount.getAccountNum() + " was created upon your request.");
+
+        }
+
+        for (Account acct: user.getAccountsCreated()) {
+            if (acct instanceof ChequingAccount) {
+                System.out.println("And you primary chequing account is " + acct.getAccountNum());
+                break;
+            }
         }
     }
 
@@ -157,15 +158,18 @@ public class BankManager extends BankEmployee implements Serializable{
     }
 
     //[Angela]
+
+    @SuppressWarnings("unchecked")
+
     /**
      * Delete a user
-     * @param user the User object that needs to be deleted
+     * @param user the User object that needs to be deleted.
      */
-
     public void deleteUser(User user) {
-
-        for (User obj: users) {
-            if (user.getUsername().equals(obj.getUsername())) {
+        ArrayList<User> usersCopy = new ArrayList<>();
+        usersCopy = (ArrayList<User>) users.clone();
+        for (User obj: usersCopy) {
+            if (obj.getUsername().equals(user.getUsername())){
                 users.remove(obj);
             }
         }
@@ -448,10 +452,40 @@ public class BankManager extends BankEmployee implements Serializable{
 
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
-        bm.createUser("b", "b");
-        bm.createUser("c", "c");
-        bm.createUser("a", "a");
-        bm.createUser("d", "d");
+        User user1 = new User("a", "a");
+        User user2 = new User("b", "b");
+        User user3 = new User("c", "c");
+        User user4 = new User("d", "d");
+        User user5 = new User("e", "e");
+
+        bm.createUser(user1.getUsername(), user1.getPassword());
+        bm.createUser(user2.getUsername(), user2.getPassword());
+        bm.createUser(user3.getUsername(), user3.getPassword());
+        bm.createUser(user5.getUsername(), user5.getPassword());
+
+        bm.deleteUser(user3);
+        bm.createUser(user4.getUsername(), user4.getPassword());
+        bm.deleteUser(user1);
+
+        bm.createNewAccount(10, "savings", user2);
+        bm.createNewAccount(20, "chequing", user2);
+        bm.createNewAccount(30, "chequing", user2);
+        bm.createNewAccount(40, "chequing", user2);
+
+
+
+
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            users = (ArrayList<User>) in.readObject();
+//            for (User obj : users) {
+//                System.out.println(obj.getAccountsCreated());
+//            }
+
+        } catch (Exception e) {e.printStackTrace();}
+
     }
 }
 
