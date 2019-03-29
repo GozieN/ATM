@@ -12,22 +12,6 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class LineOfCredit extends Credit{
-    private User user;
-    boolean isLOC;
-    private double creditLimit;
-    private static ArrayList<Account> accountsDatabase = new ArrayList<>();
-    private static int accountNumTotal = 0;
-    private int accountNum = accountNumTotal;
-    private String holderName;
-    private String holderName2;
-    private double balance;
-    public String accountType;
-    private ArrayList<User> accountUsers = new ArrayList<User>();
-    public ATM atm;
-    private Object[] transactionInfoTempHolder;
-    private Stack<Object[]> history;
-    private User accountHolder;
-    private User accountHolder2;
 
     public LineOfCredit(User accountHolder){
         super(accountHolder);

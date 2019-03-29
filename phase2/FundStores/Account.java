@@ -17,20 +17,20 @@ import java.util.Observer;
 import java.util.Stack;
 
 public class Account implements Serializable, Observer {
-    private static ArrayList<Account> accountsDatabase = new ArrayList<>();
-    private static int accountNumTotal = 0;
-    private int accountNum = accountNumTotal;
-    private String holderName;
-    private String holderName2;
-    private double balance;
+    protected static ArrayList<Account> accountsDatabase = new ArrayList<>();
+    protected static int accountNumTotal = 0;
+    protected int accountNum = accountNumTotal;
+    protected String holderName;
+    protected String holderName2;
+    protected double balance;
     public String accountType;
-    private ArrayList<User> accountUsers = new ArrayList<User>();
+    protected ArrayList<User> accountUsers = new ArrayList<User>();
 
     public ATM atm;
-    private Object[] transactionInfoTempHolder;
-    private Stack<Object[]> history;
-    private User accountHolder;
-    private User accountHolder2;
+    protected Object[] transactionInfoTempHolder;
+    protected Stack<Object[]> history;
+    protected User accountHolder;
+    protected User accountHolder2;
     public BankManager bm = new BankManager("", "");
 
 
