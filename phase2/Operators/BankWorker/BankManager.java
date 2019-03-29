@@ -95,7 +95,7 @@ public class BankManager extends BankEmployee implements Serializable {
         }
 
         for (Account acct: user.getAccountsCreated()) {
-            if (acct instanceof ChequingAccount) {
+            if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
                 System.out.println("And you primary chequing account is " + acct.getAccountNum());
                 break;
             }
@@ -480,9 +480,9 @@ public class BankManager extends BankEmployee implements Serializable {
             FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
             users = (ArrayList<User>) in.readObject();
-//            for (User obj : users) {
-//                System.out.println(obj.getAccountsCreated());
-//            }
+            for (User obj : users) {
+                System.out.println(obj.getAccountsCreated());
+            }
 
         } catch (Exception e) {e.printStackTrace();}
 
