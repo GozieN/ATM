@@ -29,13 +29,13 @@ public class MainMenuController extends Menu implements java.io.Serializable {
 		mainStage.show();
 	}
 
-	public void requestNewUserAccountCreation(ActionEvent event) throws Exception {
+	public void newUser(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("RequestNewUserAccountCreationMenuScene.fxml"));
+		loader.setLocation(getClass().getResource("NewUserMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene requestNewUserAccountCreationMenuScene = new Scene(parent);
-		mainStage.setScene(requestNewUserAccountCreationMenuScene);
+		Scene newUserMenuScene = new Scene(parent);
+		mainStage.setScene(newUserMenuScene);
 		mainStage.show();
 	}
 }

@@ -15,6 +15,7 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     private String password;
     private String username;
     private String userType;
+    private boolean isGoldMember;
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
@@ -25,8 +26,15 @@ public class PointSystemUser extends User implements Contract, Rewardable {
         this.userDatabase = new ArrayList<User>(); //- WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
-        numPoints = 50;
+        numPoints = 100;
+    }
 
+    /**
+     * Return whether the user is a gold member
+     * @return if it is or isn't
+     */
+    public boolean getIsGoldMember(){
+        return isGoldMember;
     }
 
     /**
@@ -37,6 +45,7 @@ public class PointSystemUser extends User implements Contract, Rewardable {
         String s = "";
         s = "As a new Point System User, you are able to do the following: \n" +
                 "- Cash Points (when you have accumulated at least 20.\n" +
+                "- Gain an initial 100. \n" +
                 "- Opt out of being a point system user at any point in time. \n" +
                 "- Request to delete your account at any point in time.\n" +
                 "- Change your password at any time. \n" +
@@ -55,10 +64,17 @@ public class PointSystemUser extends User implements Contract, Rewardable {
         s = "As a new Point System User of the Bank, " +
                 "you agree not to engage in fraudulent behavior, " +
                 "especially when filling in information for account consultation purposes." +
-                "You agree not to abuse the point system, whether by engaging in point" +
-                " gain motivated transactions or frequently switching between a point System User and" +
-                "a standard user to gain the initial 50 points freely. Click next to agree.";
+                "You agree not to abuse the point system, by engaging in point" +
+                " gain motivated transactions. Click next to agree.";
         return s;
+    }
+
+    /**
+     * set the number of points that the user should should contain.
+     * @param numPoints the number of points
+     */
+    public void setNumPoints(int numPoints) {
+        this.numPoints = numPoints;
     }
 
     @Override
@@ -90,25 +106,20 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     /**
      * Set the number of points that the account should contain
      */
-    public void setNumPoints(int newNum) {
-        this.numPoints = newNum;
+    public void setNumPointsIncrease() {
+        this.numPoints += 5;
+        if (isGoldMember){
+            numPoints += 5*5;
+        }
     }
-
 
     /**
-     * Increase the number of points the account contains.
+     * Set the number of points that the account should contain
      */
-    public void increasePoints(){
-            this.numPoints += 5;
+    public void setNumPointsDecrease() {
+        this.numPoints -= 20;
     }
 
-
-    /**
-     * Decrease the number of points the account contains.
-     */
-    public void decreasePoints(){
-            this.numPoints -= 20;
-    }
 
     /**
      * Prompt the point rewards to be cashed by notifying each account.

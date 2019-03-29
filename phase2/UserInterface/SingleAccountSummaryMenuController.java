@@ -1,11 +1,11 @@
 package phase2.UserInterface;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import phase2.FundStores.*;
-
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
-import javafx.scene.control.TextArea;
 import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
@@ -14,7 +14,7 @@ public class SingleAccountSummaryMenuController extends Menu implements java.io.
 	private String operatorType;
 
 	@FXML
-	private TextArea singleAccountSummary;
+	private Label singleAccountSummary;
 
 	public void initialize(User user, Account account, String operatorType) {
 		this.user = user;

@@ -14,7 +14,7 @@ public class DateTimeMenuController extends Menu implements java.io.Serializable
 		String date = atm.getDate();
 		String time = atm.getTime();
 		String dateTime = atm.getDate() + " " + atm.getTime();
-		// angela TODO: assign dateTime to date, time from file
+		// angela
 		this.dateTime.setText(dateTime);
 	}
 

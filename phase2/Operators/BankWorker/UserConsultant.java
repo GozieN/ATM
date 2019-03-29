@@ -2,8 +2,13 @@ package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
 import phase2.Operators.Contract;
+import sun.reflect.annotation.ExceptionProxy;
 
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
 
 
 public class UserConsultant extends BankEmployee implements Contract {
@@ -56,6 +61,22 @@ public class UserConsultant extends BankEmployee implements Contract {
     public void addToUserAdviseHistory(String record){
         UserAdviseHistory.add(record);
 
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/UserAdviceHistory"));
+            writer.write(record);
+            writer.close();
+        } catch (Exception ex) {ex.printStackTrace();}
+
+    }
+
+    /**
+     * Return the prompt for the user to input.
+     * @return the users' options
+     */
+    public String consultantMessage(){
+        return "Answer the questions below and we will determine the best fit for you! \n" +
+                "We will automatically create a User account for you if your inputs are valid. \n" +
+                "alternatively, click default to be a created as a user.";
     }
 
     // input prompts, --> create account button
@@ -64,7 +85,7 @@ public class UserConsultant extends BankEmployee implements Contract {
      * @param age
      * @return A string detailing the outcome of the account creation based on user input.
      */
-    public String reportUserAccountAdvice(int age, boolean inSchool){
+    public String reportUserAccountAdvice(int age, boolean inSchool, String username, String password){
         numUsersConsulted++;
         String s = "";
         String record = "";
@@ -92,7 +113,7 @@ public class UserConsultant extends BankEmployee implements Contract {
             else{
                 currentUserBeingConsultedType = "Standard";
                 s = "Based on your information, it looks like our Standard Bank Account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";
+                        "right fit for you! You now ";
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
                 }

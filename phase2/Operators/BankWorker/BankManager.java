@@ -5,11 +5,13 @@ import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
 import java.util.*;
 import java.io.Serializable;
+import java.io.BufferedReader;
 
 public class BankManager extends BankEmployee implements Serializable{
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
@@ -44,19 +46,19 @@ public class BankManager extends BankEmployee implements Serializable{
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
         if (accountType.equals("LineOfCreditAccount")) {
-            newAccount = new Credit(user, true);
+            newAccount = new LineOfCredit(user);
 
         } else if (accountType.equals("credit")) {
-            newAccount = new Credit(user, false);
+            newAccount = new Credit(user);
 
         } else if (accountType.equals("savings")) {
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
             if (user.getNumChequingAccounts() == 1){
-                newAccount = new ChequingAccount(user, "chequing", true);
+                newAccount = new ChequingAccount(user, true);
             }
-            else {newAccount = new ChequingAccount(user, "chequing", false);}
+            else {newAccount = new ChequingAccount(user, false);}
         }
 
         //[Angela]
@@ -385,12 +387,24 @@ public class BankManager extends BankEmployee implements Serializable{
         }
     }
 
-    public String viewConsultationRecords(UserConsultant consultant){
+    public void viewConsultationRecords(UserConsultant consultant){
         String history = "";
-        for(String s : consultant.getUserAdviseHistory()){
-            history += s;
-        }
-        return history;
+
+        try {
+            BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/UserAdviceHistory.txt"));
+            String line = read.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = read.readLine();
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();}
+
+//        for(String s : consultant.getUserAdviseHistory()){
+//            history += s;
+//        }
+//        return history;
     }
 
     /**
@@ -417,13 +431,19 @@ public class BankManager extends BankEmployee implements Serializable{
     /**
      * View the messages in inbox from the consultant!
      */
-    public String viewInbox() {
+   public String viewInbox() throws Exception{
         String s = "";
         if (inbox.isEmpty()){
             s = "You have no messages at the moment!";
         } else{
             s = inbox.toString();
-        } return s;
+        }
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
+        writer.write(s);
+        writer.close();
+
+        return s;
     }
 
     public static void main(String[] args) {
