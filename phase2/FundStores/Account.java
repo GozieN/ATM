@@ -331,8 +331,23 @@ public class Account implements Serializable, Observer {
             return true;}
     }
 
+    /**
+     * return the owner of this account
+     * @return a user, the instance of the account holder
+     */
     public User getAccountHolder(){
         return accountHolder;
+    }
+
+    /**
+     * Return a summary of this account
+     */
+    public String summarize() {
+        String s = "Account holder(s): " + holderName +
+                " " +holderName2 + "\n Account summary:" + accountType +"\n" +
+                "Account Number: "
+                + accountNum + "\n Holds: " + balance + "CAD$";
+        return s;
     }
 
 

@@ -21,7 +21,8 @@ public class PrepaidCredit extends Debit implements Serializable {
      * PrepaidCredit constructor
      * @param accountHolder
      */
-    public PrepaidCredit (User accountHolder, double initialAmount){
+    public PrepaidCredit (User accountHolder){
+                //MUST SET INITIAL AMOUNT.
         super(accountHolder);
         accountType = "Prepaid Credit";
         if (initialAmount > 0 ){

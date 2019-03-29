@@ -21,7 +21,7 @@ public class Credit extends Account implements Serializable {
     private String holderName;
     private String holderName2;
     private double balance;
-    public String accountType;
+    //public String accountType;
     private ArrayList<User> accountUsers = new ArrayList<User>();
 
     public ATM atm;
@@ -38,7 +38,7 @@ public class Credit extends Account implements Serializable {
      */
     public Credit(User accountHolder) {
         super(accountHolder);
-        accountType = "CreditCard";
+        super.accountType = "CreditCard";
         accountsDatabase.add(this);
         this.accountUsers.add(accountHolder);
         history = new Stack<>();
