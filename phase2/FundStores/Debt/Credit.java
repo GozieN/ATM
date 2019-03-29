@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Credit extends Account implements Serializable {
-
     private double creditLimit;
 
 

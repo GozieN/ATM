@@ -18,14 +18,16 @@ public class PrepaidCredit extends Debit implements Serializable {
 
     /**
      * PrepaidCredit constructor
+     *
      * @param accountHolder
      */
-    public PrepaidCredit (User accountHolder){
-                //MUST SET INITIAL AMOUNT.
+    public PrepaidCredit(User accountHolder) {
+        //MUST SET INITIAL AMOUNT.
         super(accountHolder);
         accountType = "Prepaid Credit";
-        if (balance > 0 ){
-            this.balance = balance; }
+        if (balance > 0) {
+            this.balance = balance;
+        }
     }
 
     public void monthlyFees() {
@@ -38,3 +40,4 @@ public class PrepaidCredit extends Debit implements Serializable {
             }
         }
     }
+}
