@@ -31,6 +31,11 @@
 				<Font size="20.0" />
 			</font>
 		</Button>
+      <Button layoutX="163.0" layoutY="386.0" mnemonicParsing="false" onAction="#undoTransactions" text="undo transaction(s)">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
 		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
 			<font>
 				<Font size="20.0" />

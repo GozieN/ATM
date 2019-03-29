@@ -1,6 +1,7 @@
 package phase2.UserInterface;
 
 import javafx.fxml.*;
+import javafx.scene.control.Label;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.event.*;
@@ -20,7 +21,7 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 		Parent parent = loader.load();
 		Scene withdrawMenuScene = new Scene(parent);
 		WithdrawMenuController controller = loader.getController();
-		controller.initialize(this.user, "BankManagerMenus");
+		controller.initialize(this.user, "Bank Manager");
 		mainStage.setScene(withdrawMenuScene);
 		mainStage.show();
 	}
@@ -32,7 +33,7 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 		Parent parent = loader.load();
 		Scene depositOptionsMenuScene = new Scene(parent);
 		DepositOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user, "BankManagerMenus");
+		controller.initialize(this.user, "Bank Manager");
 		mainStage.setScene(depositOptionsMenuScene);
 		mainStage.show();
 	}
@@ -56,8 +57,20 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 		Parent parent = loader.load();
 		Scene payBillMenuScene = new Scene(parent);
 		PayBillMenuController controller = loader.getController();
-		controller.initialize(this.user, "BankManagerMenus");
+		controller.initialize(this.user, "Bank Manager");
 		mainStage.setScene(payBillMenuScene);
+		mainStage.show();
+	}
+
+	public void undoTransactions(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("UndoTransactionsMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene undoTransactionsMenuScene = new Scene(parent);
+		UndoTransactionsMenuController controller = loader.getController();
+		controller.initialize(this.user);
+		mainStage.setScene(undoTransactionsMenuScene);
 		mainStage.show();
 	}
 

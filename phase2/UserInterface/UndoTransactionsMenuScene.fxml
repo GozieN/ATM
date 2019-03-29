@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.UndoTransactionsMenuController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[undo transaction(s) menu]">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="147.0" layoutY="143.0" text="select an account to undo a transaction from">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="userBankAccounts" layoutX="147.0" layoutY="171.0" prefWidth="150.0" promptText="bank account" />
+      <Label fx:id="userBankAccountsStatus" layoutX="301.0" layoutY="175.0" />
+      <Button layoutX="222.0" layoutY="256.0" mnemonicParsing="false" onAction="#undoTransaction" text="undo transaction">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="endStatus" layoutX="406.0" layoutY="263.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

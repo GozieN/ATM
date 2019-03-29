@@ -7,33 +7,31 @@ import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
+import phase2.Operators.BankWorker.BankManager;
 
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Stack;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class Account implements Serializable, Observer {
-    private static ArrayList<Account> accountsDatabase = new ArrayList<>();
-    private static int accountNumTotal = 0;
-    private int accountNum = accountNumTotal;
-    private String holderName;
-    private String holderName2;
-    private double balance;
+    protected static ArrayList<Account> accountsDatabase = new ArrayList<>();
+    protected static int accountNumTotal = 0;
+    protected int accountNum = accountNumTotal;
+    protected String holderName;
+    protected String holderName2;
+    protected double balance;
     public String accountType;
-    private ArrayList<User> accountUsers = new ArrayList<User>();
+    protected ArrayList<User> accountUsers = new ArrayList<User>();
 
     public ATM atm;
-    private Object[] transactionInfoTempHolder;
-    private Stack<Object[]> history;
-    private User accountHolder;
-    private User accountHolder2;
+    protected Object[] transactionInfoTempHolder;
+    protected Stack<Object[]> history;
+    protected User accountHolder;
+    protected User accountHolder2;
+    public BankManager bm = new BankManager("", "");
 
 
     /**
@@ -67,6 +65,14 @@ public class Account implements Serializable, Observer {
         this.holderName = accountHolder.getUsername();
         this.holderName2 = accountHolder2.getUsername();
         this.transactionInfoTempHolder = new Object[2];
+
+        try {
+            FileOutputStream file = new FileOutputStream("pahse2/txtfiles/AccountDatabase.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(accountsDatabase);
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 
     public ArrayList<Account> getAccountsDatabase() {return accountsDatabase;}
