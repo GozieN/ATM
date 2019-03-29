@@ -1,7 +1,6 @@
 package phase2.FundStores;
 
-public interface Transferable {
+public interface Withdrawable {
     boolean withdrawFromAccount(double amount);
     boolean withdrawFromATM(int amount);
-    boolean transfer(double amount, Account receiverAccount);
 }
