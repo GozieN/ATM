@@ -398,7 +398,7 @@ public class BankManager extends BankEmployee implements Serializable {
             BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/UserAdviceHistory.txt"));
             String line = read.readLine();
             while (line != null) {
-                System.out.println(line);
+                System.out.println(line + "\n");
                 line = read.readLine();
             }
 
