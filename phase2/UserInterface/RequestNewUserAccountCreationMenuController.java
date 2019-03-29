@@ -38,8 +38,8 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-			for (User obj: userList) {
-				if (!(obj.getUsername().equals(this.newUsernameIn.getText())) &&
+			for (User user : userList) {
+				if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
 						!(this.newUsernameIn.getText().equals(""))) {
 					this.newUsernameInStatus.setText("valid new username");
 				} else if (this.newUsernameIn.getText().equals("")) {

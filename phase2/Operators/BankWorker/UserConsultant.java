@@ -85,7 +85,7 @@ public class UserConsultant extends BankEmployee implements Contract {
      * @param age
      * @return A string detailing the outcome of the account creation based on user input.
      */
-    public String reportUserAccountAdvice(int age, boolean inSchool, String username, String password){
+    public String reportUserAccountAdvice(int age, boolean inSchool){
         numUsersConsulted++;
         String s = "";
         String record = "";
@@ -99,21 +99,26 @@ public class UserConsultant extends BankEmployee implements Contract {
             else if (age >= 16 && 25 >= age && inSchool) {
                 currentUserBeingConsultedType = "Student";
                 s = "Based on your information, it looks like a Student Bank Account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";
+                        "right fit for you! We have sent your information off for approval and \n" +
+                        "have created a New Student account for you!";
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
             }
             else if(age > 60){
                 currentUserBeingConsultedType = "Retired/Pension";
                 s = "Based on your information, it looks like a Pension/Retirement Bank Account is the " +
-                        "right fit for you! We are transferring you over to the account creation page!";
+                        "right fit for you! We are transferring you over to the account creation page! You are a" +
+                        " member of our \"Points system,\" +\n" +
+                        "which you can opt out of at any time.\"" ;
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
             }
             else{
                 currentUserBeingConsultedType = "Standard";
                 s = "Based on your information, it looks like our Standard Bank Account is the " +
-                        "right fit for you! You now ";
+                        "right fit for you! We have sent your information off for approval and \n" +
+                        "have created a New Retirement account for you! You are a member of our \"Points\" system," +
+                        "which you can opt out of at any time.";
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
                 }

@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 // up to limit given + incurs $3 deduction every month)
 
 public class PrepaidCredit extends Credit implements Serializable {
-    private User user;
-    private double initialAmount;
+
 
     /**
      * PrepaidCredit constructor
      * @param accountHolder
      */
-    public PrepaidCredit (User accountHolder, double initialAmount){
+    public PrepaidCredit (User accountHolder){
+                //MUST SET INITIAL AMOUNT.
         super(accountHolder);
         accountType = "Prepaid Credit";
         if (initialAmount > 0 ){

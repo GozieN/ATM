@@ -19,6 +19,8 @@ public class NewUserMenuController extends Menu implements java.io.Serializable 
 		loader.setLocation(getClass().getResource("ConsultationMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene consultationMenuScene = new Scene(parent);
+		ConsultationMenuController controller = loader.getController();
+		controller.initialize();
 		mainStage.setScene(consultationMenuScene);
 		mainStage.show();
 	}
