@@ -430,6 +430,13 @@ public class BankManager extends BankEmployee implements Serializable {
         s = numMessages + ". " + msg;
         numMessages++;
         inbox.add(s);
+
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
+            writer.write(s + "\n");
+            writer.close();
+        } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
     /**
@@ -439,13 +446,10 @@ public class BankManager extends BankEmployee implements Serializable {
         String s = "";
         if (inbox.isEmpty()){
             s = "You have no messages at the moment!";
+
         } else{
             s = inbox.toString();
         }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
-        writer.write(s);
-        writer.close();
 
         return s;
     }
