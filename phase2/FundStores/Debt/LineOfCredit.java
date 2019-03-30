@@ -63,28 +63,6 @@ public class LineOfCredit extends Credit implements Withdrawable {
     }
 
     /**
-     *Withdraw amount from account
-     * @param amount Amount of money to withdraw
-     */
-    public boolean withdrawFromAccount(double amount) {
-        if (!(balance - amount > 0)){
-            System.out.println("Sorry, you are unable to withdraw this amount from your " +
-                    accountType + "try withdrawing a smaller amount or review your account " +
-                    "information!");
-            return false;
-        } else{
-            balance -= amount;
-        }
-        this.updateHistory("withdraw", amount, null);
-        System.out.println("Withdrawal successful, Account: " + this.accountNum +
-                " now has a decreased balance of: " + balance + "$CAD");
-        if (accountHolder instanceof PointSystemUser){
-            ((PointSystemUser) accountHolder).setNumPointsIncrease();
-        }
-        return true;
-    }
-
-    /**
      *Withdraw amount from account using ATM
      * @param amount Amount of money to withdraw
      */

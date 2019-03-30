@@ -49,34 +49,50 @@ public abstract class Debit extends Account implements Serializable {
     }
 
     /**
-     *Withdraw amount from account
-     * @param amount Amount of money to withdraw
+     * Transfer funds from sender to receiver
+     * @param amount Amount of money to be transferred
+     * @param receiverAccount Account which money will be transferred to
      */
-    public boolean withdrawFromAccount(double amount) {
-        if (!(balance - amount > 0) && !(this instanceof ChequingAccount) ){
-            System.out.println("Sorry, you are unable to withdraw this amount from your " +
-                    accountType + "try withdrawing a smaller amount or review your account " +
-                    "information!");
-            return false;
-        }
-        else {
-            if (this instanceof ChequingAccount){
-                if ((balance - amount) >= -100){
-                    balance -= amount;}
-            }
-            else if (this instanceof SavingsAccount){
-                if ((balance - amount) >= 0){
-                    balance -= amount;
-                }
-            }
-        }
-        this.updateHistory("withdraw", amount, null);
-        System.out.println("Withdrawal successful, Account: " + this.accountNum +
-                " now has a decreased balance of: " + balance + "$CAD");
+    public boolean transfer(double amount, Account receiverAccount) {
+        withdrawFromAccount(amount);
+        receiverAccount.depositToAccount(amount);
+        receiverAccount.updateHistory("transfer", amount, this);
+        System.out.println("Your transaction to account number: " + receiverAccount.getAccountNum() + " was successful, your new balance is: " +
+                receiverAccount.getBalance() + "$CAD");
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
     }
+
+    /**
+     * Change actions performed in account history
+     */
+    public void undoTransaction(){
+        Object[] transferInfo = history.pop();
+        if (transferInfo == null){
+            System.out.println("Sorry, your last action could not be reversed because you " +
+                    "have yet to make a transaction");
+        }
+        if (transferInfo[0].equals("bill")){
+            history.push(transferInfo);
+            System.out.println("Sorry, your last action could not be reversed because you payed a bill.");
+        }else{
+            if (transferInfo[0].equals("transfer")) {
+                ((Debit) transferInfo[2]).transfer((double) transferInfo[1], this);
+            } else if (transferInfo[0].equals("withdraw")) {
+                ((Account) transferInfo[2]).depositToAccount((double) transferInfo[1]);
+            }else if (transferInfo[0].equals("deposit") || transferInfo[0].equals("cheque deposit")){
+                ((Account) transferInfo[2]).withdrawFromAccount((double) transferInfo[1]);
+            }
+            System.out.println(getHolderName() + ", The last action that you performed was a" + transferInfo[0] + "" +
+                    " of amount " + transferInfo[1] + " has been reversed upon your request.");
+        }
+    }
+
+    /**
+     *Withdraw amount from account
+     * @param amount Amount of money to withdraw
+     */
 
     /**
      *Withdraw amount from account using ATM
