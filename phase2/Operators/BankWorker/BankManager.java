@@ -129,7 +129,7 @@ public class BankManager extends BankEmployee implements Serializable {
         String s = "";
         s = "As the designated Bank Manager, " +
                 "you agree not to engage in fraudulent behavior, " +
-                "especially when dealing with user related transactions and ATM restocking. Click next to agree.";
+                "especially when dealing with user related transactions and ATM restocking. Click back or exit.";
         return s;
     }
 
@@ -467,28 +467,28 @@ public class BankManager extends BankEmployee implements Serializable {
         bm.createUser(user3.getUsername(), user3.getPassword());
         bm.createUser(user5.getUsername(), user5.getPassword());
 
-        bm.deleteUser(user3);
-        bm.createUser(user4.getUsername(), user4.getPassword());
-        bm.deleteUser(user1);
-
-        bm.createNewAccount(10, "savings", user2);
-        bm.createNewAccount(20, "chequing", user2);
-        bm.createNewAccount(30, "chequing", user2);
-        bm.createNewAccount(40, "chequing", user2);
-
-
-
-
-        ArrayList<User> users = new ArrayList<>();
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            users = (ArrayList<User>) in.readObject();
-            for (User obj : users) {
-                System.out.println(obj.getAccountsCreated());
-            }
-
-        } catch (Exception e) {e.printStackTrace();}
+//        bm.deleteUser(user3);
+//        bm.createUser(user4.getUsername(), user4.getPassword());
+//        bm.deleteUser(user1);
+//
+//        bm.createNewAccount(10, "savings", user2);
+//        bm.createNewAccount(20, "chequing", user2);
+//        bm.createNewAccount(30, "chequing", user2);
+//        bm.createNewAccount(40, "chequing", user2);
+//
+//
+//
+//
+//        ArrayList<User> users = new ArrayList<>();
+//        try {
+//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//            users = (ArrayList<User>) in.readObject();
+//            for (User obj : users) {
+//                System.out.println(obj.getAccountsCreated());
+//            }
+//
+//        } catch (Exception e) {e.printStackTrace();}
 
     }
 }

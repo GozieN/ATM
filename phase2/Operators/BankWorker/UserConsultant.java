@@ -50,7 +50,7 @@ public class UserConsultant extends BankEmployee implements Contract {
         String s;
         s = "As a User Consultant for the Bank, " +
                 "you agree not to engage in fraudulent behavior, " +
-                "and agree not to abuse the Bank Manager messaging system. Click next to agree.";
+                "and agree not to abuse the Bank Manager messaging system. Click back or exit.";
         return s;
     }
 

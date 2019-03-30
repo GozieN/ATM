@@ -23,7 +23,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 
 	public void initialize(User user) {
 		this.user = user;
-		this.bankAccountTypes.getItems().addAll("chequing", "credit", "debit", "savings");
+		this.bankAccountTypes.getItems().addAll("chequing", "credit", "debit", "savings", "prepaid");
 	}
 
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
@@ -32,7 +32,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				GUI.getBM().createNewAccount(0, "chequing", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new chequing bank account");
-			} else if ((this.bankAccountTypes.getValue()).equals("credit")) {
+			} else if ((this.bankAccountTypes.getValue()).equals("creditcard")) {
 				GUI.getBM().createNewAccount(0, "credit", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new credit bank account");
@@ -44,6 +44,10 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				GUI.getBM().createNewAccount(0, "savings", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new savings bank account");
+			} else if ((this.bankAccountTypes.getValue()).equals("prepaid")) {
+				GUI.getBM().createNewAccount(0, "prepaid", this.user);
+				this.bankAccountTypesStatus.setText("");
+				this.endStatus.setText("you have requested a new prepaid bank account");
 			}
 		} else {
 			this.bankAccountTypesStatus.setText("no bank account type selected. try again");

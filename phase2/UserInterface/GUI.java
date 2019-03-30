@@ -13,7 +13,6 @@ import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
 import phase2.FundStores.ATM;
-
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
