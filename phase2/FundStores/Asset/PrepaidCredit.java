@@ -1,5 +1,6 @@
 package phase2.FundStores.Asset;
 
+import phase2.FundStores.Account;
 import phase2.FundStores.Asset.Debit;
 import phase2.Operators.BankAccountUser.User;
 import phase2.FundStores.Debt.Credit;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 // PrepaidCredit account works like a prepaid gift card (only able to reload, balance never goes under 0, can only spend
 // up to limit given + incurs $3 deduction every month)
 
-public class PrepaidCredit extends Debit implements Serializable {
+public class PrepaidCredit extends Account implements Serializable {
 
 
     /**
