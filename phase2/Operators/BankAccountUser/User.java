@@ -16,7 +16,7 @@ import java.util.Iterator;
  *
  */
 public class User extends Operator implements Serializable, Iterable<Account>, Contract {
-    private static ArrayList<User> userDatabase;
+    private static ArrayList<User> userDatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private int numChequingAccounts = 0;
     private String password;
@@ -34,10 +34,10 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     public User(String username, String password) {
         super(username, password);
         numUsers++;
-        this.userDatabase = new ArrayList<User>();// - WOULD ERASE OLD INFO!
-        userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
-        this.userType = "Standard";
+        this.userType = "standard";
+        this.userDatabase.add(this);
+
     }
 
     /**
@@ -54,6 +54,14 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      */
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    /**
+     * Return the database of users.
+     * @return the database of users.
+     */
+    public static ArrayList<User> getUserDatabase() {
+        return userDatabase;
     }
 
     /**
