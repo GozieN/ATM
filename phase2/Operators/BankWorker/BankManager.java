@@ -95,7 +95,7 @@ public class BankManager extends BankEmployee implements Serializable {
         }
 
         for (Account acct: user.getAccountsCreated()) {
-            if (acct instanceof ChequingAccount) {
+            if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
                 System.out.println("And you primary chequing account is " + acct.getAccountNum());
                 break;
             }
@@ -430,6 +430,13 @@ public class BankManager extends BankEmployee implements Serializable {
         s = numMessages + ". " + msg;
         numMessages++;
         inbox.add(s);
+
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
+            writer.write(s + "\n");
+            writer.close();
+        } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
     /**
@@ -439,13 +446,10 @@ public class BankManager extends BankEmployee implements Serializable {
         String s = "";
         if (inbox.isEmpty()){
             s = "You have no messages at the moment!";
+
         } else{
             s = inbox.toString();
         }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
-        writer.write(s);
-        writer.close();
 
         return s;
     }
@@ -480,9 +484,9 @@ public class BankManager extends BankEmployee implements Serializable {
             FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
             ObjectInputStream in = new ObjectInputStream(file);
             users = (ArrayList<User>) in.readObject();
-//            for (User obj : users) {
-//                System.out.println(obj.getAccountsCreated());
-//            }
+            for (User obj : users) {
+                System.out.println(obj.getAccountsCreated());
+            }
 
         } catch (Exception e) {e.printStackTrace();}
 

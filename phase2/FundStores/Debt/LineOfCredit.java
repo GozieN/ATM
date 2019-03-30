@@ -2,6 +2,10 @@ package phase2.FundStores.Debt;
 
 import phase2.FundStores.ATM;
 import phase2.FundStores.Account;
+import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.Debit;
+import phase2.FundStores.Asset.SavingsAccount;
+import phase2.FundStores.Withdrawable;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
@@ -11,11 +15,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class LineOfCredit extends Credit{
+public class LineOfCredit extends Credit implements Withdrawable {
 
     public LineOfCredit(User accountHolder){
         super(accountHolder);
-        this.isLOC = isLOC;
         accountType = "LineOfCredit";
         accountsDatabase.add(this);
         this.accountUsers.add(accountHolder);
@@ -58,4 +61,42 @@ public class LineOfCredit extends Credit{
         ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;
     }
+
+    /**
+     *Withdraw amount from account
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromAccount(double amount) {
+        if (!(balance - amount > 0)){
+            System.out.println("Sorry, you are unable to withdraw this amount from your " +
+                    accountType + "try withdrawing a smaller amount or review your account " +
+                    "information!");
+            return false;
+        } else{
+            balance -= amount;
+        }
+        this.updateHistory("withdraw", amount, null);
+        System.out.println("Withdrawal successful, Account: " + this.accountNum +
+                " now has a decreased balance of: " + balance + "$CAD");
+        if (accountHolder instanceof PointSystemUser){
+            ((PointSystemUser) accountHolder).setNumPointsIncrease();
+        }
+        return true;
+    }
+
+    /**
+     *Withdraw amount from account using ATM
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromATM(int amount) {
+        if (!validAmountInput(amount)){
+            return false;
+        }else{
+            atm.minus(amount);
+            withdrawFromAccount(amount);
+            if (accountHolder instanceof PointSystemUser){
+                ((PointSystemUser) accountHolder).setNumPointsIncrease();}
+            return true;
+        }}
+
 }
