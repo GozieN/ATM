@@ -32,17 +32,17 @@ public class ConsultationMenuController extends Menu implements java.io.Serializ
 
 	public void initialize() {
 		this.consultantMessage.setText(GUI.getUC().consultantMessage());
-		this.studentYesNo.getItems().add("yes");
-		this.studentYesNo.getItems().add("no");
+		this.studentYesNo.getItems().addAll("yes", "no");
 	}
 
-	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
+	public void requestNewUserAccountCreation(ActionEvent event) throws Exception {
+
 		int age;
 		if (!(ageIn.getText().isEmpty())) {
 			this.ageInStatus.setText("");
 			age = Integer.parseInt(this.ageIn.getText());
 		} else {
-			this.ageIn.setText("this field cannot be empty. try again");
+			this.ageInStatus.setText("this field cannot be empty. try again");
 		}
 		boolean studentYesNo = false; // temporary holder value
 		if (!(this.studentYesNo.getSelectionModel().isEmpty())) {
