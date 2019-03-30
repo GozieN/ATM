@@ -94,7 +94,7 @@ public class ATM implements Serializable {
      * @return A string indicating current date
      */
     public String getDate() {
-        return this.cal.getTime().toString().substring(4, 10) + ',' + cal.getTime().toString().substring(24, 28);
+        return this.cal.getTime().toString().substring(4, 10) + ", " + cal.getTime().toString().substring(24, 28);
     }
 
     /**
@@ -106,7 +106,7 @@ public class ATM implements Serializable {
     public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();

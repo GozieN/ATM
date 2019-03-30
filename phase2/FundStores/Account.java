@@ -349,28 +349,6 @@ public abstract class Account implements Serializable, Observer {
         return lastLine;
     }
 
-    public void undoTransaction(){
-        Object[] transferInfo = history.pop();
-        if (transferInfo == null){
-            System.out.println("Sorry, your last action could not be reversed because you " +
-                    "have yet to make a transaction");
-        }
-        if (transferInfo[0].equals("bill")){
-            history.push(transferInfo);
-            System.out.println("Sorry, your last action could not be reversed because you payed a bill.");
-        }else{
-            if (transferInfo[0].equals("transfer")) {
-                ((Debit) transferInfo[2]).transfer((double) transferInfo[1], this);
-            } else if (transferInfo[0].equals("withdraw")) {
-                ((Account) transferInfo[2]).depositToAccount((double) transferInfo[1]);
-            }else if (transferInfo[0].equals("deposit") || transferInfo[0].equals("cheque deposit")){
-                ((Account) transferInfo[2]).withdrawFromAccount((double) transferInfo[1]);
-            }
-            System.out.println(getHolderName() + ", The last action that you performed was a" + transferInfo[0] + "" +
-                    " of amount " + transferInfo[1] + " has been reversed upon your request.");
-        }
-    }
-
     @Override
     public void update(Observable o, Object arg) {
         if (cashPoints() && (boolean) arg){

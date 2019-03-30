@@ -32,7 +32,8 @@ public class ConsultationMenuController extends Menu implements java.io.Serializ
 
 	public void initialize() {
 		this.consultantMessage.setText(GUI.getUC().consultantMessage());
-		this.studentYesNo.getItems().addAll("yes", "no");
+		this.studentYesNo.getItems().add("yes");
+		this.studentYesNo.getItems().add("no");
 	}
 
 	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {

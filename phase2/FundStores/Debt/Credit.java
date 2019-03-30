@@ -66,16 +66,6 @@ public class Credit extends Account implements Serializable {
         return true;
     }
 
-    @Override
-    public boolean addToBill() {
-        return true;
-    }
-
-    /**
-     * Add amount to credit card bill if sum of balance and amount is less than given credit limit
-     * @param amount Amount of money to add to bill
-     * @return True if money is added to bill
-     */
     public boolean addToBill(double amount) {
 
             if (this.getAccountType() == "LineOfCredit") {
