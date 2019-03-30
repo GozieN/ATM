@@ -42,4 +42,9 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
             setBalance(getBalance() + increaseBy);
         }
     }
+
+    @Override
+    public boolean addToBill() {
+        return false;
+    }
 }

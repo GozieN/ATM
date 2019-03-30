@@ -92,4 +92,9 @@ public class Credit extends Account implements Serializable {
 //        return true; }
         return true;
     }
+
+    @Override
+    public boolean addToBill() {
+        return false;
+    }
 }

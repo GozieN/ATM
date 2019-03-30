@@ -17,4 +17,9 @@ public class ChequingAccount extends Debit implements java.io.Serializable {
         accountType  = "chequing";
         history = new Stack<>();
     }
+
+    @Override
+    public boolean addToBill() {
+        return false;
+    }
 }

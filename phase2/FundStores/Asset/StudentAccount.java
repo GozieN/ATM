@@ -78,4 +78,9 @@ public class StudentAccount extends Debit implements Serializable {
         savefor = 0;
         savetilldate = "";
     }
+
+    @Override
+    public boolean addToBill() {
+        return false;
+    }
 }
