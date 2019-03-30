@@ -2,6 +2,10 @@ package phase2.FundStores.Debt;
 
 import phase2.FundStores.ATM;
 import phase2.FundStores.Account;
+import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.Debit;
+import phase2.FundStores.Asset.SavingsAccount;
+import phase2.FundStores.Withdrawable;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
@@ -11,11 +15,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class LineOfCredit extends Credit{
+public class LineOfCredit extends Credit implements Withdrawable {
 
     public LineOfCredit(User accountHolder){
         super(accountHolder);
-        this.isLOC = isLOC;
         accountType = "LineOfCredit";
         accountsDatabase.add(this);
         this.accountUsers.add(accountHolder);
@@ -58,4 +61,20 @@ public class LineOfCredit extends Credit{
         ((PointSystemUser) accountHolder).setNumPointsIncrease();
         return true;
     }
+
+    /**
+     *Withdraw amount from account using ATM
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromATM(int amount) {
+        if (!validAmountInput(amount)){
+            return false;
+        }else{
+            atm.minus(amount);
+            withdrawFromAccount(amount);
+            if (accountHolder instanceof PointSystemUser){
+                ((PointSystemUser) accountHolder).setNumPointsIncrease();}
+            return true;
+        }}
+
 }
