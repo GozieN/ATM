@@ -129,7 +129,7 @@ public class BankManager extends BankEmployee implements Serializable {
         String s = "";
         s = "As the designated Bank Manager, " +
                 "you agree not to engage in fraudulent behavior, " +
-                "especially when dealing with user related transactions and ATM restocking. Click next to agree.";
+                "especially when dealing with user related transactions and ATM restocking. Click back or exit.";
         return s;
     }
 
