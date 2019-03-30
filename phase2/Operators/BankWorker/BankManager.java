@@ -211,21 +211,6 @@ public class BankManager extends BankEmployee implements Serializable {
         System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
     }
 
-    /**
-     * Set the number of 5$ bills
-     * @param atm Instance of ATM machine
-     * @param num5bills Number of $5 bills in ATM
-     */
-    public void ATMSetNum5Bills(ATM atm, int num5bills) {
-        atm.setNum5Bills(atm.getNum5Bills() + num5bills);
-        if (num5bills >= 0) {
-            System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
-                    "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
-        }
-        else {
-            System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
-        }
-    }
 
     /**
      * Get the list of User
@@ -246,18 +231,18 @@ public class BankManager extends BankEmployee implements Serializable {
     }
 
     /**
-     *Set the number of 10$ bills
+     * Set the number of 5$ bills
      * @param atm Instance of ATM machine
-     * @param num10bills Number of $10 bills in ATM
+     * @param num5bills Number of $5 bills in ATM
      */
-    public void ATMSetNum10Bills(ATM atm, int num10bills) {
-        atm.setNum10Bills(atm.getNum10Bills() + num10bills);
-        if (num10bills >= 0) {
-            System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
-                    "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
+    public void ATMSetNum5Bills(ATM atm, int num5bills) {
+        atm.setNum5Bills(this.ATMGetNum5Bills(atm) + num5bills);
+        if (num5bills >= 0) {
+            System.out.println("number of $5 bills added to the ATM: " + num5bills + "\n" +
+                    "the number of $5 bills in the ATM is now : " + atm.getNum5Bills());
         }
         else {
-            System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
+            System.out.println("the number of $5 bills in the ATM is now: " + num5bills);
         }
     }
 
@@ -272,24 +257,18 @@ public class BankManager extends BankEmployee implements Serializable {
     }
 
     /**
-     * Add the number of 5$ bills
+     *Set the number of 10$ bills
      * @param atm Instance of ATM machine
      * @param num10bills Number of $10 bills in ATM
      */
-
-    /**
-     * Set the number of 20$ bills
-     * @param atm Instance of ATM machine
-     * @param num20bills Number of $20 bills in ATM
-     */
-    public void ATMSetNum20Bills(ATM atm, int num20bills) {
-        atm.setNum20Bills(atm.getNum20Bills() + num20bills);
-        if (num20bills >= 0) {
-            System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
-                    "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
+    public void ATMSetNum10Bills(ATM atm, int num10bills) {
+        atm.setNum10Bills(this.ATMGetNum10Bills(atm) + num10bills);
+        if (num10bills >= 0) {
+            System.out.println("number of $10 bills added to the ATM: " + num10bills + "\n" +
+                    "the number of $10 bills in the ATM is now : " + atm.getNum10Bills());
         }
         else {
-            System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
+            System.out.println("the number of $10 bills in the ATM is now: " + num10bills);
         }
     }
 
@@ -304,10 +283,31 @@ public class BankManager extends BankEmployee implements Serializable {
     }
 
     /**
-     * Add the number of 20$ bills
+     * Set the number of 20$ bills
      * @param atm Instance of ATM machine
      * @param num20bills Number of $20 bills in ATM
      */
+    public void ATMSetNum20Bills(ATM atm, int num20bills) {
+        atm.setNum20Bills(this.ATMGetNum20Bills(atm) + num20bills);
+        if (num20bills >= 0) {
+            System.out.println("number of $20 bills added to the ATM: " + num20bills + "\n" +
+                    "the number of $20 bills in the ATM is now : " + atm.getNum20Bills());
+        }
+        else {
+            System.out.println("the number of $20 bills in the ATM is now: " + num20bills);
+        }
+    }
+
+    /**
+     * Get the number of 50$ bills
+     * @param atm Instance of ATM machine
+     */
+
+    public int ATMGetNum50Bills(ATM atm) {
+        System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
+        return atm.getNum50Bills();
+    }
+
 
     /**
      * Set the number of 50$ bills
@@ -315,7 +315,7 @@ public class BankManager extends BankEmployee implements Serializable {
      * @param num50bills Number of $50 bills in ATM
      */
     public void ATMSetNum50Bills(ATM atm, int num50bills) {
-        atm.setNum5Bills(atm.getNum50Bills() + num50bills);
+        atm.setNum50Bills(this.ATMGetNum50Bills(atm) + num50bills);
         if (num50bills >= 0) {
             System.out.println("number of $50 bills added to the ATM: " + num50bills + "\n" +
                     "the number of $50 bills in the ATM is now : " + (atm.getNum50Bills() + num50bills));
@@ -325,15 +325,6 @@ public class BankManager extends BankEmployee implements Serializable {
         }
     }
 
-    /**
-     * Get the number of 5$ bills
-     * @param atm Instance of ATM machine
-     */
-
-    public int ATMGetNum50Bills(ATM atm) {
-        System.out.println("the number of $50 bills in the ATM is: " + atm.getNum50Bills());
-        return atm.getNum50Bills();
-    }
 
     /**
      * Read the file to restock the ATM

@@ -11,26 +11,30 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class ATM implements Serializable {
-    private int num5bills = 100;
-    private int num10bills = 100;
-    private int num20bills = 100;
-    private int num50bills = 100;
+    private static int num5bills = 100;
+    private static int num10bills = 100;
+    private static int num20bills = 100;
+    private static int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
     private BankManager BM =  new BankManager("", "");
 
     /**
      * ATM class constructor
-     * @param num5bills The number of $5 bills in ATM
-     * @param num10bills The number of $10 bills in ATM
-     * @param num20bills The number of $20 bills in ATM
-     * @param num50bills The number of $50 bills in ATM
+     * @param fiveBills The number of $5 bills in ATM
+     * @param tenBills The number of $10 bills in ATM
+     * @param twentyBills The number of $20 bills in ATM
+     * @param fiftyBills The number of $50 bills in ATM
      */
-    public ATM(int num5bills, int num10bills, int num20bills, int num50bills) {
-         this.num5bills = num5bills;
-         this.num10bills = num10bills;
-         this.num20bills = num20bills;
-         this.num50bills = num50bills;
-         this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
+    public ATM(int fiveBills, int tenBills, int twentyBills, int fiftyBills) {
+//         this.num5bills = num5bills;
+//         this.num10bills = num10bills;
+//         this.num20bills = num20bills;
+//         this.num50bills = num50bills;
+        num5bills = fiveBills;
+        num10bills = tenBills;
+        num20bills = twentyBills;
+        num50bills = fiftyBills;
+        this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
          //this.BM = new BankManagerMenus();
     }
 
@@ -143,10 +147,10 @@ public class ATM implements Serializable {
 
     /**
      * Set the number of $5 bills
-     * @param num5bills Number of $5 bills
+     * @param numBills Number of $5 bills
      */
-    public void setNum5Bills(int num5bills) {
-        this.num5bills = num5bills;
+    public void setNum5Bills(int numBills) {
+        num5bills = numBills;
     }
 
     /**
@@ -154,15 +158,15 @@ public class ATM implements Serializable {
      * @return Int of $5 bills in ATM machine
      */
     public int getNum5Bills() {
-        return this.num5bills;
+        return num5bills;
     }
 
     /**
      * Set the number of 10$ bills
-     * @param num10bills Number of $10 bills
+     * @param numBills Number of $10 bills
      */
-    public void setNum10Bills(int num10bills) {
-        this.num10bills = num10bills;
+    public void setNum10Bills(int numBills) {
+        num10bills = numBills;
     }
 
     /**
@@ -170,15 +174,15 @@ public class ATM implements Serializable {
      * @return Int of $10 bills in ATM machine
      */
     public int getNum10Bills() {
-        return this.num10bills;
+        return num10bills;
     }
 
     /**
      * Set the number of 20$ bills
-     * @param num20bills Number of $20 bills
+     * @param numBills Number of $20 bills
      */
-    public void setNum20Bills(int num20bills) {
-        this.num20bills = num20bills;
+    public void setNum20Bills(int numBills) {
+        num20bills = numBills;
     }
 
     /**
@@ -186,15 +190,15 @@ public class ATM implements Serializable {
      * @return Int of $20 bills in ATM machine
      */
     public int getNum20Bills() {
-        return this.num20bills;
+        return num20bills;
     }
 
     /**
      * Set the number of 50$ bills
-     * @param num50bills Number of $50 bills
+     * @param numBills Number of $50 bills
      */
-    public void setNum50Bills(int num50bills) {
-        this.num50bills = num50bills;
+    public void setNum50Bills(int numBills) {
+        num50bills = numBills;
     }
 
     /**
@@ -202,7 +206,7 @@ public class ATM implements Serializable {
      * @return Int of $50 bills in ATM machine
      */
     public int getNum50Bills() {
-        return this.num50bills;
+        return num50bills;
     }
 
      /**
@@ -221,13 +225,13 @@ public class ATM implements Serializable {
          }
          for (int number : numberStore) {
              if (number % 50 == 0) {
-                 this.num50bills += number / 50;
+                 num50bills += number / 50;
              } else if (number % 20 == 0) {
-                 this.num20bills += number / 20;
+                 num20bills += number / 20;
              } else if (number % 10 == 0) {
-                 this.num10bills += number / 10;
+                 num10bills += number / 10;
              } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                 this.num5bills += number / 5;
+                 num5bills += number / 5;
              }
          }
          restock();
@@ -249,13 +253,13 @@ public class ATM implements Serializable {
         }
         for (int number : numberStore) {
             if (number % 50 == 0) {
-                this.num50bills -= number / 50;
+                num50bills -= number / 50;
             } else if (number % 20 == 0) {
-                this.num20bills -= number / 20;
+                num20bills -= number / 20;
             } else if (number % 10 == 0) {
-                this.num10bills -= number / 10;
+                num10bills -= number / 10;
             } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                this.num5bills -= number / 5;
+                num5bills -= number / 5;
             }
         }
         restock();
@@ -268,19 +272,19 @@ public class ATM implements Serializable {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/alerts.txt"));
-            if (this.num5bills < 20) {
+            if (num5bills < 20) {
                 writer.write("Five dollar bills low in stock!\n");
             }
 
-            if (this.num10bills < 20) {
+            if (num10bills < 20) {
                 writer.write("Ten dollar bills low in stock!\n");
             }
 
-            if (this.num20bills < 20) {
+            if (num20bills < 20) {
                 writer.write("Twenty dollar bills low in stock!\n");
             }
 
-            if (this.num50bills < 20) {
+            if (num50bills < 20) {
                 writer.write("Fifty dollar bills low in stock!\n");
             }
 
@@ -291,4 +295,5 @@ public class ATM implements Serializable {
             ex.printStackTrace();
         }
     }
+
 }
