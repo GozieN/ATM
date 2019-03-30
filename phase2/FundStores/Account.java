@@ -18,7 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Stack;
 
-public abstract class Account implements Serializable, Observer {
+public abstract class Account implements Serializable, Observer, AccountDepositable, Billable, Withdrawable {
     protected static ArrayList<Account> accountsDatabase = new ArrayList<>();
     protected static int accountNumTotal = 0;
     protected int accountNum = accountNumTotal;
