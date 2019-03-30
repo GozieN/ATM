@@ -36,15 +36,15 @@ public class ATMTest {
 
         boolean result = false;
 
-        atm = new ATM(4, 100, 100, 100);
+        atm = new ATM(4, 1, 14, 0);
 
         atm.restock();
 
-        if (atm.getNum5Bills() >= 10) {
-            result = true;
-        }
+        assert(atm.getNum5Bills() >= 100);
+        assert(atm.getNum10Bills() >= 100);
+        assert(atm.getNum20Bills() >= 100);
 
-        assertTrue(result);
+        System.out.println(atm.getNum50Bills());
 
     }
 
