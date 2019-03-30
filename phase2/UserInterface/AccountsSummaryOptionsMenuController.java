@@ -22,6 +22,10 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 	public void initialize(User user, String operatorType) {
 		this.user = user;
 		this.operatorType = operatorType;
+		for (Account account : this.user.getAccountsCreated()) {
+			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
+					" " + account.getAccountType());
+		}
 	}
 
 	public void viewAllAccountsSummary(ActionEvent event) throws Exception {

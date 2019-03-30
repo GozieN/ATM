@@ -69,6 +69,11 @@ public abstract class Debit extends Account implements Serializable {
         }
     }
 
+    @Override
+    public boolean addToBill() {
+        return true;
+    }
+
     /**
      *Withdraw amount from account
      * @param amount Amount of money to withdraw
@@ -88,7 +93,5 @@ public abstract class Debit extends Account implements Serializable {
                 ((PointSystemUser) accountHolder).setNumPointsIncrease();}
             return true;
         }}
-
-
 
 }
