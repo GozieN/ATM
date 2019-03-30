@@ -8,9 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.event.*;
+import phase2.Operators.BankAccountUser.User;
 import java.util.*;
 
 public class BankManagerInteractionsMenuController extends Menu implements java.io.Serializable {
+	private User user = null;
 
 	public void selectUser(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -41,7 +43,7 @@ public class BankManagerInteractionsMenuController extends Menu implements java.
 		Parent parent = loader.load();
 		Scene viewSignedContractMenuScene = new Scene(parent);
 		ViewSignedContractMenuController controller = loader.getController();
-		controller.initialize("Bank Manager");
+		controller.initialize(this.user, "Bank Manager");
 		mainStage.setScene(viewSignedContractMenuScene);
 		mainStage.show();
 	}
@@ -53,7 +55,7 @@ public class BankManagerInteractionsMenuController extends Menu implements java.
 		Parent parent = loader.load();
 		Scene viewCapabilitiesMenuScene = new Scene(parent);
 		ViewCapabilitiesMenuController controller = loader.getController();
-		controller.initialize("Bank Manager");
+		controller.initialize(this.user,"Bank Manager");
 		mainStage.setScene(viewCapabilitiesMenuScene);
 		mainStage.show();
 	}
