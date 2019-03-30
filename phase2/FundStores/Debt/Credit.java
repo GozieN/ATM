@@ -66,6 +66,10 @@ public class Credit extends Account implements Serializable {
         return true;
     }
 
+    @Override
+    public boolean addToBill() {
+        return true;
+    }
 
     /**
      * Add amount to credit card bill if sum of balance and amount is less than given credit limit

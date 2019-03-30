@@ -16,7 +16,7 @@ import phase2.UserInterface.Menu;
 
 import java.util.*;
 
-public class RequestNewUserAccountCreationMenuController extends Menu implements java.io.Serializable {
+public class RequestNewUserAccountCreationMenuController extends Menu implements java.io.Serializable, Cloneable {
 	@FXML
 	private TextField newUsernameIn;
 	@FXML
@@ -30,16 +30,19 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 	@FXML
 	private Label newPasswordConfirmStatus;
 
+
+	@SuppressWarnings("unchecked")
 	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
 		ArrayList<User> userList = new ArrayList<>();
 		try {
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
 			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
+			userList.addAll((ArrayList<User>)in.readObject());
 			in.close();
 			file.close();
-			for (User user : userList) {
-				if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
+
+			for (User obj: userList) {
+				if (!(obj.getUsername().equals(this.newUsernameIn.getText())) &&
 						!(this.newUsernameIn.getText().equals(""))) {
 					this.newUsernameInStatus.setText("valid new username");
 				} else if (this.newUsernameIn.getText().equals("")) {
@@ -78,6 +81,7 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 			e.printStackTrace();
 		}
 	}
+
 
 	public void back(ActionEvent event) throws Exception {
 		String previousMenu = "NewUserMenuScene.fxml";
