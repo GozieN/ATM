@@ -15,7 +15,7 @@ public class InboxMenuController extends Menu implements java.io.Serializable {
 	private Label inbox;
 
 	public void initialize() {
-		// TODO: this.inbox.settext -> BM inbox method (first must save BM to file)
+		this.inbox.setText(); // angela TODO: set to bank manager inbox txt
 	}
 
 	public void back(ActionEvent event) throws Exception {
