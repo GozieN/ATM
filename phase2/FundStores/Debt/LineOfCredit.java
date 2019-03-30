@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class LineOfCredit extends Credit implements Transferable {
+public class LineOfCredit extends Credit implements Transferable, ATMWIthdrawable {
 
     public LineOfCredit(User accountHolder){
         super(accountHolder);

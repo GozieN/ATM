@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 
-public abstract class Debit extends Account implements Serializable, Transferable {
+public abstract class Debit extends Account implements Serializable, Transferable, ATMWIthdrawable {
 
     /**
      * Debit class constructor
