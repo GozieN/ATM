@@ -17,26 +17,6 @@ public abstract class Debit extends Account implements Serializable {
      * @param accountHolder Name of holder of the account
      */
 
-    /**
-     * Helper function to get last line of date.txt file
-     *
-     * @return last line on file
-     */
-    public String getLastLine() {
-        String currLine;
-        String lastLine = "";
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
-
-            while ((currLine = br.readLine()) != null) {
-                lastLine = currLine;
-            }
-        } catch (IOException e) {
-        }
-        return lastLine;
-    }
-
 
     public Debit(User accountHolder){
         super(accountHolder);

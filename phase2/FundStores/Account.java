@@ -18,7 +18,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Stack;
 
-public class Account implements Serializable, Observer {
+public abstract class Account implements Serializable, Observer {
     protected static ArrayList<Account> accountsDatabase = new ArrayList<>();
     protected static int accountNumTotal = 0;
     protected int accountNum = accountNumTotal;
@@ -304,6 +304,26 @@ public class Account implements Serializable, Observer {
         return s;
     }
 
+    /**
+     * Helper function to get last line of date.txt file
+     *
+     * @return last line on file
+     */
+    public String getLastLine() {
+        String currLine;
+        String lastLine = "";
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
+
+            while ((currLine = br.readLine()) != null) {
+                lastLine = currLine;
+            }
+        } catch (IOException e) {
+        }
+        return lastLine;
+    }
+
 
     @Override
     public void update(Observable o, Object arg) {
@@ -313,4 +333,6 @@ public class Account implements Serializable, Observer {
             System.out.println("You have successfully cashed all of your available points." +
                     " You now have " + ((PointSystemUser) accountHolder).getNumPoints() + " points.");}
     }
-    }
+
+    public abstract boolean addToBill();
+}

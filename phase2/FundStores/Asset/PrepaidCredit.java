@@ -38,8 +38,13 @@ public class PrepaidCredit extends Account implements Serializable {
             if (balance > 3) {
                 setBalance(getBalance() - fee);
             } else {
-                addToBill(fee);
+                addToBill();
             }
         }
+    }
+
+    @Override
+    public boolean addToBill() {
+        return true;
     }
 }
