@@ -1,6 +1,6 @@
 package phase2.FundStores.Asset;
 
-import phase2.FundStores.Account;
+import phase2.FundStores.*;
 import phase2.FundStores.Debt.Credit;
 import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
@@ -10,7 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 
-public abstract class Debit extends Account implements Serializable {
+public abstract class Debit extends Account implements Serializable, Transferable, Withdrawable, AccountDepositable,
+        Billable {
 
     /**
      * Debit class constructor
