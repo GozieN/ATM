@@ -36,7 +36,9 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         numUsers++;
         this.accountsCreated = new ArrayList<Account>();
         this.userType = "standard";
-        this.userDatabase.add(this);
+        if (!userDatabase.contains(this)) {
+            this.userDatabase.add(this);
+        }
 
     }
 
