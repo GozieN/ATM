@@ -58,9 +58,6 @@ public class Operator extends Observable implements java.io.Serializable{
      * @param account Instance of account
      */
     public String singleAccountSummary(Account account) {
-        String s = "Account holder: " + account.getHolderName() +
-                "" + "Account summary:" + account.getAccountType() +"Account Number: "
-                + account.getAccountNum() + " contains: " + account.getBalance() + "currency";
-        return s;
+        return account.summarize();
     }
 }

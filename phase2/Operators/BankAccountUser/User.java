@@ -23,7 +23,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private String username;
     private ArrayList<Account> accountsCreated;
     private int numTimesOptedIntoPointSystem = 0;
-
+    private String userType;
 
 
     /**
@@ -37,8 +37,24 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         this.userDatabase = new ArrayList<User>();// - WOULD ERASE OLD INFO!
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
+        this.userType = "Standard";
     }
 
+    /**
+     * Get the type of the user
+     * @return A string representing the type of the user
+     */
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * Get the type of the user
+     * @return A string representing the type of the user
+     */
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     /**
      * Change the user's password
