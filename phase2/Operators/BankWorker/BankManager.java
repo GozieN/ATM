@@ -5,6 +5,7 @@ import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
+import phase2.FundStores.Debt.CreditCard;
 import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
@@ -50,7 +51,7 @@ public class BankManager extends BankEmployee implements Serializable {
             newAccount = new LineOfCredit(user);
 
         } else if (accountType.equals("credit")) {
-            newAccount = new Credit(user);
+            newAccount = new CreditCard(user);
 
         } else if (accountType.equals("savings")) {
             newAccount = new SavingsAccount(user);
