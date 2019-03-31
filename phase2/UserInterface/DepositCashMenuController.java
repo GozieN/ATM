@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
+import phase2.FundStores.Asset.ChequingAccount;
+import phase2.FundStores.Asset.Debit;
 import phase2.Operators.BankAccountUser.User;
 
 public class DepositCashMenuController extends Menu implements java.io.Serializable {
@@ -16,13 +18,15 @@ public class DepositCashMenuController extends Menu implements java.io.Serializa
 	private String operatorType;
 
 	@FXML
-	private ComboBox<String> userBankAccounts;
-	@FXML
-	private Label userBankAccountsStatus;
-	@FXML
 	private TextField amount;
 	@FXML
 	private Label amountStatus;
+	@FXML
+	private Label primaryStatus;
+	@FXML
+	private ComboBox<String> userBankAccounts;
+	@FXML
+	private Label userBankAccountsStatus;
 	@FXML
 	private Label endStatus;
 
@@ -35,7 +39,37 @@ public class DepositCashMenuController extends Menu implements java.io.Serializa
 		}
 	}
 
+	public void depositToPrimary(ActionEvent event) throws Exception {
+		this.userBankAccountsStatus.setText("");
+		this.endStatus.setText("");
+		Account selectedAccount = null;
+		int numOfAccounts = this.user.getAccountsCreated().size();
+		int counter = 0;
+		for (Account account : this.user.getAccountsCreated()) {
+			counter += 1;
+			if (account instanceof ChequingAccount && counter != numOfAccounts) {
+				if (((ChequingAccount)account).isPrimary) {
+					selectedAccount = account;
+					primaryStatus.setText("");
+				}
+			} else {
+				primaryStatus.setText("you do not have a primary account");
+			}
+		}
+		int amount = Integer.parseInt(this.amount.getText());
+		if (!(selectedAccount == null)) {
+			if (amount >= 0 && amount % 5 == 0) {
+				this.amountStatus.setText("valid amount");
+				((ChequingAccount)selectedAccount).depositIntoATM(amount);
+				this.primaryStatus.setText("deposit successful");
+			} else {
+				this.amountStatus.setText("invalid amount. try again");
+			}
+		}
+	}
+
 	public void deposit(ActionEvent event) throws Exception {
+		this.primaryStatus.setText("");
 		Account selectedAccount = null;
 		String[] split = this.userBankAccounts.getValue().split("\\s");
 		for (Account account : this.user.getAccountsCreated()) {
