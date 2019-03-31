@@ -173,14 +173,17 @@ public class BankManager extends BankTeller implements Serializable {
      */
     public void deleteUser(User user) {
         ArrayList<User> usersCopy = new ArrayList<>();
-        usersCopy = this.getUsers();
-        usersCopy.remove(user);
-//        usersCopy = (ArrayList<User>) users.clone();
-//        for (User obj: usersCopy) {
-//            if (obj.getUsername().equals(user.getUsername())){
-//                users.remove(obj);
-//            }
-//        }
+
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            usersCopy = (ArrayList<User>) in.readObject();
+            for (User obj: usersCopy) {
+                if (obj.getUsername().equals(user.getUsername())) {
+                    usersCopy.remove(obj);
+                }
+            }
+        } catch (Exception ex) {ex.printStackTrace();}
 
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
