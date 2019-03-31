@@ -54,7 +54,7 @@ public class ATM implements Serializable {
      * @param year
      */
 
-    public void setDate(int day, int month, int year) throws IOException {
+    public String setDate(int day, int month, int year) throws IOException {
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
         BufferedReader input = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
@@ -85,17 +85,19 @@ public class ATM implements Serializable {
             this.cal.set(Calendar.DATE, Integer.parseInt(today.substring(0, 2)));
             this.cal.set(Calendar.MONTH, Integer.parseInt(today.substring(2, 4)));
             this.cal.set(Calendar.YEAR, Integer.parseInt(today.substring(4, 8)));
+
         }
 
+        return this.cal.toString();
     }
-
 
     /**
      * Get the date
      * @return A string indicating current date
      */
-    public String getDate() {
+    public String getDate() throws IOException{
         return this.cal.getTime().toString().substring(4, 10) + ", " + cal.getTime().toString().substring(24, 28);
+//        return this.setDate(01, 01, 2019);
     }
 
     /**
@@ -104,7 +106,8 @@ public class ATM implements Serializable {
      * @param minute
      * @param second
      */
-    public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
+    public String setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
+
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
         BufferedReader input = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
@@ -136,14 +139,18 @@ public class ATM implements Serializable {
             this.cal.set(Calendar.MINUTE, Integer.parseInt(today.substring(12, 14)));
             this.cal.set(Calendar.SECOND, Integer.parseInt(today.substring(15) + today.substring(16)));
         }
+
+        return this.cal.toString();
     }
 
     /**
      * Get the time
      * @return String indicating the current time on a 24-hour clock
      */
-    public String getTime() {
+    public String getTime() throws IOException{
         return " " + this.cal.getTime().toString().substring(11, 19);
+//        return this.setTime(00,00,00);
+
     }
 
     /**

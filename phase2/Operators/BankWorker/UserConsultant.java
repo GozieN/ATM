@@ -67,7 +67,7 @@ public class UserConsultant extends BankEmployee implements Contract {
         UserAdviseHistory.add(record);
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/UserAdviceHistory"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/UserAdviceHistory.txt"));
             writer.write(record);
             writer.close();
         } catch (Exception ex) {ex.printStackTrace();}
