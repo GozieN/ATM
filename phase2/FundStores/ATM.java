@@ -236,9 +236,18 @@ public class ATM implements Serializable {
 
     }
 
-    public void withdrawFromAccount(){}
+    public void withdrawFromATM(double amount){
+        if (amount < 1000)
+    }
 
-    public void checkATMAmount() {}
+    public double checkATMAmount() {
+        double totalInATM = 0;
+        totalInATM += (getNum5Bills() * 5);
+        totalInATM += (getNum10Bills() * 10);
+        totalInATM += (getNum20Bills() * 20);
+        totalInATM += (getNum50Bills() * 50);
+        return totalInATM;
+    }
 
     /**
      * Alert to show need for restock if number of bills are low
