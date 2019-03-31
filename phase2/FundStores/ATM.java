@@ -237,7 +237,7 @@ public class ATM implements Serializable {
     }
 
     public void withdrawFromATM(double amount){
-        if (amount < 1000)
+        //if (amount < 1000)
     }
 
     public double checkATMAmount() {
