@@ -101,7 +101,35 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }
     }
 
-    public void deleteAccount(User user) {
+    public void deleteAccount(User user, int accountNum) {
+
+        ArrayList<User> userCopy = new ArrayList<>();
+        ArrayList<Account> accountCopy = new ArrayList<>();
+
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            userCopy = (ArrayList<User>) in.readObject();
+            for (User obj: userCopy) {
+                if (user.getUsername().equals(obj.getUsername())) {
+                    accountCopy = obj.getAccountsCreated();
+                    for (Account acct: accountCopy) {
+                        if (acct.getAccountNum() == accountNum) {
+                            accountCopy.remove(acct);
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {ex.printStackTrace();}
+
+
+        try {
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(userCopy);
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
 
     }
 
