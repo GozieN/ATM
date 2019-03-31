@@ -71,26 +71,35 @@ public class DepositCashMenuController extends Menu implements java.io.Serializa
 	public void deposit(ActionEvent event) throws Exception {
 		this.primaryStatus.setText("");
 		Account selectedAccount = null;
-		String[] split = this.userBankAccounts.getValue().split("\\s");
-		for (Account account : this.user.getAccountsCreated()) {
-			if (account.getAccountNum() == Integer.parseInt(split[0])) {
-				selectedAccount = account;
+		try {
+			String[] split = this.userBankAccounts.getValue().split("\\s");
+			for (Account account : this.user.getAccountsCreated()) {
+				if (account.getAccountNum() == Integer.parseInt(split[0])) {
+					selectedAccount = account;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		int amount = Integer.parseInt(this.amount.getText());
+		int amount = -1;
+		if (!(this.amount.getText().isEmpty())) {
+			amount = Integer.parseInt(this.amount.getText());
+			this.amountStatus.setText("");
+		} else {
+			this.amountStatus.setText("this field cannot be empty. try again");
+		}
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
-			if (selectedAccount.depositIntoATM(amount)){
+			if (amount >= 0 && amount % 5 == 0) {
 				this.amountStatus.setText("valid amount");
-				selectedAccount.depositIntoATM(amount);
 				this.endStatus.setText("deposit successful");
+				selectedAccount.depositIntoATM(amount);
 			} else {
 				this.amountStatus.setText("invalid amount. try again");
 				this.endStatus.setText("");
 			}
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
-			this.amountStatus.setText("");
 			this.endStatus.setText("");
 		}
 	}
