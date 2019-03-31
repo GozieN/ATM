@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.User;
 
 public class TransferToSelfMenuController extends Menu implements java.io.Serializable {
@@ -58,13 +58,7 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 				selectedAccount2 = account;
 			}
 		}
-		int amount = -1;
-		if (!(this.amountIn.getText().isEmpty())) {
-			amount = Integer.parseInt(this.amountIn.getText());
-			this.amountInStatus.setText("");
-		} else {
-			this.amountInStatus.setText("this field cannot be empty. try again");
-		}
+		int amount = Integer.parseInt(this.amountIn.getText());
 		if (!(this.userBankAccounts1.getSelectionModel().isEmpty())) {
 			this.userBankAccounts1Status.setText(this.userBankAccounts1.getValue() + " selected");
 		} else {
@@ -90,11 +84,11 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 		if (selectedAccount1 != null && selectedAccount2 != null &&
 				this.amountInStatus.getText().equals("valid amount")) {
 			if (selectedAccount1 instanceof Debit) {
-				this.endStatus.setText("transfer successful");
 				((Debit)selectedAccount1).transfer(amount, selectedAccount2);
-			} else if (selectedAccount1 instanceof LineOfCredit) {
 				this.endStatus.setText("transfer successful");
-				((LineOfCredit)selectedAccount1).transfer(amount, selectedAccount2);
+			} else if (selectedAccount1 instanceof lineofcredit) {
+				((lineofcredit)selectedAccount1).transfer(amount, selectedAccount2);
+				this.endStatus.setText("transfer successful");
 			} else {
 				this.endStatus.setText("transfers cannot be made on this account");
 			}

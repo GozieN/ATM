@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.event.*;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.User;
 
 public class WithdrawMenuController extends Menu implements java.io.Serializable {
@@ -19,9 +19,9 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 	private String operatorType;
 
 	@FXML
-	private TextField amountIn;
+	private TextField amount;
 	@FXML
-	private Label amountInStatus;
+	private Label amountStatus;
 	@FXML
 	private Label primaryStatus;
 	@FXML
@@ -57,24 +57,18 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 				primaryStatus.setText("you do not have a primary account");
 			}
 		}
-		int amount = -1;
-		if (!(this.amountIn.getText().isEmpty())) {
-			amount = Integer.parseInt(this.amountIn.getText());
-			this.amountInStatus.setText("");
-		} else {
-			this.amountInStatus.setText("this field cannot be empty. try again");
-		}
+		int amount = Integer.parseInt(this.amount.getText());
 		if (!(selectedAccount == null)) {
 			if (amount >= 0 && amount % 5 == 0) {
-				this.amountInStatus.setText("valid amount");
+				this.amountStatus.setText("valid amount");
 				if (amount <= selectedAccount.getBalance()) {
-					this.primaryStatus.setText("withdrawal successful");
 					((ChequingAccount)selectedAccount).withdrawFromATM(amount);
+					this.primaryStatus.setText("withdrawal successful");
 				} else {
-					this.amountInStatus.setText("this account does not have enough funds to withdraw $" + amount);
+					this.amountStatus.setText("this account does not have enough funds to withdraw $" + amount);
 				}
 			} else {
-				this.amountInStatus.setText("invalid amount. try again");
+				this.amountStatus.setText("invalid amount. try again");
 			}
 		}
 	}
@@ -88,35 +82,30 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 				selectedAccount = account;
 			}
 		}
-		int amount = -1;
-		if (!(this.amountIn.getText().isEmpty())) {
-			amount = Integer.parseInt(this.amountIn.getText());
-			this.amountInStatus.setText("");
-		} else {
-			this.amountInStatus.setText("this field cannot be empty. try again");
-		}
+		int amount = Integer.parseInt(this.amount.getText());
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 			if (amount >= 0 && amount % 5 == 0) {
-				this.amountInStatus.setText("valid amount");
+				this.amountStatus.setText("valid amount");
 				if (amount <= selectedAccount.getBalance()) {
 					if (selectedAccount instanceof Debit) {
-						this.endStatus.setText("withdrawal successful");
 						((Debit)selectedAccount).withdrawFromATM(amount);
-					} else if (selectedAccount instanceof LineOfCredit) {
 						this.endStatus.setText("withdrawal successful");
-						((LineOfCredit)selectedAccount).withdrawFromATM(amount);
+					} else if (selectedAccount instanceof lineofcredit) {
+						((lineofcredit)selectedAccount).withdrawFromATM(amount);
+						this.endStatus.setText("withdrawal successful");
 					}
 				} else {
-					this.amountInStatus.setText("this account does not have enough funds to withdraw $" + amount);
+					this.amountStatus.setText("this account does not have enough funds to withdraw $" + amount);
 					this.endStatus.setText("");
 				}
 			} else {
-				this.amountInStatus.setText("invalid amount. try again");
+				this.amountStatus.setText("invalid amount. try again");
 				this.endStatus.setText("");
 			}
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
+			this.amountStatus.setText("");
 			this.endStatus.setText("");
 		}
 	}
