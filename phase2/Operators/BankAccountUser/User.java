@@ -8,7 +8,6 @@ import phase2.FundStores.Debt.Credit;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.Contract;
 import phase2.Operators.Operator;
-
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
@@ -28,7 +27,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private int numTimesOptedIntoPointSystem = 0;
     private String userType;
     private BankManager bm = new BankManager("", "");
-
 
     /**
      * User constructor
@@ -143,7 +141,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         return s;
     }
 
-
     /**
      * Return the number of Chequing accounts the user has to determine what we should
      * designate to be a primary account!
@@ -204,28 +201,25 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         accountsCreated.add(account);
     }
 
-
     /**
      * Get a summary of the user's accounts
      */
     public String viewInfo(){
-        String s;
-        if (accountsCreated == null){
-            s = "Nothing to view, you have not created an account yet!";
-            return s;
-        }else{
-
-        s = "Account holder: " + this.username + " Report of FundHolders:";
-        for(int i = 0; i < accountsCreated.size(); i++){
-            s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
-                     "\n Current Balance:" +
-                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
-                    accountsCreated.get(i).viewLastAction();
-        }
-        s += "Net Total: " + getNetTotal();
+        String s = "whatever";
+//        if (this.accountsCreated.isEmpty()) {
+//            s = "Nothing to view, you have not created an account yet!";
+//            return s;
+//        } else {
+//            s = "Account holder: " + this.username + " Report of FundHolders:";
+//            for(int i = 0; i < accountsCreated.size(); i++){
+//                s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
+//                     "\n Current Balance:" +
+//                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
+//                    accountsCreated.get(i).viewLastAction();
+//        }
+//        s += "Net Total: " + getNetTotal();
         return s;
-    }}
-
+    }
 
     @Override
     public Iterator<Account> iterator() {

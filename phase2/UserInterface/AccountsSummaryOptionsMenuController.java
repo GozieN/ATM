@@ -42,11 +42,15 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 
 	public void viewSingleAccountSummary(ActionEvent event) throws Exception {
 		Account selectedAccount = null;
-		String[] split = this.userBankAccounts.getValue().split("\\s");
-		for (Account account : this.user.getAccountsCreated()) {
-			if (account.getAccountNum() == Integer.parseInt(split[0])) {
-				selectedAccount = account;
+		try {
+			String[] split = this.userBankAccounts.getValue().split("\\s");
+			for (Account account : this.user.getAccountsCreated()) {
+				if (account.getAccountNum() == Integer.parseInt(split[0])) {
+					selectedAccount = account;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -58,7 +62,7 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 			controller.initialize(this.user, selectedAccount, this.operatorType);
 			mainStage.setScene(singleAccountSummaryMenuScene);
 			mainStage.show();
-		} else if (this.userBankAccounts.getValue().equals("bank account")){
+		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
 		}
 	}

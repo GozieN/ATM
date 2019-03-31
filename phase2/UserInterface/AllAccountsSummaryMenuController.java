@@ -17,7 +17,11 @@ public class AllAccountsSummaryMenuController extends Menu implements java.io.Se
 	public void initialize(User user, String operatorType) {
 		this.user = user;
 		this.operatorType = operatorType;
-		this.allAccountsSummary.setText(this.user.viewInfo());
+		try {
+			this.allAccountsSummary.setText(this.user.viewInfo());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void back(ActionEvent event) throws Exception {
