@@ -5,9 +5,12 @@ import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
+import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.Contract;
 import phase2.Operators.Operator;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import java.io.Serializable;
 import java.util.Iterator;
@@ -24,6 +27,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private ArrayList<Account> accountsCreated;
     private int numTimesOptedIntoPointSystem = 0;
     private String userType;
+    private BankManager bm = new BankManager("", "");
 
 
     /**
@@ -72,15 +76,23 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * @param newPassword Create new password for login to account
      */
     public String changePassword(String currentPassword, String newPassword) {
-        if (currentPassword.equals(this.password)) {
-            this.password = newPassword;
-            String s = username + ", your password has successfully been changed";
-            return s;
-        } else {
-            String s = username + ",you have entered the wrong current password. " +
-                    "unable to change password";
-            return s;
+        String s = "";
+
+        for (User obj: bm.getUsers()) {
+            if (obj.getUsername().equals(this.username) && currentPassword.equals(this.password)) {
+                this.password = newPassword;
+                s = this.username + ", your password has successfully been changed";
+                //            bm.deleteUser(this);
+                bm.createUser(this.getUsername(), newPassword);
+                //            return s;
+            } else {
+                s = this.username + ",you have entered the wrong current password. " +
+                        "unable to change password";
+                //            return s;
+            }
+
         }
+        return s;
     }
 
     /**
