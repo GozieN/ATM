@@ -73,6 +73,16 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 		}
 	}
 
+	public void withdrawFromDefault(ActionEvent event) throws Exception {
+		Account selectedAccount = null;
+		String[] split = this.userBankAccounts.getValue().split("\\s");
+		for (Account account : this.user.getAccountsCreated()) {
+			if (split[1].equals("chequing")) {
+				selectedAccount = account;
+			}
+		}
+	}
+
 	public void back(ActionEvent event) throws Exception {
 		if (this.operatorType.equals("BankManagerMenus")) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
