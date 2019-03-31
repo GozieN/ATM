@@ -22,10 +22,8 @@ public abstract class Credit extends Account implements Serializable {
      */
     public Credit(User accountHolder) {
         super(accountHolder);
-        accountType = "Credit";
+        accountType = "credit";
     }
-
-
 
     @Override
     public boolean addToBill() {

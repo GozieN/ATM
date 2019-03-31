@@ -1,12 +1,9 @@
 package phase2.Operators.BankAccountUser;
 
 import phase2.FundStores.Account;
-import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.Credit;
 import phase2.Operators.Contract;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class PointSystemUser extends User implements Contract, Rewardable {
     private static ArrayList<User> userDatabase;
@@ -143,16 +140,15 @@ public class PointSystemUser extends User implements Contract, Rewardable {
      * @return String - the confirmation.
      */
     public String optOutOfPointSystem(){
-
         String s = "";
         User alteredUser;
-        alteredUser = new User(getUsername(), getPassword());
-
-        alteredUser.setAccountsCreated(this.getAccountsCreated());
+        BankUserFactory b = new BankUserFactory(this.getUserType());
+        alteredUser = b.determineOptOutUserType(this);
+        alteredUser.setAccountsCreated(this.accountsCreated);
         //IN GUI CALL BM.delete(this);
         //iterate over arrayList of users and replace instance!!
-        s = "You have successfully opted out of the point system! You can always chose to later on but" +
+
+        return  "You have successfully opted out of the point system! You can always chose to later on but" +
                 "you will not receive the original 50 points to deter abuse of the free points!";
-        return s;
     }
 }

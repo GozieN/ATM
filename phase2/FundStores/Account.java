@@ -172,11 +172,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         }else{
             atm.plus(amount);
             this.depositToAccount(amount);
-            return true;
-        }
+            return true; }
     }
-
-
 
 
     /**
@@ -234,14 +231,14 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         Object[] lastActionInfo = history.pop();
         history.push(lastActionInfo);
         if (lastActionInfo[2] == null){
-            String s = "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return  "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1];
-            return s;}
+           }
         else{
-            String s ="Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1] + "\n " +
                     "To account number: " + (((Account) lastActionInfo[2]).getAccountNum());
-            return s;}
+            }
     }
 
     /**
@@ -268,11 +265,10 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * @param amount - the amount of funds being checked
      */
     public boolean validAmountInput(double amount){
-        return amount%5 ==0 || amount < 0;
+        return 0 <= amount && amount %5 == 0;
     }
 
-
-        public boolean cashPoints(){
+    public boolean cashPoints(){
         if (((PointSystemUser) accountHolder).getNumPoints()  < 20){
              return false;
         }
@@ -297,11 +293,11 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * Return a summary of this account
      */
     public String summarize() {
-        String s = "Account holder(s): " + holderName +
+        return "Account holder(s): " + holderName +
                 " " +holderName2 + "\n Account summary:" + accountType +"\n" +
                 "Account Number: "
                 + accountNum + "\n Holds: " + balance + "CAD$";
-        return s;
+
     }
 
     /**

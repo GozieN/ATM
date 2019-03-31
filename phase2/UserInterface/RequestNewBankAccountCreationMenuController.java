@@ -6,6 +6,8 @@ import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
+import phase2.FundStores.Account;
+import phase2.FundStores.Asset.ChequingAccount;
 import phase2.Operators.BankAccountUser.User;
 import phase2.UserInterface.UserInteractionsMenuController;
 import phase2.UserInterface.GUI;
@@ -52,7 +54,14 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 			} else if ((this.bankAccountTypes.getValue()).equals("creditcard")) {
 				GUI.getBM().createNewAccount(0, "credit", this.user);
 				this.bankAccountTypesStatus.setText("");
-				this.endStatus.setText("you have requested a new credit bank account");
+                for (Account acct: user.getAccountsCreated()) {
+                    if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
+                        System.out.println("you have requested a new chequing bank account + \n " +
+                                "since you have multiple chequing accounts, your " +
+                                "primary chequing account number is" + acct.getAccountNum());
+                        break;
+                    } else{
+				this.endStatus.setText("you have requested a new credit bank account");}}
 			} else if ((this.bankAccountTypes.getValue()).equals("debit")) {
 				GUI.getBM().createNewAccount(0, "debit", this.user);
 				this.bankAccountTypesStatus.setText("");
