@@ -33,14 +33,14 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-			for (User obj: userList) {
+			for (User obj : userList) {
 				if (obj.getUsername().equals(user.getUsername())) {
 					this.user = obj;
 					break;
 				}
 			}
 		} catch (Exception ex) {ex.printStackTrace();}
-
+		this.bankAccountTypes.getItems().addAll("chequing", "credit", "debit", "savings", "prepaid", "line of credit");
 	}
 
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
@@ -65,6 +65,10 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				GUI.getBM().createNewAccount(0, "prepaid", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new prepaid bank account");
+			} else if ((this.bankAccountTypes.getValue()).equals("line of credit")) {
+				GUI.getBM().createNewAccount(0, "lineofcredit", this.user);
+				this.bankAccountTypesStatus.setText("");
+				this.endStatus.setText("you have requested a new line of credit bank account");
 			}
 		} else {
 			this.bankAccountTypesStatus.setText("no bank account type selected. try again");

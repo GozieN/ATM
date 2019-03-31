@@ -77,7 +77,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
             String s = username + ", your password has successfully been changed";
             return s;
         } else {
-            String s = username + ",you have entered the wrong current password. " +
+            String s = username + ", you have entered the wrong current password. " +
                     "unable to change password";
             return s;
         }
@@ -131,7 +131,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         return s;
     }
 
-
     /**
      * Return the number of Chequing accounts the user has to determine what we should
      * designate to be a primary account!
@@ -167,7 +166,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         } return totalAsset - totalDebt;
     }
 
-
     /**
      * Return a list of the accounts of the users
      * @return ArrayList of user accounts created
@@ -197,22 +195,22 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * Get a summary of the user's accounts
      */
     public String viewInfo(){
+        String s = "";
         if (accountsCreated == null){
-            String s = "Nothing to view, you have not created an account yet!";
+            s = "Nothing to view, you have not created an account yet!";
             return s;
         }else{
-
-        String s = "Account holder: " + this.username + " Report of FundHolders:";
-        for(int i = 0; i < accountsCreated.size(); i++){
-            s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
+            s = "Account holder: " + this.username + " Report of FundHolders:";
+            for(int i = 0; i < accountsCreated.size(); i++){
+                s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
                      "\n Current Balance:" +
                     accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
                     accountsCreated.get(i).viewLastAction();
-        }
+            }
         s += "Net Total: " + getNetTotal();
         return s;
-    }}
-
+        }
+    }
 
     @Override
     public Iterator<Account> iterator() {
