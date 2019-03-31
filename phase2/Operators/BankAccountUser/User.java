@@ -204,21 +204,22 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     /**
      * Get a summary of the user's accounts
      */
-    public String viewInfo(){
-        String s = "whatever";
-//        if (this.accountsCreated.isEmpty()) {
-//            s = "Nothing to view, you have not created an account yet!";
-//            return s;
-//        } else {
-//            s = "Account holder: " + this.username + " Report of FundHolders:";
-//            for(int i = 0; i < accountsCreated.size(); i++){
-//                s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
-//                     "\n Current Balance:" +
-//                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
-//                    accountsCreated.get(i).viewLastAction();
-//        }
-//        s += "Net Total: " + getNetTotal();
-        return s;
+    public String viewInfo() {
+    	String s;
+        if (this.accountsCreated.isEmpty()) {
+            s = "Nothing to view, you have not created an account yet!";
+            return s;
+        } else {
+            s = "Account holder: " + this.username + " Report of FundHolders:";
+            for(int i = 0; i < accountsCreated.size(); i++){
+                s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
+                     "\n Current Balance:" +
+                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
+                    accountsCreated.get(i).viewLastAction();
+        }
+        s += "Net Total: " + getNetTotal();
+		return s;
+	}
     }
 
     @Override
