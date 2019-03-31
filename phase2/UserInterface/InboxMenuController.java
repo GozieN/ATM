@@ -15,7 +15,17 @@ public class InboxMenuController extends Menu implements java.io.Serializable {
 	private Label inbox;
 
 	public void initialize() {
-		// TODO: this.inbox.settext -> BM inbox method (first must save BM to file)
+		StringBuilder msg = new StringBuilder("");
+		try {
+			BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/BankManagerInbox.txt"));
+			String line = read.readLine();
+			while (line != null) {
+				msg.append(line);
+				line = read.readLine();
+			}
+			this.inbox.setText(msg.toString());
+		} catch (Exception ex) {ex.printStackTrace();}
+
 	}
 
 	public void back(ActionEvent event) throws Exception {

@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.BankManagerInteractionsMenuController">
    <children>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[bank manager interactions menu]">
@@ -17,12 +16,17 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="180.0" layoutY="232.0" mnemonicParsing="false" onAction="#viewSignedContract" text="view signed contract">
+      <Button layoutX="180.0" layoutY="230.0" mnemonicParsing="false" onAction="#viewInbox" text="view inbox">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="180.0" layoutY="282.0" mnemonicParsing="false" onAction="#viewCapabilities" text="view capabilities">
+      <Button layoutX="180.0" layoutY="278.0" mnemonicParsing="false" onAction="#viewSignedContract" text="view signed contract">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="180.0" layoutY="325.0" mnemonicParsing="false" onAction="#viewCapabilities" text="view capabilities">
          <font>
             <Font size="20.0" />
          </font>

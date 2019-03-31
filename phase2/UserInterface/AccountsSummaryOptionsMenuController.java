@@ -58,7 +58,7 @@ public class AccountsSummaryOptionsMenuController extends Menu implements java.i
 			controller.initialize(this.user, selectedAccount, this.operatorType);
 			mainStage.setScene(singleAccountSummaryMenuScene);
 			mainStage.show();
-		} else {
+		} else if (this.userBankAccounts.getValue().equals("bank account")){
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
 		}
 	}

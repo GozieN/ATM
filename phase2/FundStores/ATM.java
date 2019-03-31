@@ -1,5 +1,6 @@
 package phase2.FundStores;
 
+import phase2.Operators.BankWorker.ATMMaintainer;
 import phase2.Operators.BankWorker.BankManager;
 
 import java.io.*;
@@ -94,7 +95,7 @@ public class ATM implements Serializable {
      * @return A string indicating current date
      */
     public String getDate() {
-        return this.cal.getTime().toString().substring(4, 10) + ',' + cal.getTime().toString().substring(24, 28);
+        return this.cal.getTime().toString().substring(4, 10) + ", " + cal.getTime().toString().substring(24, 28);
     }
 
     /**
@@ -106,7 +107,7 @@ public class ATM implements Serializable {
     public void setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
-        BufferedReader input = new BufferedReader(new FileReader("./src/date.txt"));
+        BufferedReader input = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
         String last, line;
         last = "";
         line = input.readLine();
@@ -215,26 +216,11 @@ public class ATM implements Serializable {
      */
     // plus bills into ATM method (from deposit methods)
      public void plus(int dollarAmount) {
-         ArrayList<Integer> numberStore = new ArrayList<>();
-         String amountStringRepresentation = String.valueOf(dollarAmount);
-         int amountNumDigits = amountStringRepresentation.length();
-         int multiplier = 1;
-         for (int i = amountNumDigits-1; i >= 0; i--) {
-            numberStore.add( Character.getNumericValue(amountStringRepresentation.charAt(i)) * multiplier );
-            multiplier = multiplier * 10;
-         }
-         for (int number : numberStore) {
-             if (number % 50 == 0) {
-                 num50bills += number / 50;
-             } else if (number % 20 == 0) {
-                 num20bills += number / 20;
-             } else if (number % 10 == 0) {
-                 num10bills += number / 10;
-             } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                 num5bills += number / 5;
-             }
-         }
-         restock();
+         ATMMaintainer am = new ATMMaintainer();
+         am.FeedInATMBills(dollarAmount, this);
+         am.setBm(BM);
+
+
      }
 
     /**
@@ -243,26 +229,24 @@ public class ATM implements Serializable {
      */
     // minus bills into ATM method (from withdraw methods)
     public void minus(int dollarAmount) {
-        ArrayList<Integer> numberStore = new ArrayList<>();
-        String amountStringRepresentation = String.valueOf(dollarAmount);
-        int amountNumDigits = amountStringRepresentation.length();
-        int multiplier = 1;
-        for (int i = amountNumDigits-1; i >= 0; i--) {
-            numberStore.add( Character.getNumericValue(amountStringRepresentation.charAt(i)) * multiplier );
-            multiplier = multiplier * 10;
-        }
-        for (int number : numberStore) {
-            if (number % 50 == 0) {
-                num50bills -= number / 50;
-            } else if (number % 20 == 0) {
-                num20bills -= number / 20;
-            } else if (number % 10 == 0) {
-                num10bills -= number / 10;
-            } else if (number % 5 == 0) { // could have done else statement here, but else if is more clear
-                num5bills -= number / 5;
-            }
-        }
-        restock();
+        ATMMaintainer am = new ATMMaintainer();
+        am.EmptyOutATMBills(dollarAmount, this);
+        am.setBm(BM);
+
+
+    }
+
+    public void withdrawFromATM(double amount){
+        if (amount < 1000)
+    }
+
+    public double checkATMAmount() {
+        double totalInATM = 0;
+        totalInATM += (getNum5Bills() * 5);
+        totalInATM += (getNum10Bills() * 10);
+        totalInATM += (getNum20Bills() * 20);
+        totalInATM += (getNum50Bills() * 50);
+        return totalInATM;
     }
 
     /**

@@ -12,7 +12,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="contract" layoutX="153.0" layoutY="113.0" prefHeight="345.0" prefWidth="582.0" wrapText="true">
+      <Label fx:id="contract" layoutX="64.0" layoutY="108.0" prefHeight="345.0" prefWidth="582.0" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>

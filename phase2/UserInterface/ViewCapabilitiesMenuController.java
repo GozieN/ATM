@@ -9,18 +9,20 @@ import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
 public class ViewCapabilitiesMenuController extends Menu implements java.io.Serializable {
+	private User user = null;
 	private String operatorType;
 
 	@FXML
 	private Label capabilities;
 
-	public void initialize(String operatorType) {
+	public void initialize(User user, String operatorType) {
+		this.user = user;
 		this.operatorType = operatorType;
 		if (this.operatorType.equals("Bank Manager")) {
 			this.capabilities.setText(GUI.getBM().viewCapabilities());
 		} else if (this.operatorType.equals("Consultant")) {
 			this.capabilities.setText(GUI.getUC().viewCapabilities());
-		} else if (this.operatorType.equals("User)")) {
+		} else {
 			this.capabilities.setText(GUI.getU().viewCapabilities());
 		}
 	}
@@ -43,7 +45,15 @@ public class ViewCapabilitiesMenuController extends Menu implements java.io.Seri
 			mainStage.setScene(consultantWorkInteractionsMenuScene);
 			mainStage.show();
 		} else if (this.operatorType.equals("User")) {
-			// TODO: add this part - what is the prev menu for user?
+			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene userInteractionsMenuScene = new Scene(parent);
+			UserInteractionsMenuController controller = loader.getController();
+			controller.initialize(this.user);
+			mainStage.setScene(userInteractionsMenuScene);
+			mainStage.show();
 		}
 	}
 

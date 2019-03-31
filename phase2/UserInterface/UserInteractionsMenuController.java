@@ -5,7 +5,14 @@ import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
+import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
+
+import java.io.FileInputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class UserInteractionsMenuController extends Menu implements java.io.Serializable {
 	private User user;
@@ -14,9 +21,28 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 	private Label noAccounts1;
 	@FXML
 	private Label noAccounts2;
+	@FXML
+	private Label optInStatus;
+	@FXML
+	private Label optOutStatus;
 
 	public void initialize(User user) {
-		this.user = user;
+		ArrayList<User> userList = new ArrayList<>();
+		try {
+			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+			ObjectInputStream in = new ObjectInputStream(file);
+			userList = (ArrayList<User>) in.readObject();
+			in.close();
+			file.close();
+			for (User obj: userList) {
+				if (obj.getUsername().equals(user.getUsername())) {
+					this.user = obj;
+					break;
+				}
+			}
+		} catch (Exception ex) {ex.printStackTrace();}
+
+//		this.user = user;
 	}
 
 	public void viewAccountsSummary(ActionEvent event) throws Exception {
@@ -72,6 +98,52 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		ChangeUserAccountPasswordMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(changeUserAccountPasswordMenuScene);
+		mainStage.show();
+	}
+
+	public void optIn(ActionEvent event) throws Exception {
+		if (!(this.user instanceof PointSystemUser)) {
+			this.user.optIntoPointSystem();
+			this.optInStatus.setText("you are now a member of the point system");
+			this.optOutStatus.setText("");
+		} else {
+			this.optInStatus.setText("you are currently already a member of the point system");
+			this.optOutStatus.setText("");
+		}
+	}
+
+	public void optOut(ActionEvent event) throws Exception {
+		if (this.user instanceof PointSystemUser) {
+			((PointSystemUser)this.user).optOutOfPointSystem();
+			this.optOutStatus.setText("you are not a member of the point system anymore");
+			this.optInStatus.setText("");
+		} else {
+			this.optOutStatus.setText("you are currently not a member of the point system");
+			this.optInStatus.setText("");
+		}
+	}
+
+	public void viewSignedContract(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("ViewSignedContractMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene viewSignedContractMenuScene = new Scene(parent);
+		ViewSignedContractMenuController controller = loader.getController();
+		controller.initialize(this.user, "User");
+		mainStage.setScene(viewSignedContractMenuScene);
+		mainStage.show();
+	}
+
+	public void viewCapabilities(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("ViewCapabilitiesMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene viewCapabilitiesMenuScene = new Scene(parent);
+		ViewCapabilitiesMenuController controller = loader.getController();
+		controller.initialize(this.user,"User");
+		mainStage.setScene(viewCapabilitiesMenuScene);
 		mainStage.show();
 	}
 

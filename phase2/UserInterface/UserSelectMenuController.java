@@ -33,6 +33,7 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 			file.close();
 			for (User obj: userList) {
 				if (obj.getUsername().equals(this.userUsernameIn.getText())) {
+					this.userUsernameInStatus.setText("existing user");
 					if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
 						Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 						FXMLLoader loader = new FXMLLoader();
@@ -49,6 +50,7 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 				} else {
 					this.userUsernameInStatus.setText("that user does not exist. try again");
 				}
+				if (!(userList.contains(obj))) {this.userUsernameInStatus.setText("that user does not exist. try again");}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

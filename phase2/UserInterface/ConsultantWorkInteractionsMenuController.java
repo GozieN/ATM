@@ -7,6 +7,7 @@ import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
 public class ConsultantWorkInteractionsMenuController extends Menu implements java.io.Serializable {
+	private User user = null;
 
 	public void viewConsultationHistory(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -37,7 +38,7 @@ public class ConsultantWorkInteractionsMenuController extends Menu implements ja
 		Parent parent = loader.load();
 		Scene viewSignedContractMenuScene = new Scene(parent);
 		ViewSignedContractMenuController controller = loader.getController();
-		controller.initialize("Consultant");
+		controller.initialize(this.user, "Consultant");
 		mainStage.setScene(viewSignedContractMenuScene);
 		mainStage.show();
 	}
@@ -49,7 +50,7 @@ public class ConsultantWorkInteractionsMenuController extends Menu implements ja
 		Parent parent = loader.load();
 		Scene viewCapabilitiesMenuScene = new Scene(parent);
 		ViewCapabilitiesMenuController controller = loader.getController();
-		controller.initialize("Consultant");
+		controller.initialize(this.user, "Consultant");
 		mainStage.setScene(viewCapabilitiesMenuScene);
 		mainStage.show();
 	}

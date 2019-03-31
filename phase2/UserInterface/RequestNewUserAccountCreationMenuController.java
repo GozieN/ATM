@@ -37,7 +37,7 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 		try {
 			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
 			ObjectInputStream in = new ObjectInputStream(file);
-			userList.addAll((ArrayList<User>)in.readObject());
+			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
 
