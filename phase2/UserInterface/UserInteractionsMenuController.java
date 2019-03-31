@@ -5,12 +5,14 @@ import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
+import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.FileInputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class UserInteractionsMenuController extends Menu implements java.io.Serializable {
 	private User user;
@@ -19,6 +21,10 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 	private Label noAccounts1;
 	@FXML
 	private Label noAccounts2;
+	@FXML
+	private Label optInStatus;
+	@FXML
+	private Label optOutStatus;
 
 	public void initialize(User user) {
 		ArrayList<User> userList = new ArrayList<>();
@@ -93,6 +99,28 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		controller.initialize(this.user);
 		mainStage.setScene(changeUserAccountPasswordMenuScene);
 		mainStage.show();
+	}
+
+	public void optIn(ActionEvent event) throws Exception {
+		if (!(this.user instanceof PointSystemUser)) {
+			this.user.optIntoPointSystem();
+			this.optInStatus.setText("you are now a member of the point system");
+			this.optOutStatus.setText("");
+		} else {
+			this.optInStatus.setText("you are currently already a member of the point system");
+			this.optOutStatus.setText("");
+		}
+	}
+
+	public void optOut(ActionEvent event) throws Exception {
+		if (this.user instanceof PointSystemUser) {
+			((PointSystemUser)this.user).optOutOfPointSystem();
+			this.optOutStatus.setText("you are not a member of the point system anymore");
+			this.optInStatus.setText("");
+		} else {
+			this.optOutStatus.setText("you are currently not a member of the point system");
+			this.optInStatus.setText("");
+		}
 	}
 
 	public void viewSignedContract(ActionEvent event) throws Exception {
