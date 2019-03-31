@@ -493,12 +493,14 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
 //        User user = new User("", "");
+        UserConsultant UC = new UserConsultant("UCuser", "UCpass");
         User user1 = new User("a", "a");
         User user2 = new User("b", "b");
         User user3 = new User("c", "c");
         User user4 = new User("d", "d");
         User user5 = new User("e", "e");
 
+        bm.createUser(UC.getUsername(), UC.getPassword());
         bm.createUser(user1.getUsername(), user1.getPassword());
         bm.createUser(user2.getUsername(), user2.getPassword());
         bm.createUser(user3.getUsername(), user3.getPassword());
