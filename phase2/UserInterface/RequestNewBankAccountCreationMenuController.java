@@ -11,6 +11,10 @@ import phase2.UserInterface.UserInteractionsMenuController;
 import phase2.UserInterface.GUI;
 import phase2.UserInterface.Menu;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 public class RequestNewBankAccountCreationMenuController extends Menu implements java.io.Serializable {
 	private User user;
 
@@ -22,8 +26,21 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 	private Label endStatus;
 
 	public void initialize(User user) {
-		this.user = user;
-		this.bankAccountTypes.getItems().addAll("chequing", "credit", "debit", "savings", "prepaid");
+		ArrayList<User> userList = new ArrayList<>();
+		try {
+			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+			ObjectInputStream in = new ObjectInputStream(file);
+			userList = (ArrayList<User>) in.readObject();
+			in.close();
+			file.close();
+			for (User obj: userList) {
+				if (obj.getUsername().equals(user.getUsername())) {
+					this.user = obj;
+					break;
+				}
+			}
+		} catch (Exception ex) {ex.printStackTrace();}
+
 	}
 
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {

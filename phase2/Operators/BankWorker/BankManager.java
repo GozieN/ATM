@@ -173,23 +173,26 @@ public class BankManager extends BankTeller implements Serializable {
      */
     public void deleteUser(User user) {
         ArrayList<User> usersCopy = new ArrayList<>();
-        usersCopy = (ArrayList<User>) users.clone();
-        for (User obj: usersCopy) {
-            if (obj.getUsername().equals(user.getUsername())){
-                users.remove(obj);
-            }
-        }
+        usersCopy = this.getUsers();
+        usersCopy.remove(user);
+//        usersCopy = (ArrayList<User>) users.clone();
+//        for (User obj: usersCopy) {
+//            if (obj.getUsername().equals(user.getUsername())){
+//                users.remove(obj);
+//            }
+//        }
 
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            out.writeObject(users);
+            out.writeObject(usersCopy);
 
             out.close();
             file.close();
 
         } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
 
@@ -452,14 +455,14 @@ public class BankManager extends BankTeller implements Serializable {
     }
 
     public static void main(String[] args) {
-//        BankManager bm = new BankManager("", "");
-//        User user1 = new User("a", "a");
+        BankManager bm = new BankManager("", "");
+        User user1 = new User("a", "a");
 //        User user2 = new User("b", "b");
 //        User user3 = new User("c", "c");
 //        User user4 = new User("d", "d");
 //        User user5 = new User("e", "e");
-//
-//        bm.createUser(user1.getUsername(), user1.getPassword());
+
+        bm.createUser(user1.getUsername(), user1.getPassword());
 //        bm.createUser(user2.getUsername(), user2.getPassword());
 //        bm.createUser(user3.getUsername(), user3.getPassword());
 //        bm.createUser(user5.getUsername(), user5.getPassword());
