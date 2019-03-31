@@ -7,7 +7,7 @@ import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Asset.StudentAccount;
 import phase2.FundStores.Debt.Credit;
 import phase2.FundStores.Debt.CreditCard;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.*;
 import phase2.Operators.BankAccountUser.BankUserFactory;
 
@@ -39,7 +39,7 @@ public class BankAccountFactory {
         Account newAccount = null;
         switch (accountType){
         case LINEOFCREDIT:
-            newAccount = new LineOfCredit(user);
+            newAccount = new lineofcredit(user);
             break;
         case CREDIT:
             newAccount = new CreditCard(user);
