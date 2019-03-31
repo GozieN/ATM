@@ -22,7 +22,7 @@ public class ViewCapabilitiesMenuController extends Menu implements java.io.Seri
 			this.capabilities.setText(GUI.getBM().viewCapabilities());
 		} else if (this.operatorType.equals("Consultant")) {
 			this.capabilities.setText(GUI.getUC().viewCapabilities());
-		} else if (this.operatorType.equals("User)")) {
+		} else {
 			this.capabilities.setText(GUI.getU().viewCapabilities());
 		}
 	}

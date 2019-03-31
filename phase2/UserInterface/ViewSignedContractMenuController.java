@@ -22,7 +22,7 @@ public class ViewSignedContractMenuController extends Menu implements java.io.Se
 			this.contract.setText(GUI.getBM().viewContract());
 		} else if (this.operatorType.equals("Consultant")) {
 			this.contract.setText(GUI.getUC().viewContract());
-		} else if (this.operatorType.equals("User)")) {
+		} else {
 			this.contract.setText(GUI.getU().viewContract());
 		}
 	}
