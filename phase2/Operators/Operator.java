@@ -6,8 +6,8 @@ import java.util.Observable;
 
 
 public class Operator extends Observable implements java.io.Serializable{
-    private String username;
-    private String password;
+    protected String username;
+    protected String password;
 
     /**
      * User constructor

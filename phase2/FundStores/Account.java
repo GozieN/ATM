@@ -293,10 +293,18 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * Return a summary of this account
      */
     public String summarize() {
-        return "Account holder(s): " + holderName +
-                " " +holderName2 + "\n Account summary:" + accountType +"\n" +
-                "Account Number: "
-                + accountNum + "\n Holds: " + balance + "CAD$";
+        if (accountHolder2 != null) {
+            return "Account holder(s): " + holderName +
+                    " " + holderName2 + "\n " +
+                    "Account Type:" + accountType + "\n" +
+                    "Account Number: " + accountNum +
+                    "\n Holds: " + balance + "CAD$";
+        }else {
+            return "Account holder(s): " + holderName +
+                    "\n Account Type:" + accountType + "\n" +
+                    "Account Number: " + accountNum +
+                    "\n Holds: " + balance + "CAD$";
+        }
 
     }
 
