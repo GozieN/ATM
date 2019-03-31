@@ -80,6 +80,7 @@ public class BankManager extends BankEmployee implements Serializable {
         } catch (Exception ex) {ex.printStackTrace();}
 
 
+
         if (newAccount == null) {
             System.out.println("Sorry, it seems as though an error occurred when creating your account. Please " +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
@@ -100,6 +101,10 @@ public class BankManager extends BankEmployee implements Serializable {
                 break;
             }
         }
+    }
+
+    public void deleteAccount(User user) {
+
     }
 
     /**
