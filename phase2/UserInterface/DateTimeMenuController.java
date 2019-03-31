@@ -13,7 +13,7 @@ public class DateTimeMenuController extends Menu implements java.io.Serializable
 		ATM atm = GUI.getAtm();
 		String date = atm.getDate();
 		String time = atm.getTime();
-		String dateTime = atm.getDate() + " " + atm.getTime();
+		String dateTime = date + " " + time;
 		// angela
 		this.dateTime.setText(dateTime);
 	}
