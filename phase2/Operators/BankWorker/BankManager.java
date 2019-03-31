@@ -456,7 +456,7 @@ public class BankManager extends BankTeller implements Serializable {
 
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
-        User user1 = new User("a", "a");
+        User user1 = new User("", "");
 //        User user2 = new User("b", "b");
 //        User user3 = new User("c", "c");
 //        User user4 = new User("d", "d");

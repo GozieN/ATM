@@ -46,9 +46,10 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 					} else {
 						this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
 					}
-				} else {
-					this.userUsernameInStatus.setText("that user does not exist. try again");
+//				} else {
+//					this.userUsernameInStatus.setText("that user does not exist. try again");
 				}
+				if (!(userList.contains(obj))) {this.userUsernameInStatus.setText("that user does not exist. try again");}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
