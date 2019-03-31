@@ -20,7 +20,7 @@ public class Oldies extends SavingsAccount implements java.io.Serializable {
         double interest = 0.05;
         if (this.accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).getIsGoldMember();
-            interest = 0.035;
+            interest = 0.040;
         }
         if (("01").equals(getLastLine().substring(0, 2))) {
             double increaseBy = interest * getBalance();
