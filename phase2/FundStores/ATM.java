@@ -265,6 +265,10 @@ public class ATM implements Serializable {
         restock();
     }
 
+    public void withdrawFromAccount(){}
+
+    public void checkATMAmount() {}
+
     /**
      * Alert to show need for restock if number of bills are low
      */
