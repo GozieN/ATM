@@ -7,6 +7,11 @@ import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
 public class ConsultantUseOptionsMenuController extends Menu implements java.io.Serializable {
+	private User user;
+
+	public void initialize(User user) {
+		this.user = user;
+	}
 
 	public void personal(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -15,7 +20,7 @@ public class ConsultantUseOptionsMenuController extends Menu implements java.io.
 		Parent parent = loader.load();
 		Scene userInteractionsMenuScene = new Scene(parent);
 		UserInteractionsMenuController controller = loader.getController();
-		controller.initialize(user);
+		controller.initialize(this.user);
 		mainStage.setScene(userInteractionsMenuScene);
 		mainStage.show();
 	}
