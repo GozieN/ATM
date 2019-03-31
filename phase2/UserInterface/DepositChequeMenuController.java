@@ -17,9 +17,9 @@ public class DepositChequeMenuController extends Menu implements java.io.Seriali
 	private String operatorType;
 
 	@FXML
-	private TextField amount;
+	private TextField amountIn;
 	@FXML
-	private Label amountStatus;
+	private Label amountInStatus;
 	@FXML
 	private Label primaryStatus;
 	@FXML
@@ -55,14 +55,20 @@ public class DepositChequeMenuController extends Menu implements java.io.Seriali
 				primaryStatus.setText("you do not have a primary account");
 			}
 		}
-		int amount = Integer.parseInt(this.amount.getText());
+		int amount = -1;
+		if (!(this.amountIn.getText().isEmpty())) {
+			amount = Integer.parseInt(this.amountIn.getText());
+			this.amountInStatus.setText("");
+		} else {
+			this.amountInStatus.setText("this field cannot be empty. try again");
+		}
 		if (!(selectedAccount == null)) {
 			if (amount >= 0) {
-				this.amountStatus.setText("valid amount");
-				((ChequingAccount)selectedAccount).depositChequeToAccount(amount);
+				this.amountInStatus.setText("valid amount");
 				this.primaryStatus.setText("deposit successful");
+				((ChequingAccount)selectedAccount).depositChequeToAccount(amount);
 			} else {
-				this.amountStatus.setText("invalid amount. try again");
+				this.amountInStatus.setText("invalid amount. try again");
 			}
 		}
 	}
@@ -70,26 +76,35 @@ public class DepositChequeMenuController extends Menu implements java.io.Seriali
 	public void deposit(ActionEvent event) throws Exception {
 		this.primaryStatus.setText("");
 		Account selectedAccount = null;
-		String[] split = this.userBankAccounts.getValue().split("\\s");
-		for (Account account : this.user.getAccountsCreated()) {
-			if (account.getAccountNum() == Integer.parseInt(split[0])) {
-				selectedAccount = account;
+		try {
+			String[] split = this.userBankAccounts.getValue().split("\\s");
+			for (Account account : this.user.getAccountsCreated()) {
+				if (account.getAccountNum() == Integer.parseInt(split[0])) {
+					selectedAccount = account;
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		int amount = Integer.parseInt(this.amount.getText());
+		int amount = -1;
+		if (!(this.amountIn.getText().isEmpty())) {
+			amount = Integer.parseInt(this.amountIn.getText());
+			this.amountInStatus.setText("");
+		} else {
+			this.amountInStatus.setText("this field cannot be empty. try again");
+		}
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 			if (amount >= 0) {
-				this.amountStatus.setText("valid amount");
-				selectedAccount.depositChequeToAccount(amount);
+				this.amountInStatus.setText("valid amount");
 				this.endStatus.setText("deposit successful");
+				selectedAccount.depositChequeToAccount(amount);
 			} else {
-				this.amountStatus.setText("invalid amount. try again");
+				this.amountInStatus.setText("invalid amount. try again");
 				this.endStatus.setText("");
 			}
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
-			this.amountStatus.setText("");
 			this.endStatus.setText("");
 		}
 	}
