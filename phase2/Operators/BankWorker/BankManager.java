@@ -21,6 +21,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private String password;
     private int numExistingAccounts;
     private int numMessages;
+    private ATM atm;
     private static ArrayList<User> users = new ArrayList<>();
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
@@ -207,6 +208,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
+        this.atm = atm;
         atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
     }
