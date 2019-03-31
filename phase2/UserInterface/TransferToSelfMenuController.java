@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.event.*;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.User;
 
 public class TransferToSelfMenuController extends Menu implements java.io.Serializable {
@@ -86,8 +86,8 @@ public class TransferToSelfMenuController extends Menu implements java.io.Serial
 			if (selectedAccount1 instanceof Debit) {
 				((Debit)selectedAccount1).transfer(amount, selectedAccount2);
 				this.endStatus.setText("transfer successful");
-			} else if (selectedAccount1 instanceof LineOfCredit) {
-				((LineOfCredit)selectedAccount1).transfer(amount, selectedAccount2);
+			} else if (selectedAccount1 instanceof lineofcredit) {
+				((lineofcredit)selectedAccount1).transfer(amount, selectedAccount2);
 				this.endStatus.setText("transfer successful");
 			} else {
 				this.endStatus.setText("transfers cannot be made on this account");
