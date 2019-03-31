@@ -17,9 +17,9 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 	private String operatorType;
 
 	@FXML
-	private TextField amount;
+	private TextField amountIn;
 	@FXML
-	private Label amountStatus;
+	private Label amountInStatus;
 	@FXML
 	private Label primaryStatus;
 	@FXML
@@ -55,18 +55,24 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 				primaryStatus.setText("you do not have a primary account");
 			}
 		}
-		int amount = Integer.parseInt(this.amount.getText());
+		int amount = -1;
+		if (!(this.amountIn.getText().isEmpty())) {
+			amount = Integer.parseInt(this.amountIn.getText());
+			this.amountInStatus.setText("");
+		} else {
+			this.amountInStatus.setText("this field cannot be empty. try again");
+		}
 		if (!(selectedAccount == null)) {
 			if (amount >= 0) {
-				this.amountStatus.setText("valid amount");
+				this.amountInStatus.setText("valid amount");
 				if (amount <= selectedAccount.getBalance()) {
-					((ChequingAccount)selectedAccount).payBill(amount);
 					this.primaryStatus.setText("bill payment successful");
+					((ChequingAccount)selectedAccount).payBill(amount);
 				} else {
-					this.amountStatus.setText("this account does not have enough funds to pay a bill of $" + amount);
+					this.amountInStatus.setText("this account does not have enough funds to pay a bill of $" + amount);
 				}
 			} else {
-				this.amountStatus.setText("invalid amount. try again");
+				this.amountInStatus.setText("invalid amount. try again");
 			}
 		}
 	}
@@ -80,31 +86,30 @@ public class PayBillMenuController extends Menu implements java.io.Serializable 
 				selectedAccount = account;
 			}
 		}
-		int amount = Integer.parseInt(this.amount.getText());
+		int amount = Integer.parseInt(this.amountIn.getText());
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 			if (amount >= 0) {
-				this.amountStatus.setText("valid amount");
+				this.amountInStatus.setText("valid amount");
 				if (amount <= selectedAccount.getBalance()) {
-					selectedAccount.payBill(amount);
 					this.endStatus.setText("bill payment successful");
+					selectedAccount.payBill(amount);
 				} else {
-					this.amountStatus.setText("this account does not have enough funds to pay a bill of $" + amount);
+					this.amountInStatus.setText("this account does not have enough funds to pay a bill of $" + amount);
 					this.endStatus.setText("");
 				}
 			} else {
-				this.amountStatus.setText("invalid amount. try again");
+				this.amountInStatus.setText("invalid amount. try again");
 				this.endStatus.setText("");
 			}
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
-			this.amountStatus.setText("");
 			this.endStatus.setText("");
 		}
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		if (this.operatorType.equals("BankManagerMenus")) {
+		if (this.operatorType.equals("Bank Manager")) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("BankManagerUserTransactionsMenuScene.fxml"));

@@ -25,7 +25,7 @@ public class AccountTest {
         savingsAccount = new SavingsAccount(user);
         chequingAccount = new ChequingAccount(user, true);
         creditAccount = new CreditCard(user);
-        lineOfCreditAccount = new LineOfCredit(user);
+        lineOfCreditAccount = new lineofcredit(user);
     }
 
     @After

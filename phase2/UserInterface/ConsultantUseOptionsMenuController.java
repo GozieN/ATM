@@ -9,7 +9,15 @@ import phase2.Operators.BankAccountUser.User;
 public class ConsultantUseOptionsMenuController extends Menu implements java.io.Serializable {
 
 	public void personal(ActionEvent event) throws Exception {
-		// there is no consultant instance in file
+		Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("UserInteractionsMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene userInteractionsMenuScene = new Scene(parent);
+		UserInteractionsMenuController controller = loader.getController();
+		controller.initialize(user);
+		mainStage.setScene(userInteractionsMenuScene);
+		mainStage.show();
 	}
 
 	public void work(ActionEvent event) throws Exception {

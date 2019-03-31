@@ -4,13 +4,11 @@ import phase2.FundStores.Account;
 import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.Contract;
 import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
-
 
 public class UserConsultant extends BankEmployee implements Contract {
     private User personalBankAccount;

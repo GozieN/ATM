@@ -5,15 +5,14 @@ import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Oldies;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Asset.StudentAccount;
-import phase2.FundStores.Debt.Credit;
 import phase2.FundStores.Debt.CreditCard;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.*;
 import phase2.Operators.BankAccountUser.BankUserFactory;
 
 public class BankAccountFactory {
-    private static final String LINEOFCREDIT =  "LineOfCredit";
-    private static final String CREDIT = "credit";
+    private static final String LINE_OF_CREDIT =  "lineofcredit";
+    private static final String CREDIT = "creditcard";
     private static final String PREPAID = "prepaid";
     private static final String SAVINGS = "savings";
     private static final String CHEQUING = "chequing";
@@ -38,8 +37,8 @@ public class BankAccountFactory {
     public Account determineBankAccountsFromRequest(User user) {
         Account newAccount = null;
         switch (accountType){
-        case LINEOFCREDIT:
-            newAccount = new LineOfCredit(user);
+        case LINE_OF_CREDIT:
+            newAccount = new lineofcredit(user);
             break;
         case CREDIT:
             newAccount = new CreditCard(user);

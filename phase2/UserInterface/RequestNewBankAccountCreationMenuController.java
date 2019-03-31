@@ -42,7 +42,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				}
 			}
 		} catch (Exception ex) {ex.printStackTrace();}
-		this.bankAccountTypes.getItems().addAll("chequing", "credit", "debit", "savings", "prepaid", "line of credit");
+		this.bankAccountTypes.getItems().addAll("chequing", "credit card", "debit", "savings", "prepaid", "line of credit");
 	}
 
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
@@ -51,8 +51,8 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				GUI.getBM().createNewAccount(0, "chequing", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new chequing bank account");
-			} else if ((this.bankAccountTypes.getValue()).equals("creditcard")) {
-				GUI.getBM().createNewAccount(0, "credit", this.user);
+			} else if ((this.bankAccountTypes.getValue()).equals("credit card")) {
+				GUI.getBM().createNewAccount(0, "creditcard", this.user);
 				this.bankAccountTypesStatus.setText("");
                 for (Account acct: user.getAccountsCreated()) {
                     if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
@@ -61,7 +61,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
                                 "primary chequing account number is" + acct.getAccountNum());
                         break;
                     } else{
-				this.endStatus.setText("you have requested a new credit bank account");}}
+				this.endStatus.setText("you have requested a new credit card bank account");}}
 			} else if ((this.bankAccountTypes.getValue()).equals("debit")) {
 				GUI.getBM().createNewAccount(0, "debit", this.user);
 				this.bankAccountTypesStatus.setText("");
