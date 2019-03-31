@@ -6,7 +6,6 @@ import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
-
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -79,6 +78,18 @@ public class BankManagerUserInteractionsMenuController extends Menu implements j
 		CreateNewBankAccountMenuController controller = loader.getController();
 		controller.initialize(this.user);
 		mainStage.setScene(createNewBankAccountMenuScene);
+		mainStage.show();
+	}
+
+	public void deleteBankAccount(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("DeleteBankAccountMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene deleteBankAccountMenuScene = new Scene(parent);
+		DeleteBankAccountMenuController controller = loader.getController();
+		controller.initialize(this.user);
+		mainStage.setScene(deleteBankAccountMenuScene);
 		mainStage.show();
 	}
 
