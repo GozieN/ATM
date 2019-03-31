@@ -148,8 +148,20 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "UserLoginMenuScene.fxml";
-		super.back(event, previousMenu);
+		if (this.user.getUsername().equals("UCuser")) {
+			Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("ConsultantUseOptionsMenuScene.fxml"));
+			Parent parent = loader.load();
+			Scene consultantUseOptionsMenuScene = new Scene(parent);
+			ConsultantUseOptionsMenuController controller = loader.getController();
+			controller.initialize(this.user);
+			mainStage.setScene(consultantUseOptionsMenuScene);
+			mainStage.show();
+		} else {
+			String previousMenu = "UserLoginMenuScene.fxml";
+			super.back(event, previousMenu);
+		}
 	}
 
 	public void exit(ActionEvent event) throws Exception {
