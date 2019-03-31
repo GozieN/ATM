@@ -14,7 +14,7 @@ import java.util.*;
 import java.io.Serializable;
 import java.io.BufferedReader;
 
-public class BankManager extends BankTeller implements Serializable {
+public class BankManager extends BankTeller implements Iterable<User>, Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
@@ -456,6 +456,35 @@ public class BankManager extends BankTeller implements Serializable {
 
         return s;
     }
+
+    @Override
+    public Iterator<User> iterator() {
+        return users.iterator();
+    }
+
+    class UserIterator implements Iterator<User> {
+        int i = 0;
+
+        @Override
+        public boolean hasNext() {
+            if (i >= users.size()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        @Override
+        public User next() {
+            return users.get(i++);
+        }
+
+        @Override
+        public void remove() {
+            users.remove(--i);
+        }
+    }
+
 
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
