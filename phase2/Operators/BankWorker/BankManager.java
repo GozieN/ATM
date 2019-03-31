@@ -14,7 +14,7 @@ import java.util.*;
 import java.io.Serializable;
 import java.io.BufferedReader;
 
-public class BankManager extends BankEmployee implements Serializable {
+public class BankManager extends BankTeller implements Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private String username;
