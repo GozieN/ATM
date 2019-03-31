@@ -12,7 +12,6 @@ import phase2.FundStores.ATM;
 
 
 import java.io.*;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,7 +26,6 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     protected double balance;
     public String accountType;
     protected ArrayList<User> accountUsers = new ArrayList<User>();
-
     public ATM atm;
     protected Object[] transactionInfoTempHolder;
     protected Stack<Object[]> history;

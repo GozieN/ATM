@@ -19,7 +19,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private static int numBankManagers = 0;
     private String username;
     private String password;
-    private int numExistingAccounts;
     private int numMessages;
     private ATM atm;
     private static ArrayList<User> users = new ArrayList<>();
@@ -58,12 +57,12 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
-            if (user.getNumChequingAccounts() == 1) {
+            if (user.getNumChequingAccounts() == 0) {
                 newAccount = new ChequingAccount(user, true);
             } else {
                 newAccount = new ChequingAccount(user, false);
             }
-        }
+        }newAccount.setATM(atm);
 
         ArrayList<User> usersCopy = new ArrayList<>();
         usersCopy = (ArrayList<User>) users.clone();
@@ -81,14 +80,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
 
-
-
         if (newAccount == null) {
             System.out.println("Sorry, it seems as though an error occurred when creating your account. Please " +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
                     "Savings, Chequing");
         } else {
-            numExistingAccounts++;
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account: " +
@@ -210,9 +206,12 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
-        this.atm = atm;
         atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
+    }
+
+    public void setAtm(ATM atm) {
+        this.atm = atm;
     }
 
     /**
