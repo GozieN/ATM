@@ -21,7 +21,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private String password;
     private int numExistingAccounts;
     private int numMessages;
-    private ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
 
