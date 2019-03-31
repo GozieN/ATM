@@ -90,11 +90,11 @@ public class TransferToElseMenuController extends Menu implements java.io.Serial
 		if (selectedAccount1 != null && selectedAccount2 != null &&
 				this.amountInStatus.getText().equals("valid amount")) {
 			if (selectedAccount1 instanceof Debit) {
+				this.endStatus.setText("transfer successful");
 				((Debit)selectedAccount1).transfer(amount, selectedAccount2);
-				this.endStatus.setText("transfer successful");
 			} else if (selectedAccount1 instanceof LineOfCredit) {
-				((LineOfCredit)selectedAccount1).transfer(amount, selectedAccount2);
 				this.endStatus.setText("transfer successful");
+				((LineOfCredit)selectedAccount1).transfer(amount, selectedAccount2);
 			} else {
 				this.endStatus.setText("transfers cannot be made on this account");
 			}

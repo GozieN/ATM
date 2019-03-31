@@ -58,7 +58,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             newAccount = new SavingsAccount(user);
         } else if (accountType.equals("chequing")) {
             user.setNumChequingAccounts();
-            if (user.getNumChequingAccounts() == 1) {
+            if (user.getNumChequingAccounts() == 0) {
                 newAccount = new ChequingAccount(user, true);
             } else {
                 newAccount = new ChequingAccount(user, false);
