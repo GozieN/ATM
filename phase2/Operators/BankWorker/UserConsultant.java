@@ -1,6 +1,7 @@
 package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
+import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.Contract;
 import sun.reflect.annotation.ExceptionProxy;
 
@@ -12,11 +13,7 @@ import java.io.BufferedWriter;
 
 
 public class UserConsultant extends BankEmployee implements Contract {
-    private ArrayList<BankEmployee> bankEmployeeDatabase = new ArrayList<>();
-    private int numBankWorkers = 0;
-    private ArrayList<Account> AccountsCreated = new ArrayList<Account>();
-    private String username;
-    private String password;
+    private User personalBankAccount;
     static int numUsersConsulted = 1;
     private String currentUserBeingConsultedType;
     private ArrayList<String> UserAdviseHistory = new ArrayList<>();
@@ -50,8 +47,16 @@ public class UserConsultant extends BankEmployee implements Contract {
         String s;
         s = "As a User Consultant for the Bank, " +
                 "you agree not to engage in fraudulent behavior, " +
-                "and agree not to abuse the Bank Manager messaging system. Click back or exit.";
+                "and agree not to abuse the Bank Manager messaging system. Click back or exit//.";
         return s;
+    }
+
+    /**
+     * Set the Consultant's bank account.
+     * @param personalBankAccount
+     */
+    public void setPersonalBankAccount(User personalBankAccount) {
+        this.personalBankAccount = personalBankAccount;
     }
 
     /**

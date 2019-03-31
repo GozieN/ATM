@@ -172,11 +172,8 @@ public abstract class Account implements Serializable, Observer {
         }else{
             atm.plus(amount);
             this.depositToAccount(amount);
-            return true;
-        }
+            return true; }
     }
-
-
 
 
     /**
@@ -234,14 +231,14 @@ public abstract class Account implements Serializable, Observer {
         Object[] lastActionInfo = history.pop();
         history.push(lastActionInfo);
         if (lastActionInfo[2] == null){
-            String s = "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return  "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1];
-            return s;}
+           }
         else{
-            String s ="Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1] + "\n " +
                     "To account number: " + (((Account) lastActionInfo[2]).getAccountNum());
-            return s;}
+            }
     }
 
     /**
@@ -268,11 +265,10 @@ public abstract class Account implements Serializable, Observer {
      * @param amount - the amount of funds being checked
      */
     public boolean validAmountInput(double amount){
-        return amount%5 ==0 || amount < 0;
+        return 0 <= amount && amount %5 == 0;
     }
 
-
-        public boolean cashPoints(){
+    public boolean cashPoints(){
         if (((PointSystemUser) accountHolder).getNumPoints()  < 20){
              return false;
         }
@@ -297,11 +293,11 @@ public abstract class Account implements Serializable, Observer {
      * Return a summary of this account
      */
     public String summarize() {
-        String s = "Account holder(s): " + holderName +
+        return "Account holder(s): " + holderName +
                 " " +holderName2 + "\n Account summary:" + accountType +"\n" +
                 "Account Number: "
                 + accountNum + "\n Holds: " + balance + "CAD$";
-        return s;
+
     }
 
     /**
@@ -347,28 +343,6 @@ public abstract class Account implements Serializable, Observer {
         } catch (IOException e) {
         }
         return lastLine;
-    }
-
-    public void undoTransaction(){
-        Object[] transferInfo = history.pop();
-        if (transferInfo == null){
-            System.out.println("Sorry, your last action could not be reversed because you " +
-                    "have yet to make a transaction");
-        }
-        if (transferInfo[0].equals("bill")){
-            history.push(transferInfo);
-            System.out.println("Sorry, your last action could not be reversed because you payed a bill.");
-        }else{
-            if (transferInfo[0].equals("transfer")) {
-                ((Debit) transferInfo[2]).transfer((double) transferInfo[1], this);
-            } else if (transferInfo[0].equals("withdraw")) {
-                ((Account) transferInfo[2]).depositToAccount((double) transferInfo[1]);
-            }else if (transferInfo[0].equals("deposit") || transferInfo[0].equals("cheque deposit")){
-                ((Account) transferInfo[2]).withdrawFromAccount((double) transferInfo[1]);
-            }
-            System.out.println(getHolderName() + ", The last action that you performed was a" + transferInfo[0] + "" +
-                    " of amount " + transferInfo[1] + " has been reversed upon your request.");
-        }
     }
 
     @Override

@@ -71,6 +71,7 @@ public class Credit extends Account implements Serializable {
         return true;
     }
 
+
     /**
      * Add amount to credit card bill if sum of balance and amount is less than given credit limit
      * @param amount Amount of money to add to bill
@@ -78,7 +79,7 @@ public class Credit extends Account implements Serializable {
      */
     public boolean addToBill(double amount) {
 
-            if (this.getAccountType() == "LineOfCredit") {
+            if (this.getAccountType().equals("LineOfCredit")) {
                 if ((balance + amount) > getCreditLimit()) {
                     System.out.println("Sorry, you are unable to complete your transaction to" + accountType +
                             "as you have reached your credit limit");
@@ -95,10 +96,5 @@ public class Credit extends Account implements Serializable {
 //        System.out.println("Transaction completed, the balance in " + accountType + "is now: " + balance);
 //        return true; }
         return true;
-    }
-
-    @Override
-    public boolean addToBill() {
-        return false;
     }
 }

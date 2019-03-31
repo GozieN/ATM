@@ -1,9 +1,7 @@
 package phase2.Operators.BankAccountUser;
 
 import phase2.FundStores.*;
-import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
 import phase2.Operators.Contract;
 import phase2.Operators.Operator;
@@ -24,7 +22,6 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private ArrayList<Account> accountsCreated;
     private int numTimesOptedIntoPointSystem = 0;
     private String userType;
-
 
     /**
      * User constructor
@@ -50,7 +47,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
 
     /**
      * Get the type of the user
-     * @return A string representing the type of the user
+     * Sets a string representing the type of the user
      */
     public void setUserType(String userType) {
         this.userType = userType;
@@ -72,12 +69,10 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     public String changePassword(String currentPassword, String newPassword) {
         if (currentPassword.equals(this.password)) {
             this.password = newPassword;
-            String s = username + ", your password has successfully been changed";
-            return s;
+            return username + ", your password has successfully been changed";
         } else {
-            String s = username + ",you have entered the wrong current password. " +
+            return username + ",you have entered the wrong current password. " +
                     "unable to change password";
-            return s;
         }
     }
 
@@ -88,14 +83,12 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     public String optIntoPointSystem(){
         numTimesOptedIntoPointSystem++;
         String s = "";
-        PointSystemUser alteredUser;
-        alteredUser = new PointSystemUser(getUsername(), getPassword());
-        alteredUser.setAccountsCreated(this.getAccountsCreated());
-        if (this.numTimesOptedIntoPointSystem > 1){
-            alteredUser.setNumPoints(0);
-        }
+        BankUserFactory b = new BankUserFactory(this.getUserType());
+        PointSystemUser alteredUser = b.determineOptInPointUserType(this);
+        alteredUser.setAccountsCreated(this.accountsCreated);
         //IN GUI CALL BM.delete(this);
-        s = "You have successfully opted int of the point system! If this is your first time opting into this service, " +
+        s = "You have successfully opted into of the point system!" +
+                " If this is your first time opting into this service, " +
                 "you get an initial point balance of 50.";
         return s;
     }
@@ -105,16 +98,13 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * @return String - the features this user has!
      */
     public String viewCapabilities(){
-        String s = "";
-        s = "As a new Point System User, you are able to do the following: \n" +
+        return "As a new Point System User, you are able to do the following: \n" +
                 "- Request to delete your account at any point in time.\n" +
                 "- Opt into being a point system user at any point in time.\n" +
                 "- Change your password at any time. \n" +
                 "- Create a new account at any time. \n" +
                 "- View a summary of a single account. \n" +
                 "- View a summary of all your existing accounts";
-
-        return s;
     }
 
     /**
@@ -217,26 +207,26 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
         return accountsCreated.iterator();
     }
 
-    class AccountIterator implements Iterator<Account> {
-        int i = 0;
+        class AccountIterator implements Iterator<Account> {
+            int i = 0;
 
-        @Override
-        public boolean hasNext() {
-            if (i >= accountsCreated.size()) {
-                return false;
-            } else {
-                return true;
+            @Override
+            public boolean hasNext() {
+                if (i >= accountsCreated.size()) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public Account next() {
+                return accountsCreated.get(i++);
+            }
+
+            @Override
+            public void remove() {
+                accountsCreated.remove(--i);
             }
         }
-
-        @Override
-        public Account next() {
-            return accountsCreated.get(i++);
-        }
-
-        @Override
-        public void remove() {
-            accountsCreated.remove(--i);
-        }
-    }
 }

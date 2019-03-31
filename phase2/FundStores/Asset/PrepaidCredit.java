@@ -26,7 +26,7 @@ public class PrepaidCredit extends Account implements Serializable {
     public PrepaidCredit(User accountHolder) {
         //MUST SET INITIAL AMOUNT.
         super(accountHolder);
-        accountType = "Prepaid Credit";
+        accountType = "prepaid";
         if (balance > 0) {
             this.balance = balance;
         }
