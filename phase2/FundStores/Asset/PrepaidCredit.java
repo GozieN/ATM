@@ -20,8 +20,8 @@ public class PrepaidCredit extends Account implements Serializable {
 
     /**
      * PrepaidCredit constructor
-     *
      * @param accountHolder
+     *
      */
     public PrepaidCredit(User accountHolder) {
         //MUST SET INITIAL AMOUNT.
@@ -32,6 +32,9 @@ public class PrepaidCredit extends Account implements Serializable {
         }
     }
 
+    /**
+     * Deduct monthly fees from prepaid card
+     */
     public void monthlyFees() {
         double fee = 3;
         if (("01").equals(getLastLine().substring(0, 2))) {
@@ -43,6 +46,10 @@ public class PrepaidCredit extends Account implements Serializable {
         }
     }
 
+    /**
+     * Add transaction to bill
+     * @return True if transaction is added to bill
+     */
     @Override
     public boolean addToBill() {
         return true;

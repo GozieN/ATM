@@ -9,7 +9,8 @@ public class ChequingAccount extends Debit implements java.io.Serializable {
 
     /**
      * ChequingAccount class constructor
-     *
+     * @param accountHolder holder of the account
+     * @param isPrimary check if chequing is primary account
      */
     public ChequingAccount(User accountHolder, boolean isPrimary) {
         super(accountHolder);
@@ -18,6 +19,10 @@ public class ChequingAccount extends Debit implements java.io.Serializable {
         history = new Stack<>();
     }
 
+    /**
+     * Reading from external file
+     * @return Boolean to check if transaction is added to bill
+     */
     @Override
     public boolean addToBill() {
         return false;

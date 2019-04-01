@@ -16,13 +16,16 @@ public abstract class Debit extends Account implements Serializable, Transferabl
      * Debit class constructor
      * @param accountHolder Name of holder of the account
      */
-
-
     public Debit(User accountHolder){
         super(accountHolder);
         accountType = "Debit";
     }
 
+    /**
+     * Debit class constructor for two users
+     * @param accountHolder Name of holder of account
+     * @param accountHolder2 Name of second holder of account
+     */
     public Debit(User accountHolder, User accountHolder2){
         super(accountHolder);
         accountType = "Debit";
@@ -44,25 +47,6 @@ public abstract class Debit extends Account implements Serializable, Transferabl
         return true;
     }
 
-    /**
-     *Withdraw amount from account
-     * @param amount Amount of money to withdraw
-     */
-
-    /**
-     *Withdraw amount from account using ATM
-     * @param amount Amount of money to withdraw
-     */
-    public boolean withdrawFromATM(int amount) {
-        if (!validAmountInput(amount)){
-            return false;
-        }else{
-            atm.minus(amount);
-            withdrawFromAccount(amount);
-            if (accountHolder instanceof PointSystemUser){
-                ((PointSystemUser) accountHolder).setNumPointsIncrease();}
-            return true;
-        }}
 
 
 
