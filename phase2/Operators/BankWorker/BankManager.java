@@ -15,13 +15,12 @@ import java.io.BufferedReader;
 
 public class BankManager extends BankTeller implements Iterable<User>, Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
-    private static int numBankManagers = 0;
-    private String username;
-    private String password;
-    private int numExistingAccounts;
+//    private static int numBankManagers = 0;
     private int numMessages;
     private ATM atm;
+    private User currentUserInteractingWithSystem;
     private static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<Account> allAccounts = new ArrayList<>();
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
 
@@ -32,8 +31,15 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public BankManager(String username, String password) {
         super(username, password);
-        numBankManagers += 1;
+//        numBankManagers += 1;
         bankManagerDatabase.add(this);
+    }
+
+    public void setCurrentUserInteractingWithSystem(User currentUserInteractingWithSystem) {
+        this.currentUserInteractingWithSystem = currentUserInteractingWithSystem;
+    }
+    public User getCurrentUserInteractingWithSystem() {
+        return this.currentUserInteractingWithSystem;
     }
 
     /**
@@ -58,6 +64,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         this.atm = atm;
     }
 
+    public ATM getAtm() {
+        return this.atm;
+    }
+
+
     @SuppressWarnings("unchecked")
     /**
      * Create and update the list of accounts that a user has
@@ -70,22 +81,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         BankAccountFactory baf = new BankAccountFactory(accountType);
         newAccount = baf.determineBankAccountsFromRequest(startingAmount, user);
         newAccount.setATM(atm);
-
-        ArrayList<User> usersCopy = new ArrayList<>();
-        usersCopy = (ArrayList<User>) users.clone();
-        for (User obj: usersCopy) {
-            if (obj.getUsername().equals(user.getUsername())) {
-                obj.getAccountsCreated().add(newAccount);
-            }
-        }
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(usersCopy);
-            out.close();
-            file.close();
-        } catch (Exception ex) {ex.printStackTrace();}
+        for (User u: users) {
+            if (u.getUsername().equals(u.getUsername()))
+                u.addToAccountsCreated(newAccount);
+                }allAccounts.add(newAccount);
 
 
 
@@ -94,7 +93,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
                     "Savings, Chequing");
         } else {
-            numExistingAccounts++;
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account: " +
@@ -117,34 +115,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param accountNum Account number associated with specific account
      */
     public void deleteAccount(User user, int accountNum) {
-
-        ArrayList<User> userCopy = new ArrayList<>();
-        ArrayList<Account> accountCopy = new ArrayList<>();
-
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            userCopy = (ArrayList<User>) in.readObject();
-            for (User obj: userCopy) {
-                if (user.getUsername().equals(obj.getUsername())) {
-                    accountCopy = obj.getAccountsCreated();
-                    for (Account acct: accountCopy) {
-                        if (acct.getAccountNum() == accountNum) {
-                            accountCopy.remove(acct);
-                        }
-                    }
-                }
+        for (Account account: user.getAccountsCreated()){
+            if (account.getAccountNum() == accountNum){
+                user.getAccountsCreated().remove(accountNum);
             }
-        } catch (Exception ex) {ex.printStackTrace();}
-
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(userCopy);
-            out.close();
-            file.close();
-        } catch (Exception ex) {ex.printStackTrace();}
+        }
 
     }
 
@@ -188,24 +163,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         User newUser = new User(username, password);
         if (!(users.contains(newUser))) {
             users.add(newUser);
+        }else{
+            System.out.println("This username has been taken, chose another!");
         }
-
-        try {
-            FileOutputStream file2 = new FileOutputStream("phase2/txtfiles/Users.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file2);
-
-            out.writeObject(users);
-
-            out.close();
-            file2.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
     }
 
-    //[Angela]
 
     @SuppressWarnings("unchecked")
 
@@ -215,30 +177,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void deleteUser(User user) {
 
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            users = (ArrayList<User>) in.readObject();
-            for (User obj: users) {
-                if (obj.getUsername().equals(user.getUsername())) {
-//                    usersCopy.remove(obj);
-                    users.remove(obj);
+        for (User u: users) {
+                if (u.getUsername().equals(user.getUsername())) {
+                    users.remove(u);
                 }
-            }
-        } catch (Exception ex) {ex.printStackTrace();}
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            out.writeObject(users);
-
-            out.close();
-            file.close();
-
-        } catch (Exception ex) {ex.printStackTrace();}
-
-    }
+    }}
 
 
     /**
@@ -441,24 +384,12 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * Read file for consultation records
      * @param consultant Instance of UserConsultant
      */
-    public void viewConsultationRecords(UserConsultant consultant){
-        String history = "";
-
-        try {
-            BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/UserAdviceHistory.txt"));
-            String line = read.readLine();
-            while (line != null) {
-                System.out.println(line + "\n");
-                line = read.readLine();
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();}
-
-//        for(String s : consultant.getUserAdviseHistory()){
-//            history += s;
-//        }
-//        return history;
+    public String viewConsultationRecords(UserConsultant consultant){
+        StringBuilder history = new StringBuilder();
+        for(String s : consultant.getUserAdviseHistory()){
+            history.append(s);
+        }
+       return history.toString();
     }
 
     /**
@@ -480,28 +411,17 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         s = numMessages + ". " + msg;
         numMessages++;
         inbox.add(s);
-
-        try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/BankManagerInbox.txt"));
-            writer.write(s + "\n");
-            writer.close();
-        } catch (Exception ex) {ex.printStackTrace();}
-
     }
 
     /**
      * View the messages in inbox from the consultant!
      */
-   public String viewInbox() throws Exception{
+   public String viewInbox(){
         String s = "";
         if (inbox.isEmpty()){
-            s = "You have no messages at the moment!";
+            return "You have no messages at the moment!";
 
-        } else{
-            s = inbox.toString();
-        }
-
-        return s;
+        } return inbox.toString();
     }
 
     @Override
@@ -530,18 +450,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         public void remove() {
             users.remove(--i);
         }
-    }
-
-
-    public static void main(String[] args) {
-        BankManager bm = new BankManager("", "");
-        User user = new User("", "");
-        UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-
-        bm.createUser(user.getUsername(), user.getPassword());
-        bm.createUser(UC.getUsername(), UC.getPassword());
-
-
     }
 }
 
