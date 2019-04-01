@@ -34,6 +34,14 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         super(username, password);
         numBankManagers += 1;
         bankManagerDatabase.add(this);
+
+        try {
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(this);
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 
     /**
