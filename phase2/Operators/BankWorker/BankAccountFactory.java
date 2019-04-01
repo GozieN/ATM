@@ -16,10 +16,19 @@ public class BankAccountFactory {
     private static final String CHEQUING = "chequing";
     private String accountType;
 
+    /**
+     * BankAccountFactory constructor
+     * @param accountType Type of account
+     */
     BankAccountFactory(String accountType){
         this.accountType = accountType;
     }
 
+    /**
+     * Determine a new bank account from user's special request
+     * @param psu Instance of a PointSystemUser
+     * @param designatedUser User to receive new bank account
+     */
     public void determineNewBankAccountFromSpecialRequest(PointSystemUser psu, User designatedUser) {
         Account newAccount = null;
         if (psu instanceof StudentPointSystemUser) {
@@ -31,7 +40,12 @@ public class BankAccountFactory {
         } psu.addToAccountsCreated(newAccount);
     }
 
-
+    /**
+     * Determine type of bank accounts from user requests
+     * @param starting Starting balance for prepaid credit
+     * @param user User of bank account
+     * @return Creation of new account
+     */
     public Account determineBankAccountsFromRequest(double starting, User user) {
         Account newAccount = null;
         switch (accountType){

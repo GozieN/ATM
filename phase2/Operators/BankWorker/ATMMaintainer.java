@@ -16,14 +16,17 @@ public class ATMMaintainer extends Systems {
     }
 
     public void shutdownATM(){//shuts down the ATM
-
     }
 
     public void startupATM(){
         //starts ATM OUTSIDE of program
-
     }
 
+    /**
+     * Add bills into ATM
+     * @param dollarAmount Amount of money to be added
+     * @param atm Instance of ATM
+     */
     public void FeedInATMBills(int dollarAmount, ATM atm){//
         ArrayList<Integer> numberStore = new ArrayList<>();
         String amountStringRepresentation = String.valueOf(dollarAmount);
@@ -48,6 +51,11 @@ public class ATMMaintainer extends Systems {
 
     }
 
+    /**
+     * Deduct bills from ATM
+     * @param dollarAmount Amount of money to be deducted
+     * @param atm Instance of ATM
+     */
     public void EmptyOutATMBills(int dollarAmount, ATM atm){
         ArrayList<Integer> numberStore = new ArrayList<>();
         String amountStringRepresentation = String.valueOf(dollarAmount);
