@@ -12,7 +12,7 @@
 				<Font size="20.0" />
 			</font>
 		</Button>
-      <Label fx:id="singleAccountSummary" layoutX="90.0" layoutY="119.0" prefHeight="322.0" prefWidth="555.0">
+      <Label fx:id="singleAccountSummary" layoutX="90.0" layoutY="119.0" prefHeight="322.0" prefWidth="555.0" wrapText="true">
          <font>
             <Font size="20.0" />
          </font>
