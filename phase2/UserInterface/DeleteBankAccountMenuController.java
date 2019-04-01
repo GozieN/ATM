@@ -47,6 +47,7 @@ public class DeleteBankAccountMenuController extends Menu implements java.io.Ser
 		}
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			// angela TODO: method (check delete user account menu controller for similarity)
+			GUI.getBM().deleteAccount(this.user, selectedAccount.getAccountNum());
 		} else {
 			this.userBankAccountsStatus.setText("no bank account selected. try again");
 			this.endStatus.setText("");
