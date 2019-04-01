@@ -8,10 +8,9 @@ import phase2.FundStores.Debt.Credit;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.Contract;
 import phase2.Operators.Operator;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.util.*;
-import java.io.Serializable;
 import java.util.Iterator;
 
 public class User extends Operator implements Serializable, Iterable<Account>, Contract {
@@ -73,18 +72,17 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      */
     public String changePassword(String currentPassword, String newPassword) {
         String s = "";
+        ArrayList<User> users = bm.getUsers();
 
         for (User obj: bm.getUsers()) {
             if (obj.getUsername().equals(this.username) && currentPassword.equals(this.password)) {
                 this.password = newPassword;
                 s = this.username + ", your password has successfully been changed";
-                //            bm.deleteUser(this);
+                bm.deleteUser(this);
                 bm.createUser(this.getUsername(), newPassword);
-                //            return s;
             } else {
                 s = this.username + ",you have entered the wrong current password. " +
                         "unable to change password";
-                //            return s;
             }
 
         }
