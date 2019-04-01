@@ -19,7 +19,8 @@ public class ATMMaintainer extends Systems {
 
     }
 
-    public void starupATM(){//starts ATM
+    public void startupATM(){
+        //starts ATM OUTSIDE of program
 
     }
 

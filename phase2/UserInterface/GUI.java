@@ -16,13 +16,14 @@ import phase2.FundStores.ATM;
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
+    private static ATM atm = new ATM();
     private static BankManager BM = new BankManager("BMuser", "BMpass");
     private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
     private static User U = new User("zzzzz", "zzzzz");
-    private static ATM atm = new ATM();
 
     @Override
     public void start(Stage mainStage) throws Exception {
+        BM.setAtm(atm);
         mainStage.setTitle("ATM");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("MainMenuScene.fxml"));

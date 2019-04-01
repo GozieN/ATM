@@ -14,15 +14,12 @@ import java.util.*;
 import java.io.Serializable;
 import java.util.Iterator;
 
-/**
- *
- */
 public class User extends Operator implements Serializable, Iterable<Account>, Contract {
     private static ArrayList<User> userDatabase = new ArrayList<User>();
     private static int numUsers = 0;
     private int numChequingAccounts = 0;
-    private String password;
-    private String username;
+//    private String password;
+//    private String username;
     private ArrayList<Account> accountsCreated;
     private int numTimesOptedIntoPointSystem = 0;
     private String userType;
@@ -36,12 +33,13 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     public User(String username, String password) {
         super(username, password);
         numUsers++;
+//        this.username = super.getUsername();
+//        this.password = super.getPassword();
         this.accountsCreated = new ArrayList<Account>();
         this.userType = "standard";
         if (!userDatabase.contains(this)) {
             this.userDatabase.add(this);
         }
-
     }
 
     /**
@@ -98,18 +96,16 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * @return String - the confirmation.
      */
     public String optIntoPointSystem(){
-        numTimesOptedIntoPointSystem++;
-        String s = "";
         PointSystemUser alteredUser;
-        alteredUser = new PointSystemUser(getUsername(), getPassword());
-        alteredUser.setAccountsCreated(this.getAccountsCreated());
+        BankUserFactory b = new BankUserFactory(this.getUserType());
+        alteredUser = b.determineOptInPointUserType(this);
+        alteredUser.setAccountsCreated(this.accountsCreated);
+
         if (this.numTimesOptedIntoPointSystem > 1){
             alteredUser.setNumPoints(0);
         }
-        //IN GUI CALL BM.delete(this);
-        s = "You have successfully opted int of the point system! If this is your first time opting into this service, " +
+        return "You have successfully opted int of the point system! If this is your first time opting into this service, " +
                 "you get an initial point balance of 50.";
-        return s;
     }
 
     /**
@@ -205,21 +201,19 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * Get a summary of the user's accounts
      */
     public String viewInfo() {
-    	String s;
+    	StringBuilder sb = new StringBuilder();
         if (this.accountsCreated.isEmpty()) {
-            s = "Nothing to view, you have not created an account yet!";
-            return s;
+            sb.append("Nothing to view, you have not created an account yet!");
         } else {
-            s = "Account holder: " + this.username + " Report of FundHolders:";
-            for(int i = 0; i < accountsCreated.size(); i++){
-                s += accountsCreated.get(i).getAccountType() + "Number: " + accountsCreated.get(i).getAccountNum() + "\n" +
+            sb.append("Account holder: " + this.username + "\n Report of Account(s):");
+            for(Account account:accountsCreated){
+                sb.append(account.getAccountType() + "Number: " + account.getAccountNum() + "\n" +
                      "\n Current Balance:" +
-                    accountsCreated.get(i).getBalance() + " Most Recent Transactions: " +
-                    accountsCreated.get(i).viewLastAction();
-        }
-        s += "Net Total: " + getNetTotal();
-		return s;
-	}
+                    account.getBalance() + "\n Most Recent Transactions: " +
+                    account.viewLastAction() + "\n"); }
+        sb.append("\n Net Total: " + getNetTotal());
+	    }
+	    return sb.toString();
     }
 
     @Override

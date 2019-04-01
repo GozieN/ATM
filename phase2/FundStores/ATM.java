@@ -224,8 +224,8 @@ public class ATM implements Serializable {
     // plus bills into ATM method (from deposit methods)
      public void plus(int dollarAmount) {
          ATMMaintainer am = new ATMMaintainer();
-         am.FeedInATMBills(dollarAmount, this);
          am.setBm(BM);
+         am.FeedInATMBills(dollarAmount, this);
 
 
      }

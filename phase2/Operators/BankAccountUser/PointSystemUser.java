@@ -20,7 +20,7 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     public PointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
-        this.userDatabase = new ArrayList<User>(); //- WOULD ERASE OLD INFO!
+        this.userDatabase.add(this);
         userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
         numPoints = 100;
@@ -122,6 +122,10 @@ public class PointSystemUser extends User implements Contract, Rewardable {
      * Prompt the point rewards to be cashed by notifying each account.
      */
     public void retrieveRewards(){
+        if (numPoints > 100){
+            isGoldMember = true;
+//            BankUserFactory buf = new BankUserFactory();
+        }
         notifyObservers();
         }
 

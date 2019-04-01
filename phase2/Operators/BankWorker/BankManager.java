@@ -48,10 +48,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-        if (accountType.equals("lineofcredit")) {
+        if (accountType.equals("LineOfCreditAccount")) {
             newAccount = new lineofcredit(user);
 
-        } else if (accountType.equals("creditcard")) {
+        } else if (accountType.equals("credit")) {
             newAccount = new CreditCard(user);
 
         } else if (accountType.equals("savings")) {
@@ -65,24 +65,18 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             }
         }
 
-//        ArrayList<User> usersCopy = new ArrayList<>();
-//        usersCopy = (ArrayList<User>) users.clone();
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            users = (ArrayList<User>) in.readObject();
-            for (User obj: users) {
-                if (obj.getUsername().equals(user.getUsername())) {
-                    obj.getAccountsCreated().add(newAccount);
-                }
+        ArrayList<User> usersCopy = new ArrayList<>();
+        usersCopy = (ArrayList<User>) users.clone();
+        for (User obj: usersCopy) {
+            if (obj.getUsername().equals(user.getUsername())) {
+                obj.getAccountsCreated().add(newAccount);
             }
-        } catch (Exception ex) {ex.printStackTrace();}
-
+        }
 
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(users);
+            out.writeObject(usersCopy);
             out.close();
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
@@ -122,10 +116,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             userCopy = (ArrayList<User>) in.readObject();
             for (User obj: userCopy) {
                 if (user.getUsername().equals(obj.getUsername())) {
-//                    accountCopy = obj.getAccountsCreated();
-                    for (Account acct: obj.getAccountsCreated()) {
+                    accountCopy = obj.getAccountsCreated();
+                    for (Account acct: accountCopy) {
                         if (acct.getAccountNum() == accountNum) {
-                            obj.getAccountsCreated().remove(acct);
+                            accountCopy.remove(acct);
                         }
                     }
                 }
@@ -526,24 +520,23 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
-        User user = new User("", "");
+//        User user = new User("", "");
         UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-//        User user1 = new User("a", "a");
-//        User user2 = new User("b", "b");
-//        User user3 = new User("c", "c");
-//        User user4 = new User("d", "d");
-//        User user5 = new User("e", "e");
-//
-        bm.createUser(user.getUsername(), user.getPassword());
-        bm.createUser(UC.getUsername(), UC.getPassword());
-//        bm.createUser(user1.getUsername(), user1.getPassword());
-//        bm.createUser(user2.getUsername(), user2.getPassword());
-//        bm.createUser(user3.getUsername(), user3.getPassword());
-//        bm.createUser(user5.getUsername(), user5.getPassword());
+        User user1 = new User("a", "a");
+        User user2 = new User("b", "b");
+        User user3 = new User("c", "c");
+        User user4 = new User("d", "d");
+        User user5 = new User("e", "e");
 
-//        bm.deleteUser(user3);
-//        bm.createUser(user4.getUsername(), user4.getPassword());
-//        bm.deleteUser(user1);
+        bm.createUser(UC.getUsername(), UC.getPassword());
+        bm.createUser(user1.getUsername(), user1.getPassword());
+        bm.createUser(user2.getUsername(), user2.getPassword());
+        bm.createUser(user3.getUsername(), user3.getPassword());
+        bm.createUser(user5.getUsername(), user5.getPassword());
+//
+        bm.deleteUser(user3);
+        bm.createUser(user4.getUsername(), user4.getPassword());
+        bm.deleteUser(user1);
 ////
 //        bm.createNewAccount(10, "savings", user2);
 //        bm.createNewAccount(20, "chequing", user2);
@@ -553,17 +546,17 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 //        bm.createNewAccount(20, "savings", user4);
 //        bm.createNewAccount(20, "chequing", user5);
 //
-//        ArrayList<User> users = new ArrayList<>();
-//        try {
-//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-//            ObjectInputStream in = new ObjectInputStream(file);
-//            users = (ArrayList<User>) in.readObject();
-//            for (User obj : users) {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            users = (ArrayList<User>) in.readObject();
+            for (User obj : users) {
 //                System.out.println(obj.getAccountsCreated());
-//                System.out.println(obj.getUsername());
-//            }
-//
-//        } catch (Exception e) {e.printStackTrace();}
+                System.out.println(obj.getUsername());
+            }
+
+        } catch (Exception e) {e.printStackTrace();}
 
 //        ArrayList<User> users = new ArrayList<>();
 //        try {

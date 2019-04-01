@@ -1,12 +1,9 @@
 package phase2.Operators.BankWorker;
 
 import phase2.FundStores.Account;
-import phase2.FundStores.Asset.ChequingAccount;
-import phase2.FundStores.Asset.Oldies;
-import phase2.FundStores.Asset.SavingsAccount;
-import phase2.FundStores.Asset.StudentAccount;
+import phase2.FundStores.Asset.*;
 import phase2.FundStores.Debt.CreditCard;
-import phase2.FundStores.Debt.lineofcredit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.*;
 import phase2.Operators.BankAccountUser.BankUserFactory;
 
@@ -34,11 +31,11 @@ public class BankAccountFactory {
     }
 
 
-    public Account determineBankAccountsFromRequest(User user) {
+    public Account determineBankAccountsFromRequest(double starting, User user) {
         Account newAccount = null;
         switch (accountType){
         case LINE_OF_CREDIT:
-            newAccount = new lineofcredit(user);
+            newAccount = new LineOfCredit(user);
             break;
         case CREDIT:
             newAccount = new CreditCard(user);
@@ -47,15 +44,18 @@ public class BankAccountFactory {
             newAccount = new SavingsAccount(user);
             break;
         case PREPAID:
-            newAccount = new SavingsAccount(user);
+            newAccount = new PrepaidCredit(user);
+            newAccount.setBalance(starting);
+
             break;
         case CHEQUING:
             user.setNumChequingAccounts();
-            if (user.getNumChequingAccounts() == 1) {
+            if (user.getNumChequingAccounts() == 0) {
+                user.setNumChequingAccounts();
                 newAccount = new ChequingAccount(user, true);
             } else { newAccount = new ChequingAccount(user, false); }}
-            user.addToAccountsCreated(newAccount);
-            return newAccount; }
+        user.addToAccountsCreated(newAccount);
+        return newAccount; }
 
     public void updateBankAccountDatabase(User oldUser, User newUser) {
         for (Account account: oldUser.getAccountsCreated()){
