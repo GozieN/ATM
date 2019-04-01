@@ -72,6 +72,15 @@ public class DateTimeManager {
                     }
                 }
 
+            }else{
+                int seconds = Integer.parseInt(now.substring(15, 17));
+                seconds += 1;
+                if(seconds < 10){
+                    updated = now.substring(0, 15) + "0" + seconds;
+                    //write t file
+                }else{
+                    updated = now.substring(0, 15) + seconds;
+                }
             }
         }
     };
