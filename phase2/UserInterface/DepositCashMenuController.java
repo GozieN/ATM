@@ -67,7 +67,7 @@ public class DepositCashMenuController extends Menu implements java.io.Serializa
 			if (amount >= 0 && amount % 5 == 0) {
 				this.amountInStatus.setText("valid amount");
 				this.primaryStatus.setText("deposit successful");
-				((ChequingAccount)selectedAccount).depositIntoATM(amount);
+				selectedAccount.depositIntoATM(amount);
             } else {
 				this.amountInStatus.setText("invalid amount. try again");
 				this.primaryStatus.setText("");

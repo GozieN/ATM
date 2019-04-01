@@ -67,7 +67,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         this.transactionInfoTempHolder = new Object[3];
 
         try {
-            FileOutputStream file = new FileOutputStream("pahse2/txtfiles/AccountDatabase.txt");
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/AccountDatabase.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(accountsDatabase);
             out.close();
@@ -218,12 +218,12 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * @param amount Amount of money to deposit
      */
     public boolean depositToAccount(double amount) {
-        this.balance =+amount;
-        System.out.println("Deposit successful, Account: " + this.accountNum +
-                " now has an increased balance of: " + balance + "CAD$");
+        this.balance += amount;
         this.updateHistory("deposit", amount, null);
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
+        System.out.println("Deposit successful, Account: " + this.accountNum +
+                " now has an increased balance of: " + balance + "CAD$");
         return true;
     }
 
@@ -310,19 +310,24 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * Return a summary of this account
      */
     public String summarize() {
-        if (accountHolder2 != null) {
-            return "Account holder(s): " + holderName +
-                    " " + holderName2 + "\n " +
-                    "Account Type:" + accountType + "\n" +
-                    "Account Number: " + accountNum +
-                    "\n Holds: " + balance + "CAD$";
-        }else {
-            return "Account holder(s): " + holderName +
-                    "\n Account Type:" + accountType + "\n" +
-                    "Account Number: " + accountNum +
-                    "\n Holds: " + balance + "CAD$";
-        }
-
+        System.out.println("Account holder(s): " + holderName +
+                " " + holderName2 + "\n " +
+                "Account Type:" + accountType + "\n" +
+                "Account Number: " + accountNum +
+                "\n Holds: " + this.getBalance() + "CAD$");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Account holder(s): ");
+        sb.append(holderName);
+        sb.append(", ");
+        sb.append(holderName2);
+        sb.append("\n Account Type: ");
+        sb.append(accountType);
+        sb.append("\n Account Number: ");
+        sb.append(accountType);
+        sb.append("\n Holds: ");
+        sb.append(balance);
+        sb.append("CAD$");
+        return sb.toString();
     }
 
     /**

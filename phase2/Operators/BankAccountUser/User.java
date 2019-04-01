@@ -201,19 +201,19 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * Get a summary of the user's accounts
      */
     public String viewInfo() {
-    	StringBuilder sb = new StringBuilder();
+    	String sb = new String("A");
         if (this.accountsCreated.isEmpty()) {
-            sb.append("Nothing to view, you have not created an account yet!");
+            sb = "Nothing to view, you have not created an account yet!";
         } else {
-            sb.append("Account holder: " + this.username + "\n Report of Account(s):");
+            sb.concat("ccount holder: " + this.username + "\n Report of Account(s):");
             for(Account account:accountsCreated){
-                sb.append(account.getAccountType() + "Number: " + account.getAccountNum() + "\n" +
+                sb.concat(account.getAccountType() + "Number: " + account.getAccountNum() + "\n" +
                      "\n Current Balance:" +
                     account.getBalance() + "\n Most Recent Transactions: " +
                     account.viewLastAction() + "\n"); }
-        sb.append("\n Net Total: " + getNetTotal());
+        sb.concat("\n Net Total: " + getNetTotal());
 	    }
-	    return sb.toString();
+	    return sb;
     }
 
     @Override

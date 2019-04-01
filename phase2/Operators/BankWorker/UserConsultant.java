@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.io.BufferedWriter;
 
-public class UserConsultant extends BankEmployee implements Contract {
+public class UserConsultant extends CustomerService implements Contract {
     private User personalBankAccount;
     static int numUsersConsulted = 1;
     private String currentUserBeingConsultedType;
