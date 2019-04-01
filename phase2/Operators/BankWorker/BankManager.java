@@ -41,6 +41,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             out.close();
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
     public void setCurrentUserInteractingWithSystem(User currentUserInteractingWithSystem) {
@@ -84,8 +85,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param startingAmount Amount of money the account will start off with
      * @param accountType Type of account: Credit Card, Line of Credit, Chequing, or Savings
      */
-    public void createNewAccount(double startingAmount, String accountType, User user) {
+    public String createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
+        String msg = "";
         BankAccountFactory baf = new BankAccountFactory(accountType);
         newAccount = baf.determineBankAccountsFromRequest(startingAmount, user);
         newAccount.setATM(atm);
@@ -97,24 +99,32 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
 
         if (newAccount == null) {
-            System.out.println("Sorry, it seems as though an error occurred when creating your account. Please " +
+            String s = "Sorry, it seems as though an error occurred when creating your account. Please " +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
-                    "Savings, Chequing");
+                    "Savings, Chequing";
+            msg += s;
+            System.out.println(s);
+
         } else {
             user.addToAccountsCreated(newAccount);
-            System.out.println("Hello " + user.getUsername() + " " +
+            String s = "Hello " + user.getUsername() + " " +
                     ", the following account: " +
                     newAccount.accountType + " with account Number: "
-                    + newAccount.getAccountNum() + " was created upon your request.");
-
+                    + newAccount.getAccountNum() + " was created upon your request.";
+            msg += s;
+            System.out.println(s);
         }
 
         for (Account acct: user.getAccountsCreated()) {
             if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
-                System.out.println("And you primary chequing account is " + acct.getAccountNum());
+                String s = "And you primary chequing account is " + acct.getAccountNum();
+                msg += s;
+                System.out.println(s);
                 break;
             }
         }
+
+        return msg;
     }
 
     /**
@@ -177,7 +187,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     }
 
 
-    @SuppressWarnings("unchecked")
 
     /**
      * Delete a user
@@ -186,10 +195,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     public void deleteUser(User user) {
 
         for (User u: users) {
-                if (u.getUsername().equals(user.getUsername())) {
-                    users.remove(u);
-                }
-    }}
+            if (u.getUsername().equals(user.getUsername())) {
+                users.remove(u);
+            }
+        }
+    }
 
 
     /**
