@@ -134,6 +134,23 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     }
 
 
+    /**
+     *Withdraw amount from account using ATM
+     * @param amount Amount of money to withdraw
+     */
+    public boolean withdrawFromATM(int amount) {
+        if (!validAmountInput(amount)){
+            return false;
+        }else{
+            if (atm.validWithdraw(amount)) {
+                atm.minus(amount);
+                withdrawFromAccount(amount);
+            }
+            if (accountHolder instanceof PointSystemUser){
+                ((PointSystemUser) accountHolder).setNumPointsIncrease();}
+            return true;
+        }}
+
 
     /**
      * Set balance of account
@@ -258,6 +275,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;}
+
 
     /**
      * check if amount is usable by atm

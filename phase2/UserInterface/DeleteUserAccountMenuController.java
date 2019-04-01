@@ -49,7 +49,7 @@ public class DeleteUserAccountMenuController extends Menu implements java.io.Ser
 			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-			for (User obj: userList) {
+			for (User obj : userList) {
 				if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())
 						&& obj.getUsername().equals(this.user.getUsername())) {
 					GUI.getBM().deleteUser(obj);
@@ -59,7 +59,6 @@ public class DeleteUserAccountMenuController extends Menu implements java.io.Ser
 				}
 			}
 		} catch (Exception ex) {ex.printStackTrace();}
-
 	}
 
 	public void back(ActionEvent event) throws Exception {

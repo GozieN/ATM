@@ -4,8 +4,9 @@ import phase2.FundStores.*;
 import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
+import phase2.FundStores.Debt.Credit;
 import phase2.FundStores.Debt.CreditCard;
-import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.lineofcredit;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
@@ -18,6 +19,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private static int numBankManagers = 0;
     private String username;
     private String password;
+    private int numExistingAccounts;
     private int numMessages;
     private ATM atm;
     private static ArrayList<User> users = new ArrayList<>();
@@ -46,9 +48,22 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-        BankAccountFactory baf = new BankAccountFactory(accountType);
-        newAccount = baf.determineBankAccountsFromRequest(startingAmount, user);
-        newAccount.setATM(atm);
+        if (accountType.equals("LineOfCreditAccount")) {
+            newAccount = new lineofcredit(user);
+
+        } else if (accountType.equals("credit")) {
+            newAccount = new CreditCard(user);
+
+        } else if (accountType.equals("savings")) {
+            newAccount = new SavingsAccount(user);
+        } else if (accountType.equals("chequing")) {
+            user.setNumChequingAccounts();
+            if (user.getNumChequingAccounts() == 0) {
+                newAccount = new ChequingAccount(user, true);
+            } else {
+                newAccount = new ChequingAccount(user, false);
+            }
+        }
 
         ArrayList<User> usersCopy = new ArrayList<>();
         usersCopy = (ArrayList<User>) users.clone();
@@ -57,6 +72,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
                 obj.getAccountsCreated().add(newAccount);
             }
         }
+
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
@@ -65,11 +81,14 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
 
+
+
         if (newAccount == null) {
             System.out.println("Sorry, it seems as though an error occurred when creating your account. Please " +
-                    "make sure that the account type input is one of the following options: lineofcredit, credit, " +
-                    "savings, chequing");
+                    "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
+                    "Savings, Chequing");
         } else {
+            numExistingAccounts++;
             user.addToAccountsCreated(newAccount);
             System.out.println("Hello " + user.getUsername() + " " +
                     ", the following account: " +
@@ -219,12 +238,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
+        this.atm = atm;
         atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
-    }
-
-    public void setAtm(ATM atm) {
-        this.atm = atm;
     }
 
     /**
