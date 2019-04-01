@@ -46,8 +46,13 @@ public abstract class Debit extends Account implements Serializable, Transferabl
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
     }
-
-
-
+    /**
+     * Reading from external file
+     * @return Boolean to check if transaction is added to bill
+     */
+    @Override
+    public boolean addToBill() {
+        return false;
+    }
 
 }

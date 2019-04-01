@@ -46,13 +46,4 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
             setBalance(getBalance() + increaseBy);
         }
     }
-
-    /**
-     * Reading from external file
-     * @return Boolean to check if transaction is added to bill
-     */
-    @Override
-    public boolean addToBill(double amount) {
-        return false;
-    }
 }
