@@ -48,10 +48,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-        if (accountType.equals("LineOfCreditAccount")) {
+        if (accountType.equals("lineofcreditAccount")) {
             newAccount = new lineofcredit(user);
 
-        } else if (accountType.equals("credit")) {
+        } else if (accountType.equals("creditcard")) {
             newAccount = new CreditCard(user);
 
         } else if (accountType.equals("savings")) {
@@ -65,9 +65,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             }
         }
 
-        ArrayList<User> usersCopy = new ArrayList<>();
-        usersCopy = (ArrayList<User>) users.clone();
-        for (User obj: usersCopy) {
+//        ArrayList<User> usersCopy = new ArrayList<>();
+//        usersCopy = (ArrayList<User>) users.clone();
+        for (User obj: users) {
             if (obj.getUsername().equals(user.getUsername())) {
                 obj.getAccountsCreated().add(newAccount);
             }
@@ -76,7 +76,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(usersCopy);
+            out.writeObject(users);
             out.close();
             file.close();
         } catch (Exception ex) {ex.printStackTrace();}
@@ -116,10 +116,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             userCopy = (ArrayList<User>) in.readObject();
             for (User obj: userCopy) {
                 if (user.getUsername().equals(obj.getUsername())) {
-                    accountCopy = obj.getAccountsCreated();
-                    for (Account acct: accountCopy) {
+//                    accountCopy = obj.getAccountsCreated();
+                    for (Account acct: obj.getAccountsCreated()) {
                         if (acct.getAccountNum() == accountNum) {
-                            accountCopy.remove(acct);
+                            obj.getAccountsCreated().remove(acct);
                         }
                     }
                 }
