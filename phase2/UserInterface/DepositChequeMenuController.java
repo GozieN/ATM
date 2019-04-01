@@ -69,6 +69,7 @@ public class DepositChequeMenuController extends Menu implements java.io.Seriali
 				((ChequingAccount)selectedAccount).depositChequeToAccount(amount);
 			} else {
 				this.amountInStatus.setText("invalid amount. try again");
+				this.primaryStatus.setText("");
 			}
 		}
 	}
