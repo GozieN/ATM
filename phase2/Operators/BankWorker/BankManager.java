@@ -94,7 +94,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         for (User u: users) {
             if (u.getUsername().equals(u.getUsername()))
                 u.addToAccountsCreated(newAccount);
-                }allAccounts.add(newAccount);
+                } allAccounts.add(newAccount);
 
 
 
@@ -186,19 +186,37 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }
     }
 
-
-
     /**
      * Delete a user
      * @param user the User object that needs to be deleted.
      */
     public void deleteUser(User user) {
 
-        for (User u: users) {
-            if (u.getUsername().equals(user.getUsername())) {
-                users.remove(u);
+        BankManager bm = new BankManager("", "");
+        ArrayList<User> userList = new ArrayList<>();
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            bm = (BankManager) in.readObject();
+            userList = bm.getUsers();
+            for (User obj: userList) {
+                if (obj.getUsername().equals(user.getUsername())) {
+                    userList.remove(obj);
+                }
             }
-        }
+        } catch (Exception ex) {ex.printStackTrace();}
+
+//        try {
+//            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
+//            ObjectOutputStream out = new ObjectOutputStream(file);
+//
+//            out.writeObject(bm);
+//
+//            out.close();
+//            file.close();
+//
+//        } catch (Exception ex) {ex.printStackTrace();}
+
     }
 
 
@@ -468,6 +486,60 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         public void remove() {
             users.remove(--i);
         }
+    }
+
+    public static void main(String[] args) {
+        BankManager bm = new BankManager("", "");
+//        User user = new User("", "");
+        UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+        User user1 = new User("a", "a");
+        User user2 = new User("b", "b");
+        User user3 = new User("c", "c");
+        User user4 = new User("d", "d");
+        User user5 = new User("e", "e");
+
+        bm.createUser(UC.getUsername(), UC.getPassword());
+        bm.createUser(user1.getUsername(), user1.getPassword());
+        bm.createUser(user2.getUsername(), user2.getPassword());
+        bm.createUser(user3.getUsername(), user3.getPassword());
+        bm.createUser(user5.getUsername(), user5.getPassword());
+//
+        bm.deleteUser(user3);
+        bm.createUser(user4.getUsername(), user4.getPassword());
+        bm.deleteUser(user1);
+////
+//        bm.createNewAccount(10, "savings", user2);
+//        bm.createNewAccount(20, "chequing", user2);
+//        bm.createNewAccount(30, "chequing", user2);
+//        bm.createNewAccount(40, "chequing", user2);
+//        bm.createNewAccount(20, "credit", user5);
+//        bm.createNewAccount(20, "savings", user4);
+//        bm.createNewAccount(20, "chequing", user5);
+//
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            bm = (BankManager) in.readObject();
+            users = bm.getUsers();
+            for (User obj : users) {
+//                System.out.println(obj.getAccountsCreated());
+                System.out.println(obj.getUsername());
+            }
+        } catch (Exception e) {e.printStackTrace();}
+
+//        ArrayList<User> users = new ArrayList<>();
+//        try {
+//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//            users = (ArrayList<User>) in.readObject();
+//            for (User obj : users) {
+//                System.out.println(obj.getAccountsCreated());
+//                System.out.println(obj.getUsername());
+//            }
+//
+//        } catch (Exception e) {e.printStackTrace();}
+
     }
 }
 
