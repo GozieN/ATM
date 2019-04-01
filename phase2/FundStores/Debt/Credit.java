@@ -17,7 +17,6 @@ public abstract class Credit extends Account implements Serializable {
 
     /**
      * Credit class constructor
-     *
      * @param accountHolder Name of holder of the account
      */
     public Credit(User accountHolder) {
@@ -25,6 +24,10 @@ public abstract class Credit extends Account implements Serializable {
         accountType = "credit";
     }
 
+    /**
+     * Reading from external file
+     * @return Boolean to check if transaction is added to bill
+     */
     @Override
     public boolean addToBill() {
         return false;

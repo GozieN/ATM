@@ -28,7 +28,7 @@ public class CreditCard extends Credit {
         this.transactionInfoTempHolder = new Object[2];
     }
 
-    /*
+    /**
      * Set credit limit of account
      * @param creditLimit Limit of which a user can spend in their credit account
      */
@@ -38,15 +38,18 @@ public class CreditCard extends Credit {
 
     /**
      * Get credit limit of account
+     *
      * @return Double for amount of money user can spend on credit account
      */
-    public double getCreditLimit() {return this.creditLimit;}
+    public double getCreditLimit() {
+        return this.creditLimit;
+    }
 
-    @Override
     /**
      * Pay the bill
      * @param amount Amount of money to withdraw from account to pay bill
      */
+    @Override
     public boolean payBill(double amount) {
         withdrawFromAccount(amount);
         try {
@@ -62,6 +65,10 @@ public class CreditCard extends Credit {
         return true;
     }
 
+    /**
+     * Add to the bill
+     * @param amount Amount of money from transaction made to add to bill
+     */
     public boolean addToBill(double amount) {
 
         if (this.getAccountType() == "LineOfCredit") {
@@ -82,9 +89,5 @@ public class CreditCard extends Credit {
 //        return true; }
         return true;
     }
-
-    @Override
-    public boolean addToBill() {
-        return false;
-    }
 }
+
