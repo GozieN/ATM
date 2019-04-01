@@ -74,9 +74,11 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 					((ChequingAccount)selectedAccount).withdrawFromATM(amount);
 				} else {
 					this.amountInStatus.setText("this account does not have enough funds to withdraw $" + amount);
+					this.primaryStatus.setText("");
 				}
 			} else {
 				this.amountInStatus.setText("invalid amount. try again");
+				this.primaryStatus.setText("");
 			}
 		}
 	}
