@@ -4,6 +4,7 @@ import phase2.FundStores.Account;
 import phase2.FundStores.Asset.*;
 import phase2.FundStores.Debt.CreditCard;
 import phase2.FundStores.Debt.LineOfCredit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.*;
 import phase2.Operators.BankAccountUser.BankUserFactory;
 

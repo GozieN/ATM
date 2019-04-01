@@ -4,7 +4,6 @@ import phase2.FundStores.*;
 import phase2.FundStores.Account;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
-import phase2.FundStores.Debt.Credit;
 import phase2.FundStores.Debt.CreditCard;
 import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
@@ -37,6 +36,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
     public String getMasterAccessKey() {
         return this.accessKey;
+    }
+
+    public void setAtm(ATM atm) {
+        this.atm = atm;
     }
 
     @SuppressWarnings("unchecked")
