@@ -6,7 +6,7 @@ import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.Credit;
 import phase2.FundStores.Debt.CreditCard;
-import phase2.FundStores.Debt.lineofcredit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
 import java.io.*;
@@ -49,7 +49,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
         if (accountType.equals("LineOfCreditAccount")) {
-            newAccount = new lineofcredit(user);
+            newAccount = new LineOfCredit(user);
 
         } else if (accountType.equals("credit")) {
             newAccount = new CreditCard(user);

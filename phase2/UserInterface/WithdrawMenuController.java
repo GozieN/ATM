@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.event.*;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.lineofcredit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
 public class WithdrawMenuController extends Menu implements java.io.Serializable {
@@ -103,9 +103,9 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 					if (selectedAccount instanceof Debit) {
 						this.endStatus.setText("withdrawal successful");
 						((Debit)selectedAccount).withdrawFromATM(amount);
-					} else if (selectedAccount instanceof lineofcredit) {
+					} else if (selectedAccount instanceof LineOfCredit) {
 						this.endStatus.setText("withdrawal successful");
-						((lineofcredit)selectedAccount).withdrawFromATM(amount);
+						((LineOfCredit)selectedAccount).withdrawFromATM(amount);
 					}
 				} else {
 					this.amountInStatus.setText("this account does not have enough funds to withdraw $" + amount);
