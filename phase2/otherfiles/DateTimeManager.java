@@ -60,6 +60,16 @@ public class DateTimeManager {
                             updated = now.substring(0, 9) + hour + ":00:00";
                         }
                     }
+                }else{
+                    int minutes = Integer.parseInt(now.substring(12, 14));
+                    minutes += 1;
+                    if(minutes < 10) {
+                        updated = now.substring(0, 13)+ "0" + minutes + ":00";
+                        //write to file
+                    }
+                    else{
+                        updated = now.substring(0, 13)+ minutes + ":00";
+                    }
                 }
 
             }
