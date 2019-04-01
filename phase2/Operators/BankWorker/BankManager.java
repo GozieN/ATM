@@ -67,11 +67,17 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
 //        ArrayList<User> usersCopy = new ArrayList<>();
 //        usersCopy = (ArrayList<User>) users.clone();
-        for (User obj: users) {
-            if (obj.getUsername().equals(user.getUsername())) {
-                obj.getAccountsCreated().add(newAccount);
+        try {
+            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            users = (ArrayList<User>) in.readObject();
+            for (User obj: users) {
+                if (obj.getUsername().equals(user.getUsername())) {
+                    obj.getAccountsCreated().add(newAccount);
+                }
             }
-        }
+        } catch (Exception ex) {ex.printStackTrace();}
+
 
         try {
             FileOutputStream file = new FileOutputStream("phase2/txtfiles/Users.txt");
