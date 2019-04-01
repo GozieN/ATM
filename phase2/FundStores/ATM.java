@@ -239,12 +239,15 @@ public class ATM implements Serializable {
         ATMMaintainer am = new ATMMaintainer();
         am.EmptyOutATMBills(dollarAmount, this);
         am.setBm(BM);
-
-
     }
 
-    public void withdrawFromATM(double amount){
-        //if (amount < 1000)
+    public boolean validWithdraw(double amount){
+        if ((amount < 1000) && (amount < checkATMAmount())){
+            return true;
+        }
+            System.out.println("Sorry, you are unable to make a withdrawal at the moment, please input" +
+                    "a lower amount and try again.");
+            return false;
     }
 
     public double checkATMAmount() {
