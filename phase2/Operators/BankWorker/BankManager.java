@@ -48,7 +48,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-        if (accountType.equals("lineofcreditAccount")) {
+        if (accountType.equals("lineofcredit")) {
             newAccount = new lineofcredit(user);
 
         } else if (accountType.equals("creditcard")) {
