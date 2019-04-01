@@ -12,7 +12,7 @@ public class DateTimeManager {
     TimerTask updateSeconds = new TimerTask() {
         @Override
         public void run() {
-            String now = new String(getLastLine());
+            String now = (getLastLine()) + " ";
             String updated = "";
             if(now.substring(15,17).equals("59")){
                 if(now.substring(13,15).equals("59")){
@@ -82,8 +82,13 @@ public class DateTimeManager {
                     updated = now.substring(0, 15) + seconds;
                 }
             }
+            System.out.println(updated);
         }
     };
+
+    public void startdatetime(){
+        tim.scheduleAtFixedRate(updateSeconds,0, 1000);
+    }
 
     public String getLastLine() {
         String currLine;
@@ -99,4 +104,8 @@ public class DateTimeManager {
         }
         return lastLine;
     }
+    public static void main(String[] args){
+        DateTimeManager d = new DateTimeManager();
+    }
 }
+
