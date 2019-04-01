@@ -51,22 +51,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createNewAccount(double startingAmount, String accountType, User user) {
         Account newAccount = null;
-        if (accountType.equals("LineOfCreditAccount")) {
-            newAccount = new LineOfCredit(user);
-
-        } else if (accountType.equals("credit")) {
-            newAccount = new CreditCard(user);
-
-        } else if (accountType.equals("savings")) {
-            newAccount = new SavingsAccount(user);
-        } else if (accountType.equals("chequing")) {
-            user.setNumChequingAccounts();
-            if (user.getNumChequingAccounts() == 0) {
-                newAccount = new ChequingAccount(user, true);
-            } else {
-                newAccount = new ChequingAccount(user, false);
-            }
-        }
+        BankAccountFactory baf = new BankAccountFactory(accountType);
+        newAccount = baf.determineBankAccountsFromRequest(startingAmount, user);
+        newAccount.setATM(atm);
 
         ArrayList<User> usersCopy = new ArrayList<>();
         usersCopy = (ArrayList<User>) users.clone();

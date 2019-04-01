@@ -195,9 +195,9 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * Set the transaction holder
      */
     public void updateHistory(String action, double amount, @Nullable Account receiver){
-        transactionInfoTempHolder[1] = action;
-        transactionInfoTempHolder[2] = amount;
-        transactionInfoTempHolder[3] = receiver;
+        transactionInfoTempHolder[0] = action;
+        transactionInfoTempHolder[1] = amount;
+        transactionInfoTempHolder[2] = receiver;
         history.add(transactionInfoTempHolder);
         clearTransactionTempHolder();
     }
