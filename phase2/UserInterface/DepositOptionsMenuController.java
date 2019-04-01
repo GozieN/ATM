@@ -40,7 +40,7 @@ public class DepositOptionsMenuController extends Menu implements java.io.Serial
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		if (this.operatorType.equals("BankManagerMenus")) {
+		if (this.operatorType.equals("Bank Manager")) {
 			Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
