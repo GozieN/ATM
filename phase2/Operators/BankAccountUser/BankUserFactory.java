@@ -5,6 +5,8 @@ public class BankUserFactory {
     private final static String STANDARD_USER = "standard";
     private final static String RETIRED_POINT_USER = "retiredPS";
     private final static String STUDENT_POINT_USER = "studentPS";
+    private final static String GOLD_POINT_USER = "goldPS";
+
 
     private String userAccountType;
 
@@ -56,6 +58,9 @@ public class BankUserFactory {
                 break;
             case "student":
                 changedUserType = new StudentPointSystemUser(user.getUsername(), user.getPassword());
+                break;
+            case "gold":
+                changedUserType = new GoldMemberPointSystemUser(user.getUsername(), user.getPassword());
                 break;
             case "retired":
                 changedUserType = new RetiredPointSystemUser(user.getUsername(), user.getPassword());

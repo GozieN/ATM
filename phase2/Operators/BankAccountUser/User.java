@@ -96,18 +96,16 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * @return String - the confirmation.
      */
     public String optIntoPointSystem(){
-        numTimesOptedIntoPointSystem++;
-        String s = "";
         PointSystemUser alteredUser;
-        alteredUser = new PointSystemUser(getUsername(), getPassword());
-        alteredUser.setAccountsCreated(this.getAccountsCreated());
+        BankUserFactory b = new BankUserFactory(this.getUserType());
+        alteredUser = b.determineOptInPointUserType(this);
+        alteredUser.setAccountsCreated(this.accountsCreated);
+
         if (this.numTimesOptedIntoPointSystem > 1){
             alteredUser.setNumPoints(0);
         }
-        //IN GUI CALL BM.delete(this);
-        s = "You have successfully opted int of the point system! If this is your first time opting into this service, " +
+        return "You have successfully opted int of the point system! If this is your first time opting into this service, " +
                 "you get an initial point balance of 50.";
-        return s;
     }
 
     /**

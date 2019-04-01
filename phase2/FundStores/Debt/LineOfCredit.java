@@ -13,9 +13,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class lineofcredit extends Credit implements Transferable, ATMWIthdrawable {
+public class LineOfCredit extends Credit implements Transferable, ATMWIthdrawable {
 
-    public lineofcredit(User accountHolder){
+    public LineOfCredit(User accountHolder){
         super(accountHolder);
         accountType = "LineOfCredit";
         accountsDatabase.add(this);

@@ -46,7 +46,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         this.accountHolder = accountHolder;
         this.accountNumTotal++;
         this.holderName = accountHolder.getUsername();
-        this.transactionInfoTempHolder = new Object[2];
+        this.transactionInfoTempHolder = new Object[3];
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         this.accountUsers.add(accountHolder2);
         this.holderName = accountHolder.getUsername();
         this.holderName2 = accountHolder2.getUsername();
-        this.transactionInfoTempHolder = new Object[2];
+        this.transactionInfoTempHolder = new Object[3];
 
         try {
             FileOutputStream file = new FileOutputStream("pahse2/txtfiles/AccountDatabase.txt");
@@ -178,9 +178,9 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      * Set the transaction holder
      */
     public void updateHistory(String action, double amount, @Nullable Account receiver){
-        transactionInfoTempHolder[0] = action;
-        transactionInfoTempHolder[1] = amount;
-        transactionInfoTempHolder[2] = receiver;
+        transactionInfoTempHolder[1] = action;
+        transactionInfoTempHolder[2] = amount;
+        transactionInfoTempHolder[3] = receiver;
         history.add(transactionInfoTempHolder);
         clearTransactionTempHolder();
     }
@@ -193,6 +193,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
             transactionInfoTempHolder[i] = null;
         }
         transactionInfoTempHolder = null;
+        transactionInfoTempHolder = new Object[3];
     }
 
     /**

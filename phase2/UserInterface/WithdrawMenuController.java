@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.event.*;
 import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.Debit;
-import phase2.FundStores.Debt.lineofcredit;
+import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
 
 public class WithdrawMenuController extends Menu implements java.io.Serializable {
@@ -91,8 +91,8 @@ public class WithdrawMenuController extends Menu implements java.io.Serializable
 					if (selectedAccount instanceof Debit) {
 						((Debit)selectedAccount).withdrawFromATM(amount);
 						this.endStatus.setText("withdrawal successful");
-					} else if (selectedAccount instanceof lineofcredit) {
-						((lineofcredit)selectedAccount).withdrawFromATM(amount);
+					} else if (selectedAccount instanceof LineOfCredit) {
+						((LineOfCredit)selectedAccount).withdrawFromATM(amount);
 						this.endStatus.setText("withdrawal successful");
 					}
 				} else {
