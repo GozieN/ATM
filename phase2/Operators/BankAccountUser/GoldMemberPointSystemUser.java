@@ -14,7 +14,11 @@ public class GoldMemberPointSystemUser extends PointSystemUser{
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
-
+    /**
+     * GoldMemberPointSystemUser constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public GoldMemberPointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
@@ -26,7 +30,7 @@ public class GoldMemberPointSystemUser extends PointSystemUser{
 
     /**
      * Display the features that this user has.
-     * @return String - the features this user has!
+     * @return String - the features this user has
      */
     @Override
     public String viewCapabilities(){
@@ -44,7 +48,7 @@ public class GoldMemberPointSystemUser extends PointSystemUser{
 
     /**
      * Display the features that this user has.
-     * @return String - the features this user has!
+     * @return String - the features this user has
      */
     public String viewContract(){
         String s = "";

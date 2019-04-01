@@ -14,7 +14,11 @@ public class RetiredPointSystemUser extends PointSystemUser{
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
-
+    /**
+     * RetiredPointSystemUser constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public RetiredPointSystemUser(String username, String password){
         super(username, password);
         numUsers++;

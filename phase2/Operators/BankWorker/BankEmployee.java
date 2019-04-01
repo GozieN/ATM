@@ -14,9 +14,15 @@ public class BankEmployee extends Operator implements Serializable {
     private String username;
     private String password;
 
+    /**
+     * BankEmployee constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public BankEmployee(String username, String password){
         super(username, password);
     }
+
     /**
      * Print a summary of a single account.
      * @param account Instance of account

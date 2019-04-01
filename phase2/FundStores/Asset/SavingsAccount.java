@@ -12,15 +12,19 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
 
 
     /**
-     * SavingsAccount constructor
-     *
+     * SavingsAccount constructor for two users
      * @param accountHolder Name of holder of the account
+     * @param accountHolder2 Name of second holder of account
      */
     public SavingsAccount(User accountHolder, User accountHolder2) {
         super(accountHolder, accountHolder2);
         this.accountType  = "savings";
     }
 
+    /**
+     * SavingsAccount constructor
+     * @param accountHolder Name of holder of the account
+     */
     public SavingsAccount(User accountHolder) {
         super(accountHolder);
         this.accountType  = "savings";
@@ -43,8 +47,12 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
         }
     }
 
+    /**
+     * Reading from external file
+     * @return Boolean to check if transaction is added to bill
+     */
     @Override
-    public boolean addToBill() {
+    public boolean addToBill(double amount) {
         return false;
     }
 }

@@ -15,6 +15,10 @@ import java.util.Stack;
 
 public class LineOfCredit extends Credit implements Transferable, ATMWIthdrawable {
 
+    /**
+     * LineOfCredit constructor
+     * @param accountHolder Name of holder of account
+     */
     public LineOfCredit(User accountHolder){
         super(accountHolder);
         accountType = "LineOfCredit";
@@ -74,5 +78,14 @@ public class LineOfCredit extends Credit implements Transferable, ATMWIthdrawabl
                 ((PointSystemUser) accountHolder).setNumPointsIncrease();}
             return true;
         }}
+
+    /**
+     * Reading from external file
+     * @return Boolean to check if transaction is added to bill
+     */
+    @Override
+     public boolean addToBill() {
+         return false;
+     }
 
 }
