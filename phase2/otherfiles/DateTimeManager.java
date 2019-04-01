@@ -12,7 +12,7 @@ public class DateTimeManager {
     TimerTask updateSeconds = new TimerTask() {
         @Override
         public void run() {
-            String now = new String(getLastLine()) + " ";
+            String now = (getLastLine()) + " ";
             String updated = "";
             if(now.substring(15,17).equals("59")){
                 if(now.substring(13,15).equals("59")){
