@@ -40,7 +40,7 @@ public class ATM implements Serializable {
     }
 
     /**
-     * ATM class constructor (empty parameters)
+     * ATM class constructor
      */
     public ATM() {
         this.cal.setTimeZone(TimeZone.getTimeZone("EST"));
@@ -49,11 +49,10 @@ public class ATM implements Serializable {
 
     /**
      * Set the date. Format dd:mm:yyyy
-     * @param day
-     * @param month
-     * @param year
+     * @param day Day of year
+     * @param month Month of year
+     * @param year Year
      */
-
     public String setDate(int day, int month, int year) throws IOException {
         DateTimeFormatter d = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
 
@@ -102,9 +101,9 @@ public class ATM implements Serializable {
 
     /**
      * Set the time
-     * @param hour
-     * @param minute
-     * @param second
+     * @param hour Hour of day
+     * @param minute Minute of day
+     * @param second Second of day
      */
     public String setTime(int hour, int minute, int second) throws IOException{ // format hh:mm:ss
 
@@ -226,8 +225,6 @@ public class ATM implements Serializable {
          ATMMaintainer am = new ATMMaintainer();
          am.setBm(BM);
          am.FeedInATMBills(dollarAmount, this);
-
-
      }
 
     /**
@@ -241,6 +238,11 @@ public class ATM implements Serializable {
         am.setBm(BM);
     }
 
+    /**
+     * Validate that user is able to withdraw x amount of money from ATM
+     * @param amount Amount of money to be withdrawn
+     * @return Boolean if user is able to withdraw successfully from ATM
+     */
     public boolean validWithdraw(double amount){
         if ((amount < 1000) && (amount < checkATMAmount())){
             return true;
@@ -250,6 +252,10 @@ public class ATM implements Serializable {
             return false;
     }
 
+    /**
+     * Add total amount of money in ATM
+     * @return Double of total amount of money in ATM
+     */
     public double checkATMAmount() {
         double totalInATM = 0;
         totalInATM += (getNum5Bills() * 5);

@@ -42,7 +42,7 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 				}
 			}
 		} catch (Exception ex) {ex.printStackTrace();}
-		this.bankAccountTypes.getItems().addAll("chequing", "credit card", "debit", "savings", "prepaid", "line of credit");
+		this.bankAccountTypes.getItems().addAll("chequing", "credit card", "savings", "prepaid", "line of credit");
 	}
 
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
@@ -62,10 +62,6 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
                         break;
                     } else{
 				this.endStatus.setText("you have requested a new credit card bank account");}}
-			} else if ((this.bankAccountTypes.getValue()).equals("debit")) {
-				GUI.getBM().createNewAccount(0, "debit", this.user);
-				this.bankAccountTypesStatus.setText("");
-				this.endStatus.setText("you have requested a new debit bank account");
 			} else if ((this.bankAccountTypes.getValue()).equals("savings")) {
 				GUI.getBM().createNewAccount(0, "savings", this.user);
 				this.bankAccountTypesStatus.setText("");

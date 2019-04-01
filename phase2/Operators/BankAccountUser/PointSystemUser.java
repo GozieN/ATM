@@ -16,7 +16,11 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
-
+    /**
+     * PointSystemUser constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public PointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
@@ -74,11 +78,11 @@ public class PointSystemUser extends User implements Contract, Rewardable {
         this.numPoints = numPoints;
     }
 
-    @Override
-    /*
+    /**
      *Add to the accounts created
      * @param account Instance of account
      */
+    @Override
     public void addToAccountsCreated(Account account) {
         accountsCreated.add(account);
         addObserver(account);

@@ -5,7 +5,13 @@ import phase2.Operators.BankAccountUser.User;
 
 public class Oldies extends SavingsAccount implements java.io.Serializable {
     private User nominee;
-        public Oldies(User accountHolder, User nominee)
+
+    /**
+     *
+     * @param accountHolder Name of holder of account
+     * @param nominee Nominee for oldies account
+     */
+    public Oldies(User accountHolder, User nominee)
         {
             super(accountHolder, nominee);
             this.nominee = nominee;

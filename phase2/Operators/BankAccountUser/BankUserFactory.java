@@ -10,6 +10,10 @@ public class BankUserFactory {
 
     private String userAccountType;
 
+    /**
+     * BankUserFactory constructor
+     * @param accountType Type of account
+     */
     public BankUserFactory(String accountType) {
         this.userAccountType = accountType;
     }
@@ -18,6 +22,12 @@ public class BankUserFactory {
 //        return userAccountType;
 //    }
 
+    /**
+     * Determine the type of account to create
+     * @param username Username for login
+     * @param password Password for login
+     * @return User
+     */
     public User determineUserAccountTypeCreation(String username, String password) {
         User user = null;
         switch (userAccountType) {
@@ -33,6 +43,11 @@ public class BankUserFactory {
         } return user;
     }
 
+    /**
+     * Determine type of users for opting out
+     * @param pointSystemUser Type of user for point system
+     * @return User type
+     */
     public User determineOptOutUserType(PointSystemUser pointSystemUser) {
         String userAccountType = pointSystemUser.getUserType();
         User changedUserType;
@@ -50,6 +65,11 @@ public class BankUserFactory {
         } return changedUserType;
     }
 
+    /**
+     * Determine type of users for opting in
+     * @param user Users for point system
+     * @return User type
+     */
     public PointSystemUser determineOptInPointUserType(User user){
         PointSystemUser changedUserType = null;
         switch(user.getUserType()){

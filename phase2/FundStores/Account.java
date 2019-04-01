@@ -94,6 +94,10 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         return accountNum;
     }
 
+    /**
+     * Set instance of ATM
+     * @param a instance of ATM
+     */
     public void setATM(ATM a){
         this.atm = a;
     }
@@ -105,6 +109,11 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      */
     public String getAccountType() { return accountType; }
 
+    /**
+     * Withdraw money from account
+     * @param amount Amount of money to be withdrawn
+     * @return Boolean if withdraw is successful or not
+     */
     public boolean withdrawFromAccount(double amount) {
         if (!(balance - amount > 0) && !(this instanceof ChequingAccount) ){
             System.out.println("Sorry, you are unable to withdraw this amount from your " +
@@ -193,6 +202,9 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
     /**
      * Set the transaction holder
+     * @param action Action made from transaction
+     * @param amount Amount of money from transaction
+     * @param receiver Receiver of transaction
      */
     public void updateHistory(String action, double amount, @Nullable Account receiver){
         transactionInfoTempHolder[0] = action;
@@ -216,6 +228,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     /**
      * Deposit amount into account
      * @param amount Amount of money to deposit
+     * @return True if money is deposited into account
      */
     public boolean depositToAccount(double amount) {
         this.balance += amount;
@@ -230,6 +243,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     /**
      * Deposit amount into account from cheque
      * @param amount Amount of money to deposit
+     * @return True if money from cheque is deposited into account
      */
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
@@ -241,7 +255,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
 
     /**
-     * View the last action performed in this account/
+     * View the last action performed in this account
+     * @return String of last action made in account
      */
     public String viewLastAction() {
         Object[] lastActionInfo = history.pop();
@@ -260,6 +275,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     /**
      * Pay the bill
      * @param amount Amount of money to withdraw from account to pay bill
+     * @return True if money is withdrawn from account to pay bill
      */
     public boolean payBill(double amount) {
         withdrawFromAccount(amount);
@@ -278,13 +294,17 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
 
     /**
-     * check if amount is usable by atm
-     * @param amount - the amount of funds being checked
+     * Check if amount is usable by atm
+     * @param amount The amount of funds being checked
      */
     public boolean validAmountInput(double amount){
         return 0 <= amount && amount %5 == 0;
     }
 
+    /**
+     * Add cash points to account
+     * @return Boolean if cash points are added to account
+     */
     public boolean cashPoints(){
         if (((PointSystemUser) accountHolder).getNumPoints()  < 20){
              return false;
@@ -299,7 +319,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
     }
 
     /**
-     * return the owner of this account
+     * Return the owner of this account
      * @return a user, the instance of the account holder
      */
     public User getAccountHolder(){
@@ -308,6 +328,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
     /**
      * Return a summary of this account
+     * @return String of a summary of account including: accountholder, accounttype, account num, and amountheld
      */
     public String summarize() {
         System.out.println("Account holder(s): " + holderName +
@@ -357,7 +378,6 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
     /**
      * Helper function to get last line of date.txt file
-     *
      * @return last line on file
      */
     public String getLastLine() {
@@ -375,6 +395,9 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         return lastLine;
     }
 
+    /**
+     * Update cash points
+     */
     @Override
     public void update(Observable o, Object arg) {
         if (cashPoints() && (boolean) arg){

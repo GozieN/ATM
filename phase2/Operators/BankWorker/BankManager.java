@@ -25,19 +25,35 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
 
+    /**
+     * BankManager constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public BankManager(String username, String password) {
         super(username, password);
         numBankManagers += 1;
         bankManagerDatabase.add(this);
     }
 
+    /**
+     * Get a list of all users
+     * @return User list
+     */
     public List<User> getUserList() {return users;}
 
-
+    /**
+     * Get master access key
+     * @return access key
+     */
     public String getMasterAccessKey() {
         return this.accessKey;
     }
 
+    /**
+     * Set instance of ATM
+     * @param atm Instance of ATM
+     */
     public void setAtm(ATM atm) {
         this.atm = atm;
     }
@@ -95,6 +111,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }
     }
 
+    /**
+     * Delete account for user
+     * @param user User of account
+     * @param accountNum Account number associated with specific account
+     */
     public void deleteAccount(User user, int accountNum) {
 
         ArrayList<User> userCopy = new ArrayList<>();
@@ -223,9 +244,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     /**
      * Set the date to be displayed on the ATM
      * @param atm Instance of ATM machine
-     * @param day
-     * @param month
-     * @param year
+     * @param day Day of month
+     * @param month Month of year
+     * @param year Year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
         this.atm = atm;
@@ -236,9 +257,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     /**
      * Set the time displayed on the ATM
      * @param atm Instance of ATM machine
-     * @param hour
-     * @param minute
-     * @param second
+     * @param hour Hour of day
+     * @param minute Minute of day
+     * @param second Second of day
      */
     public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
         atm.setTime(hour, minute, second);
@@ -416,6 +437,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }
     }
 
+    /**
+     * Read file for consultation records
+     * @param consultant Instance of UserConsultant
+     */
     public void viewConsultationRecords(UserConsultant consultant){
         String history = "";
 
@@ -510,55 +535,12 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
     public static void main(String[] args) {
         BankManager bm = new BankManager("", "");
-//        User user = new User("", "");
+        User user = new User("", "");
         UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-        User user1 = new User("a", "a");
-        User user2 = new User("b", "b");
-        User user3 = new User("c", "c");
-        User user4 = new User("d", "d");
-        User user5 = new User("e", "e");
 
+        bm.createUser(user.getUsername(), user.getPassword());
         bm.createUser(UC.getUsername(), UC.getPassword());
-        bm.createUser(user1.getUsername(), user1.getPassword());
-        bm.createUser(user2.getUsername(), user2.getPassword());
-        bm.createUser(user3.getUsername(), user3.getPassword());
-        bm.createUser(user5.getUsername(), user5.getPassword());
-//
-        bm.deleteUser(user3);
-        bm.createUser(user4.getUsername(), user4.getPassword());
-        bm.deleteUser(user1);
-////
-//        bm.createNewAccount(10, "savings", user2);
-//        bm.createNewAccount(20, "chequing", user2);
-//        bm.createNewAccount(30, "chequing", user2);
-//        bm.createNewAccount(40, "chequing", user2);
-//        bm.createNewAccount(20, "credit", user5);
-//        bm.createNewAccount(20, "savings", user4);
-//        bm.createNewAccount(20, "chequing", user5);
-//
-        ArrayList<User> users = new ArrayList<>();
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            users = (ArrayList<User>) in.readObject();
-            for (User obj : users) {
-//                System.out.println(obj.getAccountsCreated());
-                System.out.println(obj.getUsername());
-            }
 
-        } catch (Exception e) {e.printStackTrace();}
-
-//        ArrayList<User> users = new ArrayList<>();
-//        try {
-//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-//            ObjectInputStream in = new ObjectInputStream(file);
-//            users = (ArrayList<User>) in.readObject();
-//            for (User obj : users) {
-//                System.out.println(obj.getAccountsCreated());
-//                System.out.println(obj.getUsername());
-//            }
-//
-//        } catch (Exception e) {e.printStackTrace();}
 
     }
 }

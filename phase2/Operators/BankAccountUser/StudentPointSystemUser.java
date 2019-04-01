@@ -14,7 +14,11 @@ public class StudentPointSystemUser extends PointSystemUser{
     private ArrayList<Account> accountsCreated;
     private int numPoints = 0;
 
-
+    /**
+     * StudentPointSystemUser constructor
+     * @param username Username for login
+     * @param password Password for login
+     */
     public StudentPointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
