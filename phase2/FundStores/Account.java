@@ -385,7 +385,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         String lastLine = "";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./src/date.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
 
             while ((currLine = br.readLine()) != null) {
                 lastLine = currLine;
