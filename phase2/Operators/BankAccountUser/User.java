@@ -70,23 +70,29 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * @param currentPassword The current password used to login to account
      * @param newPassword Create new password for login to account
      */
-    public String changePassword(String currentPassword, String newPassword) {
-        String s = "";
-        ArrayList<User> users = bm.getUsers();
+    public void changePassword(String currentPassword, String newPassword) {
+//        User temp = this;
+//        ArrayList<Account> tempAccs = this.getAccountsCreated();
+//        User newUser = new User(this.getUsername(), newPassword);
+//        for (Account account : tempAccs) {
+//            newUser.addToAccountsCreated(account);
+//        }
+//        for (User user : bm.getUsers()) {
+//            if (user.getUsername().equals(newUser.getUsername())) {
+//                bm.deleteUser(user);
+//                bm.getUsers().add(newUser);
+//            }
+//        }
+
+//        String s = "";
+        User newUser = new User(this.getUsername(), newPassword);
+        newUser.accountsCreated.addAll(this.getAccountsCreated());
 
         for (User obj: bm.getUsers()) {
             if (obj.getUsername().equals(this.username) && currentPassword.equals(this.password)) {
-                this.password = newPassword;
-                s = this.username + ", your password has successfully been changed";
-                bm.deleteUser(this);
-                bm.createUser(this.getUsername(), newPassword);
-            } else {
-                s = this.username + ",you have entered the wrong current password. " +
-                        "unable to change password";
+                bm.createUser(newUser.getUsername(), newUser.getPassword());
             }
-
         }
-        return s;
     }
 
     /**
