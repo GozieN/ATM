@@ -9,19 +9,19 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.DeleteBankAccountMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[delete bank account menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Delete Bank Account Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <ComboBox fx:id="userBankAccounts" layoutX="151.0" layoutY="115.0" prefWidth="150.0" promptText="bank account" />
+      <ComboBox fx:id="userBankAccounts" layoutX="151.0" layoutY="115.0" prefWidth="150.0" promptText="Bank Account" />
       <Label fx:id="userBankAccountsStatus" layoutX="307.0" layoutY="119.0" />
-      <Label layoutX="50.0" layoutY="249.0" text="WARNING: this action is irreversible - once the bank account has been deleted, it cannot be recovered">
+      <Label layoutX="50.0" layoutY="249.0" text="WARNING: This action is irreversible - once the bank account has been deleted, it cannot be recovered">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="masterAccessKeyIn" layoutX="151.0" layoutY="352.0" onAction="#deleteBankAccount" promptText="master access key">
+      <TextField fx:id="masterAccessKeyIn" layoutX="151.0" layoutY="352.0" onAction="#deleteBankAccount" promptText="Master Access Key">
          <font>
             <Font size="20.0" />
          </font>
@@ -41,12 +41,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

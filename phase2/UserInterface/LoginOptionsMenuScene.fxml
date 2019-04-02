@@ -6,32 +6,32 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.LoginOptionsMenuController">
    <children>
-      <Button layoutX="15.0" layoutY="14.0" mnemonicParsing="false" text="[login options menu]">
+      <Button layoutX="15.0" layoutY="14.0" mnemonicParsing="false" text="[Login Options Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="141.0" layoutY="198.0" mnemonicParsing="false" onAction="#userLogin" text="user login">
+      <Button layoutX="141.0" layoutY="198.0" mnemonicParsing="false" onAction="#userLogin" text="User Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="141.0" layoutY="249.0" mnemonicParsing="false" onAction="#consultantLogin" text="consultant login">
+      <Button layoutX="141.0" layoutY="249.0" mnemonicParsing="false" onAction="#consultantLogin" text="Consultant Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="141.0" layoutY="300.0" mnemonicParsing="false" onAction="#bankManagerLogin" text="bank manager login">
+      <Button layoutX="141.0" layoutY="300.0" mnemonicParsing="false" onAction="#bankManagerLogin" text="Bank Manager Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

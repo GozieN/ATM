@@ -7,12 +7,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.UserInteractionsMenuController">
 	<children>
-		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[user interactions menu]">
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[User Interactions Menu]">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-      <Button layoutX="149.0" layoutY="120.0" mnemonicParsing="false" onAction="#viewAccountsSummary" text="view account(s) summary">
+      <Button layoutX="149.0" layoutY="120.0" mnemonicParsing="false" onAction="#viewAccountsSummary" text="View Account(s) Summary">
          <font>
             <Font size="20.0" />
          </font>
@@ -22,7 +22,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="169.0" mnemonicParsing="false" onAction="#performTransaction" text="perform transaction">
+      <Button layoutX="149.0" layoutY="169.0" mnemonicParsing="false" onAction="#performTransaction" text="Perform Transaction">
          <font>
             <Font size="20.0" />
          </font>
@@ -32,17 +32,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="218.0" mnemonicParsing="false" onAction="#requestNewBankAccountCreation" text="request new bank account creation">
+      <Button layoutX="149.0" layoutY="218.0" mnemonicParsing="false" onAction="#requestNewBankAccountCreation" text="Request new bank account creation">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="149.0" layoutY="267.0" mnemonicParsing="false" onAction="#changeUserAccountPassword" text="change user account password">
+      <Button layoutX="149.0" layoutY="267.0" mnemonicParsing="false" onAction="#changeUserAccountPassword" text="Change user account password">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="149.0" layoutY="316.0" mnemonicParsing="false" onAction="#optIn" text="opt in to points system">
+      <Button layoutX="149.0" layoutY="316.0" mnemonicParsing="false" onAction="#optIn" text="Opt in to points system">
          <font>
             <Font size="20.0" />
          </font>
@@ -52,7 +52,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="365.0" mnemonicParsing="false" onAction="#optOut" text="opt out of points system">
+      <Button layoutX="149.0" layoutY="365.0" mnemonicParsing="false" onAction="#optOut" text="Opt out of points system">
          <font>
             <Font size="20.0" />
          </font>
@@ -62,22 +62,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="149.0" layoutY="414.0" mnemonicParsing="false" onAction="#viewSignedContract" text="view signed contract">
+      <Button layoutX="149.0" layoutY="414.0" mnemonicParsing="false" onAction="#viewSignedContract" text="View signed contract">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="149.0" layoutY="463.0" mnemonicParsing="false" onAction="#viewCapabilities" text="view capabilities">
+      <Button layoutX="149.0" layoutY="463.0" mnemonicParsing="false" onAction="#viewCapabilities" text="View capabilities">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

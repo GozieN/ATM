@@ -11,32 +11,32 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="192.0" mnemonicParsing="false" onAction="#viewConsultationHistory" text="report consultation history">
+      <Button layoutX="187.0" layoutY="192.0" mnemonicParsing="false" onAction="#viewConsultationHistory" text="Report Consultation History">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="242.0" mnemonicParsing="false" onAction="#messageBankManager" text="message bank manager">
+      <Button layoutX="187.0" layoutY="242.0" mnemonicParsing="false" onAction="#messageBankManager" text="Message Bank Manager">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="291.0" mnemonicParsing="false" onAction="#viewSignedContract" text="view signed contract">
+      <Button layoutX="187.0" layoutY="291.0" mnemonicParsing="false" onAction="#viewSignedContract" text="View Signed Contract">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="340.0" mnemonicParsing="false" onAction="#viewCapabilities" text="view capabilities">
+      <Button layoutX="187.0" layoutY="340.0" mnemonicParsing="false" onAction="#viewCapabilities" text="View Capabilities">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

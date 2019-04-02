@@ -8,26 +8,26 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.CreateNewBankAccountMenuController">
 	<children>
-		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[create new bank account menu]">
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Create New Bank Account Menu]">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Label layoutX="38.0" layoutY="99.0" text="select the bank account type to create for this user">
+		<Label layoutX="38.0" layoutY="99.0" text="Select The Bank Account Type To Create For This User">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<ComboBox fx:id="bankAccountTypes" layoutX="38.0" layoutY="129.0" prefWidth="150.0" promptText="bank account type" />
+		<ComboBox fx:id="bankAccountTypes" layoutX="38.0" layoutY="129.0" prefWidth="150.0" promptText="Bank Account Type" />
 		<Label fx:id="bankAccountTypesStatus" layoutX="248.0" layoutY="133.0" />
-		<Button layoutX="191.0" layoutY="129.0" mnemonicParsing="false" onAction="#createNewBankAccount" text="submit" />
+		<Button layoutX="191.0" layoutY="129.0" mnemonicParsing="false" onAction="#createNewBankAccount" text="Submit" />
 		<Label fx:id="endStatus" layoutX="248.0" layoutY="133.0" />
-		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+		<Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
 			<font>
 				<Font size="20.0" />
 			</font>

@@ -9,17 +9,17 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.MessageBankManagerMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[message bank manager menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Message Bank Manager Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField fx:id="messageIn" layoutX="92.0" layoutY="86.0" onAction="#sendMessage" promptText="message">
+      <TextField fx:id="messageIn" layoutX="92.0" layoutY="86.0" onAction="#sendMessage" promptText="Message">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="346.0" layoutY="86.0" mnemonicParsing="false" onAction="#sendMessage" text="send message">
+      <Button layoutX="346.0" layoutY="86.0" mnemonicParsing="false" onAction="#sendMessage" text="Send Message">
          <font>
             <Font size="20.0" />
          </font>
@@ -29,12 +29,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="16.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="16.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

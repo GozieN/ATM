@@ -9,11 +9,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.RequestNewUserAccountCreationMenuController">
 	<children>
-		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[request new user account creation menu]">
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Request New User Account Creation Menu]">
 			<font>
 				<Font size="20.0" />
 			</font></Button>
-		<TextField fx:id="newUsernameIn" layoutX="127.0" layoutY="144.0" onAction="#requestNewUserAccountCreation" promptText="new username">
+		<TextField fx:id="newUsernameIn" layoutX="127.0" layoutY="144.0" onAction="#requestNewUserAccountCreation" promptText="New Username">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -23,7 +23,7 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<PasswordField fx:id="newPasswordIn" layoutX="127.0" layoutY="198.0" onAction="#requestNewUserAccountCreation" promptText="new password">
+		<PasswordField fx:id="newPasswordIn" layoutX="127.0" layoutY="198.0" onAction="#requestNewUserAccountCreation" promptText="New Password">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -33,7 +33,7 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<PasswordField fx:id="newPasswordConfirmIn" layoutX="127.0" layoutY="253.0" onAction="#requestNewUserAccountCreation" promptText="confirm new password">
+		<PasswordField fx:id="newPasswordConfirmIn" layoutX="127.0" layoutY="253.0" onAction="#requestNewUserAccountCreation" promptText="Confirm New Password">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -43,7 +43,7 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Button layoutX="287.0" layoutY="308.0" mnemonicParsing="false" onAction="#requestNewUserAccountCreation" text="submit">
+		<Button layoutX="287.0" layoutY="308.0" mnemonicParsing="false" onAction="#requestNewUserAccountCreation" text="Submit">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -53,12 +53,12 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+		<Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
 			<font>
 				<Font size="20.0" />
 			</font>

@@ -9,19 +9,19 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.UndoTransactionsMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[undo transaction(s) menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Undo Transaction(s) Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label layoutX="147.0" layoutY="143.0" text="select an account to undo a transaction from">
+      <Label layoutX="147.0" layoutY="143.0" text="Select an account to undo a transaction from">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="userBankAccounts" layoutX="147.0" layoutY="171.0" prefWidth="150.0" promptText="bank account" />
+      <ComboBox fx:id="userBankAccounts" layoutX="147.0" layoutY="171.0" prefWidth="150.0" promptText="Bank Account" />
       <Label fx:id="userBankAccountsStatus" layoutX="301.0" layoutY="175.0" />
-      <Button layoutX="222.0" layoutY="256.0" mnemonicParsing="false" onAction="#undoTransaction" text="undo transaction">
+      <Button layoutX="222.0" layoutY="256.0" mnemonicParsing="false" onAction="#undoTransaction" text="Undo Transaction">
          <font>
             <Font size="20.0" />
          </font>
@@ -31,12 +31,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>
