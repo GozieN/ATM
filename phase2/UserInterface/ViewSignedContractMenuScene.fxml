@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.ViewSignedContractMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[view signed contract menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[View Signed Contract Menu]">
          <font>
             <Font size="20.0" />
          </font>
@@ -17,12 +17,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

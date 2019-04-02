@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.ConsultationMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[consultation menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Consultation Menu]">
          <font>
             <Font size="20.0" />
          </font>
@@ -19,22 +19,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="ageIn" layoutX="51.0" layoutY="222.0" onAction="#requestNewUserAccountCreation" promptText="age" />
+      <TextField fx:id="ageIn" layoutX="51.0" layoutY="222.0" onAction="#requestNewUserAccountCreation" promptText="Age" />
       <Label fx:id="ageInStatus" layoutX="204.0" layoutY="226.0" />
       <ComboBox fx:id="studentYesNo" layoutX="50.0" layoutY="266.0" prefWidth="150.0" promptText="student?" />
       <Label fx:id="studentYesNoStatus" layoutX="205.0" layoutY="270.0" />
-      <Button layoutX="148.0" layoutY="300.0" mnemonicParsing="false" onAction="#requestNewUserAccountCreation" text="submit" />
+      <Button layoutX="148.0" layoutY="300.0" mnemonicParsing="false" onAction="#requestNewUserAccountCreation" text="Submit" />
       <Label fx:id="reportInfo" layoutX="50.0" layoutY="346.0" prefHeight="154.0" prefWidth="621.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="89.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

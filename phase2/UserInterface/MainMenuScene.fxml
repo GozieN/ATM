@@ -6,22 +6,22 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.MainMenuController">
 	<children>
-      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" text="[main menu]">
+      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" text="[Main Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="831.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewDateTime" text="view date time">
+      <Button layoutX="831.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewDateTime" text="View Date Time">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-	<Button layoutX="135.0" layoutY="176.0" mnemonicParsing="false" onAction="#login" text="login">
+	<Button layoutX="135.0" layoutY="176.0" mnemonicParsing="false" onAction="#login" text="Login">
 		<font>
 			<Font size="20.0" />
 		</font>
 	</Button>
-	<Button layoutX="135.0" layoutY="226.0" mnemonicParsing="false" onAction="#newUser" text="new user">
+	<Button layoutX="135.0" layoutY="226.0" mnemonicParsing="false" onAction="#newUser" text="New User">
 		<font>
 			<Font size="20.0" />
 		</font>

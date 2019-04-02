@@ -9,19 +9,19 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.DepositCashMenuController">
 	<children>
-		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[deposit cash menu]">
+		<Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Deposit Cash Menu]">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Label layoutX="52.0" layoutY="102.0" text="enter an amount to deposit (multiples of 5 only)">
+		<Label layoutX="52.0" layoutY="102.0" text="Enter an amount to deposit (multiples of 5 only)">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<TextField fx:id="amountIn" layoutX="52.0" layoutY="128.0" promptText="amount" />
+		<TextField fx:id="amountIn" layoutX="52.0" layoutY="128.0" promptText="Amount" />
 		<Label fx:id="amountInStatus" layoutX="205.0" layoutY="132.0" />
-		<Button layoutX="52.0" layoutY="178.0" mnemonicParsing="false" onAction="#depositToPrimary" text="deposit to primary">
+		<Button layoutX="52.0" layoutY="178.0" mnemonicParsing="false" onAction="#depositToPrimary" text="Deposit To Primary">
 			<font>
 				<Font size="20.0" />
 			</font>
@@ -36,20 +36,20 @@
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<ComboBox fx:id="userBankAccounts" layoutX="359.0" layoutY="187.0" prefWidth="150.0" promptText="select bank account" />
-		<Button layoutX="512.0" layoutY="187.0" mnemonicParsing="false" onAction="#deposit" text="deposit" />
+		<ComboBox fx:id="userBankAccounts" layoutX="359.0" layoutY="187.0" prefWidth="150.0" promptText="Select Bank Account" />
+		<Button layoutX="512.0" layoutY="187.0" mnemonicParsing="false" onAction="#deposit" text="Deposit" />
 		<Label fx:id="userBankAccountsStatus" layoutX="573.0" layoutY="191.0" />
 		<Label fx:id="endStatus" layoutX="514.0" layoutY="220.0">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Label>
-		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+		<Button layoutX="90.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
 			<font>
 				<Font size="20.0" />
 			</font>

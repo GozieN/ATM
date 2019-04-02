@@ -8,17 +8,17 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.UserSelectMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[user select menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[User Select Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label layoutX="79.0" layoutY="133.0" text="enter the username of the user to select">
+      <Label layoutX="79.0" layoutY="133.0" text="Enter the username of the user to select">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="userUsernameIn" layoutX="79.0" layoutY="163.0" onAction="#selectUser" promptText="username of user">
+      <TextField fx:id="userUsernameIn" layoutX="79.0" layoutY="163.0" onAction="#selectUser" promptText="Username of user">
          <font>
             <Font size="20.0" />
          </font>
@@ -28,12 +28,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="79.0" layoutY="248.0" text="enter your master access key">
+      <Label layoutX="79.0" layoutY="248.0" text="Enter your master access key">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="masterAccessKeyIn" layoutX="79.0" layoutY="278.0" onAction="#selectUser" promptText="master access key">
+      <TextField fx:id="masterAccessKeyIn" layoutX="79.0" layoutY="278.0" onAction="#selectUser" promptText="Master access key">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,17 +43,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="255.0" layoutY="374.0" mnemonicParsing="false" onAction="#selectUser" text="select user">
+      <Button layoutX="255.0" layoutY="374.0" mnemonicParsing="false" onAction="#selectUser" text="Select User">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="91.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="91.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>

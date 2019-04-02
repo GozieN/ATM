@@ -6,42 +6,42 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.BankManagerUserTransactionsMenuController">
 	<children>
-		<Button layoutX="23.0" layoutY="18.0" mnemonicParsing="false" text="[bank manager user transactions menu]">
+		<Button layoutX="23.0" layoutY="18.0" mnemonicParsing="false" text="[Bank Manager User Transactions Menu]">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="162.0" layoutY="182.0" mnemonicParsing="false" onAction="#withdraw" text="withdraw">
+		<Button layoutX="162.0" layoutY="182.0" mnemonicParsing="false" onAction="#withdraw" text="Withdraw">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="162.0" layoutY="233.0" mnemonicParsing="false" onAction="#deposit" text="deposit">
+		<Button layoutX="162.0" layoutY="233.0" mnemonicParsing="false" onAction="#deposit" text="Deposit">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="162.0" layoutY="284.0" mnemonicParsing="false" onAction="#transfer" text="transfer">
+		<Button layoutX="162.0" layoutY="284.0" mnemonicParsing="false" onAction="#transfer" text="Transfer">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="162.0" layoutY="335.0" mnemonicParsing="false" onAction="#payBill" text="pay bill">
+		<Button layoutX="162.0" layoutY="335.0" mnemonicParsing="false" onAction="#payBill" text="Pay Bill">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-      <Button layoutX="163.0" layoutY="386.0" mnemonicParsing="false" onAction="#undoTransactions" text="undo transaction(s)">
+      <Button layoutX="163.0" layoutY="386.0" mnemonicParsing="false" onAction="#undoTransactions" text="Undo Transaction(s)">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+		<Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
 			<font>
 				<Font size="20.0" />
 			</font>
 		</Button>
-		<Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+		<Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
 			<font>
 				<Font size="20.0" />
 			</font>

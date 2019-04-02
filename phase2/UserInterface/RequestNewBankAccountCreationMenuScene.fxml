@@ -8,12 +8,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phase2.UserInterface.RequestNewBankAccountCreationMenuController">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[request new bank account creation menu]">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="[Request New Bank Account Creation Menu]">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label layoutX="38.0" layoutY="99.0" text="select the bank account type that you are requesting to create">
+      <Label layoutX="38.0" layoutY="99.0" text="Select The bank account type that you are requesting to create">
          <font>
             <Font size="20.0" />
          </font>
@@ -22,12 +22,12 @@
       <Label fx:id="bankAccountTypesStatus" layoutX="248.0" layoutY="133.0" />
       <Button layoutX="191.0" layoutY="129.0" mnemonicParsing="false" onAction="#requestNewBankAccountCreation" text="submit" />
       <Label fx:id="endStatus" layoutX="248.0" layoutY="133.0" />
-      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="back">
+      <Button layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#back" text="Back">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="exit">
+      <Button layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#exit" text="Exit">
          <font>
             <Font size="20.0" />
          </font>
