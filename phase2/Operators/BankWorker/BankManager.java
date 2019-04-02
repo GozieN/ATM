@@ -228,26 +228,29 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param year Year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
-        this.atm = atm;
-        atm.setDate(day, month, year);
-        System.out.println("the date has been set to " + day + ':' + month + ':' + year);
-        FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
-        writer.write(day + month + year + " 00:00:00");
-        writer.close();
+        try {
+            this.atm = atm;
+            atm.setDate(day, month, year);
+            System.out.println("the date has been set to " + day + ':' + month + ':' + year);
+            FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
+            writer.write(day + month + year + " 00:00:00");
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Set the time displayed on the ATM
-     * @param atm Instance of ATM machine
-     * @param hour Hour of day
-     * @param minute Minute of day
-     * @param second Second of day
-     */
-    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
-        atm.setTime(hour, minute, second);
-        System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
-    }
-
+//    /**
+//     * Set the time displayed on the ATM
+//     * @param atm Instance of ATM machine
+//     * @param hour Hour of day
+//     * @param minute Minute of day
+//     * @param second Second of day
+//     */
+//    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
+//        atm.setTime(hour, minute, second);
+//        System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
+//    }
 
     /**
      * Get the list of User

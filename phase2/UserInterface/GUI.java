@@ -17,6 +17,8 @@ import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
 import phase2.FundStores.ATM;
+import phase2.otherfiles.DateTimeManager;
+
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
@@ -81,7 +83,10 @@ public class GUI extends Application implements Serializable {
 //            }
 //        });
 
-        //set date to 00:00AM
+        DateTimeManager dtm = new DateTimeManager();
+        dtm.newDay();
+        dtm.startDateTime();
+
         GUI gui = new GUI();
         //read from file but could be empty - if it's empty, set to null!
 
