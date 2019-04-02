@@ -279,10 +279,27 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      */
     public boolean payBill(double amount) {
         withdrawFromAccount(amount);
+
         try {
+            File file = new File("phase2/txtfiles/Outgoing.txt");
+            BufferedReader read = new BufferedReader(new FileReader(file));
+            String line = read.readLine();
+//            String nextLine = read.readLine();
             BufferedWriter out = new BufferedWriter(new FileWriter("phase2/txtfiles/Outgoing.txt"));
-            out.write(holderName + "paid a bill of " + Double.toString(amount));
+            if (line == null) {
+                out.write(holderName + "paid a bill of " + Double.toString(amount) + "\n");
+//                out.close();
+            } else {
+                while (line != null) {
+                    if ((line = read.readLine()) == null) {
+                        out.write(holderName + "paid a bill of " + Double.toString(amount) + "\n");
+                    } else {
+                        line = read.readLine();
+                    }
+                }
+            }
             out.close();
+            read.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
