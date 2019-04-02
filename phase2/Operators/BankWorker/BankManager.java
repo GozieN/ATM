@@ -91,10 +91,20 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         BankAccountFactory baf = new BankAccountFactory(accountType);
         newAccount = baf.determineBankAccountsFromRequest(startingAmount, user);
         newAccount.setATM(atm);
-        for (User u: users) {
-            if (u.getUsername().equals(u.getUsername()))
+        for (User u: this.getUsers()) {
+            if (u.getUsername().equals(user.getUsername())) {
                 u.addToAccountsCreated(newAccount);
-                } allAccounts.add(newAccount);
+                allAccounts.add(newAccount);
+            }
+        }
+
+//        try {
+//            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
+//            ObjectOutputStream out = new ObjectOutputStream(file);
+//            out.writeObject(this);
+//            out.close();
+//            file.close();
+//        } catch (Exception ex) {ex.printStackTrace();}
 
 
 
@@ -184,6 +194,20 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }else{
             System.out.println("This username has been taken, chose another!");
         }
+
+
+//        try {
+//            FileOutputStream file2 = new FileOutputStream("phase2/txtfiles/BankManager.txt");
+//            ObjectOutputStream out = new ObjectOutputStream(file2);
+//
+//            out.writeObject(this);
+//
+//            out.close();
+//            file2.close();
+//
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     /**
@@ -228,26 +252,29 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param year Year
      */
     public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
-        this.atm = atm;
-        atm.setDate(day, month, year);
-        System.out.println("the date has been set to " + day + ':' + month + ':' + year);
-        FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
-        writer.write(day + month + year + " 00:00:00");
-        writer.close();
+        try {
+            this.atm = atm;
+            atm.setDate(day, month, year);
+            System.out.println("the date has been set to " + day + ':' + month + ':' + year);
+            FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
+            writer.write(day + month + year + " 00:00:00");
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Set the time displayed on the ATM
-     * @param atm Instance of ATM machine
-     * @param hour Hour of day
-     * @param minute Minute of day
-     * @param second Second of day
-     */
-    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
-        atm.setTime(hour, minute, second);
-        System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
-    }
-
+//    /**
+//     * Set the time displayed on the ATM
+//     * @param atm Instance of ATM machine
+//     * @param hour Hour of day
+//     * @param minute Minute of day
+//     * @param second Second of day
+//     */
+//    public void ATMSetTime(ATM atm, int hour, int minute, int second) throws IOException { // format hh:mm:ss
+//        atm.setTime(hour, minute, second);
+//        System.out.println("the time has been set to " + hour + ':' + minute + ':' + second);
+//    }
 
     /**
      * Get the list of User
@@ -511,13 +538,13 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         bm.createUser(user4.getUsername(), user4.getPassword());
         bm.deleteUser(user1);
 ////
-//        bm.createNewAccount(10, "savings", user2);
-//        bm.createNewAccount(20, "chequing", user2);
-//        bm.createNewAccount(30, "chequing", user2);
-//        bm.createNewAccount(40, "chequing", user2);
-//        bm.createNewAccount(20, "credit", user5);
-//        bm.createNewAccount(20, "savings", user4);
-//        bm.createNewAccount(20, "chequing", user5);
+        bm.createNewAccount(10, "savings", user2);
+        bm.createNewAccount(20, "chequing", user2);
+        bm.createNewAccount(30, "chequing", user2);
+        bm.createNewAccount(40, "chequing", user2);
+        bm.createNewAccount(20, "credit", user5);
+        bm.createNewAccount(20, "savings", user4);
+        bm.createNewAccount(20, "chequing", user5);
 //
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -526,7 +553,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             bm = (BankManager) in.readObject();
             users = bm.getUsers();
             for (User obj : users) {
-//                System.out.println(obj.getAccountsCreated());
+                System.out.println(obj.getAccountsCreated());
                 System.out.println(obj.getUsername());
             }
         } catch (Exception e) {e.printStackTrace();}

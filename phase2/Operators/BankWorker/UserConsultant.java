@@ -14,6 +14,7 @@ public class UserConsultant extends CustomerService implements Contract {
     private User personalBankAccount;
     static int numUsersConsulted = 1;
     private String currentUserBeingConsultedType;
+    private BankManager BM;
     private ArrayList<String> UserAdviseHistory = new ArrayList<>();
 
     public UserConsultant(String username, String password){
@@ -36,6 +37,7 @@ public class UserConsultant extends CustomerService implements Contract {
 
         return s;
     }
+
 
     /**
      * Display the features that this user has.
@@ -70,6 +72,14 @@ public class UserConsultant extends CustomerService implements Contract {
             writer.close();
         } catch (Exception ex) {ex.printStackTrace();}
 
+    }
+
+    /**
+     * Set the bank manager
+     * @param BM
+     */
+    public void setBM(BankManager BM) {
+        this.BM = BM;
     }
 
     /**
