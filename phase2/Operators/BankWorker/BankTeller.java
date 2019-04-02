@@ -11,4 +11,8 @@ public class BankTeller extends BankEmployee {
     public void InitialUserInputDeposit(User user, double amount){
 
     }
+
+    public void getUserBillHistory(User user){
+        //READ OUTGOING.TXT AND PRINT USER HISTORY
+    }
 }

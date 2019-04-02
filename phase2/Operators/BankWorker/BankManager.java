@@ -231,6 +231,9 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         this.atm = atm;
         atm.setDate(day, month, year);
         System.out.println("the date has been set to " + day + ':' + month + ':' + year);
+        FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
+        writer.write(day + month + year + " 00:00:00");
+        writer.close();
     }
 
     /**

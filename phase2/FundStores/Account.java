@@ -379,7 +379,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         }
         if (transferInfo[0].equals("bill")){
             history.push(transferInfo);
-            System.out.println("Sorry, your last action could not be reversed because you payed a bill.");
+            System.out.println("Sorry, your last action could not be reversed because you payed a bill. We will remove this" +
+                    "action from your history but you can get a list of your payed bills from the bank teller");
         }else{
             if (transferInfo[0].equals("transfer")) {
                 ((Debit) transferInfo[2]).transfer((double) transferInfo[1], this);
