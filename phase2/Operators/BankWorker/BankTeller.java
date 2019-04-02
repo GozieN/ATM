@@ -16,3 +16,12 @@ public class BankTeller extends BankEmployee {
         //READ OUTGOING.TXT AND PRINT USER HISTORY
     }
 }
+
+
+// read from file
+// if empty{
+// create objects and write to file }
+//else{
+//
+//        }
+

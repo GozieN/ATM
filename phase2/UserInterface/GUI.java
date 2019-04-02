@@ -3,7 +3,6 @@ package phase2.UserInterface;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import phase2.txtfiles.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,10 +20,10 @@ import phase2.FundStores.ATM;
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
-    private  ATM atm = new ATM();
-    private  BankManager BM = new BankManager("BMuser", "BMpass");
-    private  UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-    private  User U = new User("zzzzz", "zzzzz");
+    private  static ATM atm = new ATM();
+    private  static BankManager BM = new BankManager("BMuser", "BMpass");
+    private  static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+    private  static User U = new User("zzzzz", "zzzzz");
     public static boolean running = true;
 
     @Override
@@ -39,32 +38,32 @@ public class GUI extends Application implements Serializable {
 		mainStage.show();
     }
 
-    public  void setBM(BankManager bm) { BM = bm;
+    public static void setBM(BankManager bm) { BM = bm;
     }
 
-    public  void  setUC(UserConsultant uc) {
+    public static void  setUC(UserConsultant uc) {
         UC = uc;
     }
 
-    public  void setU(User u) {
+    public static void setU(User u) {
          U = u;
     }
 
-    public  void setAtm(ATM atm_) {atm = atm_;}
+    public static void setAtm(ATM atm_) {atm = atm_;}
 
-    public  BankManager getBM() {
+    public static BankManager getBM() {
         return BM;
     }
 
-    public  UserConsultant getUC() {
+    public  static UserConsultant getUC() {
         return UC;
     }
 
-    public  User getU() {
+    public  static User getU() {
         return U;
     }
 
-    public  ATM getAtm() {return atm;}
+    public static ATM getAtm() {return atm;}
 
     public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
@@ -83,7 +82,7 @@ public class GUI extends Application implements Serializable {
 //        });
 
         //set date to 00:00AM
-        GUI gui;
+        GUI gui = new GUI();
         //read from file but could be empty - if it's empty, set to null!
 
         if (gui == null){
@@ -104,12 +103,15 @@ public class GUI extends Application implements Serializable {
             // write BM to file when running has halted, ! }
 
         }else{
-
-            BankManager existingBM;
+            BankManager bm = new BankManager("", "");
+//            User user = new User("", "");
+            UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+            UC.setBM(bm);
+            BankManager existingBM = bm;
             //existingBM = read from file
             gui.setU(existingBM.getCurrentUserInteractingWithSystem());
             gui.setAtm(existingBM.getAtm());
-            gui.setAtm(existingBM);
+            gui.setAtm(atm);
         }
 
         System.out.println("current directory: " + System.getProperty("user.dir"));
