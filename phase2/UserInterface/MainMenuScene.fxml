@@ -11,7 +11,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="831.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewDateTime" text="View Date Time">
+      <Button layoutX="820.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewDateTime" text="View Date Time">
          <font>
             <Font size="20.0" />
          </font>

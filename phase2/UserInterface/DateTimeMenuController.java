@@ -4,18 +4,31 @@ import javafx.fxml.*;
 import javafx.scene.control.Label;
 import javafx.event.*;
 import phase2.FundStores.ATM;
+import phase2.otherfiles.DateTimeManager;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class DateTimeMenuController extends Menu implements java.io.Serializable {
 	@FXML
 	private Label dateTime;
 
 	public void initialize() throws Exception {
-		ATM atm = GUI.getAtm();
-		String date = atm.getDate();
-		String time = atm.getTime();
-		String dateTime = date + " " + time;
-		// angela
-		this.dateTime.setText(dateTime);
+		String s = new String(getLastLine());
+		this.dateTime.setText(s);
+	}
+
+	public String getLastLine() {
+		String currLine;
+		String lastLine = "";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("phase2/txtfiles/date.txt"));
+			while ((currLine = br.readLine()) != null) {
+				lastLine = currLine;
+			}
+		} catch (IOException e) {
+		}
+		return lastLine;
 	}
 
 	public void back(ActionEvent event) throws Exception {

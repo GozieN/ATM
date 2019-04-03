@@ -159,7 +159,7 @@ public class DateTimeManager {
     };
 
     public void startDateTime(){
-        tim.scheduleAtFixedRate(updateSeconds,0, 1 );
+        tim.scheduleAtFixedRate(updateSeconds,0, 1000 );
     }
 
     public String getLastLine() {
