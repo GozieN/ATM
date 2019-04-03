@@ -1,8 +1,6 @@
 package phase2.UserInterface;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javafx.application.Application;
@@ -14,30 +12,48 @@ import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
 import phase2.FundStores.ATM;
 import phase2.otherfiles.DateTimeManager;
-import java.io.Serializable;
+import java.util.*;
 
 public class GUI extends Application implements Serializable {
     private static ATM atm = new ATM();
-    private static BankManager BM = new BankManager("BMuser", "BMpass");
+    private static BankManager BM;
     private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
     private static User U = new User("zzzzz", "zzzzz");
     public static boolean running = true;
 
     @Override
     public void start(Stage mainStage) throws Exception {
+        begin();
         BM.setAtm(atm);
-        mainStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::end);
         mainStage.setTitle("ATM");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("MainMenuScene.fxml"));
 		Parent parent = loader.load();
 		Scene mainMenuScene = new Scene(parent);
 		mainStage.setScene(mainMenuScene);
-		mainStage.show();
+        mainStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::end);
+        mainStage.show();
+    }
+
+    private void begin() {
+        try {
+           FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
+           ObjectInputStream in = new ObjectInputStream(file);
+           BM = (BankManager) in.readObject();
+           if (BM == null) {
+               BM = new BankManager("BMuser", "BMpass");
+           }
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 
     private void end(WindowEvent event) {
-        // write to file
+        try {
+            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(getBM());
+            out.close();
+            file.close();
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 
     public static void setBM(BankManager bm) {
@@ -79,48 +95,11 @@ public class GUI extends Application implements Serializable {
     }
 
     public static void main(String[] args) {
-        //FROM A2
-//        // The window of the main menu.
-//        MainMenuController mmc = new MainMenuController();
-//        //mmc.addWindowListener(new WindowAdapter() {
-//            public void windowClosing(WindowEvent e) {
-//                running = false;
-//            }
-//        });
 
         DateTimeManager dtm = new DateTimeManager();
         dtm.newDay();
         dtm.startDateTime();
 
-        GUI gui = new GUI();
-        //read from file but could be empty - if it's empty, set to null!
-
-        if (gui == null) {
-            BankManager bm = new BankManager("", "");
-//            User user = new User("", "");
-            UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-            UC.setBM(bm);
-//            bm.createUser(user.getUsername(), user.getPassword());
-//            bm.createUser(UC.getUsername(), UC.getPassword());
-            gui = new GUI();
-            gui.setBM(bm);
-            gui.setAtm(gui.getBM().getAtm());
-            // to the user who logged in
-            gui.setUC(UC);
-
-// while (!running){
-            // write BM to file when running has halted, ! }
-
-        } else {
-            BankManager bm = new BankManager("", "");
-//            User user = new User("", "");
-            UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-            UC.setBM(bm);
-            BankManager existingBM = bm;
-            //existingBM = read from file
-            gui.setAtm(existingBM.getAtm());
-            gui.setAtm(atm);
-        }
 
         System.out.println("current directory: " + System.getProperty("user.dir"));
         try {
