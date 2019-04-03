@@ -287,31 +287,22 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      */
     public boolean payBill(double amount) {
         withdrawFromAccount(amount);
-
         try {
             File file = new File("phase2/txtfiles/Outgoing.txt");
+            File tempFile = new File("phase2/txtfiles/Outgoing.txt");
             BufferedReader read = new BufferedReader(new FileReader(file));
             String line = read.readLine();
-//            String nextLine = read.readLine();
-            BufferedWriter out = new BufferedWriter(new FileWriter("phase2/txtfiles/Outgoing.txt"));
-            if (line == null) {
-                out.write(holderName + "paid a bill of " + Double.toString(amount) + "\n");
-//                out.close();
-            } else {
-                while (line != null) {
-                    if ((line = read.readLine()) == null) {
-                        out.write(holderName + "paid a bill of " + Double.toString(amount) + "\n");
-                    } else {
-                        line = read.readLine();
-                    }
-                }
+            BufferedWriter write = new BufferedWriter(new FileWriter(tempFile));
+            while (line != null) {
+                write.write(line + "\n");
+                line = read.readLine();
             }
-            out.close();
             read.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            write.write(holderName + " paid a bill of " + Double.toString(amount) + "\n");
+            write.close();
+            boolean successful = tempFile.renameTo(file);
 
+        } catch (Exception ex) {ex.printStackTrace();}
         this.updateHistory("bill", amount, null);
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
