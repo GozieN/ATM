@@ -1,6 +1,9 @@
 package phase2.Operators.BankWorker;
 
 import phase2.Operators.BankAccountUser.User;
+import java.util.*;
+import java.io.*;
+
 
 public class BankTeller extends BankEmployee {
 
@@ -28,14 +31,19 @@ public class BankTeller extends BankEmployee {
      */
     public void getUserBillHistory(User user){
         //READ OUTGOING.TXT AND PRINT USER HISTORY
+        try {
+            BufferedReader read = new BufferedReader(new FileReader("phase2/txtfiles/Outgoing.txt"));
+            String line = read.readLine();
+            while (line != null) {
+                String[] parts = line.split(" ");
+                String name = parts[0];
+                if (user.getUsername().equals(name)){
+                    System.out.println(line);
+                }
+                line = read.readLine();
+            }
+        } catch (Exception ex) {ex.printStackTrace();}
     }
 }
 
-
-// read from file
-// if empty{
-// create objects and write to file }
-//else{
-//
-//        }
 
