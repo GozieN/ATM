@@ -65,14 +65,6 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         this.holderName = accountHolder.getUsername();
         this.holderName2 = accountHolder2.getUsername();
         this.transactionInfoTempHolder = new Object[3];
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/AccountDatabase.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(accountsDatabase);
-            out.close();
-            file.close();
-        } catch (Exception ex) {ex.printStackTrace();}
     }
 
     public ArrayList<Account> getAccountsDatabase() {return accountsDatabase;}

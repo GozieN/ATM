@@ -247,4 +247,12 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
             accountsCreated.remove(--i);
         }
     }
+
+    public static void main(String[] args) {
+        User u = new User("g", "g");
+        System.out.println(u);
+        u.optIntoPointSystem();
+
+
+    }
 }

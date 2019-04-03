@@ -15,7 +15,7 @@ import java.io.BufferedReader;
 
 public class BankManager extends BankTeller implements Iterable<User>, Serializable {
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
-//    private static int numBankManagers = 0;
+    private static int numBankManagers = 0;
     private int numMessages;
     private ATM atm;
     private User currentUserInteractingWithSystem;
@@ -31,16 +31,8 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public BankManager(String username, String password) {
         super(username, password);
-//        numBankManagers += 1;
+        numBankManagers ++;
         bankManagerDatabase.add(this);
-
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(this);
-            out.close();
-            file.close();
-        } catch (Exception ex) {ex.printStackTrace();}
 
     }
 
@@ -98,16 +90,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             }
         }
 
-//        try {
-//            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
-//            ObjectOutputStream out = new ObjectOutputStream(file);
-//            out.writeObject(this);
-//            out.close();
-//            file.close();
-//        } catch (Exception ex) {ex.printStackTrace();}
-
-
-
         if (newAccount == null) {
             String s = "Sorry, it seems as though an error occurred when creating your account. Please " +
                     "make sure that the account type input is one of the following options: LineOfCredit, Credit, " +
@@ -148,7 +130,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
                 user.getAccountsCreated().remove(accountNum);
             }
         }
-
     }
 
     /**
@@ -194,20 +175,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }else{
             System.out.println("This username has been taken, chose another!");
         }
-
-
-//        try {
-//            FileOutputStream file2 = new FileOutputStream("phase2/txtfiles/BankManager.txt");
-//            ObjectOutputStream out = new ObjectOutputStream(file2);
-//
-//            out.writeObject(this);
-//
-//            out.close();
-//            file2.close();
-//
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
     }
 
     /**
@@ -215,32 +182,11 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      * @param user the User object that needs to be deleted.
      */
     public void deleteUser(User user) {
-
-        BankManager bm = new BankManager("", "");
-        ArrayList<User> userList = new ArrayList<>();
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            bm = (BankManager) in.readObject();
-            userList = bm.getUsers();
-            for (User obj: userList) {
-                if (obj.getUsername().equals(user.getUsername())) {
-                    userList.remove(obj);
-                }
+        for (User obj: users) {
+            if (user == obj) {
+                users.remove(obj);
             }
-        } catch (Exception ex) {ex.printStackTrace();}
-
-//        try {
-//            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
-//            ObjectOutputStream out = new ObjectOutputStream(file);
-//
-//            out.writeObject(bm);
-//
-//            out.close();
-//            file.close();
-//
-//        } catch (Exception ex) {ex.printStackTrace();}
-
+            }
     }
 
 
@@ -546,28 +492,16 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         bm.createNewAccount(20, "savings", user4);
         bm.createNewAccount(20, "chequing", user5);
 //
-        ArrayList<User> users = new ArrayList<>();
-        try {
-            FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            bm = (BankManager) in.readObject();
-            users = bm.getUsers();
-            for (User obj : users) {
-                System.out.println(obj.getAccountsCreated());
-                System.out.println(obj.getUsername());
-            }
-        } catch (Exception e) {e.printStackTrace();}
-
 //        ArrayList<User> users = new ArrayList<>();
 //        try {
-//            FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
+//            FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
 //            ObjectInputStream in = new ObjectInputStream(file);
-//            users = (ArrayList<User>) in.readObject();
+//            bm = (BankManager) in.readObject();
+//            users = bm.getUsers();
 //            for (User obj : users) {
 //                System.out.println(obj.getAccountsCreated());
 //                System.out.println(obj.getUsername());
 //            }
-//
 //        } catch (Exception e) {e.printStackTrace();}
 
     }
