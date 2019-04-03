@@ -51,7 +51,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
 
     /**
      * Overloading for Account class constructor to take in two distinct users
-     * @param accountHolder
+     * @param accountHolder first holder of account
+     * @param accountHolder2 second holder of account
      */
     public Account(User accountHolder, User accountHolder2) {
         accountsDatabase.add(this);
@@ -67,7 +68,12 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         this.transactionInfoTempHolder = new Object[3];
     }
 
+    /**
+     *
+     * @return the account databse in an Array list
+     */
     public ArrayList<Account> getAccountsDatabase() {return accountsDatabase;}
+
 
     /**
      * Get name of account holder
@@ -150,7 +156,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
             if (accountHolder instanceof PointSystemUser){
                 ((PointSystemUser) accountHolder).setNumPointsIncrease();}
             return true;
-        }}
+        }
+    }
 
 
     /**
@@ -188,7 +195,8 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         }else{
             atm.plus(amount);
             this.depositToAccount(amount);
-            return true; }
+            return true;
+        }
     }
 
 

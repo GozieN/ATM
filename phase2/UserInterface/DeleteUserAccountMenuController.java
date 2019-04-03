@@ -21,44 +21,20 @@ public class DeleteUserAccountMenuController extends Menu implements java.io.Ser
 	@FXML
 	Label masterAccessKeyInStatus;
 
-	@SuppressWarnings("unchecked")
 	public void initialize(User user) {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-			for (User obj: userList) {
-				if (obj.getUsername().equals(user.getUsername())) {
-					this.user = obj;
-					break;
-				}
-			}
-		} catch (Exception ex) {ex.printStackTrace();}
-
 		this.user = user;
 	}
 
 	public void deleteUserAccount(ActionEvent event) throws Exception {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-			for (User obj : userList) {
-				if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())
-						&& obj.getUsername().equals(this.user.getUsername())) {
-					GUI.getBM().deleteUser(obj);
-					exit(event);
-				} else {
-					this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
-				}
+		for (User user : GUI.getBM().getUsers()) {
+			if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())
+					&& user.getUsername().equals(this.user.getUsername())) {
+				GUI.getBM().deleteUser(user);
+				exit(event);
+			} else {
+				this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
 			}
-		} catch (Exception ex) {ex.printStackTrace();}
+		}
 	}
 
 	public void back(ActionEvent event) throws Exception {

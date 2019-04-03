@@ -43,33 +43,23 @@ public class ConsultantLoginMenuController extends Menu implements java.io.Seria
 		}
 		if (!(this.usernameIn.getText().isEmpty()) &&
 				!(this.passwordIn.getText().isEmpty())) {
-			ArrayList<User> userList = new ArrayList<>();
-			try {
-				FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-				ObjectInputStream in = new ObjectInputStream(file);
-				userList = (ArrayList<User>)in.readObject();
-				in.close();
-				file.close();
-				for (User user : userList) {
-					if (this.usernameIn.getText().equals("UCuser") &&
-							user.getUsername().equals(this.usernameIn.getText()) &&
-							this.passwordIn.getText().equals("UCpass") &&
-							user.getPassword().equals(this.passwordIn.getText())) {
-						Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-						FXMLLoader loader = new FXMLLoader();
-						loader.setLocation(getClass().getResource("ConsultantUseOptionsMenuScene.fxml"));
-						Parent parent = loader.load();
-						Scene consultantUseOptionsMenuScene = new Scene(parent);
-						ConsultantUseOptionsMenuController controller = loader.getController();
-						controller.initialize(user);
-						mainStage.setScene(consultantUseOptionsMenuScene);
-						mainStage.show();
-					} else {
-						this.loginFailed.setText("invalid credentials. try again");
-					}
+			for (User user : GUI.getBM().getUsers()) {
+				if (this.usernameIn.getText().equals("UCuser") &&
+						user.getUsername().equals(this.usernameIn.getText()) &&
+						this.passwordIn.getText().equals("UCpass") &&
+						user.getPassword().equals(this.passwordIn.getText())) {
+					Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("ConsultantUseOptionsMenuScene.fxml"));
+					Parent parent = loader.load();
+					Scene consultantUseOptionsMenuScene = new Scene(parent);
+					ConsultantUseOptionsMenuController controller = loader.getController();
+					controller.initialize(user);
+					mainStage.setScene(consultantUseOptionsMenuScene);
+					mainStage.show();
+				} else {
+					this.loginFailed.setText("invalid credentials. try again");
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		} else {
 			this.loginFailed.setText("invalid credentials. try again");

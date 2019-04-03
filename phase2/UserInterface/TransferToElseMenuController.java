@@ -53,18 +53,14 @@ public class TransferToElseMenuController extends Menu implements java.io.Serial
 			}
 		}
 		if (!(this.toAccountIn.getText().equals(""))) {
-			try {
-				FileInputStream input = new FileInputStream("phase2/txtfiles/accountDatabase.txt");
-				ObjectInputStream in = new ObjectInputStream(input);
-				selectedAccount2 = (Account)in.readObject();
-				in.close();
-				input.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (!(selectedAccount2.getAccountNum() == Integer.parseInt(this.toAccountIn.getText()))) {
-				this.toAccountInStatus.setText("that bank account does not exist. try again");
-				this.endStatus.setText("");
+			for (Account account : GUI.getBM().getAllAccounts()) {
+				if (account.getAccountNum() == Integer.parseInt(this.toAccountIn.getText())) {
+					selectedAccount2 = account;
+					this.toAccountInStatus.setText("");
+				} else {
+					this.toAccountInStatus.setText("that bank account does not exist. try again");
+					this.endStatus.setText("");
+				}
 			}
 		} else {
 			this.toAccountInStatus.setText("no bank account entered. try again");

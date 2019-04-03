@@ -18,7 +18,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private static int numBankManagers = 0;
     private int numMessages;
     private ATM atm;
-    private User currentUserInteractingWithSystem;
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Account> allAccounts = new ArrayList<>();
     private String accessKey = "900";
@@ -36,18 +35,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
     }
 
-    public void setCurrentUserInteractingWithSystem(User currentUserInteractingWithSystem) {
-        this.currentUserInteractingWithSystem = currentUserInteractingWithSystem;
-    }
-    public User getCurrentUserInteractingWithSystem() {
-        return this.currentUserInteractingWithSystem;
-    }
-
-    /**
-     * Get a list of all users
-     * @return User list
-     */
-    public List<User> getUserList() {return users;}
 
     /**
      * Get master access key
@@ -57,6 +44,13 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         return this.accessKey;
     }
 
+
+    /**
+     * getter for all accounts array list
+     * @return all the accounts in an array list
+     */
+    public ArrayList<Account> getAllAccounts() {return allAccounts;}
+
     /**
      * Set instance of ATM
      * @param atm Instance of ATM
@@ -65,12 +59,16 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         this.atm = atm;
     }
 
+
+    /**
+     *
+     * @return the atm instance
+     */
     public ATM getAtm() {
         return this.atm;
     }
 
 
-    @SuppressWarnings("unchecked")
     /**
      * Create and update the list of accounts that a user has
      * @param user Array list of user accounts
@@ -150,6 +148,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
         return s;
     }
+
 
     /**
      * Display the features that this user has.

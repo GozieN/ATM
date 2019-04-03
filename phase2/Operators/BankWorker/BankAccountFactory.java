@@ -70,8 +70,14 @@ public class BankAccountFactory {
                 newAccount = new ChequingAccount(user, true);
             } else { newAccount = new ChequingAccount(user, false); }}
         user.addToAccountsCreated(newAccount);
-        return newAccount; }
+        return newAccount;
+    }
 
+    /**
+     * updates the bank account database
+     * @param oldUser the old user to be replaced
+     * @param newUser the new user replacing the old user
+     */
     public void updateBankAccountDatabase(User oldUser, User newUser) {
         for (Account account: oldUser.getAccountsCreated()){
             newUser.addToAccountsCreated(account); }

@@ -27,22 +27,7 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 	private Label optOutStatus;
 
 	public void initialize(User user) {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-			for (User obj: userList) {
-				if (obj.getUsername().equals(user.getUsername())) {
-					this.user = obj;
-					break;
-				}
-			}
-		} catch (Exception ex) {ex.printStackTrace();}
-
-//		this.user = user;
+		this.user = user;
 	}
 
 	public void viewAccountsSummary(ActionEvent event) throws Exception {

@@ -5,23 +5,6 @@ import java.util.ArrayList;
 
 public class ATMMaintainer extends Systems {
 
-    private BankManager bm;
-
-    public void setBm(BankManager bm){
-        this.bm = bm;
-    }
-
-    public BankManager getBm(){
-        return bm;
-    }
-
-    public void shutdownATM(){//shuts down the ATM
-    }
-
-    public void startupATM(){
-        //starts ATM OUTSIDE of program
-    }
-
     /**
      * Add bills into ATM
      * @param dollarAmount Amount of money to be added

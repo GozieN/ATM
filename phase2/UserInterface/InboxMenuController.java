@@ -25,7 +25,6 @@ public class InboxMenuController extends Menu implements java.io.Serializable {
 			}
 			this.inbox.setText(msg.toString());
 		} catch (Exception ex) {ex.printStackTrace();}
-
 	}
 
 	public void back(ActionEvent event) throws Exception {

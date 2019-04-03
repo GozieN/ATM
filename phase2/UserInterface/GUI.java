@@ -105,7 +105,6 @@ public class GUI extends Application implements Serializable {
             gui = new GUI();
             gui.setBM(bm);
             gui.setAtm(gui.getBM().getAtm());
-            gui.setU(gui.getBM().getCurrentUserInteractingWithSystem()); //FROM MENU CONTROLLER, SET IT
             // to the user who logged in
             gui.setUC(UC);
 
@@ -119,7 +118,6 @@ public class GUI extends Application implements Serializable {
             UC.setBM(bm);
             BankManager existingBM = bm;
             //existingBM = read from file
-            gui.setU(existingBM.getCurrentUserInteractingWithSystem());
             gui.setAtm(existingBM.getAtm());
             gui.setAtm(atm);
         }
