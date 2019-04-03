@@ -61,10 +61,8 @@ public class BankAccountFactory {
         case PREPAID:
             newAccount = new PrepaidCredit(user);
             newAccount.setBalance(starting);
-
             break;
         case CHEQUING:
-            user.setNumChequingAccounts();
             if (user.getNumChequingAccounts() == 0) {
                 user.setNumChequingAccounts();
                 newAccount = new ChequingAccount(user, true);
