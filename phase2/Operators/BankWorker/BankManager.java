@@ -55,7 +55,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
 
     /**
      * getter for all accounts array list
-     * @return
+     * @return all the accounts in an array list
      */
     public ArrayList<Account> getAllAccounts() {return allAccounts;}
 
