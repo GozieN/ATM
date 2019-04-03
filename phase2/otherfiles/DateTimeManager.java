@@ -154,7 +154,7 @@ public class DateTimeManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(updated);
+//            System.out.println(updated);
         }
     };
 

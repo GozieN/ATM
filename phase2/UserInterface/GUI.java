@@ -3,7 +3,6 @@ package phase2.UserInterface;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,14 +17,13 @@ import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
 import phase2.FundStores.ATM;
 import phase2.otherfiles.DateTimeManager;
-
 import java.io.Serializable;
 
 public class GUI extends Application implements Serializable {
-    private  static ATM atm = new ATM();
-    private  static BankManager BM = new BankManager("BMuser", "BMpass");
-    private  static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-    private  static User U = new User("zzzzz", "zzzzz");
+    private static ATM atm = new ATM();
+    private static BankManager BM = new BankManager("BMuser", "BMpass");
+    private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
+    private static User U = new User("zzzzz", "zzzzz");
     public static boolean running = true;
 
     @Override
@@ -40,7 +38,8 @@ public class GUI extends Application implements Serializable {
 		mainStage.show();
     }
 
-    public static void setBM(BankManager bm) { BM = bm;
+    public static void setBM(BankManager bm) {
+        BM = bm;
     }
 
     public static void  setUC(UserConsultant uc) {
@@ -51,7 +50,9 @@ public class GUI extends Application implements Serializable {
          U = u;
     }
 
-    public static void setAtm(ATM atm_) {atm = atm_;}
+    public static void setAtm(ATM atm_) {
+        atm = atm_;
+    }
 
     public static BankManager getBM() {
         return BM;
@@ -65,7 +66,9 @@ public class GUI extends Application implements Serializable {
         return U;
     }
 
-    public static ATM getAtm() {return atm;}
+    public static ATM getAtm() {
+        return atm;
+    }
 
     public static void updateDate(String date, File f) throws IOException {
         FileWriter fw = new FileWriter(f);
@@ -90,7 +93,7 @@ public class GUI extends Application implements Serializable {
         GUI gui = new GUI();
         //read from file but could be empty - if it's empty, set to null!
 
-        if (gui == null){
+        if (gui == null) {
             BankManager bm = new BankManager("", "");
 //            User user = new User("", "");
             UserConsultant UC = new UserConsultant("UCuser", "UCpass");
@@ -107,7 +110,7 @@ public class GUI extends Application implements Serializable {
 // while (!running){
             // write BM to file when running has halted, ! }
 
-        }else{
+        } else {
             BankManager bm = new BankManager("", "");
 //            User user = new User("", "");
             UserConsultant UC = new UserConsultant("UCuser", "UCpass");

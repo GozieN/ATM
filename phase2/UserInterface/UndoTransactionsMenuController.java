@@ -9,7 +9,6 @@ import javafx.scene.*;
 import javafx.event.*;
 import phase2.FundStores.Account;
 import phase2.Operators.BankAccountUser.User;
-
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -32,14 +31,15 @@ public class UndoTransactionsMenuController extends Menu implements java.io.Seri
 			userList = (ArrayList<User>) in.readObject();
 			in.close();
 			file.close();
-			for (User obj: userList) {
+			for (User obj : userList) {
 				if (obj.getUsername().equals(user.getUsername())) {
 					this.user = obj;
 					break;
 				}
 			}
-		} catch (Exception ex) {ex.printStackTrace();}
-
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		for (Account account : this.user.getAccountsCreated()) {
 			this.userBankAccounts.getItems().add(String.valueOf(account.getAccountNum()) +
 					" " + account.getAccountType());
@@ -57,7 +57,7 @@ public class UndoTransactionsMenuController extends Menu implements java.io.Seri
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 			if (!(selectedAccount.getHistory().isEmpty())) {
-				selectedAccount.undoTransaction();
+				GUI.getBM().undoMostRecentTransaction(selectedAccount);
 			} else {
 				this.endStatus.setText("this account does not have any transactions");
 			}
