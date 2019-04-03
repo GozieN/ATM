@@ -7,17 +7,31 @@ public class ATMMaintainer extends Systems {
 
     private BankManager bm;
 
+    /**
+     * set the bm
+     * @param bm
+     */
     public void setBm(BankManager bm){
         this.bm = bm;
     }
 
+    /**
+     *
+     * @return returns the bm instance
+     */
     public BankManager getBm(){
         return bm;
     }
 
-    public void shutdownATM(){//shuts down the ATM
-    }
+    /**
+     * shuts down the ATM
+     */
+    public void shutdownATM(){}
 
+
+    /**
+     * starts the ATM machine
+     */
     public void startupATM(){
         //starts ATM OUTSIDE of program
     }
