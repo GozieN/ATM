@@ -1,8 +1,5 @@
 package phase2.UserInterface;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,6 +26,7 @@ public class GUI extends Application implements Serializable {
     @Override
     public void start(Stage mainStage) throws Exception {
         BM.setAtm(atm);
+        mainStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::end);
         mainStage.setTitle("ATM");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("MainMenuScene.fxml"));
@@ -36,6 +34,10 @@ public class GUI extends Application implements Serializable {
 		Scene mainMenuScene = new Scene(parent);
 		mainStage.setScene(mainMenuScene);
 		mainStage.show();
+    }
+
+    private void end(WindowEvent event) {
+        // write to file
     }
 
     public static void setBM(BankManager bm) {
