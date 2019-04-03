@@ -24,36 +24,25 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 	Label masterAccessKeyInStatus;
 
 	public void selectUser(ActionEvent event) throws Exception {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>)in.readObject();
-			in.close();
-			file.close();
-			for (User obj: userList) {
-				if (obj.getUsername().equals(this.userUsernameIn.getText())) {
-					this.userUsernameInStatus.setText("existing user");
-					if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
-						Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-						FXMLLoader loader = new FXMLLoader();
-						loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
-						Parent parent = loader.load();
-						Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
-						BankManagerUserInteractionsMenuController controller = loader.getController();
-						controller.initialize(obj);
-						mainStage.setScene(bankManagerUserInteractionsMenuScene);
-						mainStage.show();
-					} else {
-						this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
-					}
+		for (User user : GUI.getBM().getUsers()) {
+			if (user.getUsername().equals(this.userUsernameIn.getText())) {
+				this.userUsernameInStatus.setText("existing user");
+				if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
+					Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));
+					Parent parent = loader.load();
+					Scene bankManagerUserInteractionsMenuScene = new Scene(parent);
+					BankManagerUserInteractionsMenuController controller = loader.getController();
+					controller.initialize(user);
+					mainStage.setScene(bankManagerUserInteractionsMenuScene);
+					mainStage.show();
 				} else {
-					this.userUsernameInStatus.setText("that user does not exist. try again");
+					this.masterAccessKeyInStatus.setText("incorrect master access key. try again");
 				}
-				if (!(userList.contains(obj))) {this.userUsernameInStatus.setText("that user does not exist. try again");}
+			} else {
+				this.userUsernameInStatus.setText("that user does not exist. try again");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

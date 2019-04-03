@@ -33,55 +33,43 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 
 	@SuppressWarnings("unchecked")
 	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-
-			for (User obj: userList) {
-				if (!(obj.getUsername().equals(this.newUsernameIn.getText())) &&
-						!(this.newUsernameIn.getText().equals(""))) {
-					this.newUsernameInStatus.setText("valid new username");
-				} else if (this.newUsernameIn.getText().equals("")) {
-					this.newUsernameInStatus.setText("this field cannot be left blank. try again");
-				} else {
-					this.newUsernameInStatus.setText("this username is not available. try again");
-				}
-				if (!(this.newPasswordIn.getText()).equals("")) {
-					this.newPasswordInStatus.setText("valid new password");
-				} else {
-					this.newPasswordInStatus.setText("this field cannot be left blank. try again");
-				}
-				if (!(this.newPasswordConfirmIn.getText().equals("")) &&
-						this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
-					this.newPasswordConfirmStatus.setText("matches new password");
-				} else if (this.newPasswordConfirmIn.getText().equals("")) {
-					this.newPasswordConfirmStatus.setText("this field cannot be left blank. try again");
-				} else {
-					this.newPasswordConfirmStatus.setText("does not match new password. try again");
-				}
-				if (this.newUsernameInStatus.getText().equals("valid new username") &&
-						this.newPasswordInStatus.getText().equals("valid new password") &&
-						this.newPasswordConfirmStatus.getText().equals("matches new password")) {
-					Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("UserContractMenuScene.fxml"));
-					Parent parent = loader.load();
-					Scene userContractMenuScene = new Scene(parent);
-					UserContractMenuController controller = loader.getController();
-					controller.initialize(this.newUsernameIn.getText(), this.newPasswordIn.getText());
-					mainStage.setScene(userContractMenuScene);
-					mainStage.show();
-				}
+		for (User user : GUI.getBM().getUsers()) {
+			if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
+					!(this.newUsernameIn.getText().equals(""))) {
+				this.newUsernameInStatus.setText("valid new username");
+			} else if (this.newUsernameIn.getText().equals("")) {
+				this.newUsernameInStatus.setText("this field cannot be left blank. try again");
+			} else {
+				this.newUsernameInStatus.setText("this username is not available. try again");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			if (!(this.newPasswordIn.getText()).equals("")) {
+				this.newPasswordInStatus.setText("valid new password");
+			} else {
+				this.newPasswordInStatus.setText("this field cannot be left blank. try again");
+			}
+			if (!(this.newPasswordConfirmIn.getText().equals("")) &&
+					this.newPasswordConfirmIn.getText().equals(this.newPasswordIn.getText())) {
+				this.newPasswordConfirmStatus.setText("matches new password");
+			} else if (this.newPasswordConfirmIn.getText().equals("")) {
+				this.newPasswordConfirmStatus.setText("this field cannot be left blank. try again");
+			} else {
+				this.newPasswordConfirmStatus.setText("does not match new password. try again");
+			}
+			if (this.newUsernameInStatus.getText().equals("valid new username") &&
+					this.newPasswordInStatus.getText().equals("valid new password") &&
+					this.newPasswordConfirmStatus.getText().equals("matches new password")) {
+				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("UserContractMenuScene.fxml"));
+				Parent parent = loader.load();
+				Scene userContractMenuScene = new Scene(parent);
+				UserContractMenuController controller = loader.getController();
+				controller.initialize(this.newUsernameIn.getText(), this.newPasswordIn.getText());
+				mainStage.setScene(userContractMenuScene);
+				mainStage.show();
+			}
 		}
 	}
-
 
 	public void back(ActionEvent event) throws Exception {
 		String previousMenu = "NewUserMenuScene.fxml";

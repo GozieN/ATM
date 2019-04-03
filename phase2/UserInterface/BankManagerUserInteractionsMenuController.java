@@ -19,22 +19,7 @@ public class BankManagerUserInteractionsMenuController extends Menu implements j
 	private Label noAccounts2;
 
 	public void initialize(User user) {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-			for (User obj: userList) {
-				if (obj.getUsername().equals(user.getUsername())) {
-					this.user = obj;
-					break;
-				}
-			}
-		} catch (Exception ex) {ex.printStackTrace();}
-
-//		this.user = user;
+		this.user = user;
 	}
 
 	public void viewAccountsSummary(ActionEvent event) throws Exception {
@@ -45,7 +30,7 @@ public class BankManagerUserInteractionsMenuController extends Menu implements j
 			Parent parent = loader.load();
 			Scene accountsSummaryOptionsMenuScene = new Scene(parent);
 			AccountsSummaryOptionsMenuController controller = loader.getController();
-			controller.initialize(this.user, "BankManagerMenus");
+			controller.initialize(this.user, "Bank Manager");
 			mainStage.setScene(accountsSummaryOptionsMenuScene);
 			mainStage.show();
 		} else {

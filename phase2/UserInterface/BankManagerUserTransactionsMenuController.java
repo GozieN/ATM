@@ -15,22 +15,7 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 	private User user;
 
 	public void initialize(User user) {
-		ArrayList<User> userList = new ArrayList<>();
-		try {
-			FileInputStream file = new FileInputStream("phase2/txtfiles/Users.txt");
-			ObjectInputStream in = new ObjectInputStream(file);
-			userList = (ArrayList<User>) in.readObject();
-			in.close();
-			file.close();
-			for (User obj: userList) {
-				if (obj.getUsername().equals(user.getUsername())) {
-					this.user = obj;
-					break;
-				}
-			}
-		} catch (Exception ex) {ex.printStackTrace();}
-
-//		this.user = user;
+		this.user = user;
 	}
 
 	public void withdraw(ActionEvent event) throws Exception {
@@ -64,7 +49,7 @@ public class BankManagerUserTransactionsMenuController extends Menu implements j
 		Parent parent = loader.load();
 		Scene transferMenuScene = new Scene(parent);
 		TransferOptionsMenuController controller = loader.getController();
-		controller.initialize(this.user, "BankManagerMenus");
+		controller.initialize(this.user, "Bank Manager");
 		mainStage.setScene(transferMenuScene);
 		mainStage.show();
 	}
