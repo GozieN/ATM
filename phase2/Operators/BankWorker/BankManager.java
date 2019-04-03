@@ -52,6 +52,13 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         return this.accessKey;
     }
 
+
+    /**
+     * getter for all accounts array list
+     * @return
+     */
+    public ArrayList<Account> getAllAccounts() {return allAccounts;}
+
     /**
      * Set instance of ATM
      * @param atm Instance of ATM
