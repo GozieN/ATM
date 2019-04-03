@@ -34,11 +34,11 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
 	public void requestNewBankAccountCreation(ActionEvent event) throws Exception {
 		if (!(this.bankAccountTypes.getSelectionModel().isEmpty())) {
 			if ((this.bankAccountTypes.getValue()).equals("chequing")) {
-				GUI.getBM().createNewAccount(0, "chequing", this.user);
+				getBM().createNewAccount(0, "chequing", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new chequing bank account");
 			} else if ((this.bankAccountTypes.getValue()).equals("credit card")) {
-				GUI.getBM().createNewAccount(0, "creditcard", this.user);
+				getBM().createNewAccount(0, "creditcard", this.user);
 				this.bankAccountTypesStatus.setText("");
                 for (Account acct: user.getAccountsCreated()) {
                     if (acct instanceof ChequingAccount && ((ChequingAccount) acct).isPrimary) {
@@ -49,15 +49,15 @@ public class RequestNewBankAccountCreationMenuController extends Menu implements
                     } else{
 				this.endStatus.setText("you have requested a new credit card bank account");}}
 			} else if ((this.bankAccountTypes.getValue()).equals("savings")) {
-				GUI.getBM().createNewAccount(0, "savings", this.user);
+				getBM().createNewAccount(0, "savings", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new savings bank account");
 			} else if ((this.bankAccountTypes.getValue()).equals("prepaid")) {
-				GUI.getBM().createNewAccount(0, "prepaid", this.user);
+				getBM().createNewAccount(0, "prepaid", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new prepaid bank account");
 			} else if ((this.bankAccountTypes.getValue()).equals("line of credit")) {
-				GUI.getBM().createNewAccount(0, "lineofcredit", this.user);
+				getBM().createNewAccount(0, "lineofcredit", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("you have requested a new line of credit bank account");
 			}

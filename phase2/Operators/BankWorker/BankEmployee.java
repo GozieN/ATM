@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BankEmployee extends Operator implements Serializable {
+    private static final long serialVersionUID = 1L;
+
 
     private ArrayList<BankEmployee> bankEmployeeDatabase = new ArrayList<>();
     private int numBankWorkers = 0;

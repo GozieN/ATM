@@ -32,19 +32,19 @@ public class CreateNewBankAccountMenuController extends Menu implements java.io.
 	public void createNewBankAccount(ActionEvent event) throws Exception {
 		if (!(this.bankAccountTypes.getSelectionModel().isEmpty())) {
 			if ((this.bankAccountTypes.getValue()).equals("chequing")) {
-				GUI.getBM().createNewAccount(0, "chequing", this.user);
+				getBM().createNewAccount(0, "chequing", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("a new chequing bank account has been created for this user");
 			} else if ((this.bankAccountTypes.getValue()).equals("credit")) {
-				GUI.getBM().createNewAccount(0, "credit", this.user);
+				getBM().createNewAccount(0, "credit", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("a new credit bank account has been created for this user");
 			} else if ((this.bankAccountTypes.getValue()).equals("debit")) {
-				GUI.getBM().createNewAccount(0, "debit", this.user);
+				getBM().createNewAccount(0, "debit", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("a new debit bank account has been created for this user");
 			} else if ((this.bankAccountTypes.getValue()).equals("savings")) {
-				GUI.getBM().createNewAccount(0, "savings", this.user);
+				getBM().createNewAccount(0, "savings", this.user);
 				this.bankAccountTypesStatus.setText("");
 				this.endStatus.setText("a new savings bank account has been created for this user");
 			}

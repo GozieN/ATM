@@ -57,7 +57,7 @@ public class SetAtmDateMenuController extends Menu implements java.io.Serializab
 		}
 		if (!(day == 0) && !(month == 0) && !(year == 0)) {
 			try {
-				GUI.getBM().ATMSetDate(GUI.getAtm(), day, month, year);
+				getBM().ATMSetDate(day, month, year);
 				this.endStatus.setText("the date has been set");
 			} catch (Exception e) {
 				e.printStackTrace();

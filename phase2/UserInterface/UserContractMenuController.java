@@ -20,12 +20,14 @@ public class UserContractMenuController extends Menu implements java.io.Serializ
 	public void initialize(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.contract.setText(GUI.getU().viewContract());
+		this.contract.setText(getU().viewContract());
 	}
 
 	public void agree(ActionEvent event) throws Exception {
 		if (!(this.username == null) && !(this.password == null)) {
-			GUI.getBM().createUser(this.username, this.password);
+            System.out.println(BM);
+            BM.createUser(this.username, this.password);
+            System.out.println("In agree" + BM.getUsers());
 			this.endStatus.setText("your user account creation request is being processed");
 			this.username = null;
 			this.password = null;

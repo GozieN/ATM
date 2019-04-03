@@ -26,10 +26,10 @@ public class DeleteUserAccountMenuController extends Menu implements java.io.Ser
 	}
 
 	public void deleteUserAccount(ActionEvent event) throws Exception {
-		for (User user : GUI.getBM().getUsers()) {
-			if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())
+		for (User user : getBM().getUsers()) {
+			if (this.masterAccessKeyIn.getText().equals(getBM().getMasterAccessKey())
 					&& user.getUsername().equals(this.user.getUsername())) {
-				GUI.getBM().deleteUser(user);
+				getBM().deleteUser(user);
 				exit(event);
 			} else {
 				this.masterAccessKeyInStatus.setText("incorrect master access key. try again");

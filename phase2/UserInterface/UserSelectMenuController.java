@@ -24,10 +24,10 @@ public class UserSelectMenuController extends Menu implements java.io.Serializab
 	Label masterAccessKeyInStatus;
 
 	public void selectUser(ActionEvent event) throws Exception {
-		for (User user : GUI.getBM().getUsers()) {
+		for (User user : getBM().getUsers()) {
 			if (user.getUsername().equals(this.userUsernameIn.getText())) {
 				this.userUsernameInStatus.setText("existing user");
-				if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
+				if (this.masterAccessKeyIn.getText().equals(getBM().getMasterAccessKey())) {
 					Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("BankManagerUserInteractionsMenuScene.fxml"));

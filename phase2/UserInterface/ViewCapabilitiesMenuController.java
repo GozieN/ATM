@@ -19,11 +19,11 @@ public class ViewCapabilitiesMenuController extends Menu implements java.io.Seri
 		this.user = user;
 		this.operatorType = operatorType;
 		if (this.operatorType.equals("Bank Manager")) {
-			this.capabilities.setText(GUI.getBM().viewCapabilities());
+			this.capabilities.setText(getBM().viewCapabilities());
 		} else if (this.operatorType.equals("Consultant")) {
-			this.capabilities.setText(GUI.getUC().viewCapabilities());
+			this.capabilities.setText(getUC().viewCapabilities());
 		} else {
-			this.capabilities.setText(GUI.getU().viewCapabilities());
+			this.capabilities.setText(getU().viewCapabilities());
 		}
 	}
 

@@ -17,7 +17,7 @@ public class MessageBankManagerMenuController extends Menu implements java.io.Se
 	public void sendMessage(ActionEvent event) throws Exception {
 
 		if (!(this.messageIn.getText().isEmpty())) {
-			GUI.getUC().contactBM(this.messageIn.getText(), GUI.getBM());
+			getUC().contactBM(this.messageIn.getText(), getBM());
 		} else {
 			this.messageInStatus.setText("this field cannot be empty. try again");
 		}

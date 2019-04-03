@@ -53,7 +53,7 @@ public class TransferToElseMenuController extends Menu implements java.io.Serial
 			}
 		}
 		if (!(this.toAccountIn.getText().equals(""))) {
-			for (Account account : GUI.getBM().getAllAccounts()) {
+			for (Account account : getBM().getAllAccounts()) {
 				if (account.getAccountNum() == Integer.parseInt(this.toAccountIn.getText())) {
 					selectedAccount2 = account;
 					this.toAccountInStatus.setText("");

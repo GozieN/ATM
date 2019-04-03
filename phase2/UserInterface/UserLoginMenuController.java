@@ -38,7 +38,7 @@ public class UserLoginMenuController extends Menu implements java.io.Serializabl
 		}
 		if (!(this.usernameIn.getText().isEmpty()) &&
 				!(this.passwordIn.getText().isEmpty())) {
-			for (User user : GUI.getBM().getUsers()) {
+			for (User user : getBM().getUsers()) {
 				if (user.getUsername().equals(this.usernameIn.getText()) &&
 						user.getPassword().equals(this.passwordIn.getText())) {
 					Stage mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

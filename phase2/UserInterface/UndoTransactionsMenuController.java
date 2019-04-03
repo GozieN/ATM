@@ -42,7 +42,7 @@ public class UndoTransactionsMenuController extends Menu implements java.io.Seri
 		if (!(this.userBankAccounts.getSelectionModel().isEmpty())) {
 			this.userBankAccountsStatus.setText(this.userBankAccounts.getValue() + " selected");
 			if (!(selectedAccount.getHistory().isEmpty())) {
-				GUI.getBM().undoMostRecentTransaction(selectedAccount);
+				getBM().undoMostRecentTransaction(selectedAccount);
 			} else {
 				this.endStatus.setText("this account does not have any transactions");
 			}

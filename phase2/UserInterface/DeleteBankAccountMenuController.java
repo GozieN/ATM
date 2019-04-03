@@ -40,7 +40,7 @@ public class DeleteBankAccountMenuController extends Menu implements java.io.Ser
 				selectedAccount = account;
 			}
 		}
-		if (this.masterAccessKeyIn.getText().equals(GUI.getBM().getMasterAccessKey())) {
+		if (this.masterAccessKeyIn.getText().equals(getBM().getMasterAccessKey())) {
 			this.masterAccessKeyInStatus.setText("correct master access key");
 		} else {
 			this.masterAccessKeyInStatus.setText("incorrect master access key");
@@ -53,7 +53,7 @@ public class DeleteBankAccountMenuController extends Menu implements java.io.Ser
 		}
 		if (this.masterAccessKeyInStatus.getText().equals("correct master access key") &&
 				(!(this.userBankAccounts.getSelectionModel().isEmpty()))) {
-			GUI.getBM().deleteAccount(this.user, selectedAccount.getAccountNum());
+			getBM().deleteAccount(this.user, selectedAccount.getAccountNum());
 			this.endStatus.setText("bank account deleted");
 		} else {
 			this.endStatus.setText("");

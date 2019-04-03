@@ -19,11 +19,11 @@ public class ViewSignedContractMenuController extends Menu implements java.io.Se
 		this.user = user;
 		this.operatorType = operatorType;
 		if (this.operatorType.equals("Bank Manager")) {
-			this.contract.setText(GUI.getBM().viewContract());
+			this.contract.setText(getBM().viewContract());
 		} else if (this.operatorType.equals("Consultant")) {
-			this.contract.setText(GUI.getUC().viewContract());
+			this.contract.setText(getUC().viewContract());
 		} else {
-			this.contract.setText(GUI.getU().viewContract());
+			this.contract.setText(getU().viewContract());
 		}
 	}
 

@@ -4,8 +4,16 @@ import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.event.*;
+import phase2.FundStores.ATM;
+import phase2.Operators.BankAccountUser.User;
+import phase2.Operators.BankWorker.BankManager;
+import phase2.Operators.BankWorker.UserConsultant;
 
-public abstract class Menu {
+public abstract class Menu extends GUI {
+    public Menu(){
+       super();
+    }
+
 
 	public void back(ActionEvent event, String previousMenu) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();

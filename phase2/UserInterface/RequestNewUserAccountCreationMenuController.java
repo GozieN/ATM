@@ -31,8 +31,9 @@ public class RequestNewUserAccountCreationMenuController extends Menu implements
 	private Label newPasswordConfirmStatus;
 
 	public void requestNewUserAccountCreation (ActionEvent event) throws Exception {
-		if (!(GUI.getBM().getUsers().isEmpty())) {
-			for (User user : GUI.getBM().getUsers()) {
+        System.out.println("IN request" + super.BM);
+		if (!(BM.getUsers().isEmpty())) {
+			for (User user : getBM().getUsers()) {
 				if (!(user.getUsername().equals(this.newUsernameIn.getText())) &&
 						!(this.newUsernameIn.getText().equals(""))) {
 					this.newUsernameInStatus.setText("valid new username");

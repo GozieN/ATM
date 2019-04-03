@@ -12,6 +12,8 @@ import phase2.Operators.BankAccountUser.User;
 import java.util.*;
 
 public class BankManagerInteractionsMenuController extends Menu implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private User user = null;
 
 	public void selectUser(ActionEvent event) throws Exception {

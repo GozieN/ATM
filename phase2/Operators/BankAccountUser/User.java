@@ -22,7 +22,7 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
     private ArrayList<Account> accountsCreated;
     private int numTimesOptedIntoPointSystem = 0;
     private String userType;
-    private BankManager bm = new BankManager("", "");
+    private BankManager bm;
 
     /**
      * User constructor
@@ -47,6 +47,14 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      */
     public String getUserType() {
         return userType;
+    }
+
+    /**
+     * Set the user's b,
+     * @param bm, the bank manager.
+     */
+    public void setBm(BankManager bm) {
+        this.bm = bm;
     }
 
     /**
@@ -205,19 +213,22 @@ public class User extends Operator implements Serializable, Iterable<Account>, C
      * Get a summary of the user's accounts
      */
     public String viewInfo() {
-    	String sb = new String("A");
+    	String s;
+        StringBuilder sb = new StringBuilder();
+
         if (this.accountsCreated.isEmpty()) {
-            sb = "Nothing to view, you have not created an account yet!";
+            s = "Nothing to view, you have not created an account yet!";
+            return s;
         } else {
-            sb.concat("ccount holder: " + this.username + "\n Report of Account(s):");
+            sb.append("Account holder: " + this.username + "\n Report of Account(s):\n");
             for(Account account:accountsCreated){
-                sb.concat(account.getAccountType() + "Number: " + account.getAccountNum() + "\n" +
+                sb.append(account.getAccountType() + "\n Number: " + account.getAccountNum() + "\n" +
                      "\n Current Balance:" +
                     account.getBalance() + "\n Most Recent Transactions: " +
                     account.viewLastAction() + "\n"); }
-        sb.concat("\n Net Total: " + getNetTotal());
+        sb.append("\n Net Total: " + getNetTotal());
 	    }
-	    return sb;
+	    return sb.toString();
     }
 
     @Override

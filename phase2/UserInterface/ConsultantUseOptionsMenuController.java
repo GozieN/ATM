@@ -7,6 +7,8 @@ import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 
 public class ConsultantUseOptionsMenuController extends Menu implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private User user;
 
 	public void initialize(User user) {

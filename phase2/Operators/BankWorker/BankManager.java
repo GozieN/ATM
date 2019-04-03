@@ -7,6 +7,7 @@ import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.CreditCard;
 import phase2.FundStores.Debt.LineOfCredit;
 import phase2.Operators.BankAccountUser.User;
+import sun.dc.pr.PRError;
 
 import java.io.*;
 import java.util.*;
@@ -14,14 +15,17 @@ import java.io.Serializable;
 import java.io.BufferedReader;
 
 public class BankManager extends BankTeller implements Iterable<User>, Serializable {
+    private static final long serialVersionUID = 1L;
     private static ArrayList<BankManager> bankManagerDatabase = new ArrayList<>();
     private static int numBankManagers = 0;
     private int numMessages;
     private ATM atm;
+    private UserConsultant UC;
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Account> allAccounts = new ArrayList<>();
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
+
 
     /**
      * BankManager constructor
@@ -32,7 +36,6 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         super(username, password);
         numBankManagers ++;
         bankManagerDatabase.add(this);
-
     }
 
 
@@ -43,8 +46,13 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     public String getMasterAccessKey() {
         return this.accessKey;
     }
+    public UserConsultant getUC(){
+        return this.UC;
+    }
 
-
+    public void setUC(UserConsultant uc){
+        this.UC = uc;
+    }
     /**
      * getter for all accounts array list
      * @return all the accounts in an array list
@@ -162,6 +170,8 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         return s;
     }
 
+
+
     /**
      * Create a user
      * @param username Username used for login into accounts
@@ -169,11 +179,16 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
      */
     public void createUser (String username, String password) {
         User newUser = new User(username, password);
-        if (!(users.contains(newUser))) {
+        if (!(users.isEmpty())) {
             users.add(newUser);
+            System.out.println("emptyList");
         }else{
+            for(User u: users){
+                if (u.getUsername().equals(username)){
             System.out.println("This username has been taken, chose another!");
-        }
+                }
+        }newUser.setBm(this);
+        users.add(newUser);}
     }
 
     /**
@@ -188,17 +203,14 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             }
     }
 
-
     /**
      * Set the date to be displayed on the ATM
-     * @param atm Instance of ATM machine
      * @param day Day of month
      * @param month Month of year
      * @param year Year
      */
-    public void ATMSetDate(ATM atm, int day, int month, int year) throws IOException{ // format dd:mm:yy
+    public void ATMSetDate(int day, int month, int year) throws IOException{ // format dd:mm:yy
         try {
-            this.atm = atm;
             atm.setDate(day, month, year);
             System.out.println("the date has been set to " + day + ':' + month + ':' + year);
             FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");

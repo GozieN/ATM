@@ -43,7 +43,7 @@ public class ConsultantLoginMenuController extends Menu implements java.io.Seria
 		}
 		if (!(this.usernameIn.getText().isEmpty()) &&
 				!(this.passwordIn.getText().isEmpty())) {
-			for (User user : GUI.getBM().getUsers()) {
+			for (User user : getBM().getUsers()) {
 				if (this.usernameIn.getText().equals("UCuser") &&
 						user.getUsername().equals(this.usernameIn.getText()) &&
 						this.passwordIn.getText().equals("UCpass") &&

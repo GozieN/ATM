@@ -1,8 +1,11 @@
 package phase2.UserInterface;
 
+import java.awt.event.WindowAdapter;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.stage.*;
@@ -15,16 +18,44 @@ import phase2.otherfiles.DateTimeManager;
 import java.util.*;
 
 public class GUI extends Application implements Serializable {
-    private static ATM atm = new ATM();
-    private static BankManager BM;
-    private static UserConsultant UC = new UserConsultant("UCuser", "UCpass");
-    private static User U = new User("zzzzz", "zzzzz");
-    public static boolean running = true;
+    private static final long serialVersionUID = 1L;
+    protected static ATM atm;
+    protected static UserConsultant UC;
+    protected static BankManager BM;
+    protected static User U = new User("", "");
+   // public boolean running = true;
+
+    public GUI(){
+
+    }
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+            File fCheck = new File("phase2/txtfiles/BankManager.txt");
+            if (fCheck.length() == 0){
+                System.out.println("file len is 0");
+                BM = new BankManager("BMuser", "BMpass");
+                BM.setAtm(new ATM());
+                atm =  BM.getAtm();
+//                atm.setDate(04,03,2019);
+                BM.setUC(new UserConsultant("UCuser", "UCpass"));
+                UC = BM.getUC();
+                System.out.println("end of len 0");
+                System.out.println(BM);
+            }else{
+                System.out.println("reading from file:" + BM);
+                System.out.println("reading from file:" + BM.getUsername());
+                System.out.println("read:" + BM);
+                BM = (BankManager) deSerialization("phase2/txtfiles/BankManager.txt");
+                System.out.println("read post deserialization:" + BM);
+                System.out.println("read post deserialization:" + BM.getUsers());
+                System.out.println("read:" + BM.getUsername());
+            }}
+
 
     @Override
     public void start(Stage mainStage) throws Exception {
-        begin();
-        BM.setAtm(atm);
         mainStage.setTitle("ATM");
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("MainMenuScene.fxml"));
@@ -35,56 +66,98 @@ public class GUI extends Application implements Serializable {
         mainStage.show();
     }
 
-    private void begin() {
-        try {
-           FileInputStream file = new FileInputStream("phase2/txtfiles/BankManager.txt");
-           ObjectInputStream in = new ObjectInputStream(file);
-           BM = (BankManager) in.readObject();
-           if (BM == null) {
-               BM = new BankManager("BMuser", "BMpass");
-           }
-        } catch (Exception ex) {ex.printStackTrace();}
+    /**
+     * detecting right before the program stops running in order to write to file!
+     * @param event
+     */
+    private void end(WindowEvent event){
+        System.out.println("in end: " + BM);
+        System.out.println("in end: " + BM.getUsers());
+
+        try{
+            serialization("phase2/txtfiles/BankManager.txt", BM);
+            System.out.println("in end2: " + BM);
+            System.out.println("in end2: " + BM.getUsers());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    private void end(WindowEvent event) {
-        try {
-            FileOutputStream file = new FileOutputStream("phase2/txtfiles/BankManager.txt");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(getBM());
-            out.close();
-            file.close();
-        } catch (Exception ex) {ex.printStackTrace();}
+    /**
+     * This method is used to read data from file for deSerialization.
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * SOURCE: https://www.codota.com/code/java/classes/java.io.ObjectInputStream
+     */
+    public static Object deSerialization(String file) throws IOException, ClassNotFoundException {
+        try{
+        FileInputStream fileInputStream = new FileInputStream(file);
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+        ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+        Object object = objectInputStream.readObject();
+        objectInputStream.close();
+        fileInputStream.close();
+        return object;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        } return null;
     }
 
-    public static void setBM(BankManager bm) {
-        BM = bm;
+
+    /**
+     * This method is used to write data to file for Serialization.
+     *
+     * @param file
+     * @param object
+     * @throws IOException
+     *
+     * SOURCE: https://www.codota.com/code/java/classes/java.io.ObjectInputStream
+     */
+    public static void serialization(String file, Object object) throws IOException {
+        try{
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+        objectOutputStream.writeObject(object);
+        objectOutputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public static void  setUC(UserConsultant uc) {
-        UC = uc;
-    }
-
-    public static void setU(User u) {
-         U = u;
-    }
-
-    public static void setAtm(ATM atm_) {
-        atm = atm_;
-    }
-
-    public static BankManager getBM() {
+    /**
+     * the Bank Manager
+     * @return BM the manager of the bank
+     */
+    public BankManager getBM() {
         return BM;
     }
 
-    public  static UserConsultant getUC() {
+    /**
+     * return the UserConsultant instance
+     * @return Consultant
+     */
+    public  UserConsultant getUC() {
         return UC;
     }
 
-    public  static User getU() {
+    /**
+     * get the user
+     * @return u, the user
+     */
+    public  User getU() {
         return U;
     }
 
-    public static ATM getAtm() {
+    /**
+     * return the atm
+     * @return atm, the atm
+     */
+    public ATM getAtm() {
         return atm;
     }
 
@@ -95,12 +168,9 @@ public class GUI extends Application implements Serializable {
     }
 
     public static void main(String[] args) {
-
         DateTimeManager dtm = new DateTimeManager();
         dtm.newDay();
         dtm.startDateTime();
-
-
         System.out.println("current directory: " + System.getProperty("user.dir"));
         try {
             File f = new File("phase2/txtfiles/date.txt");
@@ -111,5 +181,4 @@ public class GUI extends Application implements Serializable {
             e.printStackTrace();
         }
         launch(args);
-    }
-}
+}}

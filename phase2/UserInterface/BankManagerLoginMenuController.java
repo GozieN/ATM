@@ -40,8 +40,8 @@ public class BankManagerLoginMenuController extends Menu implements java.io.Seri
 		}
 		if (!(this.usernameIn.getText().isEmpty()) &&
 				!(this.passwordIn.getText().isEmpty())) {
-			if (this.usernameIn.getText().equals(GUI.getBM().getUsername()) &&
-					this.passwordIn.getText().equals(GUI.getBM().getPassword())) {
+			if (this.usernameIn.getText().equals(getBM().getUsername()) &&
+					this.passwordIn.getText().equals(getBM().getPassword())) {
 				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("BankManagerInteractionsMenuScene.fxml"));

@@ -36,7 +36,7 @@ public class ConsultationMenuController extends Menu implements java.io.Serializ
 	private Label reportInfo;
 
 	public void initialize() {
-		this.consultantMessage.setText(GUI.getUC().consultantMessage());
+		this.consultantMessage.setText(getUC().consultantMessage());
 		this.studentYesNo.setItems(list);
 	}
 
@@ -62,7 +62,7 @@ public class ConsultationMenuController extends Menu implements java.io.Serializ
 		if (this.ageInStatus.getText().equals("") &&
 				this.studentYesNoStatus.getText().equals("")) {
 			if (age >= 16) {
-				this.reportInfo.setText(GUI.getUC().reportUserAccountAdvice(age, studentYesNo));
+				this.reportInfo.setText(getUC().reportUserAccountAdvice(age, studentYesNo));
 				Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("RequestNewUserAccountCreationMenuScene.fxml"));
@@ -71,7 +71,7 @@ public class ConsultationMenuController extends Menu implements java.io.Serializ
 				mainStage.setScene(requestNewUserAccountCreationMenuScene);
 				mainStage.show();
 			} else {
-				this.reportInfo.setText(GUI.getUC().reportUserAccountAdvice(age, studentYesNo));
+				this.reportInfo.setText(getUC().reportUserAccountAdvice(age, studentYesNo));
 			}
 		}
 	}
