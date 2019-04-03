@@ -12,12 +12,15 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class ATM implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private static int num5bills = 100;
     private static int num10bills = 100;
     private static int num20bills = 100;
     private static int num50bills = 100;
     private Calendar cal = new GregorianCalendar();
     private BankManager BM =  new BankManager("", "");
+
 
     /**
      * ATM class constructor

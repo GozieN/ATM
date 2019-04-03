@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class SavingsAccount extends Debit implements java.io.Serializable {
-
+    private static final long serialVersionUID = 1L;
 
     /**
      * SavingsAccount constructor for two users

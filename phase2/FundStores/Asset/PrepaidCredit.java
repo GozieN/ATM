@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 // up to limit given + incurs $3 deduction every month)
 
 public class PrepaidCredit extends Account implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 
     /**

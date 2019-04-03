@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public abstract class Credit extends Account implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private double creditLimit;
 
 

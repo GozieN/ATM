@@ -232,7 +232,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      */
     public boolean depositToAccount(double amount) {
         this.balance += amount;
-        this.updateHistory("deposit", amount, null);
+        this.updateHistory("cash deposit", amount, null);
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         System.out.println("Deposit successful, Account: " + this.accountNum +
@@ -247,7 +247,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
      */
     public boolean depositChequeToAccount(double amount) {
         depositToAccount(amount);
-        this.updateHistory("cheque", amount, null);
+        this.updateHistory("cheque deposit", amount, null);
         if (accountHolder instanceof PointSystemUser){
             ((PointSystemUser) accountHolder).setNumPointsIncrease();}
         return true;
@@ -262,11 +262,11 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         Object[] lastActionInfo = history.pop();
         history.push(lastActionInfo);
         if (lastActionInfo[2] == null){
-            return  "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return  "Last action category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1];
            }
         else{
-            return "Your most recent action fell under the category: " + lastActionInfo[0] + "\n with " +
+            return "Last action category: " + lastActionInfo[0] + "\n with " +
                     "an amount of: " + lastActionInfo[1] + "\n " +
                     "To account number: " + (((Account) lastActionInfo[2]).getAccountNum());
             }
@@ -361,7 +361,7 @@ public abstract class Account implements Serializable, Observer, AccountDeposita
         sb.append("\n Account Type: ");
         sb.append(accountType);
         sb.append("\n Account Number: ");
-        sb.append(accountType);
+        sb.append(accountNum);
         sb.append("\n Holds: ");
         sb.append(balance);
         sb.append("CAD$");

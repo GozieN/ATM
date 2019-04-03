@@ -7,6 +7,8 @@ import phase2.FundStores.Account;
 import java.io.Serializable;
 
 public class StudentAccount extends Debit implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int numTransfers;
     private double saveFor;
     private String saveUntil;

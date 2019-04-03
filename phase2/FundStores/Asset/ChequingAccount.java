@@ -5,6 +5,8 @@ import phase2.Operators.BankAccountUser.User;
 import java.util.Stack;
 
 public class ChequingAccount extends Debit implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
+
     public boolean isPrimary;
 
     /**

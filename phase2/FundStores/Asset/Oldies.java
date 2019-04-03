@@ -4,6 +4,8 @@ import phase2.Operators.BankAccountUser.PointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 
 public class Oldies extends SavingsAccount implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
+
     private User nominee;
 
     /**
