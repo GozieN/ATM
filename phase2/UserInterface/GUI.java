@@ -171,14 +171,5 @@ public class GUI extends Application implements Serializable {
         DateTimeManager dtm = new DateTimeManager();
         dtm.newDay();
         dtm.startDateTime();
-        System.out.println("current directory: " + System.getProperty("user.dir"));
-        try {
-            File f = new File("phase2/txtfiles/date.txt");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddmmyyyy HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            updateDate(dtf.format(now), f);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         launch(args);
 }}
