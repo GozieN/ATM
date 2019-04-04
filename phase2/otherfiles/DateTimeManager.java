@@ -1,9 +1,6 @@
 package phase2.otherfiles;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,7 +41,7 @@ public class DateTimeManager {
                 //write to file
             }
         }else if(now.substring(2, 4).equals("02") && (now.substring(0, 2).equals("28"))){
-            updated = "0103" + now.substring(4, 8) + " " + time;
+            updated = "0103" + now.substring(4, 9) + time;
             //write to file
         }else{
             int day = Integer.parseInt(now.substring(0, 2));
@@ -52,11 +49,11 @@ public class DateTimeManager {
             if(day < 10){
                 updated = "0" + day + now.substring(2, 9) + time;
             }else{
-                updated = day + now.substring(2, 17);
+                updated = day + now.substring(2, 9) + time;
             }
         }
         try {
-            FileWriter writer =  new FileWriter("phase2/txtfiles/date.txt");
+            BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/txtfiles/date.txt"));
             writer.write(updated);
             writer.close();
         } catch (IOException e) {
