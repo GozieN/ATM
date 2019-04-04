@@ -41,7 +41,7 @@ public class SavingsAccount extends Debit implements java.io.Serializable {
             ((PointSystemUser) accountHolder).getIsGoldMember();
             interest = 0.035;
         }
-        if (("01").equals(getLastLine().substring(3, 5))) {
+        if (("01").equals(getLastLine().substring(0, 2))) {
             double increaseBy = interest * getBalance();
             setBalance(getBalance() + increaseBy);
         }
