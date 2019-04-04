@@ -11,7 +11,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="180.0" layoutY="182.0" mnemonicParsing="false" onAction="#selectUser" text="select user">
+      <Button layoutX="180.0" layoutY="135.0" mnemonicParsing="false" onAction="#selectUser" text="select user">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="180.0" layoutY="182.0" mnemonicParsing="false" onAction="#setDate" text="set ATM date">
          <font>
             <Font size="20.0" />
          </font>

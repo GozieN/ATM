@@ -28,36 +28,38 @@ public class SetAtmDateMenuController extends Menu implements java.io.Serializab
 	private Label endStatus;
 
 	public void setDate(ActionEvent event) throws Exception {
-		int day = 0;
-		int month = 0;
-		int year = 0;
+		String day;
+		String month;
+		String year ;
 		if (!(dayIn.getText().isEmpty())) {
-			day = Integer.parseInt(this.dayIn.getText());
+			day = this.dayIn.getText();
 			this.dayInStatus.setText("");
 		} else {
-			day = 0;
+			day = "0";
 			this.dayInStatus.setText("this field cannot be empty. try again");
 			this.endStatus.setText("");
 		}
 		if (!(monthIn.getText().isEmpty())) {
-			month = Integer.parseInt(this.monthIn.getText());
+			month = this.monthIn.getText();
 			this.monthInStatus.setText("");
 		} else {
-			month = 0;
+			month = "0";
 			this.monthInStatus.setText("this field cannot be empty. try again");
 			this.endStatus.setText("");
 		}
 		if (!(yearIn.getText().isEmpty())) {
-			year = Integer.parseInt(this.yearIn.getText());
+			year = this.yearIn.getText();
 			this.yearInStatus.setText("");
 		} else {
-			year = 0;
+			year = "0";
 			this.yearInStatus.setText("this field cannot be empty. try again");
 			this.endStatus.setText("");
 		}
-		if (!(day == 0) && !(month == 0) && !(year == 0)) {
+		if (!(day == "0") && !(month == "0") && !(year == "0")) {
 			try {
-				getBM().ATMSetDate(day, month, year);
+				FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
+				writer.write(day + month + year + " 00:00:00");
+				writer.close();
 				this.endStatus.setText("the date has been set");
 			} catch (Exception e) {
 				e.printStackTrace();

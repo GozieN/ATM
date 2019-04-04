@@ -11,9 +11,7 @@ import javafx.event.*;
 import phase2.Operators.BankAccountUser.User;
 import java.util.*;
 
-public class BankManagerInteractionsMenuController extends Menu implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class BankManagerInteractionsMenuController extends Menu implements Serializable {
 	private User user = null;
 
 	public void selectUser(ActionEvent event) throws Exception {
@@ -21,8 +19,18 @@ public class BankManagerInteractionsMenuController extends Menu implements java.
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("UserSelectMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene userSelectMenuScene = new Scene(parent);
-		mainStage.setScene(userSelectMenuScene);
+		Scene scene = new Scene(parent);
+		mainStage.setScene(scene);
+		mainStage.show();
+	}
+
+	public void setDate(ActionEvent event) throws Exception {
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("SetAtmDateMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene scene = new Scene(parent);
+		mainStage.setScene(scene);
 		mainStage.show();
 	}
 
@@ -31,10 +39,8 @@ public class BankManagerInteractionsMenuController extends Menu implements java.
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("InboxMenuScene.fxml"));
 		Parent parent = loader.load();
-		Scene inboxMenuScene = new Scene(parent);
-		InboxMenuController controller = loader.getController();
-		controller.initialize();
-		mainStage.setScene(inboxMenuScene);
+		Scene scene = new Scene(parent);
+		mainStage.setScene(scene);
 		mainStage.show();
 	}
 
@@ -63,8 +69,13 @@ public class BankManagerInteractionsMenuController extends Menu implements java.
 	}
 
 	public void back(ActionEvent event) throws Exception {
-		String previousMenu = "BankManagerLoginMenuScene.fxml";
-		super.back(event, previousMenu);
+		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("BankManagerLoginMenuScene.fxml"));
+		Parent parent = loader.load();
+		Scene scene = new Scene(parent);
+		mainStage.setScene(scene);
+		mainStage.show();
 	}
 
 	public void exit(ActionEvent event) throws Exception {
