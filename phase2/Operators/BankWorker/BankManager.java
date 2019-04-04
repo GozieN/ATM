@@ -6,6 +6,7 @@ import phase2.FundStores.Asset.ChequingAccount;
 import phase2.FundStores.Asset.SavingsAccount;
 import phase2.FundStores.Debt.CreditCard;
 import phase2.FundStores.Debt.LineOfCredit;
+import phase2.Operators.BankAccountUser.BankUserFactory;
 import phase2.Operators.BankAccountUser.User;
 import sun.dc.pr.PRError;
 
@@ -25,6 +26,7 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     private static ArrayList<Account> allAccounts = new ArrayList<>();
     private String accessKey = "900";
     private Queue<String> inbox = new ArrayDeque<String>();
+    private String userTypeToCreate = "standard";
 
 
     /**
@@ -76,6 +78,13 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         return this.atm;
     }
 
+    /**
+     * set the type pf user to be created.
+     * @param userTypeToCreate
+     */
+    public void setUserTypeToCreate(String userTypeToCreate) {
+        this.userTypeToCreate = userTypeToCreate;
+    }
 
     /**
      * Create and update the list of accounts that a user has
@@ -138,6 +147,10 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
         }
     }
 
+    public String getUserTypeToCreate() {
+        return userTypeToCreate;
+    }
+
     /**
      * Display the features that this user has.
      * @return String - the features this user has!
@@ -171,14 +184,14 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
     }
 
 
-
     /**
      * Create a user
      * @param username Username used for login into accounts
      * @param password Password used for login into accounts
      */
     public void createUser (String username, String password) {
-        User newUser = new User(username, password);
+        BankUserFactory buf = new BankUserFactory(userTypeToCreate);
+        User newUser = buf.determineUserAccountTypeCreation(username, password);
         if (!(users.isEmpty())) {
             users.add(newUser);
             System.out.println("emptyList");

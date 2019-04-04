@@ -108,6 +108,10 @@ public class UserInteractionsMenuController extends Menu implements java.io.Seri
 		}
 	}
 
+	public void cashPoints(ActionEvent event) throws Exception {
+        ((PointSystemUser)this.user).retrieveRewards();
+    }
+
 	public void viewSignedContract(ActionEvent event) throws Exception {
 		Stage mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();

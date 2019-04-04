@@ -24,8 +24,6 @@ public class PointSystemUser extends User implements Contract, Rewardable {
     public PointSystemUser(String username, String password){
         super(username, password);
         numUsers++;
-        this.userDatabase.add(this);
-        userDatabase.add(this);
         this.accountsCreated = new ArrayList<Account>();
         numPoints = 100;
     }

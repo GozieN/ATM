@@ -20,8 +20,11 @@ public class UserContractMenuController extends Menu implements java.io.Serializ
 	public void initialize(String username, String password) {
 		this.username = username;
 		this.password = password;
-		this.contract.setText(getU().viewContract());
-	}
+		if (BM.getUserTypeToCreate().equals("studentPS")){
+            this.contract.setText(getSU().viewContract());
+        }else if (BM.getUserTypeToCreate().equals("retiredPS")){
+            this.contract.setText(getRU().viewContract()); }
+            else{this.contract.setText(getU().viewContract()); }}
 
 	public void agree(ActionEvent event) throws Exception {
 		if (!(this.username == null) && !(this.password == null)) {

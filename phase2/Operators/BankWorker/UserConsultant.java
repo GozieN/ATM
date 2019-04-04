@@ -110,21 +110,23 @@ public class UserConsultant extends CustomerService implements Contract {
                         "for account creation.";
             }
             else if (age >= 16 && 25 >= age && inSchool) {
-                currentUserBeingConsultedType = "Student";
+                currentUserBeingConsultedType = "studentPS";
                 s = "Based on your information, it looks like a Student Bank Account is the " +
                         "right fit for you! We have sent your information off for approval and \n" +
                         "have created a New Student account for you!";
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
+                        BM.setUserTypeToCreate(currentUserBeingConsultedType);
             }
             else if(age > 60){
-                currentUserBeingConsultedType = "Retired/Pension";
+                currentUserBeingConsultedType = "retiredPS";
                 s = "Based on your information, it looks like a Pension/Retirement Bank Account is the " +
                         "right fit for you! We are transferring you over to the account creation page! You are a" +
                         " member of our \"Points system,\" +\n" +
                         "which you can opt out of at any time.\"" ;
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
+                BM.setUserTypeToCreate(currentUserBeingConsultedType);
             }
             else{
                 currentUserBeingConsultedType = "Standard";
@@ -134,6 +136,7 @@ public class UserConsultant extends CustomerService implements Contract {
                         "which you can opt out of at any time.";
                 record = "Number of users consulted: " + numUsersConsulted + " Account type recommendation: " +
                         currentUserBeingConsultedType;
+                        BM.setUserTypeToCreate(currentUserBeingConsultedType);
                 }
         addToUserAdviseHistory(record);
         return s;

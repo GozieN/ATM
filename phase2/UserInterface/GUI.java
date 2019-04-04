@@ -10,6 +10,8 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.stage.*;
 import javafx.scene.*;
+import phase2.Operators.BankAccountUser.RetiredPointSystemUser;
+import phase2.Operators.BankAccountUser.StudentPointSystemUser;
 import phase2.Operators.BankAccountUser.User;
 import phase2.Operators.BankWorker.BankManager;
 import phase2.Operators.BankWorker.UserConsultant;
@@ -23,7 +25,11 @@ public class GUI extends Application implements Serializable {
     protected static UserConsultant UC;
     protected static BankManager BM;
     protected static User U = new User("", "");
-   // public boolean running = true;
+    protected static StudentPointSystemUser SU = new StudentPointSystemUser("su", "");
+    protected static RetiredPointSystemUser RU = new RetiredPointSystemUser("ru", "");
+
+
+    // public boolean running = true;
 
     public GUI(){
 
@@ -37,9 +43,11 @@ public class GUI extends Application implements Serializable {
                 System.out.println("file len is 0");
                 BM = new BankManager("BMuser", "BMpass");
                 BM.setAtm(new ATM());
+                UC = new UserConsultant("UCuser", "UCpass");
                 atm =  BM.getAtm();
 //                atm.setDate(04,03,2019);
-                BM.setUC(new UserConsultant("UCuser", "UCpass"));
+                BM.setUC(UC);
+                UC.setBM(BM);
                 UC = BM.getUC();
                 System.out.println("end of len 0");
                 System.out.println(BM);
@@ -135,6 +143,14 @@ public class GUI extends Application implements Serializable {
      */
     public BankManager getBM() {
         return BM;
+    }
+
+    public static StudentPointSystemUser getSU() {
+        return SU;
+    }
+
+    public static RetiredPointSystemUser getRU() {
+        return RU;
     }
 
     /**
