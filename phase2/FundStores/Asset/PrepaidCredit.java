@@ -38,7 +38,7 @@ public class PrepaidCredit extends Account implements Serializable {
      */
     public void monthlyFees() {
         double fee = 3;
-        if (("01").equals(getLastLine().substring(0, 2))) {
+        if (("01").equals(getLastLine().substring(3, 5))) {
             if (balance > 3) {
                 setBalance(getBalance() - fee);
             } else {
