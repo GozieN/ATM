@@ -203,23 +203,23 @@ public class BankManager extends BankTeller implements Iterable<User>, Serializa
             }
     }
 
-    /**
-     * Set the date to be displayed on the ATM
-     * @param day Day of month
-     * @param month Month of year
-     * @param year Year
-     */
-    public void ATMSetDate(int day, int month, int year) throws IOException{ // format dd:mm:yy
-        try {
-            atm.setDate(day, month, year);
-            System.out.println("the date has been set to " + day + ':' + month + ':' + year);
-            FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
-            writer.write(day + month + year + " 00:00:00");
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * Set the date to be displayed on the ATM
+//     * @param day Day of month
+//     * @param month Month of year
+//     * @param year Year
+//     */
+//    public void ATMSetDate(int day, int month, int year) throws IOException{ // format dd:mm:yy
+//        try {
+//            atm.setDate(day, month, year);
+//            System.out.println("the date has been set to " + day + ':' + month + ':' + year);
+//            FileWriter writer = new FileWriter("phase2/txtfiles/date.txt");
+//            writer.write(day + month + year + " 00:00:00");
+//            writer.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    /**
 //     * Set the time displayed on the ATM
